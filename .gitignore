@@ -1,0 +1,7 @@
+node_modules
+/app/main/tmp/
+/docs/
+/artifacts/
+/test/e2e/reports
+/app/deploy/
+/app/bower_components
