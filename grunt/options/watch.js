@@ -3,13 +3,13 @@ Run predefined tasks whenever watched file patterns are added, changed or delete
 refer to https://github.com/gruntjs/grunt-contrib-watch
  */
 module.exports = {
-    watch: {
+
         /**
          * install this chrome extension will release you from keep refreshing
          *
          * @link https://chrome.google.com/webstore/detail/livereload/jnihajbhpnppcggbcgedagnkighmdlei
          */
-        files: ['<%= meta.srcPath %>/**/*.js', '<%= meta.srcPath %>/**/*.html'],
+        // files: ['<%= meta.srcPath %>/**/*.js', '<%= meta.srcPath %>/**/*.html'],
         options: {
             livereload: true,
             nospawn: true,
@@ -18,18 +18,18 @@ module.exports = {
         },
         srcScripts: {
             files: ['<%= meta.srcPath %>/**/*.js'],
-            tasks: ['jshint']
+            tasks: ['jshint', 'concat']
         },
         html: {
             files: ['app/**/*.html', 'app/main/**/*.tpl.html'],
-            tasks: []
+            tasks: ['concat']
         },
         css: {
-            files: ['app/css/*.css'],
-            tasks: []
+            files: ['app/css/*.scss'],
+            tasks: ['sass', 'cssmin']
         },
         grunt: {
             files: ['Gruntfile.js']
         }
-    }
+
 }

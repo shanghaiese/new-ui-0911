@@ -6,8 +6,8 @@ module.exports = {
         dest: 'artifacts/docs',
         /* where the docs should be built*/
         scripts: [
-            './app/lib/angular/angular.js',
-            './app/lib/angular/angular-animate.js',
+            './node_modules/angular/angular.js',
+            './node_modules/angular-animate/angular-animate.js',
             './app/main/app.js'
         ],
         /* load *.js into document app. angular.js and angular-animate.js are mandatory */

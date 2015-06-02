@@ -12,13 +12,12 @@
                 base: ['app', 'docs'],
                 // default:false, the server will shutdown after the task finishes
                 // if a watch task is started later, it is not necessary to overide this default value
-                keepalive: true,
+                keepalive: false,
 
                 middleware: function(connect, options, middlewares) {
                     // inject a custom middleware into the array of default middlewares
                     console.log(constants.apiServer);
                     middlewares.push(function(req, res, next) {
-                        console.log(req.url);
                         if (!req.url.match(/^\/api\//)) {
                             return next();
                         } else {
@@ -30,7 +29,6 @@
                                 var httpProxy = require('http-proxy');
                                 var proxy = httpProxy.createProxyServer({});
                                 req.headers["REMOTE_USER"] = username;
-                                console.log(constants.apiServer);
                                 proxy.web(req, res, {
                                     target: constants.apiServer//has problem if use '<%= constants.apiServer %>'
 

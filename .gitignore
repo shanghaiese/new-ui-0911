@@ -3,4 +3,5 @@ node_modules
 /artifacts/
 /test/e2e/reports
 /app/deploy/
-
+.sass-cache
+/app/bower_components/
