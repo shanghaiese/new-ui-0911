@@ -30,6 +30,10 @@ module.exports = {
         },
         grunt: {
             files: ['Gruntfile.js']
+        },
+        bower: {
+            files: ['<%= meta.srcPath %>/bower_components/*'],
+            tasks:['wiredep']
         }
 
 }

@@ -1,5 +1,18 @@
-$intel-blue: #0071c5;
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
+
+@import "it-mlaf-sass/it-mlaf";
+
+// import ilab customized scss partials
+@import "header";
+
 body {
-    font-size: 10px;
-    color: $intel-blue;
+    font-size: 16px;
+
+
+    .main-content {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 20px;
+    }
 }

@@ -5,14 +5,13 @@
     angular.module('ilabDirective', []);
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router']);
-    angular.module('ilab', ['ngRoute',
-                           'ngResource',
-                           'ngAnimate',
+    angular.module('ilab', ['ngResource',
                            'ngSanitize',
                            'ilabService',
                            'ilabDirective',
                            'ilabFilter',
-                           'ilabConfig']);
+                           'ilabConfig',
+                           'angular-loading-bar']);
 
 
 })();

@@ -29,7 +29,7 @@
                     templateUrl: "main/state1.tab2.html",
                     controller: function($scope) {
                         console.log('state1.tab2');
-                        $scope.items = ["A", "List", "Of", "Items"];
+                        $scope.items = ["B", "List", "Of", "Items"];
                     }
                 })
                 .state('state2', {

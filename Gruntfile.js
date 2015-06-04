@@ -25,7 +25,7 @@ module.exports = function(grunt) {
         env: process.env,
         meta: {
             basePath: './',
-            srcPath: 'app/',
+            srcPath: 'app',
             deployPath: 'app/deploy'
         },
         constants: grunt.file.readJSON('./grunt/constants.json')
