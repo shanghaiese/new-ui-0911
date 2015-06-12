@@ -2,6 +2,8 @@ iLab New UI project
 
 **Fork the newui repo and start collaborating** refer to [github collaboration](https://help.github.com/articles/using-pull-requests/) for how to.
 
+**Be sure to check out [angular style guide](https://github.com/github-libra/angular-styleguide) before writing any code**
+
 #Precondition
 
 1. choose your favorite editor(recommend [sublime text](http://www.sublimetext.com/))
