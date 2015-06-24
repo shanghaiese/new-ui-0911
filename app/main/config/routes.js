@@ -3,35 +3,41 @@
     angular.module('ilabConfig')
         .config(function($stateProvider, $urlRouterProvider) {
             //
-            // For any unmatched url, redirect to /state1
-            $urlRouterProvider.otherwise("/state1");
+            // For any unmatched url, redirect to /environment
+            $urlRouterProvider.otherwise("/default");
             //
             // Now set up the states
-            // hello
             $stateProvider
-                .state('state1', {
-                    url: "/state1",
-                    templateUrl: "main/state1.html",
+                .state('default', {
+                    url: "/default",
+                    templateUrl: "main/environment/environment.html",
                     controller: function($scope) {
-                        console.log('state1');
+                        console.log('environment');
                     }
                 })
-                .state('state1.tab1', {
-                    url: "/tab1",
-                    templateUrl: "main/state1.tab1.html",
+                .state('environment', {
+                    url: "/environment",
+                    templateUrl: "main/environment/environment.html",
                     controller: function($scope) {
-                        console.log('state1.tab1');
-                        $scope.items = ["A", "List", "Of", "Items"];
+                        console.log('environment');
                     }
                 })
-                .state('state1.tab2', {
-                    url: "/tab2",
-                    templateUrl: "main/state1.tab2.html",
-                    controller: function($scope) {
-                        console.log('state1.tab2');
-                        $scope.items = ["B", "List", "Of", "Items"];
-                    }
+                .state('environment.vms', {
+                    url: "/vms",
+                    templateUrl: "main/environment/vms/vms.html",
+                    controller: VMsCtrl
+                    // controller: function($scope) {
+                    //     console.log('environment.vms');
+                    // }
                 })
+                // .state('environment.tab2', {
+                //     url: "/tab2",
+                //     templateUrl: "main/environment.tab2.html",
+                //     controller: function($scope) {
+                //         console.log('environment.tab2');
+                //         $scope.items = ["B", "List", "Of", "Items"];
+                //     }
+                // })
                 .state('state2', {
                     url: "/state2",
                     templateUrl: "main/state2.html",
@@ -48,6 +54,5 @@
                     }
                 });
         });
-
 
 })();
