@@ -1,6 +1,6 @@
 <h3>List of VMs</h3>
-<div ng-controller="VMsCtrl as vm">
+<div>{{vm.items}}
     <ul>
-        <li ng-repeat="item in vm.items">{{ item }}</li>
+        <li ng-repeat="item in items">{{ item }}</li>
     </ul>
 </div>
