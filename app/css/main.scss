@@ -1,7 +1,13 @@
+//add IT master look&feel 
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 
 @import "it-mlaf-sass/it-mlaf";
+
+//add ilab customized iconfont lib
+$ilab-font-path: "../bower_components/ilabicon/fonts/";
+
+@import "ilabicon/style";
 
 // import ilab customized scss partials
 @import "header";
