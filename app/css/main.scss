@@ -16,3 +16,53 @@ body {
         padding: 20px;
     }
 }
+
+
+.table-bordered > thead > tr > th, 
+.table-bordered > thead > tr > td, 
+.table-bordered > tbody > tr > th, 
+.table-bordered > tbody > tr > td, 
+.table-bordered > tfoot > tr > th, 
+.table-bordered > tfoot > tr > td
+{
+	border-left: 0px;
+	border-right: 0px;
+}
+
+$color_spicy_pink_approx: rgb(119, 111, 111);
+.ilab-sortable thead tr {
+		&:first-child th {			
+			background: $lighter-gray3;
+			border: 0px;
+			color: $black;
+			cursor: pointer;
+			padding-right: 1.5em;
+			position: relative;
+			&.ilab-sort-asc:after {
+				border-color: transparent transparent $color_spicy_pink_approx transparent;
+				border-style: solid;
+				border-width: 0.5em;
+				top: .05em;
+				content: ' ';
+				height: 0.75em;
+				position: absolute;
+				//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+				border-radius: 4px;
+				width: 0;
+				z-index: 6;
+			}
+			&.ilab-sort-desc:after {
+				border-color: $color_spicy_pink_approx transparent transparent transparent;
+				border-style: solid;
+				border-width: 0.5em;
+				bottom: .05em;
+				content: ' ';
+				height: 0.75em;
+				position: absolute;
+				//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+				border-radius: 4px;
+				width: 0;
+				z-index: 6;
+			}	
+	}
+}

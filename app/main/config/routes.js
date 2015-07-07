@@ -25,7 +25,8 @@
                 .state('environment.vms', {
                     url: "/vms",
                     templateUrl: "main/environment/vms/vms.html",
-                    controller: VMsCtrl
+                    controller: 'VMsCtrl',
+                    controllerAs: 'vm'
                     // controller: function($scope) {
                     //     console.log('environment.vms');
                     // }
