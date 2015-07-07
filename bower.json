@@ -36,6 +36,6 @@
     "angular-bootstrap": "~0.13.0",
     "it-mlaf-sass": "git://github.intel.com/IT-UI-Assets/it-mlaf-sass.git",
     "progressBar": "git://github.intel.com/ecilab/progressBar.git",
-    "ilabicon": "git://github.intel.com/ecilab/ilabicon.git"
+    "ilabicon": "git://github.intel.com/ecilab/ilabicon.git#1.0.0"
   }
 }
