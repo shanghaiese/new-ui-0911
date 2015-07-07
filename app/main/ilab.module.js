@@ -11,7 +11,8 @@
                            'ilabDirective',
                            'ilabFilter',
                            'ilabConfig',
-                           'angular-loading-bar']);
-
+                           'angular-loading-bar',
+                           'ui.bootstrap']
+                           );
 
 })();

@@ -1,7 +1,15 @@
+(function() {
 
-function VMsCtrl() {
-    var view = this;
-    view.items = ["List", "Of", "Items", "David"];
-    
-    view.doSomething = function() { };
-}
+	angular
+		.module('ilab')
+		.controller('EnvironmentVMCtrl', EnvironmentVMCtrl);
+		
+	EnvironmentVMCtrl.$inject = ['$scope'];
+
+	function EnvironmentVMCtrl($scope) {
+		$scope.larr = [{name: 'a'},{name: 'b'}];
+  		$scope.model=false;
+  		console.log('f')
+	}
+
+})();
