@@ -17,7 +17,7 @@ module.exports = {
             debounceDelay: 250
         },
         srcScripts: {
-            files: ['<%= meta.srcPath %>/**/*.js'],
+            files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js'],
             tasks: ['jshint', 'concat']
         },
         html: {
@@ -27,9 +27,6 @@ module.exports = {
         css: {
             files: ['app/css/*.scss'],
             tasks: ['sass', 'cssmin']
-        },
-        grunt: {
-            files: ['Gruntfile.js']
         },
         bower: {
             files: ['<%= meta.srcPath %>/bower_components/*'],

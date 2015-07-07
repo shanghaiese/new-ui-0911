@@ -4,15 +4,15 @@
         .config(function($stateProvider, $urlRouterProvider) {
             //
             // For any unmatched url, redirect to /environment
-            $urlRouterProvider.otherwise("/default");
+            $urlRouterProvider.otherwise("/");
             //
             // Now set up the states
             $stateProvider
                 .state('default', {
-                    url: "/default",
-                    templateUrl: "main/environment/environment.html",
+                    url: "/",
+                    templateUrl: "main/welcome.html",
                     controller: function($scope) {
-                        console.log('environment');
+                        console.log('welcome');
                     }
                 })
                 .state('environment', {
@@ -27,30 +27,27 @@
                     templateUrl: "main/environment/vms/vms.html",
                     controller: 'VMsCtrl',
                     controllerAs: 'vm'
-                    // controller: function($scope) {
-                    //     console.log('environment.vms');
-                    // }
                 })
-                // .state('environment.tab2', {
-                //     url: "/tab2",
-                //     templateUrl: "main/environment.tab2.html",
-                //     controller: function($scope) {
-                //         console.log('environment.tab2');
-                //         $scope.items = ["B", "List", "Of", "Items"];
-                //     }
-                // })
-                .state('state2', {
-                    url: "/state2",
-                    templateUrl: "main/state2.html",
-                    controller: function() {
-                        console.log('state2');
+                .state('environment.pms', {
+                    url: "/pms",
+                    templateUrl: "main/environment/pms/pms.html",
+                    controller: function($scope) {
+                        console.log('environment.tab2');
+                        $scope.items = ["B", "List", "Of", "Items"];
                     }
                 })
-                .state('state2.list', {
+                .state('lab', {
+                    url: "/lab",
+                    templateUrl: "main/lab/lab.html",
+                    controller: function() {
+                        console.log('lab');
+                    }
+                })
+                .state('lab.list', {
                     url: "/list",
-                    templateUrl: "main/state2.list.html",
+                    templateUrl: "main/lab/lab.list.html",
                     controller: function($scope) {
-                        console.log('state2.list');
+                        console.log('lab.list');
                         $scope.things = ["A", "Set", "Of", "Things"];
                     }
                 });

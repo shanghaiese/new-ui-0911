@@ -29,11 +29,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 <img class="navbar-logo" src="bower_components/it-mlaf-sass/images/intel-logo-white-100.png" alt="">
-                <a class="navbar-brand" href="#">iLab</a>
+                <a class="navbar-brand" ui-sref="default">iLab</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="#">Home</a></li>
+                    <li class="active"><a ui-sref="default">Home</a></li>
                     <li><a href="#">Link</a></li>
                     <li><a href="#">Link</a></li>
                 </ul>
@@ -42,10 +42,12 @@
         </div>
     </nav>
     <div class="container main-content">
-        <aside>
-            <a ui-sref="default">Environment</a>
-            <a ui-sref="state2">Lab</a>
-        </aside>
+        <section>
+            <p><a ui-sref="environment.vms">Environment</a></p>
+            <p><a ui-sref="lab">Lab</a></p>
+            <span class="ilabicon-fail">
+
+        </section>
         <div ui-view></div>
     </div>
     <!-- We'll also add some navigation: -->
@@ -61,6 +63,7 @@
     <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
     <script src="bower_components/progressBar/progressBar.js"></script>
     <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <!-- endbower -->
     <!-- internal dependencies -->
     <!-- main file -->
