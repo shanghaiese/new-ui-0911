@@ -9,7 +9,11 @@
 	function EnvironmentVMCtrl($scope) {
 		$scope.larr = [{name: 'a'},{name: 'b'}];
   		$scope.model=false;
-  		console.log('f')
+  		console.log('f');
+
+  		$scope.configTmp = {
+  			"name": testVM
+  		}
 	}
 
 })();
