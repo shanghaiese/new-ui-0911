@@ -23,7 +23,7 @@ angular.module('ilabService')
                 createVM: createVM
             };
 
-            var Machines = resource(url + 'machines/:machineID', null, {
+            /*var Machines = resource(url + 'machines/:machineID', null, {
                 powerOn: {
                     method: 'PUT',
                     url: url + 'machines/:machineID/powerOn'
@@ -46,7 +46,7 @@ angular.module('ilabService')
                     method: 'POST',
                     url: url + 'machines/virtual'
                 }
-            });
+            });*/
 
             var createVM = function(name, tpl, env, attr) {
                 return Machines.createVM({
@@ -137,5 +137,5 @@ angular.module('ilabService')
 
             };
 
-        }
+        } 
     ]);

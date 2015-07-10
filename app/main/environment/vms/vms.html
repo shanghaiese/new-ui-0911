@@ -7,7 +7,7 @@
                 <span class="intelicon-close-solid"  >
                 </span>
                 <tabset class="VMSettingTabs" type="pills">
-                    <tab ng-click="onSelectToolTab(vm.id)" active="toolTab.active" title="Configure VM">
+                    <tab active="toolTab.active" title="Configure VM">
                         <tab-heading>
                             <span class="intelicon-tools"></span>
                         </tab-heading>
@@ -19,39 +19,39 @@
                             </div>
                             <div class="pure-control-group">
                             	<label for="vm-description">Description:</label>
-                            	<input id="vm-description" type="text" placeholder="Description" />
+                            	<input id="vm-description" type="text" placeholder="Description" ng-model="configTmp.description" />
                             </div>
                             <div class="pure-control-group">
                                 <label for="nic1">CPU:</label>
-                                <ilab-dropdown lists="larr" attr-to-display="name" selected-list="model" list-open="false">{{larr}}</ilab-dropdown>
+                                <ilab-dropdown lists="CPU" attr-to-display="NumOfCPU" selected-list="configTmp.CPU" list-open="false"></ilab-dropdown>
                             </div>
                        		<div class="pure-control-group">
                                 <label>Memory:</label>
-                                <ilab-dropdown lists="marr" attr-to-display="mem" selected-list="model2">{{marr}}</ilab-dropdown>
+                                <ilab-dropdown lists="Memory[configTmp.CPU.id]" attr-to-display="memory" selected-list="configTmp.Memory"></ilab-dropdown>
                             </div>
                             <div class="pure-control-group">
                            	 	<label for="nic1">Network:</label>
-                                <ilab-dropdown lists="narr" attr-to-display="nic" selected-list="model3">{{narr}}</ilab-dropdown>
+                                <ilab-dropdown lists="Network" attr-to-display="Nic" selected-list="configTmp.Network">{{narr}}</ilab-dropdown>
                             </div>
                             <div class="pure-control-group">
                                 <span>
-                                	<button class="btn btn-primary" type="button">Update</button>
-                    				<button class="btn btn-secondary" type="button">Cancel</button>
+                                	<button class="btn btn-primary" type="button" ng-click="submit()">Update</button>
+                    				<button class="btn btn-secondary" type="button" ng-click="cancelConfig()">Cancel</button>
                                 </span>
                             </div>
                         </form>
                     </tab>
-                    <tab ng-click="OnSelectTemplateTab(vm)" title="Save VM as template">
+                    <tab title="Save VM as template">
                         <tab-heading>
                             <span class="intelicon-save-solid"></span>
                         </tab-heading>
                     </tab>
-                    <tab ng-click="onSelectInfoTab(vm.id)" title="VM Information">
+                    <tab title="VM Information">
                         <tab-heading>
                             <span class="intelicon-information-solid"></span>
                         </tab-heading>
                     </tab>
-                        <tab disabled="true" title="Delete VM">
+                    <tab disabled="true" title="Delete VM">
                         <tab-heading>
                             <span class="intelicon-trash-outlined"></span>
                         </tab-heading>

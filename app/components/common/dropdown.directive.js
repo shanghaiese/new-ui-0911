@@ -14,8 +14,16 @@
  * @param {bool} isOptional isOptional
  *
  */
-angular.module('ilabDirective')
-    .directive('ilabDropdown',["$document",function($document) {
+
+(function() {
+
+    angular
+        .module('ilabDirective')
+         .directive('ilabDropdown', ilabDropdown);
+        
+    ilabDropdown.$inject = ['$document'];
+
+    function ilabDropdown($document) {
         "use strict";
         return {
             restrict: 'E',
@@ -25,7 +33,7 @@ angular.module('ilabDirective')
                 listOpen: '=',
                 selectedList: '=',
                 attrToDisplay: '@',
-                isOptional: '@'
+                isOptional: '='
             },
             template: '<div class = \"ilab-dropdown-list\">\n' +
                 '<div class=\"intel-select\">{{selectedList[attrToDisplay]}}&nbsp;</div>\n' +
@@ -39,7 +47,7 @@ angular.module('ilabDirective')
             link: function(scope, element, attrs) {
                 if (!angular.isDefined(scope.isOptional)) {
                     //?
-                    scope.isOptional = false;
+                    scope.isOptional = "false";
                 } else if ( scope.isOptional) {
                     scope.selectedList[scope.attrToDisplay] = "None";
 
@@ -51,18 +59,18 @@ angular.module('ilabDirective')
                 }
 
                 scope.select = function(list) {
-
+                    console.log(scope.selectedList);
                     if (list == scope.selectedList) {
 
                     } else {
                         scope.selectedList = {};
-
                         angular.copy(list, scope.selectedList);
                     }
                     // scope.selectedList = list;
                 };
 
                 scope.listOpen = false;
+                //?
                 var onClick = function(event) {
                     if (attrs.disabled) {
 
@@ -77,5 +85,8 @@ angular.module('ilabDirective')
                 };
                 $document.click(onClick);
             }
-        };
-    }]);
+        }
+    }
+
+})();
+
