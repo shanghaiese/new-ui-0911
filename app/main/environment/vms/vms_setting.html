@@ -1,0 +1,63 @@
+ <!--link rel="stylesheet" href="deploy/form.css"-->
+
+<table class="table table-bordered table-striped table-intel">
+    <tr>
+        <td colspan="7" class="table table-span-td">
+            <div>
+                <span class="intelicon-close-solid"  >
+                </span>
+                <tabset class="VMSettingTabs" type="pills">
+                    <tab active="toolTab.active" title="Configure VM">
+                        <tab-heading>
+                            <span class="intelicon-tools"></span>
+                        </tab-heading>
+                    	 <form class="pure-form-aligned" id="config-vm" ng-submit="updateConfig(vm.id)">
+                    	 	<div class="edit-virtual-machine">Edit Virtual Machine:</div>
+                            <div class="pure-control-group"> 
+                                <label for="vm-name">VM name:</label>
+                                <input id="vm-name" type="text" placeholder="Virtual Machine 1" ng-model="configTmp.name" required />
+                            </div>
+                            <div class="pure-control-group">
+                            	<label for="vm-description">Description:</label>
+                            	<input id="vm-description" type="text" placeholder="Description" ng-model="configTmp.description" />
+                            </div>
+                            <div class="pure-control-group">
+                                <label for="nic1">CPU:</label>
+                                <ilab-dropdown lists="CPU" attr-to-display="NumOfCPU" selected-list="configTmp.CPU" list-open="false"></ilab-dropdown>
+                            </div>
+                       		<div class="pure-control-group">
+                                <label>Memory:</label>
+                                <ilab-dropdown lists="Memory[configTmp.CPU.id]" attr-to-display="memory" selected-list="configTmp.Memory"></ilab-dropdown>
+                            </div>
+                            <div class="pure-control-group">
+                           	 	<label for="nic1">Network:</label>
+                                <ilab-dropdown lists="Network" attr-to-display="Nic" selected-list="configTmp.Network"></ilab-dropdown>
+                            </div>
+                            <div class="pure-control-group">
+                                <span>
+                                	<button class="btn btn-primary" type="button" ng-click="submit()">Update</button>
+                    				<button class="btn btn-secondary" type="button" ng-click="cancelConfig()">Cancel</button>
+                                </span>
+                            </div>
+                        </form>
+                    </tab>
+                    <tab title="Save VM as template">
+                        <tab-heading>
+                            <span class="intelicon-save-solid"></span>
+                        </tab-heading>
+                    </tab>
+                    <tab title="VM Information">
+                        <tab-heading>
+                            <span class="intelicon-information-solid"></span>
+                        </tab-heading>
+                    </tab>
+                    <tab disabled="true" title="Delete VM">
+                        <tab-heading>
+                            <span class="intelicon-trash-outlined"></span>
+                        </tab-heading>
+                    </tab>
+                </tabset>   
+            </div>
+    </td>
+</tr>
+</table>
