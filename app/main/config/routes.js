@@ -12,7 +12,12 @@
                     url: "/",
                     templateUrl: "main/welcome.html",
                     controller: function($scope) {
-                        console.log('welcome');
+                        $scope.lists = [
+                            {name: 'a'},
+                            {name: 'b'},
+                            {name: 'c'},
+                        ];
+                        $scope.selected = $scope.lists[0];
                     }
                 })
                 .state('environment', {
