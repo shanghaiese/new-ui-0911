@@ -13,38 +13,72 @@
                         </tab-heading>
                     	 <form class="pure-form-aligned" id="config-vm" ng-submit="updateConfig(vm.id)">
                     	 	<div class="edit-virtual-machine">Edit Virtual Machine:</div>
-                            <div class="pure-control-group"> 
+                            <div class="intel-setting-group"> 
                                 <label for="vm-name">VM name:</label>
-                                <input id="vm-name" type="text" placeholder="Virtual Machine 1" ng-model="configTmp.name" required />
+                                <input id="vm-name" type="text" placeholder="Virtual Machine 1" ng-model="envVM.configTmp.name" required />
                             </div>
-                            <div class="pure-control-group">
+                            <div class="intel-setting-group">
                             	<label for="vm-description">Description:</label>
-                            	<input id="vm-description" type="text" placeholder="Description" ng-model="configTmp.description" />
+                            	<input id="vm-description" type="text" placeholder="Description" ng-model="envVM.configTmp.description" />
                             </div>
-                            <div class="pure-control-group">
-                                <label for="nic1">CPU:</label>
-                                <ilab-dropdown lists="CPU" attr-to-display="NumOfCPU" selected-list="configTmp.CPU" list-open="false"></ilab-dropdown>
+                            <div class="intel-setting-group">
+                                <label>CPU:</label>
+                                <ilab-dropdown lists="envVM.CPU" attr-to-display="NumOfCPU" selected-list="envVM.configTmp.CPU" list-open="false"></ilab-dropdown>
                             </div>
-                       		<div class="pure-control-group">
+                       		<div class="intel-setting-group">
                                 <label>Memory:</label>
-                                <ilab-dropdown lists="Memory[configTmp.CPU.id]" attr-to-display="memory" selected-list="configTmp.Memory"></ilab-dropdown>
+                                <ilab-dropdown lists="envVM.Memory[envVM.configTmp.CPU.id]" attr-to-display="memory" selected-list="envVM.configTmp.Memory"></ilab-dropdown>
                             </div>
-                            <div class="pure-control-group">
-                           	 	<label for="nic1">Network:</label>
-                                <ilab-dropdown lists="Network" attr-to-display="Nic" selected-list="configTmp.Network"></ilab-dropdown>
+                            <div class="intel-setting-group">
+                           	 	<label>Network:</label>
+                                <ilab-dropdown lists="envVM.Network" attr-to-display="Nic" selected-list="envVM.configTmp.Network"></ilab-dropdown>
                             </div>
-                            <div class="pure-control-group">
+                            <div class="intel-setting-group">
                                 <span>
-                                	<button class="btn btn-primary" type="button" ng-click="submit()">Update</button>
-                    				<button class="btn btn-secondary" type="button" ng-click="cancelConfig()">Cancel</button>
+                                	<button class="btn btn-primary" type="button" ng-click="envVM.submit()">Update</button>
+                    			 	<button class="btn btn-secondary" type="button" ng-click="envVM.cancelConfig()">Cancel</button>
                                 </span>
                             </div>
                         </form>
                     </tab>
+                    <!--SaveTemplatePanel-->
                     <tab title="Save VM as template">
                         <tab-heading>
                             <span class="intelicon-save-solid"></span>
                         </tab-heading>
+                        <form class="pure-form-aligned" id="saveVMTemplate" ng-submit="saveVMTemp(vm.id)">
+                            <div class="edit-virtual-machine">Save VM Template:</div>
+                            <div class="intel-setting-group">
+                                <label for="vmSaveName">VM name:</label>
+                                <!--Only can be saved when VM is not running-->
+                                <input id="vmSaveName" type="text" placeholder="Virtual Machine 1" ng-model="envVM.saveTemp.name" required />
+                            </div>
+                            <div class="intel-setting-group">
+                                <label for="vmSaveRadio">Save mode:</label>
+                                <input id="vmConvertRadio" class="radioFirst" type="radio" name="saveMode" ng-model="envVM.saveTemp.saveMode" value="convert" />
+                                    <label class="saveTempRadioLabel">Convert</label>
+                                <input id="vmSaveRadio" class="radioSecond" type="radio" name="saveMode" ng-model="envVM.saveTemp.saveMode" value="save" />
+                                    <label class="saveTempRadioLabel">Save</label>
+                            </div>
+                            <div class="intel-setting-group">
+                                <label for="vmSaveRadio">Disk mode:</label>
+                                <input id="vmChainRadio" class="radioFirst" type="radio" name="diskMode" ng-model="envVM.saveTemp.diskMode" value="chain" />
+                                    <label class="saveTempRadioLabel">Chain</label>
+                                <input id="vmCopyRadio" class="radioSecond" type="radio" name="diskMode" ng-model="envVM.saveTemp.diskMode" value="copy" />
+                                    <label class="saveTempRadioLabel">Copy</label>
+                            </div>
+                            <div class="intel-setting-group">
+                                <label class="vmDefaultNet">Default Net:</label>
+                                <label class="vmDefaultNetSub">Nic1:</label> 
+                                <ilab-dropdown lists="envVM.Network" attr-to-display="Nic" selected-list="envVM.configTmp.Network"></ilab-dropdown>
+                            </div>
+                            <div class="intel-setting-group">
+                                <span>
+                                    <button class="btn btn-primary" type="button" ng-click="envVM.submit()">Update</button>
+                                    <button class="btn btn-secondary" type="button" ng-click="envVM.cancelConfig()">Cancel</button>
+                                </span>
+                            </div>
+                        </form>
                     </tab>
                     <tab title="VM Information">
                         <tab-heading>
@@ -58,6 +92,6 @@
                     </tab>
                 </tabset>   
             </div>
-    </td>
-</tr>
+        </td>
+    </tr>
 </table>

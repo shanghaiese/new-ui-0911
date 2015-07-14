@@ -36,7 +36,7 @@
                 isOptional: '='
             },
             template: '<div class = \"ilab-dropdown-list\">\n' +
-                '<div class=\"intel-select\">{{selectedList[attrToDisplay]}}&nbsp;</div>\n' +
+                '<div class=\"ilab-dropdown-list-selected\">{{selectedList[attrToDisplay]}}&nbsp;</div>\n' +
                 '<ul class=\"content\" ng-show=\"listOpen\">\n' +
                 '<li ng-if=\"isOptional\" ng-click=\"selectNone()\">None</li>\n' +
                 '<li ng-repeat=\"list in lists\" ng-click=\"select(list)\">{{list[attrToDisplay]}}</li>\n' +
@@ -48,7 +48,7 @@
                 if (!angular.isDefined(scope.isOptional)) {
                     //?
                     scope.isOptional = "false";
-                } else if ( scope.isOptional) {
+                } else if (scope.isOptional) {
                     scope.selectedList[scope.attrToDisplay] = "None";
 
                 } else {
@@ -59,9 +59,7 @@
                 }
 
                 scope.select = function(list) {
-                    console.log(scope.selectedList);
                     if (list == scope.selectedList) {
-
                     } else {
                         scope.selectedList = {};
                         angular.copy(list, scope.selectedList);

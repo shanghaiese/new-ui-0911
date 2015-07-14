@@ -39,7 +39,7 @@ body {
 		font-weight: bold;
 	}
 
-	.pure-control-group {
+	.intel-setting-group {
 		height: 2.5em;
 		padding-bottom: 0.5em;
   	label {
@@ -75,7 +75,7 @@ body {
 // ilab-dropdown
 /*** DropDown ***/
 
-.intel-select {
+.ilab-dropdown-list-selected {
   background-color: white;
   border: 1px solid #d3d8db;
   color: #53565a;
@@ -84,7 +84,7 @@ body {
   padding: 0.5em;
   position: relative;
 }
-.intel-select select {
+.ilab-dropdown-list-selected select {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -98,10 +98,10 @@ body {
   text-indent: 0.01px;
   text-overflow: '';
 }
-.intel-select select:active, .intel-select select:focus {
+.ilab-dropdown-list-selected select:active, .ilab-dropdown-list-selected select:focus {
   outline: 0;
 }
-.intel-select:before {
+.ilab-dropdown-list-selected:before {
   border-left: 1px solid #d3d8db;
   bottom: 0;
   color: white;
@@ -110,7 +110,7 @@ body {
   content: '';
   /*z-index: 100;*/
 }
-.intel-select:after {
+.ilab-dropdown-list-selected:after {
   background-color: white;
   bottom: 0.4em;
   color: #0071c5;
@@ -127,13 +127,13 @@ body {
   width: 0;
   /*z-index: 10;*/
 }
-.intel-select:after, .intel-select:before {
+.ilab-dropdown-list-selected:after, .ilab-dropdown-list-selected:before {
   font-weight: bold;
   pointer-events: none;
   position: absolute;
   width: 0;
 }
-.intel-select select option {
+.ilab-dropdown-list-selected select option {
   color: #53565a;
   font-size: 14px;
 }
@@ -149,7 +149,7 @@ ilab-dropdown {
   text-align: left;
   position: relative;
 }
-.ilab-dropdown-list .intel-select {
+.ilab-dropdown-list .ilab-dropdown-list-selected {
   position: relative;
   min-width: 11.2em;
   display: block;
@@ -208,7 +208,7 @@ ilab-dropdown {
 .ilab-dropdown-list .content li a {
   color: #53565A;
 }
-  .ilab-environment .intelicon-plus-solid, .ilab-dropdown-list .content li, .ilab-dropdown-list .intel-select, .addEnvironment, .ilab-dismiss-animate {
+  .ilab-environment .intelicon-plus-solid, .ilab-dropdown-list .content li, .ilab-dropdown-list .ilab-dropdown-list-selected, .addEnvironment, .ilab-dismiss-animate {
     cursor: pointer;
   }
   /*Custom scroll bar*/
@@ -223,7 +223,7 @@ ilab-dropdown {
   .ilab-dropdown-list .content::-webkit-scrollbar-thumb {
     background: rgba(0, 0, 0, 0.5);
   }
-  ilab-dropdown[disabled="disabled"] .intel-select {
+  ilab-dropdown[disabled="disabled"] .ilab-dropdown-list-selected {
     background-color: #edeff0;
   }
 

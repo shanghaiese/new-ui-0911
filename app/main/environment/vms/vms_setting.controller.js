@@ -1,57 +1,53 @@
 (function() {
-
-	angular
+    angular
 		.module('ilab')
 		.controller('EnvironmentVMCtrl', EnvironmentVMCtrl);
 		
-	EnvironmentVMCtrl.$inject = ['$scope'];
+    EnvironmentVMCtrl.$inject = ['$scope'];
 
-	function EnvironmentVMCtrl($scope) {
-		$scope.CPU = [];
-		$scope.Memory = [];
-		$scope.Network = [];
-		$scope.configTmp = {};
-		$scope.cancelConfig = cancelConfig;
-		$scope.submit = submit;
+    function EnvironmentVMCtrl($scope) {
+        var that = this;
+		    that.CPU = [];
+		    that.Memory = [];
+		    that.Network = [];
+		    that.configTmp = {};
+		    that.cancelConfig = cancelConfig;
+		    that.submit = submit;
 
-  		$scope.CPU = [{id: 0, NumOfCPU: "1" }, 
-  						{id: 1, NumOfCPU: "2" }, 
-  						{id: 2, NumOfCPU: "4" }, 
-  						{id: 3, NumOfCPU: "8" }, 
-  						{id: 4, NumOfCPU: "16" }];
+        that.CPU = [{id: 0, NumOfCPU: "1" }, 
+                    {id: 1, NumOfCPU: "2" }, 
+                    {id: 2, NumOfCPU: "4" }, 
+ 					{id: 3, NumOfCPU: "8" }, 
+ 					{id: 4, NumOfCPU: "16" }];
 
-  		$scope.Memory = [
-  						[{memory: "0.5"}, {memory: "1"}, {memory: "2"}, {memory: "4"}],
-  						[{memory: "2"}, {memory: "4"}, {memory: "8"}],
-  						[{memory: "4"}, {memory: "8"}, {memory: "16"}],
-  						[{memory: "8"}, {memory: "16"}],
-  						[{memory: "16"}, {memory: "32"}]
-  		];
+        that.Memory = [
+                      [{memory: "0.5"}, {memory: "1"}, {memory: "2"}, {memory: "4"}],
+ 					  [{memory: "2"}, {memory: "4"}, {memory: "8"}],
+ 					  [{memory: "4"}, {memory: "8"}, {memory: "16"}],
+ 					  [{memory: "8"}, {memory: "16"}],
+ 					  [{memory: "16"}, {memory: "32"}]
+                      ];
 
-  		$scope.Network = [{Nic: "Nic1"}, {Nic: "Nic2"}];
+        that.Network = [{Nic: "Nic1"}, {Nic: "Nic2"}];
 
-  		$scope.configTmp = {
-  			name: "testVM",
-  			description: "This is a test VM",
-  			CPU: "",
-  			Memory: "",
-  			Network: ""
-      };
+        that.configTmp = {
+ 			name: "testVM",
+ 			description: "This is a test VM",
+ 			CPU: "",
+ 			memory: "",
+ 			Network: ""
+        };
 
-  		function cancelConfig() {
-            $scope.configTmp.name = "";
-            $scope.configTmp.description = "";
-            $scope.configTmp.Memory = "None";
-            $scope.configTmp.CPU = "None";
-            $scope.configTmp.Network = "None";
+        function cancelConfig() {
+            that.configTmp.name = "";
+            that.configTmp.description = "";
+            that.configTmp.Memory = "None";
+            that.configTmp.CPU = "None";
+            that.configTmp.Network = "None";
             console.log("cancelConfig");
-      }
-  		
-        function submit() {
-        	alert('Submit Success');
         }
-
-
-	}
-
+        function submit() {
+            alert('Submit Success');
+        }
+    }
 })();
