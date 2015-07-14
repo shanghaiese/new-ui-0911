@@ -1,4 +1,8 @@
 {
     "analytics": false,
-    "directory": "app/bower_components"
+    "directory": "app/bower_components",
+    "proxy": "http://10.88.19.141:80",
+    "https-proxy": "http://10.88.19.141:80",
+    "strict-ssl": false
+
 }
