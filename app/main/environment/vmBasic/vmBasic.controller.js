@@ -13,13 +13,13 @@
     function VMBasicCtrl($scope) {
         var that = this;
 
-        //var vmDetail = [{
-        //    vmName:  'Virtual Machine 1',
-        //    description:  'This a test of a directive',
-        //    config:  '2CPU,4G',
-        //    IP:  '10.239.00.01',
-        //    Network:  'Subnet1'
-        //}];
+        var vmDetail = [{
+            vmName:  'Virtual Machine 1',
+            description:  'This a test of a directive',
+            config:  '2CPU,4G',
+            IP:  '10.239.00.01',
+            Network:  'Subnet1'
+        }];
         //that.VMInfo = vmDetail;
 
         //function sctivate(){
