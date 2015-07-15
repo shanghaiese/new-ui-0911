@@ -54,79 +54,79 @@
                 url: url + 'machines/virtual'
             }
         });
-            //mock data
-            var getVMDetail = function() {
-                var detail = [{
-                    name: 'ilab_id',
-                    value: 1001,
-                    displayName: 'iLab ID'
-                }, {
-                    name: 'disk1',
-                    value: '1GB (0 Chain)',
-                    displayName: 'Disk1'
-                }, {
-                    name: 'hostname',
-                    value: '',
-                    displayName: 'Hostname'
-                }, {
-                    name: 'nic1_mac',
-                    value: '00:0c:29:63:43:0f',
-                    displayName: 'Nic1 MAC'
-                }, {
-                    name: 'path',
-                    value: 'uuid://path-information',
-                    displayName: 'Path'
-                }, {
-                    name: 'vmm',
-                    value: 'newUI-1',
-                    displayName: "VMM"
-                }];
-                return detail;
+        //mock data
+        function getVMDetail() {
+            var detail = [{
+                name: 'ilab_id',
+                value: 1001,
+                displayName: 'iLab ID'
+            }, {
+                name: 'disk1',
+                value: '1GB (0 Chain)',
+                displayName: 'Disk1'
+            }, {
+                name: 'hostname',
+                value: '',
+                displayName: 'Hostname'
+            }, {
+                name: 'nic1_mac',
+                value: '00:0c:29:63:43:0f',
+                displayName: 'Nic1 MAC'
+            }, {
+                name: 'path',
+                value: 'uuid://path-information',
+                displayName: 'Path'
+            }, {
+                name: 'vmm',
+                value: 'newUI-1',
+                displayName: "VMM"
+            }];
+            return detail;
 
-            };
+        }
 
 
-        var createVM = function(name, tpl, env, attr) {
+        function createVM(name, tpl, env, attr) {
             return Machines.createVM({
                 displayName: name,
                 machineTemplate: 'VMT22401',
                 environment: env,
                 attributes: attr
             }).$promise;
-        };
+        }
 
-        var getMachineFromGroupInEnv = function(projectID, EnvID) {
+        function getMachineFromGroupInEnv(projectID, EnvID) {
             return Machines.query({
                 environment: EnvID
             }).$promise;
-        };
+        }
 
-        var getMachineAttributes = function(vmId) {
+        function getMachineAttributes(vmId) {
             return Machines.get({
                 machineID: vmId
             }).$promise;
-        };
+        }
 
-        var powerOn = function(vmId) {
+        function powerOn(vmId) {
             return Machines.powerOn({
                 machineID: vmId
             }, null).$promise;
-        };
-        var powerOff = function(vmId) {
+        }
+        function powerOff(vmId) {
             return Machines.powerOff({
                 machineID: vmId
             }, null).$promise;
-        };
-        var deleteVM = function(vmId) {
+        }
+        function deleteVM(vmId) {
             return Machines.deleteVM({
                 machineID: vmId
             }).$promise;
-        };
-        var openConsole = function(vmId) {
+        }
+        function openConsole(vmId) {
             return Machines.openConsole({
                 machineID: vmId
             }, null).$promise;
-        };
+        }
         
 
 

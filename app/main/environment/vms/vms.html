@@ -19,28 +19,34 @@
 
 		<span class="intelicon-search" style="float:right;margin:0.5em;"></span>
 
+  </div>
+    <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
+		<!-- <span class="intelicon-search" id="search-vm"></span>    --> 
+    <input type="search" class="search-panel" placeholder="Search"  ng-model='searchInput' autofocus>
 </div>
-		<!--<span class="ilabicon-displaycolumn" style="font-size:23px;color: #0071C5" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>-->
+		<!---->
+<!-- vm table from here-->
 <table ng-show="vm.VMs.length != 0" class="table table-bordered table-striped table-intel ilab-sortable"  id="vm-table">
     <thead>
       <tr>
         <th style="width: 60px;"> 
-        	<div class="intel-checkbox" style="margin:0;position:relative;width:70px">
-         		<input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.checkall == true"/>
+        	<div class="intel-checkbox">
+         		<input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.deleteVM.selectedVMs.length == vm.VMs.length" />
                 <label for="choose_all_env"></label>
             </div>
         </th>
-        <th class="" ng-repeat="th in vm.thead" ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}" >{{th.display}}</th>
+        <th ng-repeat="th in vm.thead" class=""  ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}" >{{th.display}}</th>
       </tr>
     </thead>
      <tbody >
-      <tr ng-repeat="vms in vm.VMs" class="table-bordered">
+      <tr ng-repeat="vms in vm.VMs|filter:searchInput" class="table-bordered">
         <th>
-        	<div class="intel-checkbox" style="width:20px;display:inline-block;vertical-align:middle;;margin-right:1em">
-                <input type="checkbox" id="{{vms.id}}" checklist-model="vm.a.selectedVMs" checklist-value="vms.id" ng-checked="vm.checkall == true">
-                 <label for="{{vms.id}}"></label>
-            </div>
-            <span class="intelicon-settings-solid" style="font-size:23px;color: #0071C5" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+        	<div class="intel-checkbox">
+              <input type="checkbox" id="{{vms.id}}" checklist-model = "vm.deleteVM.selectedVMs" checklist-value = "vms.id"/>
+                <label for="{{vms.id}}"></label>
+          </div>
+            <span class="intelicon-settings-solid" id="vm-configuration" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+
         </th>
         <td style="color: #0071C5">{{vms.displayName}}</td>
         <td>
@@ -54,7 +60,7 @@
         </td>
         <td>
            <div class="dropdown clearfix" >
-			<button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+			<button class="btn dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
         Running
         <span class="caret"></span>
       	</button>
@@ -71,3 +77,4 @@
   </table>
 
 
+>>>>>>> local

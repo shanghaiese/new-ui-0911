@@ -2,15 +2,17 @@
     <h1>My Environment</h1>
     <hr/>
     <ul class="nav nav-tabs">
-        <li ng-class="{'active': activeTab === 1}" ng-click="activeTab=1" ng-init="activeTab=1">
+        <!-- <li role="presentation" class="active"><a href="#">Home</a></li> -->
+        <li>
+        	<a ui-sref="environment.setting_vms">VMs</a>
+        </li>
+        <li>
         	<a ui-sref="environment.vms">VM</a>
         </li>
-        <li ng-class="{'active': activeTab === 2}" ng-click="activeTab=2">
-        	<a ui-sref="environment.pms">PM</a>
-        </li>
+        <li><a ui-sref="environment.setting_vms">Messages</a></li>
 
 
     </ul>
-
+   
     <div ui-view></div>
 </p>

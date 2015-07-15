@@ -2,7 +2,12 @@
 
     //  declear modules
     angular.module('ilabService', []);
-    angular.module('ilabDirective', []);
+<<<<<<< minkuan/F_EnvAdvVMSet
+    angular.module('ilabDirective', ['ecilab.directives']);
+=======
+    angular.module('ilabDirective', [
+                           'checklist-model']);
+>>>>>>> local
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router']);
     angular.module('ilab', ['ngResource',
@@ -12,7 +17,7 @@
                            'ilabFilter',
                            'ilabConfig',
                            'angular-loading-bar',
-                           'ui.bootstrap']);
-
+                           'ui.bootstrap']
+                           );
 
 })();

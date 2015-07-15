@@ -12,7 +12,16 @@
                     url: "/default",
                     templateUrl: "main/environment/environment.html",
                     controller: function($scope) {
+<<<<<<< HEAD
                         console.log('environment');
+=======
+                        $scope.lists = [
+                            {name: 'a'},
+                            {name: 'b'},
+                            {name: 'c'},
+                        ];
+                        $scope.selected = $scope.lists[0];
+>>>>>>> 180cdb0625216f00d9048d426c3024f334e33e4e
                     }
                 })
                 .state('environment', {
