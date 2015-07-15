@@ -6,10 +6,9 @@
     <meta charset="utf-8">
 
     <title>new ui</title>
-    <meta name="description" content="">
+    <meta name="description" content="newui of iLab">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="deploy/main.css">
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/angular-loading-bar/src/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/progressBar/progressBar.css" />
@@ -43,10 +42,19 @@
         </div>
     </nav>
     <div class="container main-content">
+<<<<<<< HEAD
         <aside>
             <a ui-sref="default">Environment</a>
             <a ui-sref="state2">Lab</a>
         </aside>
+=======
+        <section>
+            <p><a ui-sref="environment.vms">Environment</a></p>
+            <p><a ui-sref="lab">Lab</a></p>
+            
+
+        </section>
+>>>>>>> 180cdb0625216f00d9048d426c3024f334e33e4e
         <div ui-view></div>
     </div>
     <!-- We'll also add some navigation: -->
@@ -60,9 +68,10 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="bower_components/progressBar/progressBar.js"></script>
-    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/progressBar/progressBar.js"></script>
+    <script src="bower_components/ilabDropdown/dropdown.js"></script>
     <!-- endbower -->
     
     <!-- internal dependencies -->

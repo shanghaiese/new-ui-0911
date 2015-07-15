@@ -2,7 +2,7 @@
 
     //  declear modules
     angular.module('ilabService', []);
-    angular.module('ilabDirective', []);
+    angular.module('ilabDirective', ['ecilab.directives']);
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router']);
     angular.module('ilab', ['ngResource',
