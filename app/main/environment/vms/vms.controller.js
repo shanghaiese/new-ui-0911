@@ -17,9 +17,11 @@
             selectedVMs: []
         };
         that.selectedAll = false;
+        that.showPage = false;
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
+        that.showVmEdit = showVmEdit;
 
         activate();
 
@@ -107,6 +109,12 @@
                 that.VMs = orderBy(that.VMs, that.sort.column, that.sort.descending);
             }
         }
+
+        /*show the vm edit page or close it*/
+        function showVmEdit() {
+            that.showPage = !that.showPage;
+        }
+
     }
 
 })();

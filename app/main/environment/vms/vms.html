@@ -2,7 +2,7 @@
 
 <button type="button" class="btn btn-primary">Add VM</button>
 <div class="dropdown clearfix" style="display:inline-block;margin:.5em 0">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-disabled="vm.deleteVM.selectedVMs.length == 0">
         Actions
         <span class="caret"></span>
       </button>
@@ -12,13 +12,7 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
         <li role="presentation"><a style="color: #ed1c24" role="menuitem" tabindex="-1" href="#">Delete</a></li>
-      </ul>
-
-		 
-  </div>
-
-		<span class="intelicon-search" style="float:right;margin:0.5em;"></span>
-
+      </ul>	 
   </div>
     <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
 		<!-- <span class="intelicon-search" id="search-vm"></span>    --> 
@@ -38,14 +32,14 @@
         <th ng-repeat="th in vm.thead" class=""  ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}" >{{th.display}}</th>
       </tr>
     </thead>
-     <tbody >
-      <tr ng-repeat="vms in vm.VMs|filter:searchInput" class="table-bordered">
+     <tbody>
+      <tr ng-repeat="vms in vm.VMs|filter:searchInput">
         <th>
         	<div class="intel-checkbox">
               <input type="checkbox" id="{{vms.id}}" checklist-model = "vm.deleteVM.selectedVMs" checklist-value = "vms.id"/>
                 <label for="{{vms.id}}"></label>
           </div>
-            <span class="intelicon-settings-solid" id="vm-configuration" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+            <span class="intelicon-settings-solid" id="vm-configuration" ng-click = "vm.showVmEdit()" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
 
         </th>
         <td style="color: #0071C5">{{vms.displayName}}</td>
@@ -70,11 +64,14 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
       </ul>
+
   		</div>
         </td>
-      </tr>
+      <!-- <tr deferred deferred-event="click" deferred-selector="span.intelicon-settings-solid"> -->
+       <tr ng-include="'main/environment/vms/vms_setting.html'" ng-show = "vm.showPage == true">
+        </tr>
+      
+     </tr>
+    
     </tbody>
   </table>
-
-
->>>>>>> local
