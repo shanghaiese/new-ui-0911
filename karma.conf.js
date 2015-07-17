@@ -10,28 +10,44 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine','detectBrowsers'],
+    frameworks: ['jasmine'],
 
 
     // list of files / patterns to load in the browser
     files: [
-      'app/lib/angular/angular.js',
-      'app/lib/angular/angular*.js',
-      'test/lib/angular/angular-mocks.js',
-      'app/components/setup.js',
-      'app/components/**/*.js',
-      'test/components/**/*.js'
+      "app/bower_components/jquery/dist/jquery.js",
+      "app/bower_components/angular/angular.js",
+      "app/bower_components/angular-animate/angular-animate.js",
+      "app/bower_components/angular-cookies/angular-cookies.js",
+      "app/bower_components/angular-resource/angular-resource.js",
+      "app/bower_components/angular-sanitize/angular-sanitize.js",
+      "app/bower_components/angular-touch/angular-touch.js",
+      "app/bower_components/angular-ui-router/release/angular-ui-router.js",
+      "app/bower_components/angular-loading-bar/src/loading-bar.js",
+      "app/bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+      "app/bower_components/bootstrap-sass/assets/j,/bootstrap.js",
+      "app/bower_components/progressBar/progressBar.js",
+      "app/bower_components/ilabDropdown/dropdown.js",
+
+      "app/bower_components/angular-mocks/angular-mocks.js",
+
+      'app/main/ilab.module.js',
+      'app/main/**/*.js',
+      'app/main/**/*.spec.js',
+      // 'test/unit/**/*.js',
+      // 'test/e2e/**/*.js'
     ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        'app/components/**/*.js': 'coverage'
-    },
+    // preprocessors: {
+    //     'app/main/**/*.js': 'coverage'
+    // },
 
     reporters :[
-        'coverage',
-        'junit'
+        // 'coverage',
+        // 'junit'
+        'progress'
     ],
 
     coverageReporter : {
@@ -67,7 +83,8 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome','PhantomJS'],
+    // browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
@@ -89,7 +106,7 @@ module.exports = function(config) {
     // configuration
     detectBrowsers: {
       // enable/disable, default is true
-      enabled: true
+      enabled: false
     }
   });
 };

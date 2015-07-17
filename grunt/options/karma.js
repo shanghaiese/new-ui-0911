@@ -9,7 +9,7 @@ module.exports = {
     continuous: {
         configFile: 'karma.conf.js',
         browsers: ['PhantomJS'],
-        singleRun: true,
+        singleRun: false,
         colors: false,
         detectBrowsers: {
             enabled: false
