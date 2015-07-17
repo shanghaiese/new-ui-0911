@@ -20,7 +20,8 @@ module.exports = {
                 '<%= meta.srcPath %>/components/**/*.js',
                 '<%= meta.srcPath %>/main/**/*.js',
                 '<%= meta.srcPath %>/main/*.js',
-                '!<%= meta.srcPath %>/main/ilab.module.js'
+                '!<%= meta.srcPath %>/main/ilab.module.js',
+                '!<%= meta.srcPath %>/main/**/*.spec.js'
             ]
         }
     }

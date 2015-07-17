@@ -4,9 +4,15 @@
 
     function VMsCtrl() {
         var vm = this;
-        vm.items = ["VM1", "VM2", "VM3"];
+        vm.item = 1;
 
-        vm.doSomething = function() { };
+        vm.check = function(item) {
+        	if(item === 1) {
+        		return true;
+        	}else {
+        		return false;
+        	}
+        }
     }
 
 
