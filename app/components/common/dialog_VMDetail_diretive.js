@@ -27,28 +27,38 @@
         // Runs during compile
         return {
             scope: {
-                data: '=',
-                showDetail: '='
-                // parentPosition: '='
+                data: '='
             },
             restrict: 'E',
             template: '<div>\n' +
-                      '<a role=\"vmAct\" preventdefault data-toggle=\"collapse\" data-target=\"#collapseVMDetail\" aria-expanded=\"false\" aria-controls=\"collapseVMDetail\"  class=\"vmDetailSuccess\" ng-class=\"{\'vmDetailSuccess\':statusDisplay==\'Running\',\'vmDetailFail\':statusDisplay==\'Stopped\',\'vmDetailSuspend\':statusDisplay==\'Suspended\'}\" ng-click=\"openDialog()\" dialog-placement=\"bottom\">\n' + //class=\"vmDetailSuccess\"
-                      '<span class=\"ilabicon-vm dialogeIcon\">' +
-                      '<div class=\"dialogeFront\">Virtual Machine 1</div>' +
-                      '</span>\n' +
+                      '<a data-toggle=\"collapse\" data-target=\"#collapseVMDetail\" aria-expanded=\"false\" aria-controls=\"collapseVMDetail\"  class=\"vmDetailSuccess\" ng-class=\"{\'vmDetailSuccess\':statusDisplay==\'Running\',\'vmDetailFail\':statusDisplay==\'Stopped\',\'vmDetailSuspend\':statusDisplay==\'Suspended\'}\" ng-click=\"openDialog()\" dialog-placement=\"bottom\">\n' +
+                      '<div class=\"dialogIcon\"><spandiv class=\"ilabicon-vm\"></span></div>\n' +
+                      '<div class=\"dialogFont\">Virtual Machine 1</div>' +
+                      '<div class=\"dialogLoad\" ng-show=\"vmIsInOperation\"><img src="images/refresh_icon_18x18.gif"/></div>\n' +
                       '</a>\n' +
-                      '<div class=\"popup-detail collapse in\" data-toggle=\"collapse\" id=\"collapseVMDetail\" role=\"vmAct\" aria-labelledby=\"collapseVMDetailHeading\" aria-expanded=\"false\">\n' +
+                      '<div class=\"popup-detail collapse\"  id=\"collapseVMDetail\" role=\"detailpanel\" >\n' +
                       '<div ng-transclude></div>\n' +
                       '</div>\n' +
                       '</div>',
             transclude: true,
-            link: function () {
-                // scope.$watch('showDialog',function(newVal){
-                //     console.log(scope.showDialog);
-                // });
-                //var that = this;
-                //that.statusDisplay = 'Running';
+            link: function ($scope) {
+                var that = this;
+
+                var  showDialog = {
+                    vmIsInOperation:vmIsInOperation
+                };
+                return showDialog;
+
+                function vmIsInOperation(vmId) {
+                    //console.log('vmIsInOperation: '+vmId);
+                    var isInOperation = false;
+                    angular.forEach(that.inOperation, function(item, index) {
+                        if (item == vmId) {
+                            isInOperation = true;
+                        }
+                    });
+                    return isInOperation;
+                }
             }
         };
     }

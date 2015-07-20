@@ -8,6 +8,12 @@
     <ul>
         <ilab-dialog-detail class="showDetail" show-dialog="vmAction">
                 <div class="container-fluid">
+                    <!--<ul class="">
+                        <li attributte in detailInfoList.AttributeList>
+                            <h3 class="col-xs-12">{{attribute.Name}}</h3>
+                            <h5 class="col-xs-12">{{attributes.Value}}</h5>
+                        </li>
+                    </ul>-->
                     <div class="row">
                         <h3 class="col-xs-12">Virtual Machine 1</h3>
                         <h5 class="col-xs-12">This a test of a directive</h5>
@@ -28,31 +34,31 @@
                     <div class="row">
                         <button class="ilab-btn-normal" type="submit" formaction="#/" ng-disabled="vmIsInOperation(vm.id)">Connect</button> <!--ng-click="openConsole(vm.id)" ng-click="openConsole(vm.id)" ng-disabled="vmIsInOperation(vm.id)"-->
                         <div class="btn-group" dropdown>
-                            <button class="intel-btn dropdown-toggle" class="play-btn" ng-class="{'play-btn':vm.statusDisplay=='Running','stop-btn':vm.statusDisplay=='Stopped','pause-btn':vm.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vm.id)" style="margin-left: 6px;margin-top: 3px">
+                            <button class="intel-btn dropdown-toggle" ng-class="{'play-btn':vm.statusDisplay=='Running','stop-btn':vm.statusDisplay=='Stopped','pause-btn':vm.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vm.id)" style="margin-top: 3px">
                                 Running
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu">
                                 <li>
-                                    <a href="javascript:void(0)" >   <!--ng-click="powerOperation(vm.id, 'powerOn')"-->
+                                    <a href="" >   <!--href="javascript:void(0)" ng-click="powerOperation(vm.id, 'powerOn')"-->
                                         <span aria-hidden="true" class="intelicon-play"></span>
                                         <span>Power On</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" >
+                                    <a href="" >
                                         <span class="ilabicon-poweroff"></span>
                                         <span>Power Off</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" >
+                                    <a href="" >
                                         <span aria-hidden="true" class="intelicon-pause"></span>
                                         <span>Suspend</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)" > <!--ng-click="powerOperation(vm.id, 'restart')" ng-show="vm.status !='restart'"-->
+                                    <a href="" > <!--ng-click="powerOperation(vm.id, 'restart')" ng-show="vm.status !='restart'"-->
                                         <span aria-hidden="true" class="intelicon-refresh"></span>
                                         <span>Restart</span>
                                     </a>

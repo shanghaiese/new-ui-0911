@@ -49,10 +49,10 @@ a:focus {
 a:active, a:hover {
     outline: 0;
 }
-/*h1 {
+h1 {
   font-size: 2em;
   margin: 0.67em 0;
-}*/
+}
 h2 {
     font-size: 1.5em;
     margin: 0.83em 0;
@@ -226,6 +226,8 @@ table {
 /*****************VM list directive style **********
 *********Colin add 07/13/2015******************/
 .listEnv {
+    height: 25%;
+    max-height:200px;
     position: relative;
     padding: 0 1% 1% 2%;
     margin:0 5% 0 0 ;
@@ -248,7 +250,8 @@ table {
     margin-top: 14px;
 }
 .vmDetailSuccess{
-    width: 220px;
+    width: 32%;
+    max-width: 200px;
     background-color: $body-bg;
     border-top: 1px  #d3d8db solid ;
     border-right: 1px  #d3d8db solid;
@@ -262,7 +265,7 @@ table {
 
 
 .vmDetailFail {
-    width: 220px;
+    max-width: 200px;
     background-color: #fff;
     border-top: 1px  #d3d8db solid ;
     border-right: 1px  #d3d8db solid;
@@ -277,7 +280,7 @@ table {
 
 
 .vmDetailSuspend {
-    width: 220px;
+    width: 200px;
     background-color: #fff;
     border-top: 1px  #d3d8db solid ;
     border-right: 1px  #d3d8db solid;
@@ -302,6 +305,7 @@ table {
         color: $light-blue;
         display: inline-block;
         text-decoration: none;
+        cursor: pointer;
     }
     span {
         text-decoration: none;
@@ -323,10 +327,10 @@ table {
 }
 
 .popup-detail{
-    min-height: 0;
+    min-height: 250px;
     margin-top: 5px;
     width: 250px;
-    height: 300px;
+    max-height: 300px;
     z-index: 10000;
     border: 1px $gray solid;
     border-radius: 4px;
@@ -347,21 +351,24 @@ table {
 
 }
 
-.dialogeIcon {
-    padding-top: 10px;
-    margin-right:0px;
-    padding: 0px;
-    font-size: 1.4em;
-}
-
-.dialogeFront {
+.dialogIcon {
     margin: 0px;
     padding: 0px;
+    font-size: 1em;
     display: inline-block;
 }
 
-.dialogeButton {
+.dialogFont {
+    margin: 0px;
+    padding-top: -5px;
+    display: inline-block;
+    font-size: 1.2em;
+    display: inline-block;
+}
+
+.dialogLoad {
     padding: 0px;
+    display: inline-block;
 }
 
 .intel-btn-action:disabled, button:disabled {
@@ -539,13 +546,13 @@ table {
     cursor: not-allowed;
     background-color: transparent;
     background-image: none;
-    filter: progid: DXImageTransform.Microsoft.gradient(enabled=false)
+    //filter: progid: DXImageTransform.Microsoft.gradient(enabled=false)
 }
 .dropdown-menu>li>a>span {
     margin-right: 5px;
 }
 .open>.dropdown-menu {
-    display: block
+    display: block;
 }
 .caret {
     display: inline-block;

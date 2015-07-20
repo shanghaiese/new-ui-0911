@@ -6,12 +6,12 @@
 
     angular
         .module('ilabService')
-        .factory('vmData',  vmData);/*@todo name smae vmBasic*/
+        .factory('getVM',getVM);
 
-    vmData.$inject = ['$scope'];
+    getVM.$inject = ['$resource','url'];
 
-    function vmData(resource, url) {
-        var Machines = resource(url + 'machines/:machineID', null, {
+    function getVM($resource, url) {
+        var Machines = $resource(url + 'machines/:machineID', null, {
             powerOn: {
                 method: 'PUT',
                 url: url + 'machines/:machineID/powerOn'

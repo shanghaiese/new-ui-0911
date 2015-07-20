@@ -60,8 +60,11 @@
     "karma-opera-launcher": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
+    "karma-mocha": "latest",
     "matchdep": "~0.3.0",
     "phantomjs": "^1.9.11",
-    "trayballoon": "^1.0.2"
+    "trayballoon": "^1.0.2",
+    "karma-ng-scenario": "latest",
+    "ng-midway-tester": "2.0.5"
   }
 }
