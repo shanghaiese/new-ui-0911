@@ -21,7 +21,7 @@
                             {name: 'c'},
                         ];
                         $scope.selected = $scope.lists[0];
->>>>>>> 180cdb0625216f00d9048d426c3024f334e33e4e
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
                     }
                 })
                 .state('environment', {
@@ -36,23 +36,23 @@
                     templateUrl: "main/environment/vms/vms.html",
                     controller: 'EnvironmentVMCtrl',
                     controllerAs: 'envVM'
-                    // controller: function($scope) {
-                    //     console.log('environment.vms');
-                    // }
                 })
-                // .state('environment.tab2', {
-                //     url: "/tab2",
-                //     templateUrl: "main/environment.tab2.html",
-                //     controller: function($scope) {
-                //         console.log('environment.tab2');
-                //         $scope.items = ["B", "List", "Of", "Items"];
-                //     }
-                // })
                 .state('environment.setting_vms', {
                     url: "/vms_setting",
                     templateUrl: "main/environment/vms/vms_setting.html",
                     controller: 'EnvironmentVMCtrl',
                     controllerAs: "envVM"
+<<<<<<< HEAD
+=======
+                })
+                .state('environment.pms', {
+                    url: "/pms",
+                    templateUrl: "main/environment/pms/pms.html",
+                    controller: function($scope) {
+                        console.log('environment.tab2');
+                        $scope.items = ["B", "List", "Of", "Items"];
+                    }
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
                 })
                 .state('state2', {
                     url: "/state2",

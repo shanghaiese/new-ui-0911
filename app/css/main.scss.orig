@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
@@ -14,6 +15,202 @@ body {
         padding: 20px;
     }
 }
+
+.table-intel {
+    .nav-pills {
+  		  background-color: rgb(83, 86, 90);
+  	}
+  	.table-span-td　{
+  		  padding: 0em;
+  	}  
+}
+
+.pure-form-aligned {
+
+    background-color: rgb(211, 216, 219);
+    text-align: left;
+    clear: both;
+	
+  	.edit-virtual-machine {
+     		padding-top: 0.5em;
+     		margin-left: 0.5em;
+     		width: 20em;
+     		padding-bottom: 0.5em;
+     	  font-weight: bold;
+        font-size: 110%;
+        color: #53565A;
+ 	  }   
+
+    .intel-setting-group {
+    		height: 2.5em;
+    		padding-bottom: 0.5em;
+      	label {
+     			  text-align: left;
+     			  margin-left: 0.5em;
+      			display: inline-block;
+      			vertical-align: middle;
+      			width: 6em;
+      			font-weight: normal;
+  		  }
+
+		    input[type="text"] {
+      		  display: inline-block;
+        		vertical-align: left;
+            border-style: solid;
+            border-width: 1px;
+            border-color: transparent;
+            min-width: 11.2em;
+            color: #53565A;
+        }
+        input[type="radio"] {
+            display: inline-block;
+            border-color: transparent;
+            min-width: 1em;
+            vertical-align: left; 
+        }
+
+        .settingButtonGroup {
+            margin-left: 6.7em;
+        }
+
+        .saveTempRadioLabel {
+            padding: 0 0.5em 0 0.5em;
+            display: inline-block;
+            vertical-align: left;
+            width: 4.5em;
+        }
+
+        .intelicon-help-solid {
+            color: #939598;
+            margin-top: 2px;
+
+        }
+        .intelicon-help-solid:hover {
+              color: #53565A;
+        }
+
+        .vmDefaultNicGroup {
+            display: inline-block;
+            width: 3em;
+        }
+    }
+}
+
+.table-intel .intelicon-close-solid {
+    float: right;
+    font-size: 20px;
+    color:　white;
+    margin: 0.8em;
+} 
+=======
+//add IT master look&feel 
+$icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
+$intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
+
+@import "it-mlaf-sass/it-mlaf";
+
+//add ilab customized iconfont lib
+$ilab-font-path: "../bower_components/ilabicon/fonts/";
+
+@import "ilabicon/style";
+
+// import ilab customized scss partials
+//@import "header";
+
+body {
+    font-size: 16px;
+
+
+    .main-content {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        padding: 20px;
+    }
+}
+
+
+.table-bordered > thead > tr > th, 
+.table-bordered > thead > tr > td, 
+.table-bordered > tbody > tr > th, 
+.table-bordered > tbody > tr > td, 
+.table-bordered > tfoot > tr > th, 
+.table-bordered > tfoot > tr > td
+{
+	border-left: 0px;
+	border-right: 0px;
+}
+
+.ilab-sortable thead tr {
+	&:first-child th {			
+		/* background: $lighter-gray3;
+		border: 0px;
+		color: $black; */
+		cursor: pointer;
+		padding-right: 1.5em;
+		position: relative;
+		&.ilab-sort-desc:after {
+			border-color: transparent transparent $light-gray transparent;
+			border-style: solid;
+			border-width: 0.5em;
+			top: .05em;
+			content: ' ';
+			height: 0.75em;
+			position: absolute;
+			//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+			border-radius: 4px;
+			width: 0;
+			z-index: 6; 
+		}
+		&.ilab-sort-asc:after {
+			border-color: $light-gray transparent transparent transparent;
+			border-style: solid;
+			border-width: 0.5em;
+			bottom: .05em;
+			content: ' ';
+			height: 0.75em;
+			position: absolute;
+			//Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+			border-radius: 4px;
+			width: 0;
+			z-index: 6;
+		}	
+	}
+} 
+
+
+#search-vm,
+#displaycolumn-vm
+ {
+	float:right;
+	margin:0.5em;
+	color: $blue;
+	display:inline-block;
+}
+#dropdown-running {
+	color: $white;
+	background-color:$green;
+}
+#dropdown-action {
+	display:inline-block;
+	margin:.5em;
+}
+
+#vm-configuration {
+	color: $blue;
+	display:inline-block;
+	cursor: pointer;
+}
+
+.intel-checkbox {
+	display:inline-block;
+}
+
+.search-panel {
+	float:right;
+	border:1px solid $gray4;
+	margin:.5em 0;
+}
+
 
 .table-intel {
 	.nav-pills {
@@ -239,3 +436,4 @@ ilab-dropdown {
   color: #fff;
   font-size: 20px;
 }
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab

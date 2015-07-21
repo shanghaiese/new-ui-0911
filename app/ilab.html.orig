@@ -43,18 +43,23 @@
     </nav>
     <div class="container main-content">
 <<<<<<< HEAD
+=======
+
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
         <aside>
             <a ui-sref="default">Environment</a>
             <a ui-sref="state2">Lab</a>
         </aside>
+<<<<<<< HEAD
 =======
+
         <section>
             <p><a ui-sref="environment.vms">Environment</a></p>
             <p><a ui-sref="lab">Lab</a></p>
-            
-
+        
         </section>
->>>>>>> 180cdb0625216f00d9048d426c3024f334e33e4e
+
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
         <div ui-view></div>
     </div>
     <!-- We'll also add some navigation: -->
