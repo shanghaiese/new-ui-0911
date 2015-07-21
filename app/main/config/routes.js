@@ -27,18 +27,7 @@
                     templateUrl: "main/environment/vms/vms.html",
                     controller: 'EnvironmentVMCtrl',
                     controllerAs: 'envVM'
-                    // controller: function($scope) {
-                    //     console.log('environment.vms');
-                    // }
                 })
-                // .state('environment.tab2', {
-                //     url: "/tab2",
-                //     templateUrl: "main/environment.tab2.html",
-                //     controller: function($scope) {
-                //         console.log('environment.tab2');
-                //         $scope.items = ["B", "List", "Of", "Items"];
-                //     }
-                // })
                 .state('environment.setting_vms', {
                     url: "/vms_setting",
                     templateUrl: "main/environment/vms/vms_setting.html",
