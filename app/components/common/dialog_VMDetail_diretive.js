@@ -32,14 +32,16 @@
             restrict: 'E',
             template: '<div>\n' +
                       '<a data-toggle=\"collapse\" data-target=\"#collapseVMDetail\" aria-expanded=\"false\" aria-controls=\"collapseVMDetail\"  class=\"vmDetailSuccess\" ng-class=\"{\'vmDetailSuccess\':statusDisplay==\'Running\',\'vmDetailFail\':statusDisplay==\'Stopped\',\'vmDetailSuspend\':statusDisplay==\'Suspended\'}\" ng-click=\"openDialog()\" dialog-placement=\"bottom\">\n' +
-                      '<div class=\"dialogIcon\"><spandiv class=\"ilabicon-vm\"></span></div>\n' +
+                      '<div class=\"dialogPopup\">\n' +
+                      '<div class=\"dialogIcon\"><span class=\"ilabicon-vm\"></span></div>\n' +
                       '<div class=\"dialogFont\">Virtual Machine 1</div>' +
                       '<div class=\"dialogLoad\" ng-show=\"vmIsInOperation\"><img src="images/refresh_icon_18x18.gif"/></div>\n' +
+                      '</div>\n' +
                       '</a>\n' +
                       '<div class=\"popup-detail collapse\"  id=\"collapseVMDetail\" role=\"detailpanel\" >\n' +
                       '<div ng-transclude></div>\n' +
                       '</div>\n' +
-                      '</div>',
+                      '</div>\n',
             transclude: true,
             link: function ($scope) {
                 var that = this;

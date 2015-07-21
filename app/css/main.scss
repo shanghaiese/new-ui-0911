@@ -250,7 +250,8 @@ table {
     margin-top: 14px;
 }
 .vmDetailSuccess{
-    width: 32%;
+    width: 25%;
+    min-width: 170px;
     max-width: 200px;
     background-color: $body-bg;
     border-top: 1px  #d3d8db solid ;
@@ -258,7 +259,7 @@ table {
     border-bottom: 1px  #d3d8db solid;
     border-left: 7px $green solid;
     margin-left: 5px;
-    padding: 1%;
+    padding: 0.5%;
     border-radius: 4px;
     display: inline-block;
 }
@@ -351,23 +352,23 @@ table {
 
 }
 
-.dialogIcon {
-    margin: 0px;
+.dialogPopup{
     padding: 0px;
-    font-size: 1em;
+    margin: 0px;
+}
+
+.dialogIcon {
+    font-size: 1.5em;
     display: inline-block;
 }
 
 .dialogFont {
-    margin: 0px;
-    padding-top: -5px;
     display: inline-block;
-    font-size: 1.2em;
-    display: inline-block;
+    font-size: 1em;
 }
 
 .dialogLoad {
-    padding: 0px;
+
     display: inline-block;
 }
 

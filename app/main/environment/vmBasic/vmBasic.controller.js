@@ -88,7 +88,7 @@
                 });
 
                 if(tempRule.length > 0){
-                    detailTmp['Status'] = tempRule[0].Status;
+                    detailTmp.Status = tempRule[0].Status;
 
                     angular.forEach(tempRule[0].AttributeList, function (attribute) {
                         var attributeDetail = { Name: '', Value: '' };
