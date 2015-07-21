@@ -35,16 +35,7 @@
     "jquery": "^2.1.4",
     "angular-bootstrap": "~0.13.0",
     "it-mlaf-sass": "git://github.intel.com/IT-UI-Assets/it-mlaf-sass.git",
-<<<<<<< HEAD
-    "progressBar": "git://github.intel.com/ecilab/progressBar.git",
-    "it-mlaf-sass": "git://github.intel.com/IT-UI-Assets/it-mlaf-sass.git",
-    "ilabicon": "git://github.intel.com/ecilab/ilabicon.git#1.0.0"
-    "angular-bootstrap": "~0.13.0"
-  }
-=======
     "progressBar": "git://github.intel.com/ecilab/progressBar.git#0.0.3",
     "ilabicon": "git://github.intel.com/ecilab/ilabicon.git#1.0.0",
     "ilabDropdown": "git://github.intel.com/ecilab/dropdown-list.git#0.0.2"
   }
-}
->>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab

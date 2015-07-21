@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <div>
 
 <button type="button" class="btn btn-primary">Add VM</button>
@@ -75,3 +77,4 @@
     
     </tbody>
   </table>
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab

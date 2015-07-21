@@ -12,12 +12,16 @@
                     url: "/default",
                     templateUrl: "main/environment/environment.html",
                     controller: function($scope) {
+<<<<<<< HEAD
+                        console.log('environment');
+=======
                         $scope.lists = [
                             {name: 'a'},
                             {name: 'b'},
                             {name: 'c'},
                         ];
                         $scope.selected = $scope.lists[0];
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
                     }
                 })
                 .state('environment', {
@@ -32,14 +36,14 @@
                     templateUrl: "main/environment/vms/vms.html",
                     controller: 'EnvironmentVMCtrl',
                     controllerAs: 'envVM'
-                    controller: 'VMsCtrl',
-                    controllerAs: 'vm'
                 })
                 .state('environment.setting_vms', {
                     url: "/vms_setting",
                     templateUrl: "main/environment/vms/vms_setting.html",
                     controller: 'EnvironmentVMCtrl',
                     controllerAs: "envVM"
+<<<<<<< HEAD
+=======
                 })
                 .state('environment.pms', {
                     url: "/pms",
@@ -48,19 +52,20 @@
                         console.log('environment.tab2');
                         $scope.items = ["B", "List", "Of", "Items"];
                     }
+>>>>>>> b41519d8280d2efd74f82876a6e08a2b45f15eab
                 })
-                .state('lab', {
-                    url: "/lab",
-                    templateUrl: "main/lab/lab.html",
+                .state('state2', {
+                    url: "/state2",
+                    templateUrl: "main/state2.html",
                     controller: function() {
-                        console.log('lab');
+                        console.log('state2');
                     }
                 })
-                .state('lab.list', {
+                .state('state2.list', {
                     url: "/list",
-                    templateUrl: "main/lab/lab.list.html",
+                    templateUrl: "main/state2.list.html",
                     controller: function($scope) {
-                        console.log('lab.list');
+                        console.log('state2.list');
                         $scope.things = ["A", "Set", "Of", "Things"];
                     }
                 });
