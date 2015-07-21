@@ -8,7 +8,7 @@
         .module('ilabService')
         .factory('getVM',getVM);
 
-    getVM.$inject = ['$resource','url'];
+    getVM.$inject = ['$resource','url','$http','$q'];
 
     function getVM($resource, url) {
         var Machines = $resource(url + 'machines/:machineID', null, {

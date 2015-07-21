@@ -1,0 +1,47 @@
+/* this file is newui base scss */
+
+
+@import 'base-variables';
+
+/* Font Icon */
+span[class^="ilabicon-"], span[class*=" ilabicon-"] {
+	font-size: 20px;
+}
+
+/* Button */
+.btn-approve {
+	@include button-variant-override($green, $green, $hover-green, $hover-green, $med-dark-green, $med-dark-green, #fff);
+}
+
+.btn-suspend {
+	@include button-variant-override($yellow, $yellow, $orange, $orange, $orange, $orange, #fff);
+}
+.btn {
+	min-width: $btn-min-width;
+	height: $btn-height;
+}
+
+/* Dropdown */
+$dropdown-border: $lighter-grey4;
+.dropdown {
+	.dropdown-menu {
+		border: 1px solid $dropdown-border;
+		box-shadow: $box-shadow;
+
+		li>a:focus, li>a:hover {
+			background-color: $light-blue;
+			color: $white;
+		}
+	}
+}
+
+
+
+
+/* Table */
+
+
+/* Form */
+
+
+

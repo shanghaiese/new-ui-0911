@@ -9,8 +9,8 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 @import "ilabicon/style";
 
-// import ilab customized scss partials
-@import "header";
+// import ilab newui base scss 
+@import "base";
 
     body {
         font-size: 16px;
