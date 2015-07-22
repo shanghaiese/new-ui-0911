@@ -12,12 +12,37 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 // import ilab newui base scss 
 @import "base";
 
+// import components
+@import "menu";
+@import "welcome";
+
 body {
+	margin-top: 50px;
+}
 
+#menu-toggle {
+	float: left;
+	padding: 10px;
+	font-size: 30px;
+	color: white;
+	background-color: #0055a5;
+	cursor: pointer;
 
-    .main-content {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        padding: 20px;
-    }
+	&:active{
+		background-color: #1891ee;
+	}
+}
+.navbar {
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+}
+.navbar .container-fluid {
+	padding-left: 0;
+}
+.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
+    margin-left: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.container-fluid>.navbar-header{
+    margin-left: 0;
 }

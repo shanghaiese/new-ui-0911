@@ -17,15 +17,15 @@ module.exports = {
             debounceDelay: 250
         },
         srcScripts: {
-            files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js'],
+            files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js', '!<%= meta.srcPath %>/bower_components/**/*.js'],
             tasks: ['jshint', 'concat']
         },
         html: {
-            files: ['app/**/*.html', 'app/main/**/*.tpl.html'],
+            files: ['<%= meta.srcPath %>/**/*.html', '<%= meta.srcPath %>/main/**/*.tpl.html'],
             tasks: ['concat']
         },
         css: {
-            files: ['app/css/*.scss'],
+            files: ['<%= meta.srcPath %>/css/*.scss'],
             tasks: ['sass', 'cssmin']
         },
         bower: {
