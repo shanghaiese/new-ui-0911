@@ -10,11 +10,12 @@
     angular.module('ilabConfig', ['ui.router']);
     angular.module('ilab', ['ngResource',
                            'ngSanitize',
+                           'ngAnimate',
                            'ilabService',
                            'ilabDirective',
                            'ilabFilter',
                            'ilabConfig',
-                           'angular-loading-bar',
+                           // 'angular-loading-bar',
                            'ui.bootstrap']
                            );
 
