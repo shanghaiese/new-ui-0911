@@ -22,6 +22,11 @@
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
 
+        that.inOperation =[];    //array to indicate which vm is in operation
+        that.vmIsInOperation = vmIsInOperation;
+        that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
+        that.isCollapse = true;
+
         //For small table 4-panels setting
         that.configTmp = {};
         that.CPU = [];
@@ -156,10 +161,28 @@
         }
 
         /*show the vm edit page or close it*/
-        function showVmEdit() {
-            that.showPage = !that.showPage;
-            that.configTmp.name = that.VMs[0].name;
+        function showVmEdit(id) {
+            //that.showPage = !that.showPage;
+            if(that.showPage == id)
+                {that.showPage = 0;}
+            else
+            that.showPage = id;
+            //that.isCollapse = !that.isCollapse;
         }
+
+        function vmIsInOperation(vmId) {
+                //console.log('vmIsInOperation: '+vmId);
+                var isInOperation = false;
+                angular.forEach(that.inOperation, function(item, index) {
+                    if (item == vmId) {
+                        isInOperation = true;
+                    }
+                });
+                return isInOperation;
+        }
+
+        
+
 
         function cancelConfig() {
             that.configTmp.name = "";

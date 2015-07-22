@@ -11,6 +11,10 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 @import "dropdown.directive";
+@import "ilabicon/style";
+
+// import ilab customized scss partials
+//@import "header";
 
 body {
     font-size: 16px;
@@ -21,6 +25,21 @@ body {
         margin-bottom: 50px;
         padding: 20px;
     }
+}
+
+/*collapse animate from bootstrap*/
+
+.collapse {
+  display: none;
+}
+.collapse.in {
+  display: block;
+}
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height .35s ease;
 }
 
 
