@@ -30,16 +30,14 @@
                 .state('environment.vms', {
                     url: "/vms",
                     templateUrl: "main/environment/vms/vms.html",
-                    controller: 'EnvironmentVMCtrl',
-                    controllerAs: 'envVM'
                     controller: 'VMsCtrl',
                     controllerAs: 'vm'
                 })
                 .state('environment.setting_vms', {
                     url: "/vms_setting",
                     templateUrl: "main/environment/vms/vms_setting.html",
-                    controller: 'EnvironmentVMCtrl',
-                    controllerAs: "envVM"
+                    controller: 'VMsCtrl',
+                    controllerAs: "vm"
                 })
                 .state('environment.pms', {
                     url: "/pms",
