@@ -8,6 +8,7 @@
     box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);
     transform: translate3d(0, 0, 0);
     transition: all .3s;
+    background-color: white;
 }
 .ilab-menu.toggled {
   transform: translate3d(-255px, 0, 0);
