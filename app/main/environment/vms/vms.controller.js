@@ -12,6 +12,11 @@
         	}else {
         		return false;
         	}
+        	if(item === 1) {
+        		return true;
+        	}else {
+        		return false;
+        	}
         };
     }
 
