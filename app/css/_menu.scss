@@ -2,14 +2,16 @@
     position: fixed;
     z-index: 5;
     top: 50px;
-    width: 200px;
+    width: 250px;
+    height: 100%;
     opacity: 1;
     box-shadow: 0 0 10px rgba(51, 51, 51, 0.38);
     transform: translate3d(0, 0, 0);
-    transition: all .2s;
+    transition: all .3s;
 }
 .ilab-menu.toggled {
-  transform: translate3d(-205px, 0, 0);
+  transform: translate3d(-255px, 0, 0);
+  opacity: 0;
 }
 @media(min-width: 1641px) {
   .no {
@@ -91,7 +93,7 @@
 .intel-accordion > a,
 .intel-accordion > h3 {
     border-top: 1px solid #d3d8db;
-    border-right: 1px solid #d3d8db;
+    // border-right: 1px solid #d3d8db;
     border-left: 1px solid #d3d8db;
     color: #53565a;
     cursor: pointer;
@@ -190,14 +192,14 @@
 
 .intel-accordion > ul.active > li > a,
 .intel-accordion > ul.active > li > h3 {
-    border-right: 1px solid #d3d8db;
+    // border-right: 1px solid #d3d8db;
     border-left: 1px solid #d3d8db;
     display: block;
     margin: 0;
 }
 
 .intel-accordion > ul.active > li > ul {
-    border-right: 1px solid #d3d8db;
+    // border-right: 1px solid #d3d8db;
     border-left: 1px solid #d3d8db;
     color: #53565a;
     margin: 0;
@@ -292,7 +294,7 @@
 // }
 
 // .intel-accordion .intel-selected:before {
-//     border-right-color: #d3d8db;
+    // border-right-color: #d3d8db;
 //     border-width: 11px;
 //     right: 0;
 //     top: 0;
@@ -303,7 +305,7 @@
 // }
 
 // .intel-accordion .intel-selected:after {
-//     border-right-color: white;
+    // border-right-color: white;
 //     border-width: 10px;
 //     right: -1px;
 //     top: 1px;
@@ -326,7 +328,7 @@
     background: white;
     border-top: 1px solid #d3d8db;
     border-left: 1px solid #d3d8db;
-    border-right: 1px solid #d3d8db;
+    // border-right: 1px solid #d3d8db;
     color: #53565a;
     padding: 0.5em;
 }

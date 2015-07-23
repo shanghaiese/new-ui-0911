@@ -13,6 +13,7 @@
                 // default:false, the server will shutdown after the task finishes
                 // if a watch task is started later, it is not necessary to overide this default value
                 keepalive: false,
+                host: '0.0.0.0',
 
                 middleware: function(connect, options, middlewares) {
                     // inject a custom middleware into the array of default middlewares
