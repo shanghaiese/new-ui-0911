@@ -22,11 +22,7 @@
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
 
-        that.inOperation =[];    //array to indicate which vm is in operation
-        that.vmIsInOperation = vmIsInOperation;
-        that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
-        that.isCollapse = true;
-
+<<<<<<< HEAD
         //For small table 4-panels setting
         that.configTmp = {};
         that.CPU = [];
@@ -65,7 +61,21 @@
 
         that.Network = [{Nic: "Nic1"}, {Nic: "Nic2"}];
 
+        that.dynamicPopoverSave = {
+            convert: "Convert",
+            save: "Save",
+            convertContent: "original VM goes away",
+            saveContent: "original VM stays intact, a copy of the VM is saved as a template",
+            templateUrl: "saveTempInfo"
+        }
         //Functions
+=======
+        that.inOperation =[];    //array to indicate which vm is in operation
+        that.vmIsInOperation = vmIsInOperation;
+        that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
+        that.isCollapse = true;
+
+>>>>>>> b9582880cb2b78c39013c4f5cc72d5be51e9d3ca
         activate();
 
         function activate(){
@@ -74,7 +84,7 @@
             name: 'ilab_id',
             IP: '10.192.168.1',
             displayName: 'iLab ID',
-            configuration: '2CPU,4G'
+            configuration: '2CPU,4G' 
         }, {
             id: 'VM002',
             name: 'disk1',
@@ -125,16 +135,6 @@
         }];
 
         }
-
-        function getVMById(vmid) {
-            var vmFound=null;
-            angular.forEach(that.VMs, function(obj, key) {
-                if(obj.id == vmid) {
-                    vmFound = obj;
-                }
-            });
-            return vmFound;
-        }
         //select Virtual machine for delete
 
         function toggleCheckAll() {
@@ -164,21 +164,31 @@
         }
 
         /*show the vm edit page or close it*/
-        function showVmEdit(vmid) {
+<<<<<<< HEAD
+        function showVmEdit() {
+            that.showPage = !that.showPage;
+            that.configTmp.name = that.VMs[0].name;
+        }
+
+        function cancelConfig() {
+            that.configTmp.name = "";
+            that.configTmp.description = "";
+            that.configTmp.Memory = "None";
+            that.configTmp.CPU = "None";
+            that.configTmp.Network = "None";
+            console.log("cancelConfig");
+        }
+
+        function submit() {
+            alert('Submit Success');
+        }
+=======
+        function showVmEdit(id) {
             //that.showPage = !that.showPage;
-            if(that.showPage == vmid) {
-                that.showPage = 0;
-            }
-            else {
-                that.showPage = vmid;
-                var idx=0;
-                //find the vm idx;
-                var vmFound = getVMById(vmid);
-                that.configTmp.name=vmFound.displayName;
-                that.configTmp.description=vmFound.IP;
-                //if have opened saveTemp panel and change, we need to reset that panel.
-                
-            }
+            if(that.showPage == id)
+                {that.showPage = 0;}
+            else
+            that.showPage = id;
             //that.isCollapse = !that.isCollapse;
         }
 
@@ -196,18 +206,7 @@
         
 
 
-        function cancelConfig() {
-            that.configTmp.name = "";
-            that.configTmp.description = "";
-            that.configTmp.Memory = "None";
-            that.configTmp.CPU = "None";
-            that.configTmp.Network = "None";
-            console.log("cancelConfig");
-        }
-
-        function submit() {
-            alert('Submit Success');
-        }
+>>>>>>> b9582880cb2b78c39013c4f5cc72d5be51e9d3ca
     }
 
 })();
