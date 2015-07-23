@@ -17,15 +17,17 @@ function ilabMenu($window) {
         $($window).ready(checkWindowSize);
         $($window).resize(checkWindowSize);
 
+        var environmentPageRegex = /^environment/;
+        var labPageRegex = /^lab/;
         /* check if it's needed to hide menu. and active corresponding link*/
         scope.$on('$stateChangeSuccess',function(event, toState, toParams, fromState, fromParms) {
             checkWindowSize();
-
+            
             /*first clear id of all link, and add the id to the corresponding link*/
             $(element).find('a').attr('id', '');
-            if(toState.name === 'environment.vms') {
+            if(environmentPageRegex.test(toState.name)) {
                 $(element).find('a[ui-sref="environment.vms"]').attr('id', 'selected-link');
-            }else if(toState.name === 'lab') {
+            }else if(labPageRegex.test(toState.name)) {
                 $(element).find('a[ui-sref="lab"]').attr('id', 'selected-link');
             }
         });

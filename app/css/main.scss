@@ -46,3 +46,12 @@ body {
 .container-fluid>.navbar-header{
     margin-left: 0;
 }
+
+/* override loading bar color */
+#loading-bar-spinner .spinner-icon {
+	border-top-color:  $yellow !important;
+  	border-left-color: $yellow !important;
+}
+#loading-bar .bar {
+  background: $yellow !important;
+}

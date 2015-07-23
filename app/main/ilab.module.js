@@ -10,6 +10,7 @@
                            'ilabDirective',
                            'ilabFilter',
                            'ilabConfig',
+                           'angular-loading-bar',
                            'ui.bootstrap']);
 
 
