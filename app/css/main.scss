@@ -39,6 +39,17 @@ body {
 }
 
 
+/*vm-table style start here*/
+#vm-edit {
+  border-top-width: 0px;
+  //border-bottom-width: 0px;
+}
+
+#vm-table > tbody {
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
 .table-bordered > thead > tr > th, 
 .table-bordered > thead > tr > td, 
 .table-bordered > tbody > tr > th, 
@@ -246,7 +257,7 @@ body {
 
 /*stying for ilab-dropdown directive*/
 
-ilab-dropdown {
+.ilab-dropdown {
   display: inline-block;
   width: 160px;
 }
@@ -341,8 +352,10 @@ ilab-dropdown {
 
 .table-span-td .nav>li>a {
   position: relative; 
-  display: block;
-  padding: 10px 20px 10px 20px;
+  //display: block;
+  //padding: 0px;
   color: #fff;
   font-size: 20px;
+  border-top: 0px;
+  //border-bottom: 0px
 }
