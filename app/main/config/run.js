@@ -8,7 +8,7 @@
 
     function runBlock($rootScope) {
         $rootScope.toggleMenu = function() {
-            $('.ilab-menu').toggleClass('toggled');
+            $('.ilab-menu').toggleClass('open');
         };
     }
 

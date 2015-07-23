@@ -33,9 +33,11 @@ function ilabMenu($window) {
         /*check window size by accessing media query of class no*/
         function checkWindowSize() {
             if ($('.no').css('font-size') === '1px') {
-                $(element).find('.ilab-menu').addClass('toggled');
+                /* small screen, hide*/
+                $(element).find('.ilab-menu').removeClass('open');
             } else {
-                $(element).find('.ilab-menu').removeClass('toggled');
+                /* large screen, open*/
+                $(element).find('.ilab-menu').addClass('open');
             }
         }
 
