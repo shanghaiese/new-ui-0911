@@ -14,6 +14,7 @@
   transform: translate3d(-255px, 0, 0);
   opacity: 0;
 }
+/* helper for menu directive to detect screen size */
 @media(min-width: 1641px) {
   .no {
     font-size: 2px;
@@ -24,6 +25,11 @@
   .no {
     font-size: 1px;
   }
+}
+
+#selected-link {
+    color: $blue;
+    font-weight: bold;
 }
 
 /* intel-according */
