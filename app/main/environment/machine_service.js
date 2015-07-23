@@ -56,31 +56,49 @@
         });
         //mock data
         function getVMDetail() {
-            var detail = [{
-                name: 'ilab_id',
-                value: 1001,
-                displayName: 'iLab ID'
-            }, {
-                name: 'disk1',
-                value: '1GB (0 Chain)',
-                displayName: 'Disk1'
-            }, {
-                name: 'hostname',
-                value: '',
-                displayName: 'Hostname'
-            }, {
-                name: 'nic1_mac',
-                value: '00:0c:29:63:43:0f',
-                displayName: 'Nic1 MAC'
-            }, {
-                name: 'path',
-                value: 'uuid://path-information',
-                displayName: 'Path'
-            }, {
-                name: 'vmm',
-                value: 'newUI-1',
-                displayName: "VMM"
-            }];
+            var detail = [{ 
+            id: 'VM001',
+            name: 'ilab_id',
+            IP: '10.192.168.1',
+            displayName: 'iLab ID',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM002',
+            name: 'disk1',
+            IP: '10.192.168.2',
+            displayName: 'Disk1',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM003',
+            name: 'hostname',
+            IP: '10.192.168.3',
+            displayName: 'Hostname',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM004',
+            name: 'nic1_mac',
+            IP: '10.192.168.6',
+            displayName: 'Nic1 MAC',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM005',
+            name: 'path',
+            IP: '10.192.168.4',
+            displayName: 'Path',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM006',
+            name: 'vmm',
+            IP: '10.192.168.5',
+            displayName: "VMM",
+            configuration: '2CPU,4G' 
+        },{
+            id: 'VM007',
+            name: 'vmm',
+            IP: '10.192.168.5',
+            displayName: "VMM02",
+            configuration: '2CPU,4G' 
+        }];
             return detail;
 
         }

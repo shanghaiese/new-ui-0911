@@ -43,6 +43,17 @@ body {
 }
 
 
+/*vm-table style start here*/
+#vm-edit {
+  border-top-width: 0px;
+  //border-bottom-width: 0px;
+}
+
+#vm-table > tbody {
+  border-top-width: 0px;
+  border-bottom-width: 0px;
+}
+
 .table-bordered > thead > tr > th, 
 .table-bordered > thead > tr > td, 
 .table-bordered > tbody > tr > th, 
@@ -92,6 +103,7 @@ body {
 } 
 
 
+#search-vm,
 #displaycolumn-vm
  {
 	float:right;
