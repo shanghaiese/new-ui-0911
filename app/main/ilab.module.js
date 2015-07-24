@@ -6,12 +6,12 @@
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router']);
     angular.module('ilab', [ 'ngSanitize',
-                           'ilabService',
-                           'ilabDirective',
-                           'ilabFilter',
-                           'ilabConfig',
-                           'angular-loading-bar',
-                           'ui.bootstrap']);
+                             'ilabService',
+                             'ilabDirective',
+                             'ilabFilter',
+                             'ilabConfig',
+                             'angular-loading-bar',
+                             'ui.bootstrap']);
 
 
 })();

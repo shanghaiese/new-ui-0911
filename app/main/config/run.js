@@ -7,6 +7,7 @@
 
     /* run block */
     runBlock.$inject = ['$rootScope'];
+
     function runBlock($rootScope) {
         $rootScope.toggleMenu = function() {
             $('.ilab-menu').toggleClass('open');
@@ -15,8 +16,9 @@
 
     /* config block */
     configBlock.$inject = ['cfpLoadingBarProvider'];
+
     function configBlock(cfpLoadingBarProvider) {
-    	cfpLoadingBarProvider.includeSpinner = false;
+        cfpLoadingBarProvider.includeSpinner = false;
     }
 
 

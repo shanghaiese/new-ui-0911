@@ -15,25 +15,25 @@ describe('menu directive', function() {
     }));
 
     it('should compile directive to html', function() {
-    	var scope = $rootScope.$new();
-    	var ele = $compile('<ilab-menu></ilab-menu>')(scope);
-    	scope.$digest();
-    	expect(ele.html()).toContain('<section class="ilab-menu intel-accordion">');
+        var scope = $rootScope.$new();
+        var ele = $compile('<ilab-menu></ilab-menu>')(scope);
+        scope.$digest();
+        expect(ele.html()).toContain('<section class="ilab-menu intel-accordion">');
 
     });
 
     it('should hide menu default', function() {
-    	var scope = $rootScope.$new();
-    	var ele = $compile('<ilab-menu></ilab-menu>')(scope);
-    	scope.$digest();
-    	expect(ele.find('.ilab-menu').hasClass('open')).toBe(false);
+        var scope = $rootScope.$new();
+        var ele = $compile('<ilab-menu></ilab-menu>')(scope);
+        scope.$digest();
+        expect(ele.find('.ilab-menu').hasClass('open')).toBe(false);
     });
 
     it('should open menu when I add a open class to menu', function() {
-    	var scope = $rootScope.$new();
-    	var ele = $compile('<ilab-menu></ilab-menu>')(scope);
-    	scope.$digest();
-    	ele.find('.ilab-menu').addClass('open');
-    	expect(ele.find('.ilab-menu').css('opacity')).toEqual('1');
+        var scope = $rootScope.$new();
+        var ele = $compile('<ilab-menu></ilab-menu>')(scope);
+        scope.$digest();
+        ele.find('.ilab-menu').addClass('open');
+        expect(ele.find('.ilab-menu').css('opacity')).toEqual('1');
     });
 });
