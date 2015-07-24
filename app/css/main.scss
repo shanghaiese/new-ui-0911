@@ -11,7 +11,7 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 @import "dropdown.directive";
-//@import "ilabicon/style";
+@import "ilabicon/style";
 
 // import ilab customized scss partials
 //@import "header";
@@ -46,13 +46,22 @@ body {
 /*vm-table style start here*/
 #vm-edit {
   border-top-width: 0px;
-  //border-bottom-width: 0px;
-}
-
-#vm-table > tbody {
-  border-top-width: 0px;
   border-bottom-width: 0px;
 }
+
+#vm-table {
+    border-bottom-width: 0;
+    tbody:nth-child(even) {
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    background-color: $lighter-gray1;
+    }
+    tbody:nth-child(odd) {
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    background-color: $white;
+    }
+} 
 
 .table-bordered > thead > tr > th, 
 .table-bordered > thead > tr > td, 
@@ -63,6 +72,7 @@ body {
 {
 	border-left: 0px;
 	border-right: 0px;
+  border-top: 1px;
 }
 
 .ilab-sortable thead tr {
@@ -143,17 +153,16 @@ body {
 .table-intel {
     .nav-pills {
   		  background-color: #53565A;
-        li > a {
-            color: #FFFFFF;
-            padding: 11px 20px;
-            font-size: 18px;  
-        }
+        
   	}
   	.table-span-td　{
   		  padding: 0em;
+        border: 0px;
   	}  
     #advVMInnerSetting {
         padding: 0px;
+        border-top-width: 0px;
+        border-bottom-width: 0px;
     }
 }
 

@@ -1,12 +1,11 @@
 <div>
-
 <button type="button" class="btn btn-primary">Add VM</button>
 <div class="dropdown clearfix" style="display:inline-block;margin:.5em 0">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-disabled="vm.deleteVM.selectedVMs.length == 0">
+<button class="btn btn-default dropdown-toggle" type="button" id="ee" data-toggle="dropdown" aria-expanded="true" ng-disabled ="vm.deleteVM.selectedVMs.length == 0">
         Actions
         <span class="caret"></span>
       </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <ul class="dropdown-menu" role="menu" aria-labelledby="ee">
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
@@ -20,7 +19,7 @@
 </div>
     <!---->
 <!-- vm table from here-->
-<table ng-show="vm.VMs.length != 0" class="table table-bordered table-striped table-intel ilab-sortable"  id="vm-table">
+<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel ilab-sortable"  id="vm-table">
     <thead>
       <tr>
         <th style="width: 60px;"> 
@@ -58,7 +57,7 @@
         Running
         <span class="caret"></span>
         </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
         <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>

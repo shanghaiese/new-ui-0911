@@ -56,7 +56,7 @@
                 }
                 scope.selectNone = function() {
                     scope.selectedList[scope.attrToDisplay] = "None";
-                }
+                };
 
                 scope.select = function(list) {
                     if (list == scope.selectedList) {
@@ -83,7 +83,7 @@
                 };
                 $document.click(onClick);
             }
-        }
+        };
     }
 
 })();

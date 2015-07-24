@@ -27,6 +27,7 @@
             powerOff: powerOff,
             deleteVM: deleteVM,
             getVMDetail: getVMDetail,
+            getThead:getThead,
             openConsole: openConsole
         };
 
@@ -103,6 +104,25 @@
 
         }
 
+        function getThead() {
+            var thead = [{
+            display: 'Name',
+            name: 'displayName'
+        },  {
+            display: 'IP',
+            name: 'IP'
+        }, {
+            display: 'Configuration',
+            name: 'configuration'
+        }, {
+            display: 'Connect',
+            name: 'console'
+        }, {
+            display: 'Power',
+            name: 'statusOrderPriority'
+        }];
+            return thead;
+        }
 
         function createVM(name, tpl, env, attr) {
             return Machines.createVM({

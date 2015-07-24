@@ -71,22 +71,7 @@
         function activate(){
             that.VMs = machine.getVMDetail();
 
-        that.thead = [{
-            display: 'Name',
-            name: 'displayName'
-        },  {
-            display: 'IP',
-            name: 'IP'
-        }, {
-            display: 'Configuration',
-            name: 'configuration'
-        }, {
-            display: 'Connect',
-            name: 'console'
-        }, {
-            display: 'Power',
-            name: 'statusOrderPriority'
-        }];
+            that.thead = machine.getThead();
 
         }
 
