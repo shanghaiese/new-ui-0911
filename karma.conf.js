@@ -25,7 +25,7 @@ module.exports = function(config) {
             "bower_components/angular-ui-router/release/angular-ui-router.js",
             "bower_components/angular-loading-bar/src/loading-bar.js",
             "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-            "bower_components/bootstrap-sass/assets/j,/bootstrap.js",
+            "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
             "bower_components/progressBar/progressBar.js",
             "bower_components/ilabDropdown/dropdown.js",
 
