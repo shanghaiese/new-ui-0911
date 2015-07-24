@@ -1,12 +1,12 @@
 (function(){
     angular.module('ilab')
-        .controller('VMsCtrl', VMsCtrl);
+        .controller('VMCtrl', VMCtrl);
 
-    function VMsCtrl() {
-        var vm = this;
-        vm.item = 1;
+    function VMCtrl() {
+        var that = this;
+        that.item = 1;
 
-        vm.check = function(item) {
+        that.check = function(item) {
         	if(item === 1) {
         		return true;
         	}else {
