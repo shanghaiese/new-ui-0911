@@ -34,7 +34,7 @@
                       '<a data-toggle=\"collapse\" data-target=\"#collapseVMDetail\" aria-expanded=\"false\" aria-controls=\"collapseVMDetail\"  class=\"vmDetailSuccess\" ng-class=\"{\'vmDetailSuccess\':statusDisplay==\'Running\',\'vmDetailFail\':statusDisplay==\'Stopped\',\'vmDetailSuspend\':statusDisplay==\'Suspended\'}\" ng-click=\"openDialog()\" dialog-placement=\"bottom\">\n' +
                       '<div class=\"dialogPopup\">\n' +
                       '<div class=\"dialogIcon\"><span class=\"ilabicon-vm\"></span></div>\n' +
-                      '<div class=\"dialogFont\">Virtual Machine 1</div>' +
+                      '<div class=\"dialogFont\">{{data.vmName}}</div>' +
                       '<div class=\"dialogLoad\" ng-show=\"vmIsInOperation\"><img src="images/refresh_icon_18x18.gif"/></div>\n' +
                       '</div>\n' +
                       '</a>\n' +
@@ -43,7 +43,8 @@
                       '</div>\n' +
                       '</div>\n',
             transclude: true,
-            link: function ($scope) {
+            link: function (scope, element, attrs) {
+              console.log(scope.data);
                 var that = this;
 
                 var  showDialog = {

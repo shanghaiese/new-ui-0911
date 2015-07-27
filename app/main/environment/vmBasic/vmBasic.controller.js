@@ -8,104 +8,83 @@
         .module('ilab')
         .controller('VMBasicCtrl',  VMBasicCtrl);
 
-    VMBasicCtrl.$inject = ['$scope'];
+    VMBasicCtrl.$inject = ['basicPage'];
 
-    function VMBasicCtrl($scope) {
+    function VMBasicCtrl(basicPage){
         var that = this;
-        that.VMs = [];
-        that.ENVs = [];
         that.detailInfo = [];
 
-        var detailInfoList = [{
-            MachineType:'VM',
-            TabName:'vmTabName',
-            Status: [{ statusDispaly: 'Running'},
-                { statusDispaly:'Stopped'},
-                { statusDispaly:'Suspended'}],
-            AttributeList: [{ Name: 'vmName', Key: 'vmName' },
+        var detailInfoRuleList = [{
+            machineType:'VM',
+            titleName:'vmName',
+            status:'statusDisPlay',
+            attributeList: [
                 { Name: 'Description', Key: 'vmDescription' },
                 { Name: 'Config', Key: 'vmConfig' },
                 { Name: 'IP', Key:'vmIP'},
                 { Name: 'Network', Key: 'vmSubnet' }]
-        }/*,{
-             MachineType:'PM',
-             Status: [{ statusDispaly: 'Running'},
-             { statusDispaly:'Stopped'},
-             { statusDispaly:'Suspended'}],
-             AttributeList: [{ Name: 'vmName', Key: 'vmName' },
-             { Name: 'Description', Key: 'vmDescription' },
-             { Name: 'Config', Key: 'vmConfig' },
-             { Name: 'IP', Key:'vmIP'},
-             { Name: 'Network', Key: 'vmSubnet' }]
-         }*/];
+        },{
+            machineType:'PM',
+            titleName:'pmName',
+            status:'statusDisPlay',
+            attributeList: [
+            { Name: 'Description', Key: 'pmDescription' }]
+        }];
 
-        var mockData = [{
-            MachineType:'VM',
-            vmTabName:'VM1',
-            statusDisplay:'Running',
-            vmName:'Virtual Machine 1',
-            vmDescription:'This a test VM',
-            vmConfig:'2CPU,4G',
-            vmIP:'10.239.00.01',
-            vmNetwork:'Subnet1'
-        }/*,{
-            statusDisplay:'Running',
-            vmName:'Virtual Machine 2',
-            vmDescription:'This a test VM',
-            vmConfig:'2CPU,4G',
-            vmIP:'10.239.00.02',
-            vmNetwork:'Subnet2'
-        },{
-            statusDisplay:'Suspend',
-            vmName:'Virtual Machine 3',
-            vmDescription:'This a test VM',
-            vmConfig:'2CPU,4G',
-            vmIP:'10.239.00.03',
-            vmNetwork:'Subnet3'
-        },{
-            statusDisplay:'Running',
-            vmName:'Virtual Machine 4',
-            vmDescription:'This a test VM',
-            vmConfig:'2CPU,4G',
-            vmIP:'10.239.00.04',
-            vmNetwork:'Subnet4'
-        },{
-            statusDisplay:'Stopped',
-            vmName:'Virtual Machine 5',
-            vmDescription:'This a test VM',
-            vmConfig:'2CPU,4G',
-            vmIP:'10.239.00.05',
-            vmNetwork:'Subnet5'
-        }*/];
+
 
         activate();
         function activate(){
-            angular.forEach(mockData, function (machine) {
-                var detailTmp = { MachineType:'VM', Status:[], AttributeList:[]};
-
-                var tempRule = $.grep(detailInfoList, function(rule){
-                    return (rule.MachineType == detailTmp.MachineType);
-                });
-
-                if(tempRule.length > 0){
-                    detailTmp.Status = tempRule[0].Status;
-
-                    angular.forEach(tempRule[0].AttributeList, function (attribute) {
-                        var attributeDetail = { Name: '', Value: '' };
-                        attributeDetail.Name = attribute.Name;
-                        attributeDetail.Value = machine.Attributes[attribute.Key];
-                        detailInfoList.AttributeList.push(attributeDetail);
-                    });
-                }
-                that.detailInfo.push(detailTmp);
-            });
+            that.templateData = setVMtemplate(basicPage);
         }
 
+        function setVMtemplate(){
+            var vmMockData = basicPage.getVMMockData();
+
+            angular.forEach(vmMockData, function (machine) {
+                //get data compare with template
+                var detailTmp = {machineType:'VM', titleName:'', status:'', attributeList:[]}; // @todo PM will add another list
+                var tempRule = $.grep(detailInfoRuleList, function(rule){
+                    return detailTmp.machineType == rule.machineType;
+                });
+
+                //only get machine type is VM
+                if(tempRule.length > 0){
+                    that.bindData = $.grep(tempRule, function(tmp){
+                        console.log(machine);
+                        tempRule.machineType = machine.machineType;
+                        tempRule.status = machine.statusDisplay;
+                        tempRule.titleName = machine.vmName;
+
+                    });
+                    angular.forEach(tempRule.attributesList,function (att){
+                        var attributeDetail = { Name: '', Value: '' };
+                        attributeDetail.Name = att.Name;
+                        attributeDetail.Vakue = att.Key;
+
+                        //att.Key = machine.vmDescription;
+                        //att.Key = machine.vmConfig;
+                        //att.Key = machine.vmIP;
+                        //att.Key = machine.vmSubnet;
+
+                    });
+
+                    that.templateData = tempRule;
+                    console.log(that.templateData.titleName);
+                }
+
+
+
+            });
+            return that.templateData;
+        }
+
+
+
         var getVMs = {
-            openDialog:openDialog,
             powerOperation:powerOperation
-        };
-        return getVMs;
+         };
+         return getVMs;
 
         function powerOperation(vmId, op) {
             var vm_tmp = getVMById(vmId);
