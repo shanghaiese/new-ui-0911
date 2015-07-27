@@ -45,12 +45,7 @@
                     url:"/vmBasic",
                     templateUrl:"main/environment/vmBasic/vmBasic.html",
                     controller:"VMBasicCtrl",
-                    controllerAs:'that',
-                    reslove: {
-                        vmDetaildata: function(vmData){
-                            return vmData.ofEnvInGroup();
-                        }
-                    }
+                    controllerAs:'basic'
                 })
                 .state('lab', {
                     url: "/lab",

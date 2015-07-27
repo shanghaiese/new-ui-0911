@@ -1,0 +1,18 @@
+<div>
+	<div class="card" ng-class="{'on': info.status === 'Running'}" ng-click="isShown = !isShown">
+		<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>{{info.name}}<img src="images/refresh_icon_18x18.gif" ng-show="inOperation"/>
+	</div>
+	<div class="info" ng-show="isShown">
+		<h2>{{info.name}}</h2>
+		<small>{{info.description}}</small>
+
+		<div ng-if="type === 'vm'">
+			{{info.config}}
+		</div>
+		<div ng-if="type === pm">
+		</div>
+
+		<button class="btn btn-default" ng-click="connect({id: info.id})">Connect</button>
+		<button class="btn btn-default">Running</button>
+	</div>
+</div>

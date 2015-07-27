@@ -45,13 +45,13 @@
         var getVMMockData = function(){
             var mockData =
                 [{
-                    machineType:'VM',
-                    statusDisplay:'Running',
-                    vmName:'Virtual Machine 1',
-                    vmDescription:'This a test VM',
-                    vmConfig:'2CPU,4G',
-                    vmIP:'10.239.00.01',
-                    vmNetwork:'Subnet1'
+                    id: 1,
+                    status:'Running',
+                    name:'Virtual Machine 1',
+                    description:'This a test VM',
+                    config:'2CPU,4G',
+                    ip:'10.239.00.01',
+                    network:'Subnet1'
                 }/*,{
                      machineType:'VM',
                      statusDisplay:'Running',
