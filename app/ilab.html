@@ -6,23 +6,18 @@
     <meta charset="utf-8">
 
     <title>new ui</title>
-    <meta name="description" content="">
+    <meta name="description" content="newui of iLab">
     <meta name="viewport" content="width=device-width">
 
-    <link rel="stylesheet" href="deploy/main.css">
     <!-- bower:css -->
-    <link rel="stylesheet" href="css/master.css" />
-    <link rel="stylesheet" href="css/site.css" />
-    <!--<link rel="stylesheet" href="css/li.css" />-->
-    <link rel="stylesheet" href="css/intelicon-2.2.css" />
-    <!--<link rel="stylesheet" href="css/loading-bar.css" />-->
-    <!--<link rel="stylesheet" href="css/tooltip.css" />-->
-    <!--<link rel="stylesheet" href="css/mobile-thj.css" />-->
-    <!--<link rel="stylesheet" href="css/mobile-env-setting.css">-->
     <link rel="stylesheet" href="bower_components/angular-loading-bar/src/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/progressBar/progressBar.css" />
-    <link rel="stylesheet" href="bower_components/ilabicon/style.css"/>
+
+    <link rel="stylesheet" href="bower_components/ilabDropdown/dropdown.css" />
     <!-- endbower -->
+    <link rel="stylesheet" href="deploy/main.css">
+</head>
+
 
 <body ng-app="ilab">
 <nav class="navbar navbar-default navbar-fixed-top">
@@ -53,7 +48,7 @@
         <section>
             <p><a ui-sref="environment.vms">Environment</a></p>
             <p><a ui-sref="lab">Lab</a></p>
-            <!--<span class="ilabicon-fail">-->
+
         </section>
         <div ui-view></div>
     </div>
@@ -68,10 +63,12 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="bower_components/angular-loading-bar/src/loading-bar.js"></script>
-    <script src="bower_components/progressBar/progressBar.js"></script>
-    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/bootstrap-sass/assets/javascripts/bootstrap.js"></script>
+    <script src="bower_components/progressBar/progressBar.js"></script>
+    <script src="bower_components/ilabDropdown/dropdown.js"></script>
     <!-- endbower -->
+    
     <!-- internal dependencies -->
     <!-- main file -->
     <script src="main/ilab.module.js"></script>

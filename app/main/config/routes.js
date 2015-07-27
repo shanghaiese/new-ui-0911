@@ -12,15 +12,19 @@
                     url: "/",
                     templateUrl: "main/welcome.html",
                     controller: function($scope) {
-                        console.log('welcome');
+                        $scope.lists = [
+                            {name: 'a'},
+                            {name: 'b'},
+                            {name: 'c'},
+                        ];
+                        $scope.selected = $scope.lists[0];
                     }
                 })
                 .state('environment', {
                     url: "/environment",
                     templateUrl: "main/environment/environment.html",
-                    controller: function($scope) {
-                        console.log('environment');
-                    }
+                    controller: "EnvlistCtrl",
+                    controllerAs:"Envlist"
                 })
                 .state('environment.vms', {
                     url: "/vms",
@@ -46,6 +50,12 @@
                             return vmData.ofEnvInGroup();
                         }
                     }
+                })
+                .state('vmMulti',{
+                    url:"/vmMulti",
+                    templateUrl:"main/environment/vmMulti/vmMulti.html",
+                    controller:"vmMultiCtrl",
+                    controllerAs:'vmMulti'
                 })
                 .state('lab', {
                     url: "/lab",
