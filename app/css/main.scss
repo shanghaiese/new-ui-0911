@@ -61,18 +61,24 @@ body {
     border-bottom-width: 0px;
     background-color: $white;
     }
+    thead > tr > th, 
+    thead > tr > td, 
+    tbody > tr > th, 
+    tbody > tr > td, 
+    tfoot > tr > th, 
+    tfoot > tr > td{
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 1px;
+    }
 } 
 
-.table-bordered > thead > tr > th, 
-.table-bordered > thead > tr > td, 
-.table-bordered > tbody > tr > th, 
-.table-bordered > tbody > tr > td, 
-.table-bordered > tfoot > tr > th, 
-.table-bordered > tfoot > tr > td
-{
-	border-left: 0px;
-	border-right: 0px;
-  border-top: 1px;
+#vmName {
+  color: #0071C5;
+}
+
+#checkbox-column {
+   width: 60px;
 }
 
 .ilab-sortable thead tr {
@@ -129,7 +135,10 @@ body {
 	display:inline-block;
 	margin:.5em;
 }
+#delete-action {
+color: $red;
 
+}
 #vm-configuration {
 	color: $blue;
 	display:inline-block;
@@ -145,9 +154,6 @@ body {
 	border:1px solid $gray4;
 	margin:.5em 0;
 }
-
-
-
 
 
 .table-intel {

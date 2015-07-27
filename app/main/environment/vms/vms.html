@@ -1,6 +1,6 @@
 <div>
 <button type="button" class="btn btn-primary">Add VM</button>
-<div class="dropdown clearfix" style="display:inline-block;margin:.5em 0">
+<div class="dropdown clearfix" id="dropdown-action">
 <button class="btn btn-default dropdown-toggle" type="button" id="ee" data-toggle="dropdown" aria-expanded="true" ng-disabled ="vm.deleteVM.selectedVMs.length == 0">
         Actions
         <span class="caret"></span>
@@ -10,7 +10,7 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
-        <li role="presentation"><a style="color: #ed1c24" role="menuitem" tabindex="-1" href="#">Delete</a></li>
+        <li role="presentation"><a id="delete-action" role="menuitem" tabindex="-1" href="#">Delete</a></li>
       </ul>  
   </div>
     <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
@@ -22,7 +22,7 @@
 <table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel ilab-sortable"  id="vm-table">
     <thead>
       <tr>
-        <th style="width: 60px;"> 
+        <th id="checkbox-column"> 
           <div class="intel-checkbox">
             <input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.deleteVM.selectedVMs.length == vm.VMs.length" />
                 <label for="choose_all_env"></label>
@@ -33,15 +33,15 @@
     </thead>
      <tbody ng-repeat="vms in vm.VMs|filter:searchInput">
       <tr>
-        <th>
+        <td>
           <div class="intel-checkbox">
               <input type="checkbox" id="{{vms.id}}" checklist-model = "vm.deleteVM.selectedVMs" checklist-value = "vms.id"/>
                 <label for="{{vms.id}}"></label>
           </div>
             <span class="intelicon-settings-solid" id="vm-configuration" ng-click = "vm.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
 
-        </th>
-        <td style="color: #0071C5">{{vms.displayName}}</td>
+        </td>
+        <td id="vmName">{{vms.displayName}}</td>
         <td>
             {{vms.IP}}
         </td>
@@ -59,15 +59,13 @@
         </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
         <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
+        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power Off</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
       </ul>
 
       </div>
     </td>
-       
-      
      </tr>
      <tr ng-include="'main/environment/vms/vms_setting.html'">
         </tr>

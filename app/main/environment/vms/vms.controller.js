@@ -128,7 +128,6 @@
                 //if have opened saveTemp panel and change, we need to reset that panel.
                 
             }
-            //that.isCollapse = !that.isCollapse;
         }
 
         function vmIsInOperation(vmId) {
@@ -141,9 +140,6 @@
                 });
                 return isInOperation;
         }
-
-        
-
 
         function cancelConfig() {
             that.configTmp.name = "";
