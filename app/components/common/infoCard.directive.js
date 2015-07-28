@@ -12,8 +12,9 @@
 			scope: {
 				type: '@',
 				info: '=',
+				detail: '&onDetail',
 				connect: '&onConnect',
-				power: '&?'  //@todo vm operation
+				power: '&onPower'  
 			},
 			templateUrl: 'main/templates/infoCard.html',
 
@@ -21,7 +22,10 @@
 				//console.log(scope.info);
 				//console.log(attrs.type);
 				scope.isShown = false;
+				console.log(scope.info);
+
 				scope.vmIsInOperation = function(){
+
 					
 				};
 

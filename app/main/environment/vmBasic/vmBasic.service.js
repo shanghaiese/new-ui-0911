@@ -52,39 +52,39 @@
                     config:'2CPU,4G',
                     ip:'10.239.00.01',
                     network:'Subnet1'
-                }/*,{
-                     machineType:'VM',
-                     statusDisplay:'Running',
-                     vmName:'Virtual Machine 2',
-                     vmDescription:'This a test VM',
-                     vmConfig:'2CPU,4G',
-                     vmIP:'10.239.00.02',
-                     vmNetwork:'Subnet2'
-                 },{
-                     machineType:'VM',
-                     statusDisplay:'Suspend',
-                     vmName:'Virtual Machine 3',
-                     vmDescription:'This a test VM',
-                     vmConfig:'2CPU,4G',
-                     vmIP:'10.239.00.03',
-                     vmNetwork:'Subnet3'
-                 },{
-                     machineType:'VM',
-                     statusDisplay:'Running',
-                     vmName:'Virtual Machine 4',
-                     vmDescription:'This a test VM',
-                     vmConfig:'2CPU,4G',
-                     vmIP:'10.239.00.04',
-                     vmNetwork:'Subnet4'
-                 },{
-                     machineType:'PM',
-                     statusDisplay:'Stopped',
-                     vmName:'Virtual Machine 5',
-                     vmDescription:'This a test VM',
-                     vmConfig:'2CPU,4G',
-                     vmIP:'10.239.00.05',
-                     vmNetwork:'Subnet5'
-                 }*/];
+                },{
+                    id: 2,
+                    status:'Stopped',
+                    name:'Virtual Machine 2',
+                    description:'This a test VM',
+                    config:'2CPU,4G',
+                    ip:'10.239.00.01',
+                    network:'Subnet1'
+                },{
+                    id: 3,
+                    status:'Running',
+                    name:'Virtual Machine 3',
+                    description:'This a test VM',
+                    config:'2CPU,4G',
+                    ip:'10.239.00.01',
+                    network:'Subnet1'
+                },{
+                    id: 4,
+                    status:'Suspend',
+                    name:'Virtual Machine 4',
+                    description:'This a test VM',
+                    config:'2CPU,4G',
+                    ip:'10.239.00.01',
+                    network:'Subnet1'
+                },{
+                    id: 5,
+                    status:'Running',
+                    name:'Virtual Machine 5',
+                    description:'This a test VM',
+                    config:'2CPU,4G',
+                    ip:'10.239.00.01',
+                    network:'Subnet1'
+                }];
             return mockData;
         };
 

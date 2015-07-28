@@ -1,22 +1,25 @@
 /*global*/
-ul > li > a{
+a {
     text-decoration: none;
-
 }
-
 li{
     list-style: none;
 }
 
 /*vmBasic page style*/
 /* info card*/
+.listVMs {
+    display: inline-block;
+}
 
 info-card {
 	div{
 		.card {
-			width: 25%;
-		    min-width: 170px;
+            z-index: 999;
+		    min-width: 160px;
 		    max-width: 200px;
+            height: 44px;
+            text-align: center; 
 		    background-color: $body-bg;
 		    border-top: 1px  $lighter-grey4 solid ;
 		    border-right: 1px  $lighter-grey4 solid;
@@ -47,11 +50,53 @@ info-card {
 		}
 		
 		.info {
+            z-index: 999;
+            margin-top: -20px;
 			position: absolute;
 			top: 100%;
 			box-shadow: $box-shadow;
-			width: 220px;
+			width: 250px;
+            max-width: 250px;
+            background: $white;
+            border-radius: 4px;
+            border: 1px  $lighter-grey4 solid;
 		}
+        .info:before .info:after {
+            position: absolute;
+            top: 10px;
+            bottom: 100%;
+            width: 0;
+            height: 0;
+            display: block;
+            content: "";
+            border-color: transparent;
+            border-style: solid solid outset;
+            pointer-evevts: none;
+
+        }
+        .info h2 {
+            margin:15px;
+        }
+        .info small {
+            margin-left:15px; 
+        }
+        .tagIcon {
+            width: 20px;
+            height: 20px;
+            margin: 0px;
+            padding-top: 6px;
+            display: inline-block;
+        }
+        .tagName {
+            text-align: top;
+            display: inline-block;
+        }
+        .btnOperation {
+            margin: 5px 0px 10px 15px;
+        }
+        .cardKey {
+            font-weight:bold; 
+        }
 	}
 }
 
@@ -158,10 +203,9 @@ info-card {
     margin: 2px 0 0;
     font-size: 14px;
     list-style: none;
-    background-color: #f7f8f9;
-    border: 1px solid #939598;
+    background-color: $white;
     border-radius: 4px;
-    box-shadow: 2px 2px 10px rgba(83, 86, 90, .3);
+    border: 1px  $lighter-grey4 solid;
     background-clip: padding-box;
 }
 .dropdown-menu.pull-right {
@@ -211,7 +255,7 @@ info-card {
 .open>.dropdown-menu {
     display: block;
 }
-.caret {
+/*.caret {
     display: inline-block;
     width: 0;
     height: 0;
@@ -220,7 +264,7 @@ info-card {
     border-top: 4px solid;
     border-right: 4px solid transparent;
     border-left: 4px solid transparent
-}
+}*/
 .btn-group, .btn-group-vertical {
     position: relative;
     display: inline-block;

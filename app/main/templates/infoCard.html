@@ -1,34 +1,38 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running'}" ng-click="isShown = !isShown">
-		<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>{{info.name}}<img src="images/refresh_icon_18x18.gif" ng-show="inOperation"/>
+	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="isShown = !isShown">
+		<div class="tagIcon">
+			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
+		</div>
+		<div class="tagName">
+			<span>{{info.name}}</span>
+			<img src="images/refresh_icon_18x18.gif" ng-show="true"/>
+		</div>
+		
 	</div>
 	<div class="info" ng-show="isShown">
-		<h2>{{info.name}}</h2>
-		<small>{{info.description}}</small>
+		<h2 class="infoTitle cardKey">{{info.name}}</h2>
+		<small >{{info.description}}</small>
 
 		<div class="container-fluid" ng-if="type === 'vm'">
 			<div class="row">
-				<label class="col-md-2">Config:</label>
-				<span class="col-md-2 col-md-offset-3">{{info.config}}</span>
+				<strong class="col-md-2 col-sm-3 col-xs-3">Config:</strong>
+				<span class="col-md-2 col-sm-4 col-xs-4 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">{{info.config}}</span>
 			</div>
 			<div class="row">
-				<label class="col-md-2">IP:</label>
-				<span class="col-md-2 col-md-offset-3">{{info.ip}}</span>
+				<strong class="col-md-2 col-sm-3 col-xs-3">IP:</strong>
+				<span class="col-md-2 col-sm-4 col-xs-4 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">{{info.ip}}</span>
 			</div>
 			<div class="row">
-				<label class="col-md-2">Network:</label>
-				<span class="col-md-2 col-md-offset-3">{{info.network}}</span>
-			</div>
-			<div class="row">
-				<a href="javascript:void(0);" ngclick="jumpDetail({id: info.id})">Detail</a>
+				<strong class="col-md-2 col-sm-3 col-xs-3">Network:</strong>
+				<span class="col-md-2 col-sm-4 col-xs-4 col-md-offset-3 col-sm-offset-2 col-xs-offset-2">{{info.network}}</span>
 			</div>
 		</div>
 		<div ng-if="type === pm">
 		</div>
-		<div>
+		<div class="btnOperation">
 			<button class="btn btn-default btnLine" ng-click="connect({id: info.id})">Connect</button>
 			<div class="dropdown clearfix btnLine">
-			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-class="{'play-btn':info.status=='Running','stop-btn':info.status=='Stopped','pause-btn':info.status=='Suspended'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
+			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-class="{'play-btn':info.status=='Running','stop-btn':info.status=='Stopped','pause-btn':info.status=='Suspend'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
 			        {{info.status}}
 			       <span class="caret"></span>
 			    </button>
