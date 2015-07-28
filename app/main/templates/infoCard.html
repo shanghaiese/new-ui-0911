@@ -6,13 +6,48 @@
 		<h2>{{info.name}}</h2>
 		<small>{{info.description}}</small>
 
-		<div ng-if="type === 'vm'">
-			{{info.config}}
+		<div class="container-fluid" ng-if="type === 'vm'">
+			<div class="row">
+				<label class="col-md-2">Config:</label>
+				<span class="col-md-2 col-md-offset-6">{{info.config}}</span>
+			</div>
+			<div class="row">
+				<label class="col-md-2">IP:</label>
+				<span class="col-md-2 col-md-offset-6">{{info.ip}}</span>
+			</div>
+			<div class="row">
+				<label class="col-md-2">Network:</label>
+				<span class="col-md-2 col-md-offset-6">{{info.network}}</span>
+			</div>
+			<div class="row">
+				<a href="javascript:void(0);" ngclick="jumpDetail({id: info.id})">Detail</a>
+			</div>
 		</div>
 		<div ng-if="type === pm">
 		</div>
-
-		<button class="btn btn-default" ng-click="connect({id: info.id})">Connect</button>
-		<button class="btn btn-default">Running</button>
+		<div>
+			<button class="btn btn-default btnLine" ng-click="connect({id: info.id})">Connect</button>
+			<div class="dropdown clearfix btnLine">
+			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-class="{'play-btn':info.status=='Running','stop-btn':info.status=='Stopped','pause-btn':info.status=='Suspended'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
+			        {{info.status}}
+			       <span class="caret"></span>
+			    </button>
+			        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+		                        <span>Power On</span></a>
+		                </li>
+				        <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+		                        <span>Power Off</span></a>
+		                </li>
+				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+		                        <span>Suspend</span></a>
+		                </li>
+		                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+		                		<span>Restart</span></a>
+		            	</li>
+			        </ul>
+		    </div>
+		</div>
 	</div>
+		
 </div>

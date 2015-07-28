@@ -24,6 +24,9 @@
             console.log(id);
         }
         
+        function powerOperation(id){
+            console.log(id);
+        }
     }
 
 

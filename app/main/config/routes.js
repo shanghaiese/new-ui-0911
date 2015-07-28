@@ -45,7 +45,7 @@
                     url:"/vmBasic",
                     templateUrl:"main/environment/vmBasic/vmBasic.html",
                     controller:"VMBasicCtrl",
-                    controllerAs:'basic'
+                    controllerAs:'vmBasic'
                 })
                 .state('lab', {
                     url: "/lab",
