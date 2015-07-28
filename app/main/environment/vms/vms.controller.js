@@ -22,7 +22,8 @@
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
 
-        that.inOperation =[];    //array to indicate which vm is in operation
+
+        that.tabDeleteDialog =[];    //array to indicate which vm is in operation
         that.vmIsInOperation = vmIsInOperation;
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
         that.isCollapse = true;
@@ -70,8 +71,11 @@
 
         function activate(){
             that.VMs = machine.getVMDetail();
-
+        
             that.thead = machine.getThead();
+            that.tabDeleteDialog = {
+                isOpen: false
+            };
 
         }
 

@@ -4,7 +4,9 @@
     angular.module('ilabService', []);
 
     angular.module('ilabDirective', [
-                           'checklist-model']);
+                           'checklist-model'
+                           
+                           ]);
 
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router']);
