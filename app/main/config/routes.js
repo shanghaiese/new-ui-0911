@@ -40,23 +40,6 @@
                         $scope.items = ["B", "List", "Of", "Items"];
                     }
                 })
-                .state('vmBasic',{
-                    url:"/vmBasic",
-                    templateUrl:"main/environment/vmBasic/vmBasic.html",
-                    controller:"VMBasicCtrl",
-                    controllerAs:'vmd',
-                    reslove: {
-                        vmDetaildata: function(vmData){
-                            return vmData.ofEnvInGroup();
-                        }
-                    }
-                })
-                .state('vmMulti',{
-                    url:"/vmMulti",
-                    templateUrl:"main/environment/vmMulti/vmMulti.html",
-                    controller:"vmMultiCtrl",
-                    controllerAs:'vmMulti'
-                })
                 .state('lab', {
                     url: "/lab",
                     templateUrl: "main/lab/lab.html",
