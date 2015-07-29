@@ -1,7 +1,6 @@
- <!--link rel="stylesheet" href="deploy/form.css"-->
-
-<!-- <table class="table table-bordered table-striped table-intel">class="table table-span-td" -->
-    <!-- <tr> -->
+<!--link rel="stylesheet" href="deploy/form.css"-->
+<!-- <table class="table table-bordered table-striped table-intel"> -->
+<!-- <tr> -->
         <td colspan="6"  class="advVMInnerSetting">
             <div collapse="vms.id != vm.showPage">
                 <span class="intelicon-close-max" ng-click="vm.closePanel(vm.id)"></span>
@@ -83,22 +82,22 @@
                                     <button class="btn btn-primary" type="submit">Save</button>
                                     <button class="btn btn-secondary" type="button" ng-click="vm.cancelConfig()">Cancel</button>
                                 </span>
-                            </div>
-                        </form>
-                    </tab>
-                    <tab title="VM Information">
-                        <tab-heading>
-                            <span class="intelicon-information-solid"></span>
-                        </tab-heading>
-                    </tab>
-                    <tab disabled="true" title="Delete VM">
-                        <tab-heading>
-                            <span class="intelicon-trash-outlined"></span>
-                        </tab-heading>
-                    </tab>
-                </tabset>   
-            </div>
-        </td>
+                    </div>
+                </form>
+            </tab>
+            <tab title="VM Information">
+                <tab-heading>
+                    <span class="intelicon-information-solid"></span>
+                </tab-heading>
+            </tab>
+            <tab disabled="true" title="Delete VM">
+                <tab-heading>
+                    <span class="intelicon-trash-outlined" ng-click="vm.open()"></span>
+                </tab-heading>
+            </tab>
+        </tabset>
+    </div>
+</td>
 
-   <!--  </tr> -->
+<!--  </tr> -->
 <!-- </table> -->

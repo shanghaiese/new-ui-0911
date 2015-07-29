@@ -4,9 +4,9 @@
     angular
         .module('ilab')
         .controller('VMsCtrl', VMsCtrl);
-    VMsCtrl.$inject = ['machine', '$filter', '$sce'];
+    VMsCtrl.$inject = ['machine','$filter', '$modal', '$sce'];
 
-    function VMsCtrl(machine, $filter, $sce) {
+    function VMsCtrl(machine, $filter, $modal, $sce) {
         var that = this;
         var orderBy = $filter('orderBy');
 
@@ -22,7 +22,8 @@
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
 
-        that.inOperation =[];    //array to indicate which vm is in operation
+
+        that.tabDeleteDialog =[];    //array to indicate which vm is in operation
         that.vmIsInOperation = vmIsInOperation;
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
         that.isCollapse = true;
@@ -89,60 +90,12 @@
         activate();
 
         function activate(){
-            that.VMs = [{ 
-                id: 'VM001',
-                name: 'ilab_id',
-                IP: '10.192.168.1',
-                displayName: 'yoyoyo',
-                configuration: '2CPU,4G'
-            }, {
-                id: 'VM002',
-                name: 'disk1',
-                IP: '10.192.168.2',
-                displayName: 'checkitout',
-                configuration: '2CPU,4G' 
-            }, {
-                id: 'VM003',
-                name: 'hostname',
-                IP: '10.192.168.3',
-                displayName: 'comeonbaby',
-                configuration: '2CPU,4G' 
-            }, {
-                id: 'VM004',
-                name: 'nic1_mac',
-                IP: '10.192.168.0',
-                displayName: 'dontbeshy',
-                configuration: '2CPU,4G' 
-            }, {
-                id: 'VM005',
-                name: 'path',
-                IP: '10.192.168.4',
-                displayName: 'Path',
-                configuration: '2CPU,4G' 
-            }, {
-                id: 'VM006',
-                name: 'vmm',
-                IP: '10.192.168.5',
-                displayName: "VMM",
-                configuration: '2CPU,4G' 
-            }];
+            that.VMs = machine.getVMDetail();
 
-            that.thead = [{
-                display: 'Name',
-                name: 'displayName'
-            },  {
-                display: 'IP',
-                name: 'IP'
-            }, {
-                display: 'Configuration',
-                name: 'configuration'
-            }, {
-                display: 'Connect',
-                name: 'console'
-            }, {
-                display: 'Power',
-                name: 'statusOrderPriority'
-            }];
+            that.thead = machine.getThead();
+            that.tabDeleteDialog = {
+                isOpen: false
+            };
 
         }
 
@@ -214,7 +167,6 @@
                 //if have opened saveTemp panel and change, we need to reset that panel.
                 
             }
-            //that.isCollapse = !that.isCollapse;
         }
 
         function vmIsInOperation(vmId) {
@@ -239,7 +191,6 @@
             that.saveTemp.modeSaveDisk.saveMode="convert";
             that.saveTemp.modeSaveDisk.diskMode="chain";
         }
-
         function updateConfig(vmid) {
             angular.forEach(that.VMs, function(obj, key) {
                 if(obj.id == vmid) {
@@ -251,7 +202,6 @@
             //close the panel
             showVmEdit(vmid);
         }
-
         function closePanel(vmid) {
             cancelConfig(vmid);
             showVmEdit(vmid);
@@ -268,6 +218,21 @@
 
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
         that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
+
+        that.open = function(size) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'main/templates/vmDeleteDialog.html',
+                controller: 'ModalInstanceCtrl',
+                }
+            );
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
     }
 
 })();

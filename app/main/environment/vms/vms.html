@@ -1,75 +1,72 @@
 <div>
-
-<button type="button" class="btn btn-primary">Add VM</button>
-<div class="dropdown clearfix" style="display:inline-block;margin:.5em 0">
-<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true" ng-disabled="vm.deleteVM.selectedVMs.length == 0">
-        Actions
-        <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
-        <li role="presentation"><a style="color: #ed1c24" role="menuitem" tabindex="-1" href="#">Delete</a></li>
-      </ul>  
-  </div>
-    <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
-    <!-- <span class="intelicon-search" id="search-vm"></span>    --> 
-    <input type="search" class="search-panel" placeholder="Search"  ng-model='searchInput' autofocus>
-</div>
-    <!---->
-<!-- vm table from here-->
-<table ng-show="vm.VMs.length != 0" class="table table-bordered table-striped table-intel ilab-sortable"  id="vm-table">
-    <thead>
-      <tr>
-        <th style="width: 60px;"> 
-          <div class="intel-checkbox">
-            <input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.deleteVM.selectedVMs.length == vm.VMs.length" />
-                <label for="choose_all_env"></label>
-            </div>
-        </th>
-        <th ng-repeat="th in vm.thead" class=""  ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}" >{{th.display}}</th>
-      </tr>
-    </thead>
-     <tbody ng-repeat="vms in vm.VMs|filter:searchInput">
-      <tr>
-        <th>
-          <div class="intel-checkbox">
-              <input type="checkbox" id="{{vms.id}}" checklist-model = "vm.deleteVM.selectedVMs" checklist-value = "vms.id"/>
-                <label for="{{vms.id}}"></label>
-          </div>
-            <span class="intelicon-settings-solid" id="vm-configuration" ng-click = "vm.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
-
-        </th>
-        <td style="color: #0071C5">{{vms.displayName}}</td>
-        <td>
-            {{vms.IP}}
-        </td>
-       <td>
-            {{vms.configuration}}
-        </td>
-         <td>
-          <button type="button" class="btn btn-secondary">Connect</button>
-        </td>
-        <td>
-           <div class="dropdown clearfix" >
-      <button class="btn dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
-        Running
-        <span class="caret"></span>
+    <button type="button" class="btn btn-primary">Add VM</button>
+    <div class="dropdown clearfix" id="dropdown-action">
+        <button class="btn btn-default dropdown-toggle" type="button" id="ee" data-toggle="dropdown" aria-expanded="true" ng-disabled="vm.deleteVM.selectedVMs.length == 0">
+            Actions
+            <span class="caret"></span>
         </button>
-      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
-      </ul>
-
-      </div>
-    </td>
-    </tr>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="ee">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
+            <li role="presentation"><a id="delete-action" role="menuitem" tabindex="-1" href="#">Delete</a></li>
+        </ul>
+    </div>
+    <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
+    <!-- <span class="intelicon-search" id="search-vm"></span>    -->
+    <input type="search" class="search-panel" placeholder="Search" ng-model='searchInput' autofocus>
+</div>
+<!---->
+<!-- vm table from here-->
+<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel ilab-sortable" id="vm-table">
+    <thead>
+        <tr>
+            <th id="checkbox-column">
+                <div class="intel-checkbox">
+                    <input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.deleteVM.selectedVMs.length == vm.VMs.length" />
+                    <label for="choose_all_env"></label>
+                </div>
+            </th>
+            <th ng-repeat="th in vm.thead" class="" ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}">{{th.display}}</th>
+        </tr>
+    </thead>
+    <tbody ng-repeat="vms in vm.VMs|filter:searchInput">
+        <tr>
+            <td>
+                <div class="intel-checkbox">
+                    <input type="checkbox" id="{{vms.id}}" checklist-model="vm.deleteVM.selectedVMs" checklist-value="vms.id" />
+                    <label for="{{vms.id}}"></label>
+                </div>
+                <span class="intelicon-settings-solid" id="vm-configuration" ng-click="vm.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+            </td>
+            <td id="vmName">{{vms.displayName}}</td>
+            <td>
+                {{vms.IP}}
+            </td>
+            <td>
+                {{vms.configuration}}
+            </td>
+            <td>
+                <button type="button" class="btn btn-secondary">Connect</button>
+            </td>
+            <td>
+                <div class="dropdown clearfix">
+                    <button class="btn dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
+                        Running
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
+                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power Off</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
     
-    <tr ng-include="'main/environment/vms/vms_setting.html'">
+        <tr ng-include="'main/environment/vms/vms_setting.html'">
     </tr>
     </tbody>
-  </table>
+</table>
