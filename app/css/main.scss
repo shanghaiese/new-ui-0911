@@ -179,11 +179,22 @@ body {
     .nav-pills {
         background-color: #53565A;
     }
-    .table-span-td {
-        padding: 0em;
-        border: 0px;
-    }
-    #advVMInnerSetting {
+  		  background-color: #53565A;
+        li > a {
+            color: #FFFFFF;
+            padding: 11px 20px;
+            font-size: 18px;  
+        }
+        li > a:active, li.active > a, li.active > a:hover, li.active > a:focus, li > a:hover {
+            color: #00AEEF;
+            padding: 11px 20px;
+            font-size: 18px;  
+        }
+  	}
+  	.table-span-td　{
+  		  padding: 0em;
+  	}  
+    .advVMInnerSetting {
         padding: 0px;
         border-top-width: 0px;
         border-bottom-width: 0px;
@@ -196,39 +207,55 @@ body {
     clear: both;
     .edit-virtual-machine {
         padding-top: 0.5em;
-        margin-left: 0.5em;
+     		margin-left: 0.3em;
         width: 20em;
         padding-bottom: 0.5em;
-        font-weight: bold;
-        font-size: 110%;
+        font-size: 130%;
         color: #53565A;
-    }
+ 	  }   
+
     .intel-setting-group {
-        height: 2.5em;
-        padding-bottom: 0.5em;
-        label {
-            text-align: left;
-            margin-left: 0.5em;
-            display: inline-block;
-            vertical-align: middle;
-            width: 6em;
-            font-weight: normal;
-        }
-        input[type="text"] {
-            display: inline-block;
-            vertical-align: left;
+    		height: 2.5em;
+    		padding-bottom: 0.5em;
+      	label {
+     			  text-align: left;
+     			  margin-left: 0.5em;
+      			display: inline-block;
+      			vertical-align: middle;
+      			width: 6em;
+      			font-weight: normal;
+  		  }
+
+		    input[type="text"] {
+      		  display: inline-block;
+        		vertical-align: left;
             border-style: solid;
             border-width: 1px;
             border-color: transparent;
             min-width: 11.2em;
             color: #53565A;
         }
+
         input[type="radio"] {
-            display: inline-block;
-            border-color: transparent;
-            max-width: 1em;
             vertical-align: left;
         }
+        input[type='radio']:before {
+            content:'';
+            display:block;
+            width: 50%;
+            height:50%;
+            margin: 24% 25% auto;    
+            border-radius:50%;    
+        }
+
+        input[type='radio']:hover {
+          box-shadow:0 0 5px 0px #0071C5 inset;
+        }
+
+        input[type='radio']:checked:before {
+          background: #0071C5;
+        }
+
         .settingButtonGroup {
             margin-left: 6.7em;
         }
@@ -252,10 +279,20 @@ body {
     }
 }
 
-#advVMInnerSetting .intelicon-close-solid {
-    float: right;
-    font-size: 20px;
-    background-color: #53565A;
-    color: #FFFFFF;
-    margin: 0.8em;
+.advVMInnerSetting {
+    .intelicon-close-max {
+        float: right;
+        font-size: 15px;
+        background-color: #53565A;
+        color: #FFFFFF;
+        margin: 1em;
+    } 
+}
+
+.tooltip-inner {
+    text-align: left;
+    padding: 5px;
+    min-width: 260px;
+    max-width: 350px;
+    width: 250px;
 }
