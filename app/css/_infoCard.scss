@@ -1,3 +1,5 @@
+/*Colin add vmDetail directive scss*/
+
 /*global*/
 a {
     text-decoration: none;
@@ -10,12 +12,12 @@ li{
 /* info card*/
 .listVMs {
     display: inline-block;
+    margin-bottom: 15px;
 }
 
 info-card {
 	div{
 		.card {
-            z-index: 999;
 		    min-width: 160px;
 		    max-width: 200px;
             height: 44px;
@@ -26,9 +28,10 @@ info-card {
 		    border-bottom: 1px  $lighter-grey4 solid;
 		    border-left: 7px $green solid;
 		    margin-left: 5px;
-		    padding: 0.5%;
+		    padding: 0px;
 		    border-radius: 4px;
 		    display: inline-block;
+
 		    &:hover {
 		        color: $light-blue;
 		        display: inline-block;
@@ -40,51 +43,68 @@ info-card {
 		    }
 		}
 		.card.on {
-			border-left: 5px solid $green;
+			border-left: 7px solid $green;
 		}
 		.card.off {
-			border-left: 5px solid $red;
+			border-left: 7px solid $red;
 		}
 		.card.suspend {
-			border-left: 5px solid $yellow;
+			border-left: 7px solid $yellow;
 		}
 		
 		.info {
-            z-index: 999;
-            margin-top: -20px;
+            margin-top: 5px;
 			position: absolute;
-			top: 100%;
 			box-shadow: $box-shadow;
 			width: 250px;
             max-width: 250px;
             background: $white;
             border-radius: 4px;
-            border: 1px  $lighter-grey4 solid;
+            border: 1px  $light-gray solid;
+            z-index: 20;
 		}
-        .info:before .info:after {
-            position: absolute;
-            top: 10px;
-            bottom: 100%;
-            width: 0;
-            height: 0;
-            display: block;
-            content: "";
-            border-color: transparent;
-            border-style: solid solid outset;
-            pointer-evevts: none;
+        .info{
+            &:before {
+                position: absolute;
+                top: 100%;
+                width: 0;
+                height: 0;
+                display: block;
+                content: "";
+                border-color: transparent;
+                border-style: solid solid outset;
+                pointer-evevts: none;
+            }
+            &:after {
+                position: absolute;
+                top: 100%;
+                width: 0;
+                height: 0;
+                display: block;
+                content: "";
+                border-color: transparent;
+                border-style: solid solid outset;
+                pointer-evevts: none;
+            }
+        }
+        
+        .info {
+            h2 {
+                margin:15px;
+            }
+        }
+        
+        .info {
+            small {
+                margin-left:15px; 
+            }
+        }
 
-        }
-        .info h2 {
-            margin:15px;
-        }
-        .info small {
-            margin-left:15px; 
-        }
         .tagIcon {
             width: 20px;
             height: 20px;
-            margin: 0px;
-            padding-top: 6px;
+            margin-right: 3px;
+            padding: 8px 5px 5px 5px;
             display: inline-block;
         }
         .tagName {
@@ -97,189 +117,153 @@ info-card {
         .cardKey {
             font-weight:bold; 
         }
+
+        /*4 icon buttons for play/stop/pause/restart*/
+        .play-btn {
+            background-color: $green;
+            color: $white;
+        }
+        .play-btn{
+            &:hover {
+                background-color: $light-green;
+                color: $white;
+            }
+        }
+
+        .play-btn{
+            &:active {
+                background-color: $med-dark-green;
+                color: $white;
+            }
+        }
+        .stop-btn {
+            background-color: $red;
+            color: $blue;
+        }
+        .stop-btn {
+            &:hover {
+                background-color: $light-red;
+                color: $blue;
+            }
+        }
+        .stop-btn {
+            &:active {
+                background-color: $mediumDarkRed;
+                color: $white;
+            }
+        }
+        .pause-btn {
+            background-color: $yellow;
+            color: $white;
+        }
+        .pause-btn{
+            &:hover {
+                background-color: $orange;
+                color: $blue;
+            }
+        }
+        .pause-btn {
+            &:active {
+                background-color: $darkYellow;
+                color: $white;
+            }
+        }
+        
+
+        /*use dropdown-menu from bootstrap.css-------*/
+        .dropdown {
+            position: relative
+        }
+        .dropdown-toggle{
+            &:focus {
+                outline: 0
+            }
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: -1px;
+            z-index: 40;
+            display: none;
+            float: left;
+            min-width: 70px;
+            padding: 5px 0;
+            margin: 2px 0 0;
+            font-size: 14px;
+            list-style: none;
+            background-color: $white;
+            border-radius: 4px;
+            background-clip: padding-box;
+        }
+        .dropdown-menu.pull-right {
+            right: 0;
+            left: auto
+        }
+        .dropdown-menu .divider {
+            height: 1px;
+            margin: 9px 0;
+            overflow: hidden;
+            background-color: $lighter-gray3;
+        }
+        .dropdown-menu>li>a {
+            display: block;
+            padding: 6px 12px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.428571429;
+            color: $dark-gray;
+            white-space: nowrap;
+            min-width: 76px;
+        }
+        .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+            color: white;
+            text-decoration: none;
+            background-color: $light-blue;
+        }
+        .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
+            color: $white;
+            text-decoration: none;
+            background-color: $mediumBlue;
+            outline: 0
+        }
+        .dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
+            color: $light-gray
+        }
+        .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
+            text-decoration: none;
+            cursor: not-allowed;
+            background-color: transparent;
+            background-image: none;
+        }
+        .dropdown-menu>li>a>span {
+            margin-right: 5px;
+        }
+        .open>.dropdown-menu {
+            display: block;
+        }
+        .btn-group, .btn-group-vertical {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle
+        }
+        .btn-group ul li {
+            text-align: left;
+        }
+
+        .btnLine{
+            position: relative;
+            display: inline-block;
+        }
+
+        .stopIcon ilabicon-stop  {
+            font-size: 0.2em;
+        }
 	}
 }
 
 
-.intel-btn:hover, button:hover {
-    text-decoration: none;
-}
-.intel-btn, button {
-    border-style: solid;
-    border-width: 1px;
-    border-color: transparent;
-    font-weight: 400;
-    text-align: center;
-    cursor: pointer;
-    outline: 0;
-    padding: 0;
-    border-radius: 4px;
-    line-height: 32px;
-    min-width: 98px;
-    font-size: 1em;
-}
-.intel-btn-action, button {
-    background-color: #0071c5;
-    background-image: none;
-    color: #fff;
-}
-.intel-btn, button {
-    border-style: solid;
-    border-width: 1px;
-    border-color: transparent;
-    font-weight: 400;
-    text-align: center;
-    cursor: pointer;
-    outline: 0;
-    transition: box-shadow .3s,background-color .3s;
-    padding: 0;
-    border-radius: 2px;
-    margin: .5em;
-    line-height: 32px;
-    min-width: 98px;
-    font-size: 1em;
-}
 
-/*4 icon buttons for play/stop/pause/restart*/
 
-.play-btn {
-    background-color: $green;
-    color: $white;
-}
-.play-btn:hover {
-    background-color: $light-green;
-    color: $white;
-}
-.play-btn:active {
-    background-color: $med-dark-green;
-    color: $white;
-}
-.stop-btn {
-    background-color: $red;
-    color: $white;
-}
-.stop-btn:hover {
-    background-color: $light-red;
-}
-.stop-btn:active {
-    background-color: #bb1c1a;
-    color: $white;
-}
-.pause-btn {
-    background-color: $yellow;
-    color: #53565a;
-}
-.pause-btn:hover {
-    background-color: $orange;
-    color: #53565a;
-}
-.pause-btn.active {
-    background-color: #cfad14;
-    color: #53565a;
-}
-.intel-btn[disabled] {
-    background-color: $lighter-gray2;
-    border-color: $lighter-grey4;
-    color: #b1babf;
-    cursor: default;
-}
 
-/*use dropdown from bootstrap.css-------*/
-.dropdown {
-    position: relative
-}
-.dropdown-toggle:focus {
-    outline: 0
-}
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: -1px;
-    z-index: 1000;
-    display: none;
-    float: left;
-    min-width: 70px;
-    padding: 5px 0;
-    margin: 2px 0 0;
-    font-size: 14px;
-    list-style: none;
-    background-color: $white;
-    border-radius: 4px;
-    border: 1px  $lighter-grey4 solid;
-    background-clip: padding-box;
-}
-.dropdown-menu.pull-right {
-    right: 0;
-    left: auto
-}
-.dropdown-menu .divider {
-    height: 1px;
-    margin: 9px 0;
-    overflow: hidden;
-    background-color: #e5e5e5
-}
-.dropdown-menu>li>a {
-    display: block;
-    padding: 6px 12px;
-    clear: both;
-    font-weight: normal;
-    line-height: 1.428571429;
-    color: #53565a;
-    white-space: nowrap;
-    min-width: 76px;
-}
-.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
-    color: white;
-    text-decoration: none;
-    background-color: #00AEEF;
-}
-.dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
-    color: #fff;
-    text-decoration: none;
-    background-color: #428bca;
-    outline: 0
-}
-.dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-    color: #999
-}
-.dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-    text-decoration: none;
-    cursor: not-allowed;
-    background-color: transparent;
-    background-image: none;
-    //filter: progid: DXImageTransform.Microsoft.gradient(enabled=false)
-}
-.dropdown-menu>li>a>span {
-    margin-right: 5px;
-}
-.open>.dropdown-menu {
-    display: block;
-}
-/*.caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: 2px;
-    vertical-align: middle;
-    border-top: 4px solid;
-    border-right: 4px solid transparent;
-    border-left: 4px solid transparent
-}*/
-.btn-group, .btn-group-vertical {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle
-}
-.btn-group ul li {
-    text-align: left;
-}
-
-.btnLine{
-    position: relative;
-    display: inline-block;
-}
-
-.stopIcon ilabicon-stop  {
-    font-size: 0.2em;
-}
 

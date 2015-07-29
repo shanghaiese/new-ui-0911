@@ -232,19 +232,11 @@ table {
 *********Colin add 07/13/2015******************/
 .listEnv {
     height: 25%;
-    max-height:200px;
+    max-height:400px;
     position: relative;
     padding: 0 1% 1% 2%;
     margin:0 5% 0 0 ;
     background-color: $lighter-gray1;
-    color: $dark-gray;
-}
-
-.listEnv:hover{
-    position: relative;
-    padding: 0 1% 1% 2%;
-    margin:0 5% 0 0 ;
-    background-color: $lighter-gray2;
     color: $dark-gray;
 }
 .showDetail{
@@ -254,77 +246,7 @@ table {
     min-width: 0;
     margin-top: 14px;
 }
-.vmDetailSuccess{
-    width: 25%;
-    min-width: 170px;
-    max-width: 200px;
-    background-color: $body-bg;
-    border-top: 1px  $lighter-grey4 solid ;
-    border-right: 1px  $lighter-grey4 solid;
-    border-bottom: 1px  $lighter-grey4 solid;
-    border-left: 7px $green solid;
-    margin-left: 5px;
-    padding: 0.5%;
-    border-radius: 4px;
-    display: inline-block;
-}
 
-
-.vmDetailFail {
-    max-width: 200px;
-    background-color: #fff;
-    border-top: 1px  $lighter-grey4 solid ;
-    border-right: 1px  $lighter-grey4 solid;
-    border-bottom: 1px  $lighter-grey4 solid;
-    border-left: 7px $red solid;
-    margin-left: 5px;
-    padding: 1%;
-    border-radius: 4px;
-    display: inline-block;
-}
-
-
-
-.vmDetailSuspend {
-    width: 200px;
-    background-color: #fff;
-    border-top: 1px  $lighter-grey4 solid ;
-    border-right: 1px  $lighter-grey4 solid;
-    border-bottom: 1px  $lighter-grey4 solid;
-    border-left: 7px $yellow solid;
-    margin-left: 5px;
-    padding: 1%;
-    border-radius: 4px;
-    display: inline-block;
-
-}
-
-
-
-.vmDetailSuccess , .vmDetailFail , .vmDetailSuspend {
-    color:$dark-gray;
-    a{
-        text-decoration: none;
-        text-align: center;
-    }
-    &:hover {
-        color: $light-blue;
-        display: inline-block;
-        text-decoration: none;
-        cursor: pointer;
-    }
-    span {
-        text-decoration: none;
-        text-align: center;
-    }
-    &:before , &:after{
-        position: absolute;
-        display: block;
-        content: "";
-        pointer-events: none;
-    }
-
-}
 .listEnv {
     .popup-detail{
         min-width: 0;
