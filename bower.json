@@ -39,5 +39,4 @@
     "it-mlaf-sass": "git://github.intel.com/IT-UI-Assets/it-mlaf-sass.git",
     "ilabDropdown": "git://github.intel.com/ecilab/dropdown-list.git#0.0.2"
     "ilabicon": "git://github.intel.com/ecilab/ilabicon.git#1.0.0"
-    "angular-bootstrap": "~0.13.0"
   }
