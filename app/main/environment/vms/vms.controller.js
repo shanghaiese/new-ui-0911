@@ -4,9 +4,9 @@
     angular
         .module('ilab')
         .controller('VMsCtrl', VMsCtrl);
-    VMsCtrl.$inject = ['machine','$filter'];
+    VMsCtrl.$inject = ['machine','$filter', '$modal'];
 
-    function VMsCtrl(machine, $filter) {
+    function VMsCtrl(machine, $filter, $modal) {
         var that = this;
         var orderBy = $filter('orderBy');
 
@@ -71,7 +71,7 @@
 
         function activate(){
             that.VMs = machine.getVMDetail();
-        
+
             that.thead = machine.getThead();
             that.tabDeleteDialog = {
                 isOpen: false
@@ -157,6 +157,23 @@
         function submit() {
             alert('Submit Success');
         }
+
+
+
+        that.open = function(size) {
+
+            var modalInstance = $modal.open({
+                templateUrl: 'main/templates/vmDeleteDialog.html',
+                controller: 'ModalInstanceCtrl',
+                }
+            );
+
+            modalInstance.result.then(function(selectedItem) {
+                $scope.selected = selectedItem;
+            }, function() {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
     }
 
 })();
