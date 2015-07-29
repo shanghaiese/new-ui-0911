@@ -3,15 +3,16 @@
     angular
         .module('ilabConfig')
         .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
-        .config(routeConfig)
-        .config(configLoadingBar)
+        .config(route)
+        .config(loadingBar)
+        .config(Restangular)
         .run(beforeRun);
 
 
 
-    routeConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    route.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-    function routeConfig($stateProvider, $urlRouterProvider) {
+    function route($stateProvider, $urlRouterProvider) {
         // For any unmatched url, redirect to /environment
         $urlRouterProvider.otherwise("/");
         //
@@ -25,10 +26,7 @@
             })
             .state('environment', {
                 url: "/environment",
-                templateUrl: "main/environment/environment.html",
-                controller: function($scope) {
-                    console.log('environment');
-                }
+                templateUrl: "main/environment/environment.html"
             })
             .state('environment.vm', {
                 url: "/vm",
@@ -62,9 +60,9 @@
     }
 
     /* config block */
-    configLoadingBar.$inject = ['cfpLoadingBarProvider'];
+    loadingBar.$inject = ['cfpLoadingBarProvider'];
 
-    function configLoadingBar(cfpLoadingBarProvider) {
+    function loadingBar(cfpLoadingBarProvider) {
         cfpLoadingBarProvider.includeSpinner = false;
     }
 
@@ -75,6 +73,14 @@
         $rootScope.toggleMenu = function() {
             $('.ilab-menu').toggleClass('open');
         };
+    }
+
+    Restangular.$inject = ['RestangularProvider'];
+    function Restangular(RestangularProvider) {
+        RestangularProvider.setBaseUrl('/services/api');
+        RestangularProvider.setRestangularFields({selfLink: 'self.href'});
+        // RestangularProvider.setBaseUrl('http://demo0524551.mockable.io/');
+        // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
 })();

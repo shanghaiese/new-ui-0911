@@ -8,7 +8,7 @@
         var that = this;
 
         that.lists = [{
-            name: 'a'
+            name: 'Select'
         }, {
             name: 'b'
         }, {

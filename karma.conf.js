@@ -28,6 +28,8 @@ module.exports = function(config) {
             "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
             "bower_components/progressBar/progressBar.js",
             "bower_components/ilabDropdown/dropdown.js",
+            "bower_components/lodash/lodash.js",
+            "bower_components/restangular/dist/restangular.js",
 
             "bower_components/angular-mocks/angular-mocks.js",
 

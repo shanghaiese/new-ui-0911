@@ -2,7 +2,8 @@
     angular.module('ilab')
         .controller('VMCtrl', VMCtrl);
 
-    function VMCtrl() {
+    VMCtrl.$inject = ['environment'];
+    function VMCtrl(environment) {
         var that = this;
         that.item = 1;
 
@@ -18,6 +19,12 @@
         		return false;
         	}
         };
+
+        environment.getList().then(function(envs) {
+            console.log(envs);
+            that.env = envs[0];
+            console.log(that.env);
+        });
     }
 
 

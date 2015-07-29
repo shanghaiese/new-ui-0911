@@ -27,7 +27,7 @@
                 /*first clear id of all link, and add the id to the corresponding link*/
                 $(element).find('a').attr('id', '');
                 if (environmentPageRegex.test(toState.name)) {
-                    $(element).find('a[ui-sref="environment.vms"]').attr('id', 'selected-link');
+                    $(element).find('a[ui-sref="environment.vm"]').attr('id', 'selected-link');
                 } else if (labPageRegex.test(toState.name)) {
                     $(element).find('a[ui-sref="lab"]').attr('id', 'selected-link');
                 }
