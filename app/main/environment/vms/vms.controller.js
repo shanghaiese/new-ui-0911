@@ -165,6 +165,7 @@
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
+                windowClass: 'center-modal'
                 }
             );
 
@@ -173,6 +174,30 @@
             }, function() {
                 $log.info('Modal dismissed at: ' + new Date());
             });
+        };
+
+        var resize = function () {
+            var dialog = angular.element('#globalPleaseWaitDialog .modal-dialog');
+            dialog.css('margin-top', (angular.element(that.$window).height() - dialog.height()) / 2 - parseInt(dialog.css('padding-top')));
+        };
+
+        var animate = function () {
+
+            var dialog = angular.element('#globalPleaseWaitDialog .modal-dialog');
+            dialog.animate({ 'margin-top': (angular.element(that.$window).height() - dialog.height()) / 2 - parseInt(dialog.css('padding-top')) }, 'slow');
+            pleaseWaitDiv.off('shown.bs.modal', animate);
+
+        };
+
+        that.showPleaseWait = function () {
+            angular.element($window).on('resize', resize);
+            pleaseWaitDiv.on('shown.bs.modal', animate);
+            pleaseWaitDiv.modal();
+        };
+
+        that.hidePleaseWait = function () {
+            pleaseWaitDiv.modal('hide');
+            angular.element($window).off('resize', resize);
         };
     }
 
