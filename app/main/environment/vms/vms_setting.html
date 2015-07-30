@@ -6,7 +6,7 @@
                 <span class="intelicon-close-max" ng-click="vm.closePanel(vm.id)"></span>
                 <tabset class="VMSettingTabs" type="pills">
                     <!--ChangeVMSettingPanel-->
-                    <tab ng-click="vm.cancelConfig(vms.id)" active="toolTab.active" title="Configure VM">
+                    <tab active="toolTab.active" title="Configure VM">
                         <tab-heading >
                             <span class="intelicon-tools"></span>
                         </tab-heading>
@@ -32,7 +32,9 @@
                             </div>
                             <div class="intel-setting-group">
                            	 	<label>Network:</label>
+                                <span>
                                 <ilab-dropdown lists="vm.Network" attr-to-display="Nic" selected-list="vm.configTmp.network"></ilab-dropdown>
+                                </span>
                             </div>
                             <div class="intel-setting-group">
                                 <span class="settingButtonGroup">
@@ -43,7 +45,7 @@
                         </form>
                     </tab>
                     <!--SaveTemplatePanel-->
-                    <tab ng-click="vm.cancelConfig(vms.id)" title="Save VM as template">
+                    <tab title="Save VM as template">
                         <tab-heading>
                             <span class="intelicon-save-solid"></span>
                         </tab-heading>
@@ -82,22 +84,22 @@
                                     <button class="btn btn-primary" type="submit">Save</button>
                                     <button class="btn btn-secondary" type="button" ng-click="vm.cancelConfig()">Cancel</button>
                                 </span>
-                    </div>
-                </form>
-            </tab>
-            <tab title="VM Information">
-                <tab-heading>
-                    <span class="intelicon-information-solid"></span>
-                </tab-heading>
-            </tab>
-            <tab disabled="true" title="Delete VM">
-                <tab-heading>
-                    <span class="intelicon-trash-outlined" ng-click="vm.open()"></span>
-                </tab-heading>
-            </tab>
-        </tabset>
-    </div>
-</td>
+                            </div>
+                        </form>
+                    </tab>
+                    <tab title="VM Information">
+                        <tab-heading>
+                            <span class="intelicon-information-solid"></span>
+                        </tab-heading>
+                    </tab>
+                    <tab disabled="true" title="Delete VM">
+                        <tab-heading>
+                            <span class="intelicon-trash-outlined" ng-click="vm.open()"></span>
+                        </tab-heading>
+                    </tab>
+                </tabset>
+            </div>
+        </td>
 
 <!--  </tr> -->
 <!-- </table> -->

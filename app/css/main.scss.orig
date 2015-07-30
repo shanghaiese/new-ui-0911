@@ -47,7 +47,16 @@ body {
 
 #vm-table {
     border-bottom-width: 0;
-
+    tbody:nth-child(even) {
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        background-color: $lighter-gray1;
+    }
+    tbody:nth-child(odd) {
+        border-top-width: 0px;
+        border-bottom-width: 0px;
+        background-color: $white;
+    }
     thead > tr > th,
     thead > tr > td,
     tbody > tr > th,
@@ -168,7 +177,8 @@ body {
 
 .table-intel {
     .nav-pills {
-        background-color: #53565A;
+<<<<<<< HEAD
+  		  background-color: #53565A;
         li > a {
             color: #FFFFFF;
             padding: 11px 20px;
@@ -184,6 +194,15 @@ body {
   		  padding: 0em;
   	}  
     .advVMInnerSetting {
+=======
+        background-color: #53565A;
+    }
+    .table-span-td {
+        padding: 0em;
+        border: 0px;
+    }
+    #advVMInnerSetting {
+>>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
         padding: 0px;
         border-top-width: 0px;
         border-bottom-width: 0px;
@@ -194,30 +213,39 @@ body {
     background-color: rgb(211, 216, 219);
     text-align: left;
     clear: both;
+<<<<<<< HEAD
+	
+  	.edit-virtual-machine {
+     		padding-top: 0.5em;
+     		margin-left: 0.3em;
+     		width: 20em;
+     		padding-bottom: 0.5em;
+        font-size: 130%;
+=======
     .edit-virtual-machine {
         padding-top: 0.5em;
-     		margin-left: 0.3em;
+        margin-left: 0.5em;
         width: 20em;
         padding-bottom: 0.5em;
-        font-size: 130%;
+        font-weight: bold;
+        font-size: 110%;
+>>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
         color: #53565A;
- 	  }   
-
+    }
     .intel-setting-group {
-    		height: 2.5em;
-    		padding-bottom: 0.5em;
-      	label {
-     			  text-align: left;
-     			  margin-left: 0.5em;
-      			display: inline-block;
-      			vertical-align: middle;
-      			width: 6em;
-      			font-weight: normal;
-  		  }
-
-		    input[type="text"] {
-      		  display: inline-block;
-        		vertical-align: left;
+        height: 2.5em;
+        padding-bottom: 0.5em;
+        label {
+            text-align: left;
+            margin-left: 0.5em;
+            display: inline-block;
+            vertical-align: middle;
+            width: 6em;
+            font-weight: normal;
+        }
+        input[type="text"] {
+            display: inline-block;
+            vertical-align: left;
             border-style: solid;
             border-width: 1px;
             border-color: transparent;
@@ -226,8 +254,10 @@ body {
         }
 
         input[type="radio"] {
-            vertical-align: left;
+<<<<<<< HEAD
+            vertical-align: left; 
         }
+
         input[type='radio']:before {
             content:'';
             display:block;
@@ -245,6 +275,13 @@ body {
           background: #0071C5;
         }
 
+=======
+            display: inline-block;
+            border-color: transparent;
+            max-width: 1em;
+            vertical-align: left;
+        }
+>>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
         .settingButtonGroup {
             margin-left: 6.7em;
         }
@@ -268,6 +305,7 @@ body {
     }
 }
 
+<<<<<<< HEAD
 .advVMInnerSetting {
     .intelicon-close-max {
         float: right;
@@ -284,6 +322,13 @@ body {
     min-width: 260px;
     max-width: 350px;
     width: 250px;
-    background-color: black;
-    color: white;
 }
+=======
+#advVMInnerSetting .intelicon-close-solid {
+    float: right;
+    font-size: 20px;
+    background-color: #53565A;
+    color: #FFFFFF;
+    margin: 0.8em;
+}
+>>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210

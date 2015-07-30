@@ -62,7 +62,8 @@
             name: 'ilab_id',
             IP: '10.192.168.1',
             displayName: 'iLab ID',
-            configuration: '2CPU,4G' 
+            configuration: '2CPU,4G',
+            network: [{nic:"Nic1"}, {nic: "Nic2"}];
         }, {
             id: 'VM002',
             name: 'disk1',
