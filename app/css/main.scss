@@ -78,23 +78,6 @@ body {
 }
 
 
-/* ilab-dialog-message popup */
-
-.popup-dialog>.popup-dialog-header {
-    padding: 0px;
-    margin: 5px 12px;
-    color: #62b00a;
-}
-
-.popup-dialog>.popup-dialog-content {
-    padding-left: 12px;
-    padding-top: 0;
-}
-
-.popup-dialog>#dialog-success-img {
-    margin-right: 10px;
-    margin-top: 0px;
-}
 
 
 /*sortable table header */
@@ -194,6 +177,12 @@ body {
             color: #00AEEF;
             padding: 11px 20px;
             font-size: 18px;
+        }
+        li.disabled > a,
+        li.disabled > a:hover,
+        li.disabled > a:focus,
+        li > a:hover {
+            cursor: pointer;
         }
     }
     .table-span-td {

@@ -120,6 +120,10 @@
                         "interface": 1,
                         "label": "3638301_NIC1",
                         "ip": "169.254.186.242"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
                     }],
                     "vmm": "10.223.136.211",
                     "disk1": "TBD"
@@ -197,25 +201,22 @@
         }
 
         /*mock data for vm detail information tab*/
-        function transDetailForDis() {
-            var vmFromAPI = getVMDetail();
+        function transDetailForDis(vmFromAPI) {
             var result =[];
-            for(var item in vmFromAPI)
+            var temp={};
+            angular.forEach(vmFromAPI, function(obj, key) 
             { 
-                var temp = 
+                 temp = 
                 {
-                    "Name":       item.name,
-                    "Description":item.description,
-                    "iLab ID":    item.id,
-                    "Power":      (item.power === 0) ? "Stop":"Running",
-                    "Config":     item.cpus + "CPU," + item.mem
+                    "Name":       obj.name,
+                    "Description":obj.description,
+                    "iLab ID":         obj.id,
+                    "Power":      (obj.power === 0) ? "Stop":"Running",
+                    "Config":     obj.cpus + "CPU," + obj.mem
 
                 };
-
                 result.push(temp);
-
-            }
-            console.log(result);
+            });
             return result;
         }
 

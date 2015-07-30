@@ -4,7 +4,7 @@
 <td colspan="6" class="advVMInnerSetting">
     <div collapse="vms.id != vm.showPage">
         <span class="intelicon-close-max" ng-click="vm.closePanel(vm.id)"></span>
-        <tabset class="VMSettingTabs" type="pills">
+        <tabset type="pills">
             <!--ChangeVMSettingPanel-->
             <tab ng-click="vm.cancelConfig(vms.id)" active="toolTab.active" title="Configure VM">
                 <tab-heading>
@@ -88,17 +88,77 @@
                 <tab-heading>
                     <span class="intelicon-information-solid"></span>
                 </tab-heading>
-                <form class="pure-form-aligned" >
-                    <div class="edit-virtual-machine">Detail Information:</div>
-                    <div class="intel-setting-group" ng-repeat="(key, value) in vm.VMInfo">
-                        <strong class="col-md-2 col-sm-4">{{key}}:</strong>
-                        <span class="col-md-4 col-sm-8">{{value}}</span>
+                <form class="pure-form-aligned">
+                    <div class="container-fluid">
+                        <form class="ng-pristine ng-valid">
+                            <div class="form-group">
+                                <h5>Detail Information:</h5>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <strong class="col-md-2">Name:</strong>
+                                    <span class="col-md-10">{{vms.name}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Description:</strong>
+                                    <span class="col-md-10">{{vms.description}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">iLab ID:</strong>
+                                    <span class="col-md-10">{{vms.id}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Power:</strong>
+                                    <span class="col-md-10">{{(vms.power>0)?'Running':'Stop'}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Config:</strong>
+                                    <span class="col-md-10">{{vms.cups}}CPU,{{(vms.mem)/1024}}G</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">OS:</strong>
+                                    <span class="col-md-10">{{vms.os}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div ng-repeat="nics in vms.network">
+                                    <strong class="col-md-2">Nic{{nics.interface}} Network:</strong>
+                                    <span class="col-md-10">{{nics.label}}</span>
+                                    <strong class="col-md-2">Nic{{nics.interface}} IP:</strong>
+                                    <span class="col-md-10">{{nics.ip}}</span>
+                                    <strong class="col-md-2">Nic{{nics.interface}} MAC:</strong>
+                                    <span class="col-md-10">{{nics.ip}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <!-- <strong class="col-md-2">Template:</strong>
+                            <span class="col-md-10">{{vms.template}}</span>
+
+                            <strong class="col-md-2">Driver:</strong>
+                            <span class="col-md-10">{{vms.driver}}</span> -->
+                                <strong class="col-md-2">VMM:</strong>
+                                <span class="col-md-10">{{vms.vmm}}</span>
+                                <strong class="col-md-2">Disk 1:</strong>
+                                <span class="col-md-10">{{vms.disk1}}</span>
+                                <!-- <strong class="col-md-2">Hostname:</strong>
+                            <span class="col-md-10">{{vms.hostname}}</span>
+
+                            <strong class="col-md-2">Creator:</strong>
+                            <span class="col-md-10">{{vms.creator}}</span> -->
+                                <strong class="col-md-2">Creat Date:</strong>
+                                <span class="col-md-10">{{vms.created_date}}</span>
+                            </div>
+                            <div class="form-group">
+                                   <button class="btn btn-secondary col-md-offset-2" ng-click="vm.closePanel(vms.id)">Close</button>
+                                
+                            </div>
+                        </form>
                     </div>
                 </form>
             </tab>
-            <tab disabled="true" title="Delete VM">
+            <tab disabled=" true " title="Delete VM ">
                 <tab-heading>
-                    <span class="intelicon-trash-outlined" ng-click="vm.open()"></span>
+                    <span class="intelicon-trash-outlined " ng-click="vm.open() "></span>
                 </tab-heading>
             </tab>
         </tabset>

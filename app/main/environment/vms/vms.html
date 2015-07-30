@@ -31,7 +31,7 @@
             <th ng-repeat="th in vm.thead" class="" ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}">{{th.display}}</th>
         </tr>
     </thead>
-    <tbody ng-repeat="vms in vm.VMs|filter:searchInput">
+    <tbody ng-repeat="vms in vm.VMs|filter:searchInput" ng-repeat="everyVM in vm.VMInfo">
         <tr>
             <td>
                 <div class="intel-checkbox">

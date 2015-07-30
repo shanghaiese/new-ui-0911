@@ -10,6 +10,7 @@
         var that = this;
         var orderBy = $filter('orderBy');
 
+        /*varials*/
         that.VMs = [];
         that.thead = [];
         that.VMInfo = [];
@@ -18,11 +19,13 @@
         };
         that.selectedAll = false;
         that.showPage = false;
-        that.toggleCheckAll = toggleCheckAll;
+        that.everyVM = [];
         that.sort = [];
+
+        /*functions*/
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
-
+        that.toggleCheckAll = toggleCheckAll;
 
         that.tabDeleteDialog = []; //array to indicate which vm is in operation
         that.vmIsInOperation = vmIsInOperation;
@@ -145,7 +148,7 @@
             that.VMs = machine.getVMDetail();
 
             that.thead = machine.getThead();
-            that.VMInfo = machine.transDetailForDis();
+            //that.VMInfo = machine.transDetailForDis(that.VMs);
             that.tabDeleteDialog = {
                 isOpen: false
             };
@@ -170,6 +173,16 @@
             });
             //            return that.vmFound;
         }
+
+
+        /*function getVMInfoById(vmid) {
+            
+            angular.forEach(that.VMInfo, function(obj, key) {
+                if (obj.['iLab ID'] == vmid) {
+                    that.everyVM = obj;
+                }
+            });
+        }*/
         //select Virtual machine for delete
 
         function toggleCheckAll() {
