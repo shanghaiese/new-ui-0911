@@ -58,3 +58,19 @@ body {
 #loading-bar .bar {
   background: $yellow !important;
 }
+
+/* override pagination */
+.pagination {
+	margin-top: 0;
+}
+.pagination>li>a, .pagination>li>span {
+	border: none;
+}
+.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
+	background-color: white;
+	color: $gray;
+}
+.pagination-summary {
+	float: right;
+	color: $gray;
+}

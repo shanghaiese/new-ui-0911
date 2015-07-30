@@ -10,7 +10,7 @@
     function ilabMenu($window) {
         return {
             restrict: 'E',
-            templateUrl: 'main/templates/menu.html',
+            templateUrl: 'main/templates/menu.tpl.html',
             link: linkFn
         };
 

@@ -7,8 +7,19 @@
 span[class^="ilabicon-"], span[class*=" ilabicon-"] {
 	font-size: 20px;
 }
+span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
+	cursor: pointer;
+}
+/* A */
+a[ng-click] {
+	cursor: pointer;
+}
 
 /* Button */
+.btn {
+	min-width: $btn-min-width;
+	height: $btn-height;
+}
 .btn-approve {
 	@include button-variant-override($green, $green, $hover-green, $hover-green, $med-dark-green, $med-dark-green, #fff);
 }
@@ -16,13 +27,9 @@ span[class^="ilabicon-"], span[class*=" ilabicon-"] {
 .btn-suspend {
 	@include button-variant-override($yellow, $yellow, $orange, $orange, $orange, $orange, #fff);
 }
-.btn {
-	min-width: $btn-min-width;
-	height: $btn-height;
-}
 
 /* Dropdown */
-$dropdown-border: $lighter-grey4;
+$dropdown-border: $lighter-gray4;
 .dropdown {
 	.dropdown-menu {
 		border: 1px solid $dropdown-border;
@@ -31,6 +38,7 @@ $dropdown-border: $lighter-grey4;
 		li>a:focus, li>a:hover {
 			background-color: $light-blue;
 			color: $white;
+			cursor: pointer;
 		}
 	}
 }
@@ -39,9 +47,106 @@ $dropdown-border: $lighter-grey4;
 
 
 /* Table */
+table {
+	tbody {
+		color: $dark-gray;
+	}
+}
+.table-expandable {
+	thead {
+		tr {
+			th {
+				height: $table-row-height;
+				text-align: center;
+				border-right: none;
+				border-left: none;
+			}
+		}
+	}
+	tbody {
+		tr {
+			td {
+				height: $table-row-height;
+				text-align: center;
+				border-right: none;
+				border-left: none;
+			}
+			td.td-collapsed {
+				height: 0;
+				padding: 0;
+				margin: 0;
+				border-top: 0;
+				border-bottom: 0;
+				background-color: $lighter-gray3;
+			}
+		}
+	}
+	tbody + tbody {
+		border-top: 1px solid $light-gray;
+	}
+/*  */
+	tbody:nth-child(odd)>tr:last-child>td {
+		border-bottom: 0;
+	}
+	tbody:nth-child(even)>tr:first-child>td {
+		border-top: 0;
+	}
+}
 
 
 /* Form */
+.form-control {
+	height: $btn-height;
+}
 
+form.default {
+	width: $input-width;
+}
+
+form.default.form-horizontal, form.default.form-inline {
+	width: auto;
+
+	input {
+		width: $input-width;
+		color: $dark-gray;
+	}
+	input[type="checkbox"], input[type="radio"], input[type="color"], input[type="range"], input[type="image"] {
+		width: auto;
+	}
+	input[type="button"], input[type="reset"], input[type="submit"] {
+		width: $btn-min-width;
+		height: $btn-height;
+	}  
+
+}
+label.require {
+	&:before {
+		position: relative;
+		content: '*';
+		color: $red;
+		top: 0;
+		right: 5px;
+	}
+}
+
+.form-group {
+	.hint {
+		color: $gray;
+
+		span {
+			font-size: 15px;
+			margin-right: 5px;
+		}
+	}
+}
+.form-inline {
+	.form-group {
+		.hint {
+			position: absolute;
+			margin-left: 30px;
+			margin-top: 0;
+		}
+	}
+}
 
 

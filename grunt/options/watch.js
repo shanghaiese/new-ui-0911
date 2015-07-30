@@ -26,7 +26,7 @@ module.exports = {
         },
         css: {
             files: ['<%= meta.srcPath %>/css/*.scss'],
-            tasks: ['sass', 'cssmin']
+            tasks: ['sass']
         },
         bower: {
             files: ['<%= meta.srcPath %>/bower_components/*'],

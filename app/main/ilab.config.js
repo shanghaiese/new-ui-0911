@@ -5,7 +5,8 @@
         .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
         .config(loadingBar)
-        .config(Restangular)
+        .config(restangular)
+        .config(pagination)
         .run(beforeRun);
 
 
@@ -75,12 +76,17 @@
         };
     }
 
-    Restangular.$inject = ['RestangularProvider'];
-    function Restangular(RestangularProvider) {
+    restangular.$inject = ['RestangularProvider'];
+    function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api');
         RestangularProvider.setRestangularFields({selfLink: 'self.href'});
         // RestangularProvider.setBaseUrl('http://demo0524551.mockable.io/');
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
+    }
+
+    pagination.$inject = ['paginationTemplateProvider'];
+    function pagination(paginationTemplateProvider) {
+        paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }
 
 })();
