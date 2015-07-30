@@ -9,7 +9,7 @@ module.exports = {
         // Point to the files that should be updated when
         // you run `grunt wiredep`
         src: [
-          '<%= meta.srcPath %>/ilab.html',   // .html support...
+          '<%= meta.srcPath %>/index.html',   // .html support...
         ],
 
         options: {

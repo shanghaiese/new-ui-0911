@@ -47,6 +47,7 @@
     "grunt-sass": "^1.0.0",
     "grunt-sloc": "^0.6.0",
     "grunt-wiredep": "^2.0.0",
+    "http-auth": "^2.2.8",
     "http-proxy": "^1.11.1",
     "jasmine-reporters": "^1.0.1",
     "karma": "^0.12.16",

@@ -10,13 +10,24 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "ilabicon/style";
 // import ilab customized scss partials
 //@import "header";
+// import components
+@import "menu";
+@import "welcome";
+
 body {
-    font-size: 16px;
-    .main-content {
-        margin-top: 50px;
-        margin-bottom: 50px;
-        padding: 20px;
-    }
+	margin-top: 50px;
+}
+/* style for menu btn that trigger menu hide/open */
+#menu-toggle {
+	float: left;
+	padding: 10px;
+	font-size: 30px;
+	color: white;
+	background-color: #0055a5;
+	cursor: pointer;
+	&:active{
+		background-color: #1891ee;
+	}
 }
 
 
@@ -283,4 +294,45 @@ body {
     min-width: 260px;
     max-width: 350px;
     width: 250px;
+}
+
+/* override navbar */
+.navbar {
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+}
+.navbar .container-fluid {
+	padding-left: 0;
+}
+.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
+    margin-left: 0;
+	padding: 0;
+	cursor: pointer;
+}
+.container-fluid>.navbar-header{
+    margin-left: 0;
+}
+
+/* override loading bar color */
+#loading-bar-spinner .spinner-icon {
+	border-top-color:  $yellow !important;
+  	border-left-color: $yellow !important;
+}
+#loading-bar .bar {
+  background: $yellow !important;
+}
+
+/* override pagination */
+.pagination {
+	margin-top: 0;
+}
+.pagination>li>a, .pagination>li>span {
+	border: none;
+}
+.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
+	background-color: white;
+	color: $gray;
+}
+.pagination-summary {
+	float: right;
+	color: $gray;
 }

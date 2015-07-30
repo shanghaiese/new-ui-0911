@@ -6,10 +6,10 @@ module.exports = {
     dist: {
         files: {
             '<%= meta.srcPath %>/deploy/main.css': '<%= meta.srcPath %>/css/main.scss'
-            //'<%= meta.srcPath %>/deploy/dropdown.directive.css': '<%= meta.srcPath %>/css/dropdown.directive.scss'
         }
     },
     options: {
-        includePaths: ['<%= meta.srcPath %>/bower_components']
+        includePaths: ['<%= meta.srcPath %>/bower_components'],
+        outputStyle: 'nested'
     }
 }
