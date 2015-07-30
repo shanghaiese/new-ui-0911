@@ -4,7 +4,7 @@
     angular
         .module('ilab')
         .controller('VMsCtrl', VMsCtrl);
-    VMsCtrl.$inject = ['machine','$filter', '$modal', '$sce'];
+    VMsCtrl.$inject = ['machine', '$filter', '$modal', '$sce'];
 
     function VMsCtrl(machine, $filter, $modal, $sce) {
         var that = this;
@@ -12,6 +12,7 @@
 
         that.VMs = [];
         that.thead = [];
+        that.VMInfo = [];
         that.deleteVM = {
             selectedVMs: []
         };
@@ -23,7 +24,7 @@
         that.showVmEdit = showVmEdit;
 
 
-        that.tabDeleteDialog =[];    //array to indicate which vm is in operation
+        that.tabDeleteDialog = []; //array to indicate which vm is in operation
         that.vmIsInOperation = vmIsInOperation;
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
         that.isCollapse = true;
@@ -55,8 +56,11 @@
             id: "",
             name: "",
             description: "",
-            IP:"",
-            CPU: {idx: "", NumOfCPU: ""},
+            IP: "",
+            CPU: {
+                idx: "",
+                NumOfCPU: ""
+            },
             memory: "",
             //? network maybe multiple
             network: ""
@@ -65,34 +69,83 @@
         that.configTmp = {
             name: "",
             description: "",
-            CPU: {idx: 0, NumOfCPU: ""},
-            memory: {memory: ""},
+            CPU: {
+                idx: 0,
+                NumOfCPU: ""
+            },
+            memory: {
+                memory: ""
+            },
             network: ""
         };
 
-        that.CPU = [{idx: 0, NumOfCPU: "1CPU" }, 
-                    {idx: 1, NumOfCPU: "2CPU" }, 
-                    {idx: 2, NumOfCPU: "4CPU" }, 
-                    {idx: 3, NumOfCPU: "8CPU" }, 
-                    {idx: 4, NumOfCPU: "16CPU" }];
+        that.CPU = [{
+            idx: 0,
+            NumOfCPU: "1CPU"
+        }, {
+            idx: 1,
+            NumOfCPU: "2CPU"
+        }, {
+            idx: 2,
+            NumOfCPU: "4CPU"
+        }, {
+            idx: 3,
+            NumOfCPU: "8CPU"
+        }, {
+            idx: 4,
+            NumOfCPU: "16CPU"
+        }];
 
         that.Memory = [
-                      [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
-                      [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
-                      [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
-                      [{memory: "8G"}, {memory: "16G"}],
-                      [{memory: "16G"}, {memory: "32G"}]
-                      ];
+            [{
+                memory: "0.5G"
+            }, {
+                memory: "1G"
+            }, {
+                memory: "2G"
+            }, {
+                memory: "4G"
+            }],
+            [{
+                memory: "2G"
+            }, {
+                memory: "4G"
+            }, {
+                memory: "8G"
+            }],
+            [{
+                memory: "4G"
+            }, {
+                memory: "8G"
+            }, {
+                memory: "16G"
+            }],
+            [{
+                memory: "8G"
+            }, {
+                memory: "16G"
+            }],
+            [{
+                memory: "16G"
+            }, {
+                memory: "32G"
+            }]
+        ];
 
-        that.Network = [{Nic: "Nic1"}, {Nic: "Nic2"}];
+        that.Network = [{
+            Nic: "Nic1"
+        }, {
+            Nic: "Nic2"
+        }];
 
         //Functions
         activate();
 
-        function activate(){
+        function activate() {
             that.VMs = machine.getVMDetail();
 
             that.thead = machine.getThead();
+            that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
                 isOpen: false
             };
@@ -101,38 +154,40 @@
 
         function getVMById(vmid) {
             angular.forEach(that.VMs, function(obj, key) {
-                if(obj.id == vmid) {
-                    that.vmFound.id=obj.id;
-                    that.vmFound.name=obj.displayName;
-                    that.vmFound.IP=obj.IP;
-                    var CPUMemoryArr=obj.configuration.split(',');
-                    that.vmFound.CPU.NumOfCPU=CPUMemoryArr[0];
-                    that.vmFound.memory=CPUMemoryArr[1];    
+                if (obj.id == vmid) {
+                    that.vmFound.id = obj.id;
+                    that.vmFound.name = obj.name;
+                    that.vmFound.IP = obj.network.ip;
+                    //var CPUMemoryArr = obj.configuration.split(',');
+                    that.vmFound.CPU.NumOfCPU = obj.cpus;
+                    that.vmFound.memory = obj.mem;
                 }
             });
             angular.forEach(that.CPU, function(obj, key) {
-                if(obj.NumOfCPU == that.vmFound.CPU.NumOfCPU) {
-                    that.vmFound.CPU.idx=obj.idx;
+                if (obj.NumOfCPU == that.vmFound.CPU.NumOfCPU) {
+                    that.vmFound.CPU.idx = obj.idx;
                 }
             });
-//            return that.vmFound;
+            //            return that.vmFound;
         }
         //select Virtual machine for delete
 
         function toggleCheckAll() {
-            if(that.deleteVM.selectedVMs.length === that.VMs.length)
+            if (that.deleteVM.selectedVMs.length === that.VMs.length)
                 that.deleteVM.selectedVMs = [];
             else
-                that.deleteVM.selectedVMs = that.VMs.map(function(item){return item.id; });
+                that.deleteVM.selectedVMs = that.VMs.map(function(item) {
+                    return item.id;
+                });
         }
 
         that.sort = {
-            column: 'displayName',
+            column: 'name',
             descending: false
         };
 
         /*sort fn, sort by column name*/
-        
+
         function changeSorting(column) {
             var sort = that.sort;
             if (sort.column === column) {
@@ -148,60 +203,61 @@
         /*show the vm edit page or close it*/
         function showVmEdit(vmid) {
             //that.showPage = !that.showPage;
-            if(that.showPage == vmid) {
+            if (that.showPage == vmid) {
                 that.showPage = 0;
-            }
-            else {
+            } else {
                 getVMById(vmid);
                 that.showPage = vmid;
                 //find the vm idx;
-                that.configTmp.name=that.vmFound.name;
-                that.configTmp.description=that.vmFound.IP;
-                that.configTmp.CPU={
+                that.configTmp.name = that.vmFound.name;
+                that.configTmp.description = that.vmFound.IP;
+                that.configTmp.CPU = {
                     idx: that.vmFound.CPU.idx,
                     NumOfCPU: that.vmFound.CPU.NumOfCPU
                 };
-                that.configTmp.memory.memory=that.vmFound.memory;
+                that.configTmp.memory.memory = that.vmFound.memory;
                 //saveTemplate panel
-                that.saveTemp.name=that.vmFound.name; 
+                that.saveTemp.name = that.vmFound.name;
                 //if have opened saveTemp panel and change, we need to reset that panel.
-                
+
             }
         }
 
         function vmIsInOperation(vmId) {
-                //console.log('vmIsInOperation: '+vmId);
-                var isInOperation = false;
-                angular.forEach(that.inOperation, function(item, index) {
-                    if (item == vmId) {
-                        isInOperation = true;
-                    }
-                });
-                return isInOperation;
+            //console.log('vmIsInOperation: '+vmId);
+            var isInOperation = false;
+            angular.forEach(that.inOperation, function(item, index) {
+                if (item == vmId) {
+                    isInOperation = true;
+                }
+            });
+            return isInOperation;
         }
 
         function cancelConfig(vmid) {
             getVMById(vmid);
-            that.configTmp.name=that.vmFound.name;
-            that.configTmp.description=that.vmFound.IP;
-            that.configTmp.CPU.NumOfCPU=that.vmFound.CPU.NumOfCPU;
-            that.configTmp.memory.memory=that.vmFound.memory;
+            that.configTmp.name = that.vmFound.name;
+            that.configTmp.description = that.vmFound.IP;
+            that.configTmp.CPU.NumOfCPU = that.vmFound.CPU.NumOfCPU;
+            that.configTmp.memory.memory = that.vmFound.memory;
 
-            that.saveTemp.name=that.vmFound.name;
-            that.saveTemp.modeSaveDisk.saveMode="convert";
-            that.saveTemp.modeSaveDisk.diskMode="chain";
+            that.saveTemp.name = that.vmFound.name;
+            that.saveTemp.modeSaveDisk.saveMode = "convert";
+            that.saveTemp.modeSaveDisk.diskMode = "chain";
         }
+
         function updateConfig(vmid) {
             angular.forEach(that.VMs, function(obj, key) {
-                if(obj.id == vmid) {
-                    obj.displayName=that.configTmp.name;
-                    obj.configuration=that.configTmp.CPU.NumOfCPU + ',' + that.configTmp.memory.memory;
+                if (obj.id == vmid) {
+                    obj.displayName = that.configTmp.name;
+                    obj.configuration = that.configTmp.CPU.NumOfCPU + ',' + that.configTmp.memory.memory;
                 }
             });
             //Here need to add update();
             //close the panel
             showVmEdit(vmid);
         }
+
         function closePanel(vmid) {
             cancelConfig(vmid);
             showVmEdit(vmid);
@@ -209,9 +265,9 @@
 
         function saveVMTemplate(vmid) {
             //use API and transport newName and information
-            if(that.saveTemp.modeSaveDisk.diskMode === "chain" && that.saveTemp.modeSaveDisk.saveMode === "convert") {
+            if (that.saveTemp.modeSaveDisk.diskMode === "chain" && that.saveTemp.modeSaveDisk.saveMode === "convert") {
                 console.log("chain+convert");
-            } else if(that.saveTemp.modeSaveDisk.diskMode === "copy" && that.saveTemp.modeSaveDisk.saveMode === "save") {
+            } else if (that.saveTemp.modeSaveDisk.diskMode === "copy" && that.saveTemp.modeSaveDisk.saveMode === "save") {
                 console.log("copy+save");
             }
         }
@@ -224,40 +280,17 @@
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
-                windowClass: 'center-modal'
-                }
-            );
-
-            modalInstance.result.then(function(selectedItem) {
-                $scope.selected = selectedItem;
-            }, function() {
-                $log.info('Modal dismissed at: ' + new Date());
+                animation: false
             });
+
+            var $modal_dialog = $(this).find(".modal-dialog");
+            var m_top = (($(window).height() - 200) / 2);
+            $modal_dialog.css({
+                'margin': m_top + 'px auto'
+             });
         };
 
-        var resize = function () {
-            var dialog = angular.element('#globalPleaseWaitDialog .modal-dialog');
-            dialog.css('margin-top', (angular.element(that.$window).height() - dialog.height()) / 2 - parseInt(dialog.css('padding-top')));
-        };
-
-        var animate = function () {
-
-            var dialog = angular.element('#globalPleaseWaitDialog .modal-dialog');
-            dialog.animate({ 'margin-top': (angular.element(that.$window).height() - dialog.height()) / 2 - parseInt(dialog.css('padding-top')) }, 'slow');
-            pleaseWaitDiv.off('shown.bs.modal', animate);
-
-        };
-
-        that.showPleaseWait = function () {
-            angular.element($window).on('resize', resize);
-            pleaseWaitDiv.on('shown.bs.modal', animate);
-            pleaseWaitDiv.modal();
-        };
-
-        that.hidePleaseWait = function () {
-            pleaseWaitDiv.modal('hide');
-            angular.element($window).off('resize', resize);
-        };
+        
     }
 
 })();

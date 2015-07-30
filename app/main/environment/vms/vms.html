@@ -40,12 +40,12 @@
                 </div>
                 <span class="intelicon-settings-solid" id="vm-configuration" ng-click="vm.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
             </td>
-            <td id="vmName">{{vms.displayName}}</td>
+            <td id="vmName">{{vms.name}}</td>
             <td>
-                {{vms.IP}}
+                 <span ng-repeat="networks in vms.network">{{networks.ip}}</span>
             </td>
             <td>
-                {{vms.configuration}}
+                {{vms.cpus}}CPU,{{vms.mem}}
             </td>
             <td>
                 <button type="button" class="btn btn-secondary">Connect</button>
