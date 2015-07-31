@@ -29,9 +29,7 @@
             getVMDetail: getVMDetail,
             getThead: getThead,
             openConsole: openConsole,
-            transDetailForDis:transDetailForDis,
-            transMemFromMB2GB: transMemFromMB2GB,
-            transMemFromGB2MB: transMemFromGB2MB
+            transDetailForDis:transDetailForDis
         };
 
         var Machines = resource(url + 'machines/:machineID', null, {
@@ -81,6 +79,52 @@
 
         //mock data for Table Body
         function getVMDetail() {
+<<<<<<< HEAD
+            var detail = [{ 
+            id: 'VM001',
+            name: 'ilab_id',
+            IP: '10.192.168.1',
+            displayName: 'iLab ID',
+            configuration: '2CPU,4G',
+            network: [{nic:"Nic1"}, {nic: "Nic2"}];
+        }, {
+            id: 'VM002',
+            name: 'disk1',
+            IP: '10.192.168.2',
+            displayName: 'Disk1',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM003',
+            name: 'hostname',
+            IP: '10.192.168.3',
+            displayName: 'Hostname',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM004',
+            name: 'nic1_mac',
+            IP: '10.192.168.6',
+            displayName: 'Nic1 MAC',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM005',
+            name: 'path',
+            IP: '10.192.168.4',
+            displayName: 'Path',
+            configuration: '2CPU,4G' 
+        }, {
+            id: 'VM006',
+            name: 'vmm',
+            IP: '10.192.168.5',
+            displayName: "VMM",
+            configuration: '2CPU,4G' 
+        },{
+            id: 'VM007',
+            name: 'vmm',
+            IP: '10.192.168.5',
+            displayName: "VMM02",
+            configuration: '2CPU,4G' 
+        }];
+=======
             var detail = [{
                     "id": 3638301,
                     "path": "/vmfs/volumes/.../vm1.vmx",
@@ -122,10 +166,6 @@
                         "interface": 1,
                         "label": "3638301_NIC1",
                         "ip": "169.254.186.242"
-                    }, {
-                        "interface": 2,
-                        "label": "3638301_NIC2",
-                        "ip": "169.254.186.243"
                     }],
                     "vmm": "10.223.136.211",
                     "disk1": "TBD"
@@ -190,7 +230,7 @@
                     "locked": false,
                     "network": [{
                         "interface": 1,
-                        "label": "3638301_NIC5",
+                        "label": "3638301_NIC1",
                         "ip": "169.254.186.245"
                     }],
                     "vmm": "10.223.136.221",
@@ -198,11 +238,8 @@
                 }
             ];
             
+>>>>>>> 17eafde2e503b27b523fdfbf860bc9283dd76a17
             return detail;
-
-        }
-
-        function updateVMDetail() {
 
         }
 
@@ -227,14 +264,6 @@
             }
             console.log(result);
             return result;
-        }
-
-        function transMemFromMB2GB(mb) {
-            return Math.floor(mb / 1024 * 100) / 100;
-        }
-
-        function transMemFromGB2MB(gb) {
-            return gb*1024;
         }
 
         function createVM(name, tpl, env, attr) {
@@ -281,6 +310,9 @@
                 machineID: vmId
             }, null).$promise;
         }
+
+
+
         return machinesData;
     }
 })();

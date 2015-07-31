@@ -47,16 +47,7 @@ body {
 
 #vm-table {
     border-bottom-width: 0;
-    tbody:nth-child(even) {
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        background-color: $lighter-gray1;
-    }
-    tbody:nth-child(odd) {
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        background-color: $white;
-    }
+
     thead > tr > th,
     thead > tr > td,
     tbody > tr > th,
@@ -77,23 +68,28 @@ body {
     width: 60px;
 }
 
+
 /* ilab-dialog-message popup */
 
 .popup-dialog>.popup-dialog-header {
-  padding: 0px;
-  margin: 5px 12px;
-  color: #62b00a;
-}
-.popup-dialog>.popup-dialog-content {
-  padding-left: 12px;
-  padding-top: 0;
-}
-.popup-dialog>#dialog-success-img {
-  margin-right: 10px;
-  margin-top: 0px;
+    padding: 0px;
+    margin: 5px 12px;
+    color: #62b00a;
 }
 
+.popup-dialog>.popup-dialog-content {
+    padding-left: 12px;
+    padding-top: 0;
+}
+
+.popup-dialog>#dialog-success-img {
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+
 /*sortable table header */
+
 .ilab-sortable thead tr {
     &:first-child th {
         /* background: $lighter-gray3;
@@ -132,10 +128,8 @@ body {
 }
 
 .modal-dialog {
-    width: 400px; 
-    
+    width: 400px;
 }
-
 
 #search-vm,
 #displaycolumn-vm {
@@ -177,32 +171,26 @@ body {
 
 .table-intel {
     .nav-pills {
-<<<<<<< HEAD
-  		  background-color: #53565A;
+        background-color: #53565A;
         li > a {
             color: #FFFFFF;
             padding: 11px 20px;
-            font-size: 18px;  
+            font-size: 18px;
         }
-        li > a:active, li.active > a, li.active > a:hover, li.active > a:focus, li > a:hover {
+        li > a:active,
+        li.active > a,
+        li.active > a:hover,
+        li.active > a:focus,
+        li > a:hover {
             color: #00AEEF;
             padding: 11px 20px;
-            font-size: 18px;  
+            font-size: 18px;
         }
-  	}
-  	.table-span-td　{
-  		  padding: 0em;
-  	}  
-    .advVMInnerSetting {
-=======
-        background-color: #53565A;
     }
     .table-span-td {
         padding: 0em;
-        border: 0px;
     }
-    #advVMInnerSetting {
->>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
+    .advVMInnerSetting {
         padding: 0px;
         border-top-width: 0px;
         border-bottom-width: 0px;
@@ -213,24 +201,13 @@ body {
     background-color: rgb(211, 216, 219);
     text-align: left;
     clear: both;
-<<<<<<< HEAD
-	
-  	.edit-virtual-machine {
-     		padding-top: 0.5em;
-     		margin-left: 0.3em;
-     		width: 20em;
-     		padding-bottom: 0.5em;
-        font-size: 130%;
-=======
     .edit-virtual-machine {
         padding-top: 0.5em;
-        margin-left: 0.5em;
+        margin-left: 0.3em;
         width: 20em;
         padding-bottom: 0.5em;
-        font-weight: bold;
-        font-size: 110%;
->>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
-        color: #53565A;
+        font-size: 130%;
+        color:$darker-gray;
     }
     .intel-setting-group {
         height: 2.5em;
@@ -252,36 +229,23 @@ body {
             min-width: 11.2em;
             color: #53565A;
         }
-
         input[type="radio"] {
-<<<<<<< HEAD
-            vertical-align: left; 
-        }
-
-        input[type='radio']:before {
-            content:'';
-            display:block;
-            width: 50%;
-            height:50%;
-            margin: 24% 25% auto;    
-            border-radius:50%;    
-        }
-
-        input[type='radio']:hover {
-          box-shadow:0 0 5px 0px #0071C5 inset;
-        }
-
-        input[type='radio']:checked:before {
-          background: #0071C5;
-        }
-
-=======
-            display: inline-block;
-            border-color: transparent;
-            max-width: 1em;
             vertical-align: left;
         }
->>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
+        input[type='radio']:before {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 50%;
+            margin: 24% 25% auto;
+            border-radius: 50%;
+        }
+        input[type='radio']:hover {
+            box-shadow: 0 0 5px 0px #0071C5 inset;
+        }
+        input[type='radio']:checked:before {
+            background: #0071C5;
+        }
         .settingButtonGroup {
             margin-left: 6.7em;
         }
@@ -305,7 +269,6 @@ body {
     }
 }
 
-<<<<<<< HEAD
 .advVMInnerSetting {
     .intelicon-close-max {
         float: right;
@@ -313,7 +276,7 @@ body {
         background-color: #53565A;
         color: #FFFFFF;
         margin: 1em;
-    } 
+    }
 }
 
 .tooltip-inner {
@@ -322,13 +285,10 @@ body {
     min-width: 260px;
     max-width: 350px;
     width: 250px;
+<<<<<<< HEAD
+    background-color: black;
+    color: white;
 }
 =======
-#advVMInnerSetting .intelicon-close-solid {
-    float: right;
-    font-size: 20px;
-    background-color: #53565A;
-    color: #FFFFFF;
-    margin: 0.8em;
 }
->>>>>>> 2be89f5850bb1aea2d14aa9b8d9f32880dd88210
+>>>>>>> 17eafde2e503b27b523fdfbf860bc9283dd76a17

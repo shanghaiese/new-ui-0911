@@ -30,14 +30,14 @@
         that.isCollapse = true;
 
         //For small table 4-panels setting
-        that.configTmp = {};
-        that.CPU = [];
-        that.Memory = [];
-        that.Network = [];
-        that.cancelConfig = cancelConfig;
-        that.updateConfig = updateConfig;
-        that.vmFound = {};
-        that.closePanel = closePanel;
+        that.configTmp = {}; //viewTemplate data
+        that.CPU = []; //dropdown list
+        that.Memory = []; //dropdown list, has relation with CPU
+        that.Network = []; //dropdown list(test)
+        that.cancelConfig = cancelConfig; //configTmp=vmFound
+        that.updateConfig = updateConfig; //update that.VMs
+        that.vmFound = {}; //store original data
+        that.closePanel = closePanel; //close
 
         //saveTemplatePanel
         that.saveTemp = {};
@@ -49,21 +49,20 @@
                 diskMode: "chain",
                 saveMode: "convert"
             },
-            network: ""
+            network: []
         };
 
         that.vmFound = {
             id: "",
             name: "",
             description: "",
-            IP: "",
             CPU: {
                 idx: "",
                 NumOfCPU: ""
             },
             memory: "",
             //? network maybe multiple
-            network: ""
+            network: [{interface: "", label: "", ip: ""}]
         };
 
         that.configTmp = {
@@ -76,66 +75,27 @@
             memory: {
                 memory: ""
             },
-            network: ""
+            network: [{interface: "", label: "", ip: ""}]
         };
 
-        that.CPU = [{
-            idx: 0,
-            NumOfCPU: "1CPU"
-        }, {
-            idx: 1,
-            NumOfCPU: "2CPU"
-        }, {
-            idx: 2,
-            NumOfCPU: "4CPU"
-        }, {
-            idx: 3,
-            NumOfCPU: "8CPU"
-        }, {
-            idx: 4,
-            NumOfCPU: "16CPU"
-        }];
+        that.CPU = [{idx: 0,NumOfCPU: "1"}, 
+                    {idx: 1,NumOfCPU: "2"}, 
+                    {idx: 2,NumOfCPU: "4"}, 
+                    {idx: 3,NumOfCPU: "8"}, 
+                    {idx: 4,NumOfCPU: "16"}];
 
         that.Memory = [
-            [{
-                memory: "0.5G"
-            }, {
-                memory: "1G"
-            }, {
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }],
-            [{
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }],
-            [{
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "16G"
-            }, {
-                memory: "32G"
-            }]
+            [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
+            [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
+            [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
+            [{memory: "8G"}, {memory: "16G"}],
+            [{memory: "16G"}, {memory: "32G"}]
         ];
 
         that.Network = [{
-            Nic: "Nic1"
+            label: "Nic1"
         }, {
-            Nic: "Nic2"
+            label: "Nic2"
         }];
 
         //Functions
@@ -143,7 +103,6 @@
 
         function activate() {
             that.VMs = machine.getVMDetail();
-
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -152,15 +111,24 @@
 
         }
 
+        function clearArr(arr) {
+            arr.splice(0, arr.length);
+        }
+
+        /*store vmFound as a temp var by vmid*/
         function getVMById(vmid) {
+            clearArr(that.vmFound.network);
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmFound.id = obj.id;
                     that.vmFound.name = obj.name;
-                    that.vmFound.IP = obj.network.ip;
+                    that.vmFound.description = obj.description;
                     //var CPUMemoryArr = obj.configuration.split(',');
                     that.vmFound.CPU.NumOfCPU = obj.cpus;
-                    that.vmFound.memory = obj.mem;
+                    that.vmFound.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
+                    angular.forEach(obj.network, function(obj,key) {
+                        that.vmFound.network.push(obj);
+                    });
                 }
             });
             angular.forEach(that.CPU, function(obj, key) {
@@ -205,17 +173,23 @@
             //that.showPage = !that.showPage;
             if (that.showPage == vmid) {
                 that.showPage = 0;
+                //clear vm.configTmp.network
             } else {
                 getVMById(vmid);
                 that.showPage = vmid;
                 //find the vm idx;
                 that.configTmp.name = that.vmFound.name;
-                that.configTmp.description = that.vmFound.IP;
+                that.configTmp.description = that.vmFound.description;
                 that.configTmp.CPU = {
                     idx: that.vmFound.CPU.idx,
                     NumOfCPU: that.vmFound.CPU.NumOfCPU
                 };
                 that.configTmp.memory.memory = that.vmFound.memory;
+                clearArr(that.configTmp.network);
+                angular.forEach(that.vmFound.network, function(obj,key) {
+                    that.configTmp.network.push(obj);
+                    console.log(obj);
+                });                
                 //saveTemplate panel
                 that.saveTemp.name = that.vmFound.name;
                 //if have opened saveTemp panel and change, we need to reset that panel.
@@ -237,10 +211,14 @@
         function cancelConfig(vmid) {
             getVMById(vmid);
             that.configTmp.name = that.vmFound.name;
-            that.configTmp.description = that.vmFound.IP;
+            that.configTmp.description = that.vmFound.description;
             that.configTmp.CPU.NumOfCPU = that.vmFound.CPU.NumOfCPU;
             that.configTmp.memory.memory = that.vmFound.memory;
-
+            clearArr(that.configTmp.network);
+            angular.forEach(that.vmFound.network, function(obj,key) {
+                console.log(obj.label);
+                that.configTmp.network.push(obj);
+            });//? it doesn't work
             that.saveTemp.name = that.vmFound.name;
             that.saveTemp.modeSaveDisk.saveMode = "convert";
             that.saveTemp.modeSaveDisk.diskMode = "chain";
@@ -249,8 +227,17 @@
         function updateConfig(vmid) {
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
-                    obj.displayName = that.configTmp.name;
-                    obj.configuration = that.configTmp.CPU.NumOfCPU + ',' + that.configTmp.memory.memory;
+                    obj.name = that.configTmp.name;
+                    obj.cpus = that.configTmp.CPU.NumOfCPU;
+                    var gb = parseInt(that.configTmp.memory.memory);
+                    obj.mem = machine.transMemFromGB2MB(gb);
+                    obj.description = that.configTmp.description;
+                    angular.forEach(obj.network, function(obj,key) {
+                        var idx=parseInt(obj.interface)-1;
+                        obj.label = that.configTmp.network[idx].label;
+                        console.log(obj.label);
+                    });
+                    //console.log(obj.network.length);
                 }
             });
             //Here need to add update();
