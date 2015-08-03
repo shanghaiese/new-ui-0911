@@ -9,6 +9,7 @@ module.exports = {
         }
     },
     options: {
-        includePaths: ['<%= meta.srcPath %>/bower_components']
+        includePaths: ['<%= meta.srcPath %>/bower_components'],
+        outputStyle: 'nested'
     }
 }

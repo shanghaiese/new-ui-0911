@@ -1,5 +1,5 @@
 /*Colin add vmDetail directive scss*/
-
+@import "base";
 /*global*/
 a {
     text-decoration: none;
@@ -24,9 +24,9 @@ info-card {
             height: 44px;
             text-align: center; 
 		    background-color: $body-bg;
-		    border-top: 1px  $lighter-grey4 solid ;
-		    border-right: 1px  $lighter-grey4 solid;
-		    border-bottom: 1px  $lighter-grey4 solid;
+		    border-top: 1px  $lighter-gray4 solid ;
+		    border-right: 1px  $lighter-gray4 solid;
+		    border-bottom: 1px  $lighter-gray4 solid;
 		    border-left: 7px $green solid;
 		    margin-left: 5px;
 		    padding: 0px;
