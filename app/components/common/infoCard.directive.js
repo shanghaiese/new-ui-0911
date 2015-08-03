@@ -12,22 +12,40 @@
 			scope: {
 				type: '@',
 				info: '=',
-				detail: '&onDetail',
 				connect: '&onConnect',
 				power: '&onPower'  
 			},
 			templateUrl: 'main/templates/infoCard.html',
 
 			link: function(scope, element, attrs){
-				//console.log(scope.info);
-				//console.log(attrs.type);
 				scope.isShown = false;
-				console.log(scope.info);
+				//console.log(scope.info.id);
 
+				/*operation for vm*/
 				scope.vmIsInOperation = function(){
 
 					
 				};
+
+				$(document).on('click', function(e) {
+					if(scope.isShown) {
+							scope.isShown = false;
+							scope.$apply();
+					}
+				});
+
+				/*$(function() {
+				    $(document).on('click', function(e) {
+				        if (e.target === element) {
+				            scope.isShown = false;
+				            scope.$apply();
+				        }
+
+				    });
+				});*/
+				
+				
+
 
 			}
 

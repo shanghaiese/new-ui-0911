@@ -34,6 +34,7 @@ module.exports = function(config) {
       'app/main/ilab.module.js',
       'app/main/**/*.js',
       'app/main/**/*.spec.js',
+      'app/components/common/*.spec.js'
       // 'test/unit/**/*.js',
       // 'test/e2e/**/*.js'
     ],

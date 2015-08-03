@@ -1,7 +1,7 @@
 /**
  * Created by luyongjx on 7/23/2015.
  */
-describe('Ilab dialog Directive', function() {
+/*describe('Ilab dialog Directive', function() {
     beforeEach(module('ilabDirective'));
     var scope, rootscope;
 
@@ -24,7 +24,7 @@ describe('Ilab dialog Directive', function() {
 
             }));
             it('', function () {
-            })
-        })
-    })
-});
+            });
+        });
+    });
+});*/

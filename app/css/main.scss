@@ -12,7 +12,10 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 // import ilab newui base scss 
 @import "base";
 
+// import customrized scss
 @import "infoCard";
+
+@import "columnFliter";
 
 body {
     font-size: 16px;

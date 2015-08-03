@@ -1,14 +1,14 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="isShown = !isShown">
+	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" data-target="#collapse{{info.id}}" aria-expanded="true" data-toggle="collapse">
 		<div class="tagIcon">
 			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
 		<div class="tagName">
 			<span>{{info.name}}</span>
-			<img src="images/refresh_icon_18x18.gif" ng-show="true"/>
+			<img src="images/refresh_icon_18x18.gif" ng-show="false"/>
 		</div>		
 	</div>
-	<div class="info" ng-show="isShown">
+	<div class="info collapse" id="collapse{{info.id}}">
 		<h2 class="infoTitle cardKey">{{info.name}}</h2>
 		<small >{{info.description}}</small>
 
@@ -52,5 +52,5 @@
 		    </div>
 		</div>
 	</div>
-		
+
 </div>

@@ -16,12 +16,11 @@
 
         that.vms = basicPage.getVMMockData();
         
-        console.log(that.vm);
-        
-        angular.forEach(that.vm, function(each){
+        console.log(that.vms);
+        angular.forEach(that.vms, function(each){
             that.vmNumber = each.count;
-            console.log(that.vmNumber);
-        });
+            //console.log(that.vmNumber);
+        });//@todo vm.length
 
         
         that.connect = connect;
@@ -49,4 +48,6 @@
                 }
             }
         }
+        
+
     })();

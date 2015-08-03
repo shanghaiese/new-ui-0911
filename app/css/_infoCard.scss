@@ -3,6 +3,7 @@
 /*global*/
 a {
     text-decoration: none;
+    color: $dark-gray;
 }
 li{
     list-style: none;
@@ -108,8 +109,10 @@ info-card {
             display: inline-block;
         }
         .tagName {
-            text-align: top;
             display: inline-block;
+            span {
+                margin-right: 3px;
+            }
         }
         .btnOperation {
             margin: 5px 0px 10px 15px;
@@ -122,54 +125,51 @@ info-card {
         .play-btn {
             background-color: $green;
             color: $white;
-        }
-        .play-btn{
             &:hover {
                 background-color: $light-green;
                 color: $white;
             }
-        }
-
-        .play-btn{
             &:active {
                 background-color: $med-dark-green;
                 color: $white;
             }
-        }
-        .stop-btn {
-            background-color: $red;
-            color: $blue;
-        }
-        .stop-btn {
-            &:hover {
-                background-color: $light-red;
-                color: $blue;
+            &:focus{
+                color: $white;
             }
         }
+       
         .stop-btn {
+            background-color: $red;
+            color: $white;
+            &:hover {
+                background-color: $light-red;
+                color: $white;
+            }
             &:active {
                 background-color: $mediumDarkRed;
                 color: $white;
             }
+            &:focus{
+                color: $white;
+            }
         }
+
         .pause-btn {
             background-color: $yellow;
             color: $white;
-        }
-        .pause-btn{
             &:hover {
                 background-color: $orange;
-                color: $blue;
+                color: $white;
             }
-        }
-        .pause-btn {
             &:active {
                 background-color: $darkYellow;
                 color: $white;
             }
+            &:focus{
+                color: $white;
+            }
         }
         
-
         /*use dropdown-menu from bootstrap.css-------*/
         .dropdown {
             position: relative
@@ -206,7 +206,9 @@ info-card {
             overflow: hidden;
             background-color: $lighter-gray3;
         }
-        .dropdown-menu>li>a {
+        .dropdown-menu{
+            li{
+                a {
             display: block;
             padding: 6px 12px;
             clear: both;
@@ -215,6 +217,8 @@ info-card {
             color: $dark-gray;
             white-space: nowrap;
             min-width: 76px;
+            }
+                }
         }
         .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
             color: white;
