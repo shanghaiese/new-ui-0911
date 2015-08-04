@@ -16,6 +16,16 @@ li{
     margin-bottom: 15px;
 }
 
+.listEnv {
+    height: 25%;
+    max-height:200px;
+    position: relative;
+    padding: 0 1% 1% 2%;
+    margin:0 5% 0 0 ;
+    background-color: $lighter-gray1;
+    color: $dark-gray;
+}
+
 info-card {
 	div{
 		.card {
