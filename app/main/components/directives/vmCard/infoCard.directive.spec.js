@@ -1,7 +1,7 @@
 /**
  * Created by luyongjx on 7/23/2015.
  */
-/*describe('Ilab dialog Directive', function() {
+describe('Ilab dialog Directive', function() {
     var scope, rootscope;
 
     // Load the ilab module, which contains the card directive
@@ -16,7 +16,7 @@
     }));
 
     //create myMockData to test directive
-    scope.myMockData= {
+    scope.myMockData = [{
         id: 'test 1',
         status:'Stopped',
         name:'Test Machine 1',
@@ -32,7 +32,7 @@
         config:'2CPU,4G',
         ip:'10.239.00.01',
         network:'Subnet1'
-    };
+    }];
 
     it('should compile directive to html', function() {
         var scope = $rootScope.$new();
@@ -55,4 +55,4 @@
            
         });
     });
-});*/
+});

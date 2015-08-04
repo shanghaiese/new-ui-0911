@@ -57,17 +57,3 @@
 
 
 
-/*$(function() {
-
-    $(document).on('click', function(e) {
-    	var cards = $(".card"), card;
-
-    	for(var i = 0; i < cards.length; i ++){
-
-    		card = cards[i];
-    		
-
-    	}
-
-    });
-});*/
