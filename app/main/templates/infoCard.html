@@ -1,5 +1,5 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" data-target="#collapse{{info.id}}" aria-expanded="true" data-toggle="collapse">
+	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="clickCard()" dropdown-toggle >
 		<div class="tagIcon">
 			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
@@ -8,7 +8,7 @@
 			<img src="images/refresh_icon_18x18.gif" ng-show="false"/>
 		</div>		
 	</div>
-	<div class="info collapse" id="collapse{{info.id}}">
+	<div class="info" ng-show="showInfo();">
 		<h2 class="infoTitle cardKey">{{info.name}}</h2>
 		<small >{{info.description}}</small>
 

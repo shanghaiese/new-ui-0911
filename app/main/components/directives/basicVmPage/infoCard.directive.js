@@ -27,22 +27,23 @@
 					
 				};
 
-				$(document).on('click', function(e) {
-					if(scope.isShown) {
-							scope.isShown = false;
-							scope.$apply();
-					}
-				});
+				//click to show or unshown
+				scope.clickCard = function(){
+					console.log(scope.info.id);
+					if(window.currentCard == scope.info.id)
+						window.currentCard = null;
+					else
+					window.currentCard = scope.info.id;
 
-				/*$(function() {
-				    $(document).on('click', function(e) {
-				        if (e.target === element) {
-				            scope.isShown = false;
-				            scope.$apply();
-				        }
 
-				    });
-				});*/
+				};
+				scope.showInfo = function(){
+					return scope.info.id === window.currentCard;
+				};
+
+				
+
+
 				
 				
 
@@ -53,3 +54,20 @@
 
 	}
 })();
+
+
+
+/*$(function() {
+
+    $(document).on('click', function(e) {
+    	var cards = $(".card"), card;
+
+    	for(var i = 0; i < cards.length; i ++){
+
+    		card = cards[i];
+    		
+
+    	}
+
+    });
+});*/
