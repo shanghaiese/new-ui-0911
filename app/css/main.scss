@@ -18,6 +18,7 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 body {
 	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 /* style for menu btn that trigger menu hide/open */
@@ -73,4 +74,39 @@ body {
 .pagination-summary {
 	float: right;
 	color: $gray;
+}
+/* override alerts */
+.alert {
+	position: fixed;
+	top: 60px;
+	width: 500px;
+	min-height: 36px;
+	padding: 7px;
+	/*left: 50%;*/
+	// @include translate(50%, 0);
+	border: 0;
+	color: white;
+	@include box-shadow(none);
+	@include animation(slide-down 5s);
+	.close {
+		font-size: 21px;
+		top: 7px;
+	}
+}
+.alert-warning {
+	background-color: $orange; 
+}
+.alert-success {
+	background-color: $green; 
+}
+.alert-danger {
+	background-color: $light-red; 
+}
+@keyframes slide-down {
+	from {
+		@include translate(0, 0);
+	}
+	to {
+		@include translate(0, 200px);
+	}
 }

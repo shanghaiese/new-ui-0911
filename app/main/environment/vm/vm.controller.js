@@ -21,9 +21,7 @@
         };
 
         environment.getList().then(function(envs) {
-            console.log(envs);
-            that.env = envs[0];
-            console.log(that.env);
+            that.envs = envs;
         });
     }
 

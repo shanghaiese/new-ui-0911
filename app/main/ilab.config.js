@@ -10,7 +10,6 @@
         .run(beforeRun);
 
 
-
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function route($stateProvider, $urlRouterProvider) {
@@ -78,9 +77,8 @@
 
     restangular.$inject = ['RestangularProvider'];
     function restangular(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/services/api');
+        RestangularProvider.setBaseUrl('/mockapi');
         RestangularProvider.setRestangularFields({selfLink: 'self.href'});
-        // RestangularProvider.setBaseUrl('http://demo0524551.mockable.io/');
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 

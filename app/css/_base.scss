@@ -70,6 +70,8 @@ table {
 				text-align: center;
 				border-right: none;
 				border-left: none;
+				border-bottom: none;
+
 			}
 			td.td-collapsed {
 				height: 0;
@@ -78,19 +80,18 @@ table {
 				border-top: 0;
 				border-bottom: 0;
 				background-color: $lighter-gray3;
+
+				div.in {
+					border-top: 1px solid $light-gray;
+				}
 			}
 		}
 	}
 	tbody + tbody {
 		border-top: 1px solid $light-gray;
 	}
-/*  */
-	tbody:nth-child(odd)>tr:last-child>td {
-		border-bottom: 0;
-	}
-	tbody:nth-child(even)>tr:first-child>td {
-		border-top: 0;
-	}
+
+
 }
 
 
