@@ -14,6 +14,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
+
       files: [
           "bower_components/jquery/dist/jquery.js",
           "bower_components/angular/angular.js",
@@ -37,6 +38,7 @@ module.exports = function(config) {
       'main/ilab.module.js',
       'main/**/*.js',
       'main/**/*.spec.js',
+      'app/main/**/*.*.spec.js',
       'templates/*.html'    
     ],
 

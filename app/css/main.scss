@@ -15,6 +15,9 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "columnFliter";
 // import ilab newui base scss 
 @import "base";
+//import ilab environment lists scss
+@import "all-environment";
+
 
 // import components
 @import "menu";
