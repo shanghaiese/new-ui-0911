@@ -5,7 +5,7 @@ module.exports = function(config) {
   config.set({
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: 'app',
 
 
     // frameworks to use
@@ -33,12 +33,11 @@ module.exports = function(config) {
           "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
           "bower_components/angular-utils-pagination/dirPagination.js",
           "bower_components/angular-mocks/angular-mocks.js",
-
-      'main/ilab.module.js',
-      'main/**/*.js',
-      'main/**/*.spec.js',
-      'templates/*.html'    
-    ],
+          'main/ilab.module.js',
+          'main/**/*.js',
+          'main/**/*.spec.js',
+          'templates/*.html'    
+      ],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor

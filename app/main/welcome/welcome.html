@@ -1,11 +1,35 @@
 <h1>iLab UI elements</h1>
-<h3 class="page-header">icons</h3>
-<span class="ilabicon-fail"></span>
-<span class="ilabicon-displaycolumn"></span>
-<span class="ilabicon-stop"></span>
-<span class="ilabicon-vm"></span>
-<span class="ilabicon-success"></span>
-<span class="ilabicon-logo"></span>
+<h3 class="page-header">ilabicon-*</h3>
+<div class="icon-showbox">
+    <span class="ilabicon-fail"></span>
+    <i>fail</i>
+</div>
+
+<div class="icon-showbox">
+    <span class="ilabicon-displaycolumn"></span>
+    <i>displaycolumn</i>
+</div>
+
+<div class="icon-showbox">
+    <span class="ilabicon-stop"></span>
+    <i>stop</i>
+</div>
+
+<div class="icon-showbox">
+    <span class="ilabicon-vm"></span>
+    <i>vm</i>
+</div>
+
+<div class="icon-showbox">
+    <span class="ilabicon-success"></span>
+    <i>success</i>
+</div>
+
+<div class="icon-showbox">
+    <span class="ilabicon-logo"></span>
+    <i>logo</i>
+</div>
+
 <div class="clearfix"></div>
 
 <h3 class="page-header">button</h3>
@@ -34,8 +58,8 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
     </ul>
 </div>
-<h3 class="page-header">dropdown select</h3>
-<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected"></ilab-select>
+<h3 class="page-header">select</h3>
+<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected"></ilab-select>selected:{{Welcome.selected}}
 <h3 class="page-header">form (with class default)</h3>
 <form class="default">
     <div class="form-group">
@@ -50,7 +74,7 @@
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-<h3 class="page-header">form (inline)</h3>
+<h3 class="page-header">inline form</h3>
 <form class="form-inline default">
     <div class="form-group">
         <label class="require">name:</label>
@@ -64,7 +88,7 @@
     <button type="submit" class="btn btn-default">Submit</button>
 </form>
 
-<h3 class="page-header">form (horizontal)</h3>
+<h3 class="page-header">horizontal form</h3>
 <form class="form-horizontal default">
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label require">Email</label>
@@ -104,7 +128,7 @@
 </ul>
 
 
-<h3 class="page-header">table</h3>
+<h3 class="page-header">expandable table with pagination</h3>
 <table class="table table-bordered table-striped table-intel table-expandable">
     <thead>
         <tr>
@@ -115,15 +139,15 @@
             <th>deploy at</th>
         </tr>
     </thead>
-    <tbody dir-paginate="env in Welcome.envs | itemsPerPage: 3">
-        <tr>
+    <tbody>
+        <tr dir-paginate-start="env in Welcome.envs | itemsPerPage: 3">
             <td><span class="intelicon-settings-solid clickable" ng-click="Welcome.collapse()"></span></td>
             <td>{{env.name}}</td>
             <td>{{env.owner}}</td>
             <td>{{env.maxAllowedVms}}</td>
             <td>{{env.deployedDate}}</td>
         </tr>
-        <tr>
+        <tr dir-paginate-end>
             <td colspan="5" class="td-collapsed">
                 <div collapse="Welcome.collapsed">content</div>
             </td>
@@ -131,4 +155,10 @@
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
+
+<h3 class="page-header">alert</h3>
+<button class="btn btn-secondary" ng-click="Welcome.show('success')">success</button>
+<button class="btn btn-secondary" ng-click="Welcome.show('warning')">warning</button>
+<button class="btn btn-secondary" ng-click="Welcome.show('danger')">danger</button>
+<alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)">{{alert.message}}</alert>
 

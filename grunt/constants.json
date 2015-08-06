@@ -1,5 +1,5 @@
 {
-    "apiServer": "http://10.223.136.7:80",
+    "apiServer": "http://10.239.21.163:4000",
     "intelProxy": "http://10.88.19.141:80",
     "localhostPort": 80
 }

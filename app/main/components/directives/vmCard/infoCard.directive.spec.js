@@ -1,21 +1,21 @@
 /**
  * Created by luyongjx on 7/23/2015.
  */
-describe('Ilab dialog Directive', function() {
-    var scope, rootscope;
+describe('ilab info-card Directive', function() {
+    var scope, rootscope, compile;
 
     // Load the ilab module, which contains the card directive
     beforeEach(module('ilab'));
     beforeEach(module('templates'));
     
     // Store references to $rootScope and $compile
-    beforeEach(inject(function ($scope,$rootScope) {
+    beforeEach(inject(function ($scope,$rootScope,$compile) {
         scope = $scope;
         rootScope = $rootScope;
         compile = $compile;
     }));
 
-    //create myMockData to test directive
+    //create myMockData to test card directive
     scope.myMockData = [{
         id: 'test 1',
         status:'Stopped',
@@ -42,17 +42,11 @@ describe('Ilab dialog Directive', function() {
 
     });
 
+
+
     it('should have functions and data sope correctly', function(){
             var scope = rootScope.$new();
         
     });
 
-    it('should render HTML based on scope correctly', function () {
-        describe('Ilab dialog Directive Rendering', function () {
-            
-
-
-           
-        });
-    });
 });

@@ -10,7 +10,6 @@
         .run(beforeRun);
 
 
-
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function route($stateProvider, $urlRouterProvider) {
@@ -38,10 +37,8 @@
             .state('environment.pm', {
                 url: "/pm",
                 templateUrl: "main/environment/pm/pm.html",
-                controller: function($scope) {
-                    console.log('environment.tab2');
-                    $scope.items = ["B", "List", "Of", "Items"];
-                }
+                controller:'physicalMachineCtrl',
+                controllerAs:'physicalMachine'
             })
             .state('vmBasic',{
                 url:"/vmBasic",
@@ -84,9 +81,8 @@
 
     restangular.$inject = ['RestangularProvider'];
     function restangular(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/services/api');
+        RestangularProvider.setBaseUrl('/mockapi');
         RestangularProvider.setRestangularFields({selfLink: 'self.href'});
-        // RestangularProvider.setBaseUrl('http://demo0524551.mockable.io/');
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
