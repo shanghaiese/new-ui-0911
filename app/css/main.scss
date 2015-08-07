@@ -9,14 +9,13 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 @import "ilabicon/style";
 
-// import customrized scss
-@import "infoCard";
 // import ilab newui base scss 
 @import "base";
 
 // import components
-@import "menu";
 @import "welcome";
+@import "menu";
+@import "infoCard";
 
 body {
 	margin-top: 50px;

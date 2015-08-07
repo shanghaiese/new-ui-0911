@@ -24,42 +24,37 @@
                 controller: 'WelcomeCtrl',
                 controllerAs: 'Welcome'
             })
-            .state('environment', {
-                url: "/environment",
-                templateUrl: "main/environment/environment.html"
+            .state('env', {
+                url: "/environment/:envId",
+                templateUrl: "main/environment/env.html"
             })
-            .state('environment.vm', {
+            .state('env.vm', {
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
                 controller: 'VMCtrl',
                 controllerAs: 'VM'
             })
-            .state('environment.pm', {
+            .state('env.pm', {
                 url: "/pm",
-                templateUrl: "main/environment/pm/pm.html",
-                controller:'physicalMachineCtrl',
-                controllerAs:'physicalMachine'
+                templateUrl: "main/environment/pm/pm.html"
             })
-            .state('vmBasic',{
-                url:"/vmBasic",
-                templateUrl:"main/environment/vmBasic/vmBasic.html",
-                controller:"VMBasicCtrl",
-                controllerAs:'vmBasic'
+            .state('envBasic', {
+                url: "/environment-basic/:envId",
+                templateUrl: "main/environment/envBasic/envBasic.html",
+                controller: "envBasicCtrl",
+                controllerAs: 'envBasic'
+            })
+            .state('envs', {
+                url: '/environments',
+                templateUrl: "main/environment/envs.html"
             })
             .state('lab', {
                 url: "/lab",
-                templateUrl: "main/lab/lab.html",
-                controller: function() {
-                    console.log('lab');
-                }
+                templateUrl: "main/lab/lab.html"
             })
             .state('lab.list', {
                 url: "/list",
-                templateUrl: "main/lab/lab.list.html",
-                controller: function($scope) {
-                    console.log('lab.list');
-                    $scope.things = ["A", "Set", "Of", "Things"];
-                }
+                templateUrl: "main/lab/lab.list.html"
             });
     }
 
@@ -80,13 +75,17 @@
     }
 
     restangular.$inject = ['RestangularProvider'];
+
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/mockapi');
-        RestangularProvider.setRestangularFields({selfLink: 'self.href'});
+        RestangularProvider.setRestangularFields({
+            selfLink: 'self.href'
+        });
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
     pagination.$inject = ['paginationTemplateProvider'];
+
     function pagination(paginationTemplateProvider) {
         paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }

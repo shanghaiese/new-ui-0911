@@ -33,10 +33,11 @@ module.exports = function(config) {
           "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
           "bower_components/angular-utils-pagination/dirPagination.js",
           "bower_components/angular-mocks/angular-mocks.js",
+          
           'main/ilab.module.js',
           'main/**/*.js',
           'main/**/*.spec.js',
-          'mian/templates/*.html'    
+          'main/templates/*.html'    
       ],
 
     // preprocess matching files before serving them to the browser
