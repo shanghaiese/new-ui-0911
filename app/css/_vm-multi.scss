@@ -1,0 +1,45 @@
+.vm-multi{
+	.caro{
+	padding-left:25px;
+	padding-top: 15px;
+	}
+	.breadcrumb{
+    background-color: #fff;
+    li + li::before {
+	    content: "/ ";
+	}
+ }
+	
+	.glyphicon-chevron-left::before,.glyphicon-chevron-right::before {
+	    color: #0071c5;
+	}
+	.carousel-indicators {
+	      top: auto;
+	      bottom: -30%;
+	      li {
+	    		border: 1px solid #00aeef;
+	    }
+	}
+
+	.carousel-indicators .active {
+	    background-color: #00aeef;
+	    }
+
+	.carousel-control {
+	        color: #f7f8f8;
+	        opacity: 0.3;
+	        width: 3%;
+	        cursor:pointer;
+	}
+
+	.carousel-control.left{
+	        background-image:linear-gradient(to right, rgba(0, 0, 0, 0.1) 0px, rgba(0, 0, 0, 0) 100%);
+	}
+	.carousel-control.right{
+	        background-image:linear-gradient(to right, rgba(0, 0, 0, 0) 0px, rgba(0, 0, 0, 0.1) 100%);
+	}
+	.carousel-inner {
+	        background: #f7f8f8 none repeat scroll 0 0;
+	         width: 100%;
+	}
+}

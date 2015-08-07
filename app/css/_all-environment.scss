@@ -1,6 +1,6 @@
  /*****************All Environment list style **********
   *********yufan add 07/22/2015******************/
-  .allEnv {
+  .all-env {
       .btn {
         height: 8%;
         width: 100%;
@@ -13,6 +13,7 @@
         }
          ul {
             list-style:none;
+            padding-left: 0;
             li {
                 margin: 1%;
                 text-align: left;

@@ -17,7 +17,8 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "base";
 //import ilab environment lists scss
 @import "all-environment";
-
+//import ilab multiple vmlists scss
+@import "vm-multi";
 
 // import components
 @import "menu";

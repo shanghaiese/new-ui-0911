@@ -6,7 +6,7 @@
     angular.module('ilabFilter', []);
     angular.module('ilabConfig', ['ui.router', 'angular-loading-bar', 'restangular','angularUtils.directives.dirPagination','angularUtils.directives.uiBreadcrumbs']);
     angular.module('ilab', [ 'ngSanitize',
-                             // 'ngAnimate',
+                             //'ngAnimate',
                              'ilabService',
                              'ilabDirective',
                              'ilabFilter',
