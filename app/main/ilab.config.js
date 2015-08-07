@@ -37,10 +37,14 @@
             .state('environment.pm', {
                 url: "/pm",
                 templateUrl: "main/environment/pm/pm.html",
-                controller: function($scope) {
-                    console.log('environment.tab2');
-                    $scope.items = ["B", "List", "Of", "Items"];
-                }
+                controller:'physicalMachineCtrl',
+                controllerAs:'physicalMachine'
+            })
+            .state('vmBasic',{
+                url:"/vmBasic",
+                templateUrl:"main/environment/vmBasic/vmBasic.html",
+                controller:"VMBasicCtrl",
+                controllerAs:'vmBasic'
             })
             .state('lab', {
                 url: "/lab",

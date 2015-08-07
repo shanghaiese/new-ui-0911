@@ -1,0 +1,10 @@
+<h1>My Environments</h1>
+<div>
+    <navbar>All Environments/Environment 1</navbar>
+</div>
+<div class="list-env">
+    <div>
+        <h3>Virtual Machine: {{vmBasic.vms.length}}</h3>
+    </div>  
+            <info-card class="list-VMs" type="vm" info="vm" on-connect="vmBasic.connect(id)" on-power="vmBasic.powerOperation(id,op)"  ng-repeat="vm in vmBasic.vms" ></info-card>
+</div>
