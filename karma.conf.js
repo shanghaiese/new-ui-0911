@@ -36,7 +36,7 @@ module.exports = function(config) {
           'main/ilab.module.js',
           'main/**/*.js',
           'main/**/*.spec.js',
-          'templates/*.html'    
+          'mian/templates/*.html'    
       ],
 
     // preprocess matching files before serving them to the browser

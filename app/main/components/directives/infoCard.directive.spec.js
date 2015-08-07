@@ -1,7 +1,7 @@
 /**
  * Created by luyongjx on 7/23/2015.
  */
-describe('ilab info-card Directive', function() {
+/*describe('ilab info-card Directive', function() {
     var scope, rootscope, compile;
 
     // Load the ilab module, which contains the card directive
@@ -49,4 +49,4 @@ describe('ilab info-card Directive', function() {
         
     });
 
-});
+});*/

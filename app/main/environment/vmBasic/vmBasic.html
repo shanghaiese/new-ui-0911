@@ -2,9 +2,9 @@
 <div>
     <navbar>All Environments/Environment 1</navbar>
 </div>
-<div class="listEnv">
+<div class="list-env">
     <div>
         <h3>Virtual Machine: {{vmBasic.vms.length}}</h3>
     </div>  
-            <info-card class="listVMs" type="vm" info="vm" on-connect="vmBasic.connect(id)" on-power="vmBasic.powerOperation(id,op)"  ng-repeat="vm in vmBasic.vms" ></info-card>
+            <info-card class="list-VMs" type="vm" info="vm" on-connect="vmBasic.connect(id)" on-power="vmBasic.powerOperation(id,op)"  ng-repeat="vm in vmBasic.vms" ></info-card>
 </div>

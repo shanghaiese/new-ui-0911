@@ -4,9 +4,9 @@
 		.module('ilabDirective')
 		.directive('infoCard', infoCard);
 
-	infoCard.$inject = [];
+	infoCard.$inject = ['$window'];
 
-	function infoCard() {
+	function infoCard($window) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -28,17 +28,16 @@
 				};
 
 				//click to show or unshown
+				//function to control info to show
 				scope.clickCard = function(){
-					console.log(scope.info.id);
-					if(window.currentCard == scope.info.id)
-						window.currentCard = null;
+					if($window.currentCard == scope.info.id)
+						$window.currentCard = null;
 					else
-					window.currentCard = scope.info.id;
-
-
+					$window.currentCard = scope.info.id;
 				};
+				//function to control directeive shown by id
 				scope.showInfo = function(){
-					return scope.info.id === window.currentCard;
+					return scope.info.id === $window.currentCard;
 				};
 
 				
