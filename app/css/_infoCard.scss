@@ -34,6 +34,8 @@ info-card {
 		    border-radius: 4px;
 		    display: inline-block;
 
+           
+
 		    &:hover {
 		        color: $light-blue;
 		        display: inline-block;
@@ -63,7 +65,6 @@ info-card {
             background: $white;
             border-radius: 4px;
             border: 1px  $light-gray solid;
-            z-index: 20;
 		}
         .info{
             &:before {

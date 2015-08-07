@@ -31,12 +31,6 @@
                 controller: 'EnvlistCtrl',
                 controllerAs: 'Envlist'
             })
-            .state('environment.vm', {
-                url: "/vm",
-                templateUrl: "main/environment/vm/vm.html",
-                controller: 'VMCtrl',
-                controllerAs: 'VM'
-            })
             .state('environment.pm', {
                 url: "/pm",
                 templateUrl: "main/environment/pm/pm.html",
