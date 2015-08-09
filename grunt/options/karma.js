@@ -6,7 +6,7 @@ module.exports = {
         configFile: 'karma.conf.js'
     },
     //continuous integration mode: run tests once in PhantomJS browser.
-    continuous: {
+    ci: {
         configFile: 'karma.conf.js',
         browsers: ['PhantomJS'],
         singleRun: true,

@@ -9,16 +9,16 @@
                            ]);
 
     angular.module('ilabFilter', []);
-    angular.module('ilabConfig', ['ui.router']);
-    angular.module('ilab', ['ngResource',
-                           'ngSanitize',
+    angular.module('ilabWidget', []);
+    angular.module('ilabConfig', ['ui.router', 'angular-loading-bar', 'restangular','angularUtils.directives.dirPagination','angularUtils.directives.uiBreadcrumbs']);
+    angular.module('ilab', [ 'ngSanitize',
                            'ngAnimate',
-                           'ilabService',
-                           'ilabDirective',
-                           'ilabFilter',
-                           'ilabConfig',
-                           //'angular-loading-bar',
-                           'ui.bootstrap']
-                           );
+                             'ilabService',
+                             'ilabDirective',
+                             'ilabFilter',
+                             'ilabConfig',
+                             'ui.bootstrap',
+                             'ilabWidget'
+                             ]);
 
 })();

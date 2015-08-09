@@ -1,0 +1,27 @@
+.elements-row {
+	padding: 5px 0;
+	border-bottom: 1px dashed grey;
+}
+
+.icon-showbox {
+	float: left;
+	margin-right: 20px;
+	text-align: center;
+	min-width: 100px;
+
+	&:hover {
+		@include scale(2);
+		@include transition(transform .2s);	
+	}
+	span {
+		display: block;
+		color: $blue;
+		cursor: pointer;
+		font-size: 2em;
+	}
+
+	i {
+		font-size: small;
+	}
+
+}

@@ -1,5 +1,5 @@
 {
-    "apiServer": "http://yongping.sh.intel.com:8080",
+    "apiServer": "http://10.239.21.163:4000",
     "intelProxy": "http://10.88.19.141:80",
     "localhostPort": 80
 }
