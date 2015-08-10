@@ -14,50 +14,16 @@
         .module('ilabService')
         .factory('machine', machineService);
 
-    machineService.$inject = ['$resource', 'API_URL'];
-
-    function machineService(resource, url) {
+    function machineService() {
 
         var machinesData = {
-            Machines: Machines,
-            createVM: createVM,
-            getMachineFromGroupInEnv: getMachineFromGroupInEnv,
-            getMachineAttributes: getMachineAttributes,
-            powerOn: powerOn,
-            powerOff: powerOff,
-            deleteVM: deleteVM,
             getVMDetail: getVMDetail,
             getThead: getThead,
-            openConsole: openConsole,
             transDetailForDis:transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
 
-        var Machines = resource(url + 'machines/:machineID', null, {
-            powerOn: {
-                method: 'PUT',
-                url: url + 'machines/:machineID/powerOn'
-            },
-            openConsole: {
-                method: 'PUT',
-                url: url + 'machines/:machineID/console'
-            },
-            powerOff: {
-                method: 'PUT',
-                url: url + 'machines/:machineID/powerOff'
-            },
-            deleteVM: {
-                method: 'DELETE'
-            },
-            configVM: {
-                method: 'PUT'
-            },
-            createVM: {
-                method: 'POST',
-                url: url + 'machines/virtual'
-            }
-        });
         //mock data for Table Head
         function getThead() {
             var thead = [{
@@ -237,50 +203,6 @@
             return gb*1024;
         }
 
-        function createVM(name, tpl, env, attr) {
-            return Machines.createVM({
-                displayName: name,
-                machineTemplate: 'VMT22401',
-                environment: env,
-                attributes: attr
-            }).$promise;
-        }
-
-        function getMachineFromGroupInEnv(projectID, EnvID) {
-            return Machines.query({
-                environment: EnvID
-            }).$promise;
-        }
-
-        function getMachineAttributes(vmId) {
-            return Machines.get({
-                machineID: vmId
-            }).$promise;
-        }
-
-        function powerOn(vmId) {
-            return Machines.powerOn({
-                machineID: vmId
-            }, null).$promise;
-        }
-
-        function powerOff(vmId) {
-            return Machines.powerOff({
-                machineID: vmId
-            }, null).$promise;
-        }
-
-        function deleteVM(vmId) {
-            return Machines.deleteVM({
-                machineID: vmId
-            }).$promise;
-        }
-
-        function openConsole(vmId) {
-            return Machines.openConsole({
-                machineID: vmId
-            }, null).$promise;
-        }
         return machinesData;
     }
 })();
