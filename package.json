@@ -64,8 +64,6 @@
     "karma-safari-launcher": "^0.1.1",
     "matchdep": "~0.3.0",
     "phantomjs": "^1.9.11",
-    "trayballoon": "^1.0.2",
-    "karma-ng-scenario": "latest",
-    "ng-midway-tester": "2.0.5"
+    "karma-ng-scenario": "latest"
   }
 }

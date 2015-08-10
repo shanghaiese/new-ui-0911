@@ -24,50 +24,49 @@
                 controller: 'WelcomeCtrl',
                 controllerAs: 'Welcome'
             })
-            .state('all-env', {
-                url: "/all-env",
-                templateUrl: "main/environment/all-environment/all-env.html",
+            .state('allEnv', {
+                url: "/allEnv",
+                templateUrl: "main/environment/allEnvironment/allEnv.html",
                 controller: 'EnvlistCtrl',
                 controllerAs: 'Envlist'
             })
-            .state('environment.vm', {
+            .state('env', {
+                url: "/environment/:envId",
+                templateUrl: "main/environment/env.html"
+            })
+            .state('env.vm', {
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
                 controller: 'VMCtrl',
                 controllerAs: 'VM'
             })
-            .state('environment.pm', {
+            .state('env.pm', {
                 url: "/pm",
-                templateUrl: "main/environment/pm/pm.html",
-                controller:'physicalMachineCtrl',
-                controllerAs:'physicalMachine'
+                templateUrl: "main/environment/pm/pm.html"
             })
-            .state('vmBasic',{
-                url:"/vmBasic",
-                templateUrl:"main/environment/vmBasic/vmBasic.html",
-                controller:"VMBasicCtrl",
-                controllerAs:'vmBasic'
+            .state('envBasic', {
+                url: "/environment-basic/:envId",
+                templateUrl: "main/environment/envBasic/envBasic.html",
+                controller: "envBasicCtrl",
+                controllerAs: 'envBasic'
             })
-            .state('vm-multi',{
-                url:"/vm-multi",
-                templateUrl:"main/environment/vm-multi/vm-multi.html",
+            .state('envs', {
+                url: '/environments',
+                templateUrl: "main/environment/envs.html"
+            })
+            .state('envMulti',{
+                url:"/envMulti",
+                templateUrl:"main/environment/envMulti/envMulti.html",
                 controller:"VMMultiCtrl",
                 controllerAs:'vmMulti'
             })
             .state('lab', {
                 url: "/lab",
-                templateUrl: "main/lab/lab.html",
-                controller: function() {
-                    console.log('lab');
-                }
+                templateUrl: "main/lab/lab.html"
             })
             .state('lab.list', {
                 url: "/list",
-                templateUrl: "main/lab/lab.list.html",
-                controller: function($scope) {
-                    console.log('lab.list');
-                    $scope.things = ["A", "Set", "Of", "Things"];
-                }
+                templateUrl: "main/lab/lab.list.html"
             });
     }
 
@@ -88,13 +87,17 @@
     }
 
     restangular.$inject = ['RestangularProvider'];
+
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/mockapi');
-        RestangularProvider.setRestangularFields({selfLink: 'self.href'});
+        RestangularProvider.setRestangularFields({
+            selfLink: 'self.href'
+        });
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
     pagination.$inject = ['paginationTemplateProvider'];
+
     function pagination(paginationTemplateProvider) {
         paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }
