@@ -25,9 +25,9 @@
                 controller: 'WelcomeCtrl',
                 controllerAs: 'Welcome'
             })
-            .state('all-env', {
-                url: "/all-env",
-                templateUrl: "main/environment/all-environment/all-env.html",
+            .state('allEnv', {
+                url: "/allEnv",
+                templateUrl: "main/environment/allEnvironment/allEnv.html",
                 controller: 'EnvlistCtrl',
                 controllerAs: 'Envlist'
             })
@@ -45,9 +45,9 @@
                 controller:"VMBasicCtrl",
                 controllerAs:'vmBasic'
             })
-            .state('vm-multi',{
-                url:"/vm-multi",
-                templateUrl:"main/environment/vm-multi/vm-multi.html",
+            .state('vmMulti',{
+                url:"/vmMulti",
+                templateUrl:"main/environment/vmMulti/vmMulti.html",
                 controller:"VMMultiCtrl",
                 controllerAs:'vmMulti'
             })
