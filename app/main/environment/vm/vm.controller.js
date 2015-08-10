@@ -22,6 +22,7 @@
         that.sort = [];
         that.changeSorting = changeSorting;
         that.showVmEdit = showVmEdit;
+        that.openDeleteDialog = openDeleteDialog;
 
 
         that.tabDeleteDialog = []; //array to indicate which vm is in operation
@@ -263,7 +264,7 @@
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
         that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
-        that.open = function(size) {
+        function openDeleteDialog(vmId) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
@@ -271,12 +272,7 @@
                 animation: false
             });
 
-            var $modal_dialog = $(this).find(".modal-dialog");
-            var m_top = (($(window).height() - 200) / 2);
-            $modal_dialog.css({
-                'margin': m_top + 'px auto'
-             });
-        };
+        }
 
         function selectNetwork(list) {
 

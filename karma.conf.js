@@ -14,6 +14,7 @@ module.exports = function(config) {
 
 
         // list of files / patterns to load in the browser
+<<<<<<< HEAD
       files: [
           "bower_components/jquery/dist/jquery.js",
           "bower_components/angular/angular.js",
@@ -39,6 +40,35 @@ module.exports = function(config) {
           'main/**/*.spec.js',
           'main/templates/*.html'    
       ],
+=======
+        files: [
+            "bower_components/jquery/dist/jquery.js",
+            "bower_components/angular/angular.js",
+            "bower_components/angular-animate/angular-animate.js",
+            "bower_components/angular-cookies/angular-cookies.js",
+            "bower_components/angular-resource/angular-resource.js",
+            "bower_components/angular-sanitize/angular-sanitize.js",
+            "bower_components/angular-touch/angular-touch.js",
+            "bower_components/angular-ui-router/release/angular-ui-router.js",
+            "bower_components/angular-loading-bar/src/loading-bar.js",
+            "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+            "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
+            "bower_components/progressBar/progressBar.js",
+            "bower_components/ilab-select/dropdown.js",
+            "bower_components/lodash/lodash.js",
+            "bower_components/restangular/dist/restangular.js",
+            "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
+            "bower_components/angular-utils-pagination/dirPagination.js",
+
+            "bower_components/angular-mocks/angular-mocks.js",
+
+            'main/ilab.module.js',
+            'main/**/*.js',
+            'main/**/*.spec.js',
+
+            'main/templates/*.html'
+        ],
+>>>>>>> 442526d6326a540741764a26cbf07a2220d21898
 
         // preprocess matching files before serving them to the browser
         // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
@@ -127,4 +157,8 @@ module.exports = function(config) {
       enabled: false
         }
     });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 442526d6326a540741764a26cbf07a2220d21898
