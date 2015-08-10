@@ -5,12 +5,13 @@ module.exports = {
     options: {
         banner: '/* My minified css file */',
         keepSpecialComments: 0
-    },
-    combine: {
+    }
+    /*combine: {
         files: {
-            '<%= meta.deployPath %>/main.css': [
-                "<%= meta.srcPath %>/deploy/main.css",
+            '<%= meta.srcPath %>/deploy/main.css': [
+                "<%= meta.srcPath %>/deploy/master.css",
+                "<%= meta.srcPath %>/deploy/dropdown.directive.css"
             ]
         }
-    }
+    }*/
 }

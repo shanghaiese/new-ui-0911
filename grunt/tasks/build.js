@@ -1,3 +1,3 @@
 module.exports = function(grunt) {
-    grunt.registerTask('build', ['clean', 'sass', 'concat', 'beep:error']);
+    grunt.registerTask('build', ['clean', 'sass', 'concat', 'cssmin', 'beep:error']);
 }
