@@ -1,7 +1,7 @@
 .vm-multi{
 	.caro{
-	padding-left:30px;
-	padding-top: 15px;
+		padding-left:30px;
+		padding-top: 15px;
 	}
 	.breadcrumb{
     background-color: #fff;
@@ -11,10 +11,9 @@
  }
 	
 	.glyphicon-chevron-left::before,.glyphicon-chevron-right::before {
-	    color: #0071c5;
+	    color: $blue;
 	}
 	.carousel-indicators { 
-		bottom: 0;
 		position: absolute;
 		margin-bottom: -18%;
 		z-index:-10;

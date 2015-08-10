@@ -29,6 +29,7 @@
                 templateUrl: "main/environment/allEnvironment/allEnv.html",
                 controller: 'EnvlistCtrl',
                 controllerAs: 'Envlist'
+            })
             .state('env', {
                 url: "/environment/:envId",
                 templateUrl: "main/environment/env.html"
@@ -53,9 +54,9 @@
                 url: '/environments',
                 templateUrl: "main/environment/envs.html"
             })
-            .state('vmMulti',{
-                url:"/vmMulti",
-                templateUrl:"main/environment/vmMulti/vmMulti.html",
+            .state('envMulti',{
+                url:"/envMulti",
+                templateUrl:"main/environment/envMulti/envMulti.html",
                 controller:"VMMultiCtrl",
                 controllerAs:'vmMulti'
             })
