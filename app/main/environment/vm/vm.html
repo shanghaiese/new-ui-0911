@@ -10,12 +10,12 @@
 
 <div>
     <button type="button" class="btn btn-primary">Add VM</button>
-    <div class="dropdown clearfix" id="dropdown-action">
-        <button class="btn btn-default dropdown-toggle" type="button" id="ee" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.deleteVM.selectedVMs.length == 0">
+    <div class="dropdown clearfix inline">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.deleteVM.selectedVMs.length == 0">
             Actions
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="ee">
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
@@ -29,11 +29,11 @@
 </div>
 <!---->
 <!-- vm table from here-->
-<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel ilab-sortable" id="vm-table">
+<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
-            <th id="checkbox-column">
-                <div class="intel-checkbox">
+            <th>
+                <div class="inline">
                     <input type="checkbox" id="choose_all_env" ng-click="VM.toggleCheckAll()" ng-checked="VM.deleteVM.selectedVMs.length == VM.VMs.length" />
                     <label for="choose_all_env"></label>
                 </div>
@@ -61,8 +61,8 @@
                 <button type="button" class="btn btn-secondary">Connect</button>
             </td>
             <td>
-                <div class="dropdown clearfix">
-                    <button class="btn dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
+                <div class="dropdown inline">
+                    <button class="btn btn-approve dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
                         Running
                         <span class="caret"></span>
                     </button>

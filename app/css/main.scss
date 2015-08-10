@@ -111,72 +111,14 @@ body {
 }
 
 
-/*collapse animate from bootstrap*/
-
-.collapse {
-    display: none;
-}
-
-.collapse.in {
-    display: block;
-}
-
-.collapsing {
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    transition: height .35s ease;
-}
 
 
 /*vm-table style start here*/
 
-#vm-edit {
-    border-top-width: 0px;
-    border-bottom-width: 0px;
-}
-
-#vm-table {
-    border-bottom-width: 0;
-
-    thead > tr > th,
-    thead > tr > td,
-    tbody > tr > th,
-    tbody > tr > td,
-    tfoot > tr > th,
-    tfoot > tr > td {
-        border-left: 0px;
-        border-right: 0px;
-        border-top: 1px;
-    }
-}
-
 #vmName {
-    color: #0071C5;
+    color: $blue;
 }
 
-#checkbox-column {
-    width: 60px;
-}
-
-
-/* ilab-dialog-message popup */
-
-.popup-dialog>.popup-dialog-header {
-    padding: 0px;
-    margin: 5px 12px;
-    color: #62b00a;
-}
-
-.popup-dialog>.popup-dialog-content {
-    padding-left: 12px;
-    padding-top: 0;
-}
-
-.popup-dialog>#dialog-success-img {
-    margin-right: 10px;
-    margin-top: 0px;
-}
 
 
 /*sortable table header */
@@ -230,15 +172,6 @@ body {
     display: inline-block;
 }
 
-#dropdown-running {
-    color: $white;
-    background-color: $green;
-}
-
-#dropdown-action {
-    display: inline-block;
-    margin: .5em;
-}
 
 #delete-action {
     color: $red;
@@ -248,10 +181,6 @@ body {
     color: $blue;
     display: inline-block;
     cursor: pointer;
-}
-
-.intel-checkbox {
-    display: inline-block;
 }
 
 .search-panel {
