@@ -4,9 +4,9 @@
 		.module('ilabDirective')
 		.directive('infoCard', infoCard);
 
-	infoCard.$inject = [];
+	infoCard.$inject = ['$window'];
 
-	function infoCard() {
+	function infoCard($window) {
 		return {
 			restrict: 'E',
 			scope: {
@@ -27,22 +27,22 @@
 					
 				};
 
-				$(document).on('click', function(e) {
-					if(scope.isShown) {
-							scope.isShown = false;
-							scope.$apply();
-					}
-				});
+				//click to show or unshown
+				//function to control info to show
+				scope.clickCard = function(){
+					if($window.currentCard == scope.info.id)
+						$window.currentCard = null;
+					else
+					$window.currentCard = scope.info.id;
+				};
+				//function to control directeive shown by id
+				scope.showInfo = function(){
+					return scope.info.id === $window.currentCard;
+				};
 
-				/*$(function() {
-				    $(document).on('click', function(e) {
-				        if (e.target === element) {
-				            scope.isShown = false;
-				            scope.$apply();
-				        }
+				
 
-				    });
-				});*/
+
 				
 				
 
@@ -53,3 +53,6 @@
 
 	}
 })();
+
+
+

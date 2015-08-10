@@ -21,11 +21,11 @@ a[ng-click] {
 	height: $btn-height;
 }
 .btn-approve {
-	@include button-variant-override($green, $green, $hover-green, $hover-green, $med-dark-green, $med-dark-green, #fff);
+	@include button-variant-override($green, $green, $med-dark-green, $med-dark-green, $med-dark-green, $med-dark-green, #fff);
 }
 
 .btn-suspend {
-	@include button-variant-override($yellow, $yellow, $orange, $orange, $orange, $orange, #fff);
+	@include button-variant-override($yellow, $yellow, $orange, $orange, $orange, $orange, $dark-gray);
 }
 
 /* Dropdown */
@@ -53,6 +53,7 @@ table {
 	}
 }
 .table-expandable {
+	margin-bottom: 5px;
 	thead {
 		tr {
 			th {
@@ -70,6 +71,8 @@ table {
 				text-align: center;
 				border-right: none;
 				border-left: none;
+				border-bottom: none;
+
 			}
 			td.td-collapsed {
 				height: 0;
@@ -78,19 +81,18 @@ table {
 				border-top: 0;
 				border-bottom: 0;
 				background-color: $lighter-gray3;
+
+				div.in {
+					border-top: 1px solid $light-gray;
+				}
 			}
 		}
 	}
 	tbody + tbody {
 		border-top: 1px solid $light-gray;
 	}
-/*  */
-	tbody:nth-child(odd)>tr:last-child>td {
-		border-bottom: 0;
-	}
-	tbody:nth-child(even)>tr:first-child>td {
-		border-top: 0;
-	}
+
+
 }
 
 
@@ -132,6 +134,7 @@ label.require {
 .form-group {
 	.hint {
 		color: $gray;
+		margin-top: 3px;
 
 		span {
 			font-size: 15px;
@@ -143,8 +146,7 @@ label.require {
 	.form-group {
 		.hint {
 			position: absolute;
-			margin-left: 30px;
-			margin-top: 0;
+			margin-left: 35px;
 		}
 	}
 }

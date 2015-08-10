@@ -4,19 +4,29 @@
         .module('ilab')
         .controller('WelcomeCtrl', WelcomeCtrl);
 
-    function WelcomeCtrl() {
+    WelcomeCtrl.$inject = ['alert'];
+    function WelcomeCtrl(alert) {
         var that = this;
 
         that.lists = [{
-            name: 'Select'
+            name: 'Tom',
+            height: 20,
+            age: 30
         }, {
-            name: 'b'
+            name: 'Helen',
+            height: 40,
+            age: 50
         }, {
-            name: 'c'
+            name: 'Mary',
+            height: 50,
+            age: 70
         }, ];
         that.selected = that.lists[0];
         that.collapse = collapse;
         that.collapsed = true;
+        that.show = show;
+        that.alerts = [];
+        that.close = close;
         that.envs = [{
             "id": 2067601,
             "name": "pskhodad_env_1",
@@ -204,7 +214,13 @@
             that.collapsed = !that.collapsed;
         }
 
+        function show(option) {
+            alert.open({type: option, message: 'hello'});
+        }
 
+        function close(index) {
+            alert.close(index);
+        }
 
     }
 

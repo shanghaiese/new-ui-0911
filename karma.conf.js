@@ -2,73 +2,71 @@
 // Generated on Fri Jun 20 2014 10:17:30 GMT+0800 (China Standard Time)
 
 module.exports = function(config) {
-    config.set({
+  config.set({
 
-        // base path that will be used to resolve all patterns (eg. files, exclude)
-        basePath: 'app',
-
-
-        // frameworks to use
-        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-        frameworks: ['jasmine'],
+    // base path that will be used to resolve all patterns (eg. files, exclude)
+    basePath: 'app',
 
 
-        // list of files / patterns to load in the browser
-        files: [
-            "bower_components/jquery/dist/jquery.js",
-            "bower_components/angular/angular.js",
-            "bower_components/angular-animate/angular-animate.js",
-            "bower_components/angular-cookies/angular-cookies.js",
-            "bower_components/angular-resource/angular-resource.js",
-            "bower_components/angular-sanitize/angular-sanitize.js",
-            "bower_components/angular-touch/angular-touch.js",
-            "bower_components/angular-ui-router/release/angular-ui-router.js",
-            "bower_components/angular-loading-bar/src/loading-bar.js",
-            "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
-            "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
-            "bower_components/progressBar/progressBar.js",
-            "bower_components/ilab-select/dropdown.js",
-            "bower_components/lodash/lodash.js",
-            "bower_components/restangular/dist/restangular.js",
-            "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
-            "bower_components/angular-utils-pagination/dirPagination.js",
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
 
-            "bower_components/angular-mocks/angular-mocks.js",
 
-            'main/ilab.module.js',
-            'main/**/*.js',
-            'main/**/*.spec.js',
+    // list of files / patterns to load in the browser
+      files: [
+          "bower_components/jquery/dist/jquery.js",
+          "bower_components/angular/angular.js",
+          "bower_components/angular-animate/angular-animate.js",
+          "bower_components/angular-cookies/angular-cookies.js",
+          "bower_components/angular-resource/angular-resource.js",
+          "bower_components/angular-sanitize/angular-sanitize.js",
+          "bower_components/angular-touch/angular-touch.js",
+          "bower_components/angular-ui-router/release/angular-ui-router.js",
+          "bower_components/angular-loading-bar/src/loading-bar.js",
+          "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
+          "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
+          "bower_components/progressBar/progressBar.js",
+          "bower_components/ilab-select/dropdown.js",
+          "bower_components/lodash/lodash.js",
+          "bower_components/restangular/dist/restangular.js",
+          "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
+          "bower_components/angular-utils-pagination/dirPagination.js",
+          "bower_components/angular-mocks/angular-mocks.js",
+          
+          'main/ilab.module.js',
+          'main/**/*.js',
+          'main/**/*.spec.js',
+          'main/templates/*.html'    
+      ],
 
-            'main/templates/*.html'
-        ],
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+     preprocessors: {
+         'main/templates/*.html': ['ng-html2js']
+     },
+     ngHtml2JsPreprocessor: {
+      // If your build process changes the path to your templates,
+      // use stripPrefix and prependPrefix to adjust it.
+      // stripPrefix: "public/",
+      // prependPrefix: "web/path/to/templates/",
 
-        // preprocess matching files before serving them to the browser
-        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-        preprocessors: {
-            'main/templates/*.html': ['ng-html2js']
-        },
+      // the name of the Angular module to create
+        moduleName: "templates"
+    },
+    reporters :[
+        // 'coverage',
+        // 'junit'
+        'progress'
+    ],
 
-        ngHtml2JsPreprocessor: {
-            // If your build process changes the path to your templates,
-            // use stripPrefix and prependPrefix to adjust it.
-            // stripPrefix: "public/",
-            // prependPrefix: "web/path/to/templates/",
-
-            // the name of the Angular module to create
-            moduleName: "templates"
-        },
-
-        reporters: [
-            // 'coverage',
-            // 'junit'
-            'progress'
-        ],
-
-        coverageReporter: {
-            reporters: [{
-                type: 'html',
-                dir: 'artifacts/coverage/'
-            }, {
+    coverageReporter : {
+        reporters:[
+            {
+                type : 'html',
+                dir : 'artifacts/coverage/'
+            },
+            {
                 type: 'cobertura',
                 dir: 'artifacts/cobertura/'
             }]

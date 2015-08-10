@@ -11,10 +11,19 @@ li{
 
 /*vmBasic page style*/
 /* info card*/
-.listVMs {
-    float:left;
+.list-VMs {
     display: inline-block;
     margin-bottom: 15px;
+}
+
+.list-env {
+    height: 25%;
+    max-height:250px;
+    position: relative;
+    padding: 0 5px 5px 10px;
+    margin:0 10px 0 0 ;
+    background-color: $lighter-gray1;
+    color: $dark-gray;
 }
 
 info-card {
@@ -65,6 +74,13 @@ info-card {
             background: $white;
             border-radius: 4px;
             border: 1px  $light-gray solid;
+            z-index: 20;
+            h2 {
+                margin:15px;
+            }
+            small {
+                margin-left:15px; 
+            }
 		}
         .info{
             &:before {
@@ -90,36 +106,24 @@ info-card {
                 pointer-evevts: none;
             }
         }
-        
-        .info {
-            h2 {
-                margin:15px;
-            }
-        }
-        
-        .info {
-            small {
-                margin-left:15px; 
-            }
-        }
 
-        .tagIcon {
+        .tag-icon {
             width: 20px;
             height: 20px;
             margin-right: 3px;
             padding: 8px 5px 5px 5px;
             display: inline-block;
         }
-        .tagName {
+        .tag-name {
             display: inline-block;
             span {
                 margin-right: 3px;
             }
         }
-        .btnOperation {
+        .btn-operation {
             margin: 5px 0px 10px 15px;
         }
-        .cardKey {
+        .card-key {
             font-weight:bold; 
         }
 
@@ -200,7 +204,7 @@ info-card {
         }
         .dropdown-menu.pull-right {
             right: 0;
-            left: auto
+            left: auto;
         }
         .dropdown-menu .divider {
             height: 1px;
@@ -231,10 +235,10 @@ info-card {
             color: $white;
             text-decoration: none;
             background-color: $mediumBlue;
-            outline: 0
+            outline: 0;
         }
         .dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-            color: $light-gray
+            color: $light-gray;
         }
         .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
             text-decoration: none;
@@ -251,13 +255,13 @@ info-card {
         .btn-group, .btn-group-vertical {
             position: relative;
             display: inline-block;
-            vertical-align: middle
+            vertical-align: middle;
         }
         .btn-group ul li {
             text-align: left;
         }
 
-        .btnLine{
+        .btn-line{
             position: relative;
             display: inline-block;
         }

@@ -19,7 +19,7 @@
                     // inject a custom middleware into the array of default middlewares
                     middlewares.push(function(req, res, next) {
                     console.log(req.url);
-                        if (!req.url.match(/^\/services\/api\//)) {
+                        if (!req.url.match(/^\/mockapi/)) {
                             return next();
                         } else {
                             console.log('api req');

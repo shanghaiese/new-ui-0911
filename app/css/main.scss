@@ -9,10 +9,6 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 
 @import "ilabicon/style";
 
-// import customrized scss
-@import "infoCard";
-
-@import "columnFliter";
 // import ilab newui base scss 
 @import "base";
 //import ilab environment lists scss
@@ -21,38 +17,40 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "vm-multi";
 
 // import components
-@import "menu";
 @import "welcome";
+@import "menu";
+@import "infoCard";
 
 body {
-    margin-top: 50px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 /* style for menu btn that trigger menu hide/open */
 #menu-toggle {
-    float: left;
-    padding: 10px;
-    font-size: 30px;
-    color: white;
-    background-color: #0055a5;
-    cursor: pointer;
+	float: left;
+	padding: 10px;
+	font-size: 30px;
+	color: white;
+	background-color: #0055a5;
+	cursor: pointer;
 
-    &:active{
-        background-color: #1891ee;
-    }
+	&:active{
+		background-color: #1891ee;
+	}
 }
 
 /* override navbar */
 .navbar {
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 }
 .navbar .container-fluid {
-    padding-left: 0;
+	padding-left: 0;
 }
 .navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
     margin-left: 0;
-    padding: 0;
-    cursor: pointer;
+	padding: 0;
+	cursor: pointer;
 }
 .container-fluid>.navbar-header{
     margin-left: 0;
@@ -60,25 +58,61 @@ body {
 
 /* override loading bar color */
 #loading-bar-spinner .spinner-icon {
-    border-top-color:  $yellow !important;
-    border-left-color: $yellow !important;
+	border-top-color:  $yellow !important;
+  	border-left-color: $yellow !important;
 }
 #loading-bar .bar {
-    background: $yellow !important;
+  background: $yellow !important;
 }
 
 /* override pagination */
 .pagination {
-    margin-top: 0;
+	margin-top: 0;
 }
 .pagination>li>a, .pagination>li>span {
-    border: none;
+	border: none;
 }
 .pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
-    background-color: white;
-    color: $gray;
+	background-color: white;
+	color: $gray;
 }
 .pagination-summary {
-    float: right;
-    color: $gray;
+	float: right;
+	color: $gray;
+	margin-top: 5px;
+}
+/* override alerts */
+.alert {
+	position: fixed;
+	top: 60px;
+	width: 500px;
+	min-height: 36px;
+	padding: 7px;
+	/*left: 50%;*/
+	// @include translate(50%, 0);
+	border: 0;
+	color: white;
+	@include box-shadow(none);
+	@include animation(slide-down 5s);
+	.close {
+		font-size: 21px;
+		top: 7px;
+	}
+}
+.alert-warning {
+	background-color: $orange; 
+}
+.alert-success {
+	background-color: $green; 
+}
+.alert-danger {
+	background-color: $light-red; 
+}
+@keyframes slide-down {
+	from {
+		@include translate(0, 0);
+	}
+	to {
+		@include translate(0, 200px);
+	}
 }

@@ -3,16 +3,25 @@
 	border-bottom: 1px dashed grey;
 }
 
-h3 ~ span[class^="ilabicon"] {
+.icon-showbox {
 	float: left;
-	color: $blue;
-	cursor: pointer;
 	margin-right: 20px;
-	height: 30px;
-	font-size: 2em;
+	text-align: center;
+	min-width: 100px;
 
 	&:hover {
-		font-size: 5em;
-		@include transition(font-size .2s);
+		@include scale(2);
+		@include transition(transform .2s);	
 	}
+	span {
+		display: block;
+		color: $blue;
+		cursor: pointer;
+		font-size: 2em;
+	}
+
+	i {
+		font-size: small;
+	}
+
 }
