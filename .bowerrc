@@ -1,13 +1,6 @@
 {
     "analytics": false,
-<<<<<<< .mine
     "directory": "app/bower_components",
     "proxy": "http://child-prc.iglb.intel.com:913",
     "https-proxy": "http://child-prc.iglb.intel.com:913"
 }
-=======
-    "directory": "app/bower_components"
-}
-
-
->>>>>>> .theirs
