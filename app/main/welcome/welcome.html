@@ -160,5 +160,8 @@
 <button class="btn btn-secondary" ng-click="Welcome.show('success')">success</button>
 <button class="btn btn-secondary" ng-click="Welcome.show('warning')">warning</button>
 <button class="btn btn-secondary" ng-click="Welcome.show('danger')">danger</button>
-<alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)">{{alert.message}}</alert>
+
+<div class="alert-box col-xs-10 col-sm-8 col-md-6">
+    <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)">{{alert.message}}</alert>
+</div>
 

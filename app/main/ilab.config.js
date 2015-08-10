@@ -4,7 +4,6 @@
         .module('ilabConfig')
         .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
-        .config(loadingBar)
         .config(restangular)
         .config(pagination)
         .run(beforeRun);
@@ -59,11 +58,6 @@
     }
 
     /* config block */
-    loadingBar.$inject = ['cfpLoadingBarProvider'];
-
-    function loadingBar(cfpLoadingBarProvider) {
-        cfpLoadingBarProvider.includeSpinner = false;
-    }
 
     /* run block */
     beforeRun.$inject = ['$rootScope'];
