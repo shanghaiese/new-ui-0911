@@ -46,7 +46,7 @@
                         }
                     });
                     return middlewares;
-                },
+                }
 
                 // Open Chrome Browser
                 // open: {

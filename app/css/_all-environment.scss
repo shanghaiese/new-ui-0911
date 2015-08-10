@@ -1,0 +1,42 @@
+ /*****************All Environment list style **********
+  *********yufan add 07/22/2015******************/
+  .all-env {
+      .btn {
+        height: 8%;
+        width: 100%;
+        text-align: left;
+    }
+    .btn-group {
+        h6 {
+        margin: 1% 1%;
+        font-weight: 1000;
+        }
+         ul {
+            list-style:none;
+            padding-left: 0;
+            li {
+                margin: 1%;
+                text-align: left;
+                p {
+                    color: #b1babf;
+                     margin: 0 1%;
+                }
+            }
+        }
+        ol  {
+             padding-left: 0;
+             margin-left: 0;
+            li {
+                float: left;
+                list-style: none;
+                font-size: 14px;
+                color: #53565A;
+            }
+        }
+
+    }
+}
+     
+ 
+      
+      
