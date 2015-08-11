@@ -6,7 +6,6 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 @import "base";
 //add ilab customized iconfont lib
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
-@import "dropdown.directive";
 @import "ilabicon/style";
 // import ilab customized scss partials
 //@import "header";
@@ -300,25 +299,27 @@ body {
         font-size: 130%;
         color:$darker-gray;
     }
+    label {
+        text-align: left;
+        margin-left: 0.5em;
+        display: inline-block;
+        vertical-align: middle;
+        width: 6em;
+        font-weight: normal;
+    }
     .intel-setting-group {
         height: 2.5em;
         padding-bottom: 0.5em;
-        label {
-            text-align: left;
-            margin-left: 0.5em;
-            display: inline-block;
-            vertical-align: middle;
-            width: 6em;
-            font-weight: normal;
-        }
+
         input[type="text"] {
             display: inline-block;
             vertical-align: left;
-            border-style: solid;
+            border-style: solid 1px;
             border-width: 1px;
             border-color: transparent;
             min-width: 11.2em;
             color: #53565A;
+            height: 30px;
         }
         input[type="radio"] {
             vertical-align: left;
@@ -357,6 +358,19 @@ body {
             display: inline-block;
             width: 3em;
         }
+    }
+    .advEnvNetwork {
+        width: 11.2em;
+    }
+
+    .network+div {
+        display: inline-block;
+        width: 11.2em;
+        margin-left: 0em;
+    }
+
+    .advEnvNetworkDiv+.advEnvNetworkDiv {
+        margin-left: 6.7em;
     }
 }
 

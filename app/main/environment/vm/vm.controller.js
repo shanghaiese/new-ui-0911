@@ -39,6 +39,8 @@
         that.vmFound = {}; //store original data
         that.closePanel = closePanel; //close
         that.selectNetwork = selectNetwork;
+        that.selectMemory = selectMemory;
+        that.selectCPU = selectCPU;
 
         //saveTemplatePanel
         that.saveTemp = {};
@@ -189,7 +191,6 @@
                 clearArr(that.configTmp.network);
                 angular.forEach(that.vmFound.network, function(obj,key) {
                     that.configTmp.network.push(obj);
-                    console.log(obj);
                 });                
                 //saveTemplate panel
                 that.saveTemp.name = that.vmFound.name;
@@ -197,6 +198,16 @@
 
             }
         }
+
+        function selectNetwork(netIndex, network) {
+            that.configTmp.network[netIndex].label = network.label;
+        }
+        function selectMemory(memory) {
+            that.configTmp.memory.memory = memory.memory;
+        }
+        function selectCPU(CPU) {
+            that.configTmp.CPU = CPU;
+        } 
 
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
@@ -276,11 +287,9 @@
             $modal_dialog.css({
                 'margin': m_top + 'px auto'
              });
-        };
+        }; 
 
-        function selectNetwork(list) {
 
-        }
 
         
     }
