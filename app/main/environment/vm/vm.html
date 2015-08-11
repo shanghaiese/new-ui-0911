@@ -16,11 +16,20 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
-            <li role="presentation"><a id="delete-action" role="menuitem" tabindex="-1" href="#">Delete</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+                    <span>Power On</span></a>
+            </li>
+            <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                    <span>Power Off</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                    <span>Suspend</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+                    <span>Restart</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+                    <span class="mark-as-red">Restart</span></a></li>
         </ul>
     </div>
     <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
@@ -42,15 +51,15 @@
         </tr>
     </thead>
         <tbody>
-        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 3|filter:searchInput">
+        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 4|filter:searchInput">
             <td>
-                <div class="intel-checkbox">
+                <div class="inline">
                     <input type="checkbox" id="{{vms.id}}" checklist-model="VM.deleteVM.selectedVMs" checklist-value="vms.id" />
                     <label for="{{vms.id}}"></label>
                 </div>
-                <span class="intelicon-settings-solid" id="vm-configuration" ng-click="VM.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
             </td>
-            <td id="vmName">{{vms.name}}</td>
+            <td class="mark-as-blue">{{vms.name}}</td>
             <td>
                 <span ng-repeat="networks in vms.network"><p>{{networks.ip}}</p></span>
             </td>
@@ -67,10 +76,18 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power Off</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+                                <span>Power On</span></a>
+                        </li>
+                        <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                                <span>Power Off</span></a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                                <span>Suspend</span></a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+                                <span>Restart</span></a>
+                        </li>
                     </ul>
                 </div>
             </td>

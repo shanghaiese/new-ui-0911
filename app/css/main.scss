@@ -115,8 +115,13 @@ body {
 
 /*vm-table style start here*/
 
-#vmName {
+.mark-as-blue
+ {
     color: $blue;
+}
+.mark-as-red
+ {
+    color: $red;
 }
 
 

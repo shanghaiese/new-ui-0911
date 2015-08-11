@@ -17,7 +17,7 @@
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = false;
+        that.showPage = 0;
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
