@@ -93,6 +93,7 @@ body {
 	border: 0;
 	color: white;
 	@include box-shadow(none);
+	cursor: pointer;
 }
 .alert-warning {
 	background-color: $orange; 
@@ -109,7 +110,7 @@ body {
 .alert.ng-move,
 .alert.ng-leave
 { 
-	@include transition(400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all);
+	@include transition(400ms ease-out all);
 } 
  
 .alert.ng-enter.ng-enter-active, 
@@ -126,5 +127,25 @@ body {
 	padding: 0;
 	margin-bottom: 0;
     top: -50px;
-    height: 0px;
+    height: 0;
+}
+/* ng-animate for ng-view change */
+.container.content {
+	position: relative;
+}
+div[ui-view] {
+	position: absolute;
+	width: 100%;
+}
+div[ui-view].ng-enter,
+div[ui-view].ng-leave {
+	@include transition(.2s ease-out all);
+}
+div[ui-view].ng-enter.ng-enter-active,
+div[ui-view].ng-leave {
+	opacity: 1;
+}
+div[ui-view].ng-leave.ng-leave-active,
+div[ui-view].ng-enter {
+	opacity: 0;
 }
