@@ -17,7 +17,7 @@
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = 0;
+        that.showPage = false;
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
@@ -270,8 +270,16 @@
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false
+
             });
 
+            modalInstance.result.then(function (result) {
+                 if(result===true)
+                 {
+                    console.log(vmId);   
+                }
+                  console.log('Modal dismissed at: ' + new Date());
+                });
         }
 
         function selectNetwork(list) {
