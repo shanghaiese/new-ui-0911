@@ -281,7 +281,7 @@
                   console.log('Modal dismissed at: ' + new Date());
                 });
         }
-
+        
         function selectNetwork(list) {
 
         }
