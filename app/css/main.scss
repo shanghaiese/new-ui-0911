@@ -6,6 +6,7 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 @import "base";
 //add ilab customized iconfont lib
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
+@import "dropdown.directive";
 @import "ilabicon/style";
 // import ilab customized scss partials
 //@import "header";
@@ -14,35 +15,36 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "menu";
 @import "infoCard";
 body {
-	margin-top: 50px;
-	margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    min-width: 600px;
 }
 
 /* style for menu btn that trigger menu hide/open */
 #menu-toggle {
-	float: left;
-	padding: 10px;
-	font-size: 30px;
-	color: white;
-	background-color: #0055a5;
-	cursor: pointer;
+    float: left;
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #0055a5;
+    cursor: pointer;
 
-	&:active{
-		background-color: #1891ee;
-	}
+    &:active{
+        background-color: #1891ee;
+    }
 }
 
 /* override navbar */
 .navbar {
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 }
 .navbar .container-fluid {
-	padding-left: 0;
+    padding-left: 0;
 }
 .navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
     margin-left: 0;
-	padding: 0;
-	cursor: pointer;
+    padding: 0;
+    cursor: pointer;
 }
 .container-fluid>.navbar-header{
     margin-left: 0;
@@ -50,8 +52,8 @@ body {
 
 /* override loading bar color */
 #loading-bar-spinner .spinner-icon {
-	border-top-color:  $yellow !important;
-  	border-left-color: $yellow !important;
+    border-top-color:  $yellow !important;
+    border-left-color: $yellow !important;
 }
 #loading-bar .bar {
   background: $yellow !important;
@@ -59,123 +61,81 @@ body {
 
 /* override pagination */
 .pagination {
-	margin-top: 0;
+    margin-top: 0;
 }
 .pagination>li>a, .pagination>li>span {
-	border: none;
+    border: none;
 }
 .pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
-	background-color: white;
-	color: $gray;
+    background-color: white;
+    color: $gray;
 }
 .pagination-summary {
-	float: right;
-	color: $gray;
-	margin-top: 5px;
+    float: right;
+    color: $gray;
+    margin-top: 5px;
 }
 /* override alerts */
+.alert-box {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    @include translate(-50%, 0);
+    padding: 5px;
+}
 .alert {
-	position: fixed;
-	top: 60px;
-	width: 500px;
-	min-height: 36px;
-	padding: 7px;
-	/*left: 50%;*/
-	// @include translate(50%, 0);
-	border: 0;
-	color: white;
-	@include box-shadow(none);
-	@include animation(slide-down 5s);
-	.close {
-		font-size: 21px;
-		top: 7px;
-	}
+    display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 0;
+    color: white;
+    @include box-shadow(none);
 }
 .alert-warning {
-	background-color: $orange; 
+    background-color: $orange; 
 }
 .alert-success {
-	background-color: $green; 
+    background-color: $green; 
 }
 .alert-danger {
-	background-color: $light-red; 
-}
-@keyframes slide-down {
-	from {
-		@include translate(0, 0);
-	}
-	to {
-		@include translate(0, 200px);
-	}
+    background-color: $light-red; 
 }
 
+/* ng-animate for alert */
+.alert.ng-enter, 
+.alert.ng-move,
+.alert.ng-leave
+{ 
+    @include transition(400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all);
+} 
+ 
+.alert.ng-enter.ng-enter-active, 
+.alert.ng-leave {
+    padding: 10px;
+    top: 0;
+    height: 42px;
+    margin-bottom: 5px;
 
-/*collapse animate from bootstrap*/
-
-.collapse {
-    display: none;
+}
+ 
+.alert.ng-leave.ng-leave-active,
+.alert.ng-enter {
+    padding: 0;
+    margin-bottom: 0;
+    top: -50px;
+    height: 0px;
 }
 
-.collapse.in {
-    display: block;
+/*vm table font color*/
+.mark-as-blue
+ {
+    color: $blue;
+}
+.mark-as-red
+ {
+    color: $red;
 }
 
-.collapsing {
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    transition: height .35s ease;
-}
-
-
-/*vm-table style start here*/
-
-#vm-edit {
-    border-top-width: 0px;
-    border-bottom-width: 0px;
-}
-
-#vm-table {
-    border-bottom-width: 0;
-
-    thead > tr > th,
-    thead > tr > td,
-    tbody > tr > th,
-    tbody > tr > td,
-    tfoot > tr > th,
-    tfoot > tr > td {
-        border-left: 0px;
-        border-right: 0px;
-        border-top: 1px;
-    }
-}
-
-#vmName {
-    color: #0071C5;
-}
-
-#checkbox-column {
-    width: 60px;
-}
-
-
-/* ilab-dialog-message popup */
-
-.popup-dialog>.popup-dialog-header {
-    padding: 0px;
-    margin: 5px 12px;
-    color: #62b00a;
-}
-
-.popup-dialog>.popup-dialog-content {
-    padding-left: 12px;
-    padding-top: 0;
-}
-
-.popup-dialog>#dialog-success-img {
-    margin-right: 10px;
-    margin-top: 0px;
-}
 
 
 /*sortable table header */
@@ -229,15 +189,6 @@ body {
     display: inline-block;
 }
 
-#dropdown-running {
-    color: $white;
-    background-color: $green;
-}
-
-#dropdown-action {
-    display: inline-block;
-    margin: .5em;
-}
 
 #delete-action {
     color: $red;
@@ -247,10 +198,6 @@ body {
     color: $blue;
     display: inline-block;
     cursor: pointer;
-}
-
-.intel-checkbox {
-    display: inline-block;
 }
 
 .search-panel {
@@ -275,6 +222,12 @@ body {
             color: #00AEEF;
             padding: 11px 20px;
             font-size: 18px;
+        }
+        li.disabled > a,
+        li.disabled > a:hover,
+        li.disabled > a:focus,
+        li > a:hover {
+            cursor: pointer;
         }
     }
     .table-span-td {
@@ -314,12 +267,11 @@ body {
         input[type="text"] {
             display: inline-block;
             vertical-align: left;
-            border-style: solid 1px;
+            border-style: solid;
             border-width: 1px;
             border-color: transparent;
             min-width: 11.2em;
             color: #53565A;
-            height: 30px;
         }
         input[type="radio"] {
             vertical-align: left;
@@ -357,21 +309,31 @@ body {
         .vmDefaultNicGroup {
             display: inline-block;
             width: 3em;
+        }   
+        .intelicon-minus-solid{
+            padding-left: 5px;
+            color: #0071c5;
+        }
+        .intelicon-plus-solid {
+            padding-left: 5px;
+            color: #0071c5;
         }
     }
     .advEnvNetwork {
-        width: 11.2em;
+        min-width: 11.2em;
     }
 
     .network+div {
         display: inline-block;
-        width: 11.2em;
+        min-width: 11.2em;
         margin-left: 0em;
     }
 
     .advEnvNetworkDiv+.advEnvNetworkDiv {
         margin-left: 6.7em;
     }
+
+
 }
 
 .advVMInnerSetting {
@@ -385,9 +347,16 @@ body {
 }
 
 .tooltip-inner {
-    text-align: left;
     padding: 5px;
     min-width: 260px;
     max-width: 350px;
     width: 250px;
+    table tbody {
+        color: #FFF;
+        td {
+            vertical-align: top;
+            text-align: left;
+        }
+    }
+    
 }

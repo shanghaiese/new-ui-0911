@@ -283,7 +283,16 @@
                 animation: false
             });
 
+<<<<<<< HEAD
+            var $modal_dialog = $(this).find(".modal-dialog");
+            var m_top = (($(window).height() - 200) / 2);
+            $modal_dialog.css({
+                'margin': m_top + 'px auto'
+             });
+        }; 
+=======
         }
+>>>>>>> 0cd7713fc03bd171a100aad1c0bb5cbf776476ad
 
 
 
