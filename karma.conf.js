@@ -68,55 +68,56 @@ module.exports = function(config) {
             },
             {
                 type: 'cobertura',
-                dir: 'artifacts/cobertura/'
-            }]
-        },
+                dir : 'artifacts/cobertura/'
+            }
+        ]
+    },
 
-        junitReporter: {
-            outputFile: 'artifacts/junit.xml',
-            suite: ''
-        },
+    junitReporter: {
+      outputFile: 'artifacts/junit.xml',
+      suite: ''
+    },
 
-        // web server port
-        port: 9876,
+    // web server port
+    port: 9876,
 
-        // enable / disable colors in the output (reporters and logs)
-        colors: true,
+    // enable / disable colors in the output (reporters and logs)
+    colors: true,
 
-        // level of logging
-        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+    // level of logging
+    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    logLevel: config.LOG_INFO,
 
-        // enable / disable watching file and executing tests whenever any file changes
-        autoWatch: true,
+    // enable / disable watching file and executing tests whenever any file changes
+    autoWatch: true,
 
-        // start these browsers
-        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-        browsers: ['PhantomJS'],
-        // browsers: ['Chrome'],
+    // start these browsers
+    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+    // browsers: ['PhantomJS'],
+    browsers: ['PhantomJS'],
 
-        // Continuous Integration mode
-        // if true, Karma captures browsers, runs the tests and exits
-        singleRun: false,
+    // Continuous Integration mode
+    // if true, Karma captures browsers, runs the tests and exits
+    singleRun: false,
 
-        plugins: [
-            'karma-chrome-launcher',
-            'karma-firefox-launcher',
-            'karma-ie-launcher',
-            'karma-safari-launcher',
-            'karma-opera-launcher',
-            'karma-phantomjs-launcher',
-            'karma-detect-browsers',
-            'karma-jasmine',
-            'karma-junit-reporter',
-            'karma-coverage',
-            'karma-ng-html2js-preprocessor'
-        ],
+    plugins:[
+        'karma-chrome-launcher',
+        'karma-firefox-launcher',
+        'karma-ie-launcher',
+        'karma-safari-launcher',
+        'karma-opera-launcher',
+        'karma-phantomjs-launcher',
+        'karma-detect-browsers',
+        'karma-jasmine',
+        'karma-junit-reporter',
+        'karma-coverage',
+        'karma-ng-html2js-preprocessor'
+    ],
 
-        // configuration
-        detectBrowsers: {
-            // enable/disable, default is true
-            enabled: false
-        }
-    });
+    // configuration
+    detectBrowsers: {
+      // enable/disable, default is true
+      enabled: false
+    }
+  });
 };

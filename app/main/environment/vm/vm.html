@@ -1,17 +1,34 @@
+<h3>List of VM</h3>
+    <ul>
+        <li ng-repeat="item in VM.envs">{{ item }}</li>
     </ul>
+<div>
+    {{VM.environments}}
 </div>
+
+
+<div>
     <button type="button" class="btn btn-primary">Add VM</button>
-    <div class="dropdown clearfix" id="dropdown-action">
-        <button class="btn btn-default dropdown-toggle" type="button" id="ee" data-toggle="dropdown" aria-expanded="true" ng-disabled="vm.deleteVM.selectedVMs.length == 0">
+    <div class="dropdown clearfix inline">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.deleteVM.selectedVMs.length == 0">
             Actions
             <span class="caret"></span>
         </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="ee">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
-            <li role="presentation"><a id="delete-action" role="menuitem" tabindex="-1" href="#">Delete</a></li>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+                    <span>Power On</span></a>
+            </li>
+            <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                    <span>Power Off</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                    <span>Suspend</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+                    <span>Restart</span></a>
+            </li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="VM.openDeleteDialog(VM.deleteVM.selectedVMs)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+                    <span class="mark-as-red">Delete</span></a></li>
         </ul>
     </div>
     <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
@@ -20,30 +37,30 @@
 </div>
 <!---->
 <!-- vm table from here-->
-<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel ilab-sortable" id="vm-table">
+<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
-            <th id="checkbox-column">
-                <div class="intel-checkbox">
-                    <input type="checkbox" id="choose_all_env" ng-click="vm.toggleCheckAll()" ng-checked="vm.deleteVM.selectedVMs.length == vm.VMs.length" />
+            <th>
+                <div class="inline">
+                    <input type="checkbox" id="choose_all_env" ng-click="VM.toggleCheckAll()" ng-checked="VM.deleteVM.selectedVMs.length == VM.VMs.length" />
                     <label for="choose_all_env"></label>
                 </div>
             </th>
-            <th ng-repeat="th in vm.thead" class="" ng-click="vm.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(vm.sort.descending)&&vm.sort.column == th.name, 'ilab-sort-asc':(vm.sort.descending&&vm.sort.column == th.name)}">{{th.display}}</th>
+            <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}">{{th.display}}</th>
         </tr>
     </thead>
-    <tbody ng-repeat="vms in vm.VMs|filter:searchInput" ng-repeat="everyVM in vm.VMInfo">
-        <tr>
+        <tbody>
+        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 4|filter:searchInput">
             <td>
-                <div class="intel-checkbox">
-                    <input type="checkbox" id="{{vms.id}}" checklist-model="vm.deleteVM.selectedVMs" checklist-value="vms.id" />
+                <div class="inline">
+                    <input type="checkbox" id="{{vms.id}}" checklist-model="VM.deleteVM.selectedVMs" checklist-value="vms.id" />
                     <label for="{{vms.id}}"></label>
                 </div>
-                <span class="intelicon-settings-solid" id="vm-configuration" ng-click="vm.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
+                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id)" dialog-helper="exit-vmTpl-config" dialog-placement="bottom"></span>
             </td>
-            <td id="vmName">{{vms.name}}</td>
+            <td class="mark-as-blue">{{vms.name}}</td>
             <td>
-                 <span ng-repeat="networks in vms.network">{{networks.ip}}</span>
+                <span ng-repeat="networks in vms.network"><p>{{networks.ip}}</p></span>
             </td>
             <td>
                 {{vms.cpus}}CPU,{{vms.mem}}
@@ -52,22 +69,30 @@
                 <button type="button" class="btn btn-secondary">Connect</button>
             </td>
             <td>
-                <div class="dropdown clearfix">
-                    <button class="btn dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
+                <div class="dropdown inline">
+                    <button class="btn btn-approve dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
                         Running
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power On</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" dref="#">Power Off</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Suspend</a></li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+                                <span>Power On</span></a>
+                        </li>
+                        <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                                <span>Power Off</span></a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                                <span>Suspend</span></a>
+                        </li>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+                                <span>Restart</span></a>
+                        </li>
                     </ul>
                 </div>
             </td>
         </tr>
-    
-        <tr ng-include="'main/environment/vms/vms_setting.html'">
-    </tr>
+        <tr dir-paginate-end ng-include="'main/environment/vm/vms_setting.html'">
+        </tr>
     </tbody>
 </table>
+<dir-pagination-controls max-size="5"></dir-pagination-controls>

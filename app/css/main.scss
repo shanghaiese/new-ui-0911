@@ -6,97 +6,136 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 @import "base";
 //add ilab customized iconfont lib
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
-@import "dropdown.directive";
 @import "ilabicon/style";
-// import ilab newui base scss 
 // import ilab customized scss partials
 //@import "header";
 // import components
-@import "menu";
 @import "welcome";
-
-//import ilab environment lists scss
-@import "all-environment";
-
-//import ilab multiple vmlists scss
-@import "vm-multi";
+@import "menu";
 @import "infoCard";
+@import "vm-multi";
+@import "all-environment";
+@import "physical-machine";
 
 body {
-	margin-top: 50px;
-	margin-bottom: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    min-width: 600px;
 }
+
 /* style for menu btn that trigger menu hide/open */
 #menu-toggle {
-	float: left;
-	padding: 10px;
-	font-size: 30px;
-	color: white;
-	background-color: #0055a5;
-	cursor: pointer;
-	&:active{
-		background-color: #1891ee;
-	}
+    float: left;
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #0055a5;
+    cursor: pointer;
+
+    &:active{
+        background-color: #1891ee;
+    }
 }
 
-
-/*collapse animate from bootstrap*/
-
-.collapse {
-    display: none;
+/* override navbar */
+.navbar {
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
+}
+.navbar .container-fluid {
+    padding-left: 0;
+}
+.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
+    margin-left: 0;
+    padding: 0;
+    cursor: pointer;
+}
+.container-fluid>.navbar-header{
+    margin-left: 0;
 }
 
-.collapse.in {
+/* override loading bar color */
+#loading-bar-spinner .spinner-icon {
+    border-top-color:  $yellow !important;
+    border-left-color: $yellow !important;
+}
+#loading-bar .bar {
+  background: $yellow !important;
+}
+
+/* override pagination */
+.pagination {
+    margin-top: 0;
+}
+.pagination>li>a, .pagination>li>span {
+    border: none;
+}
+.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
+    background-color: white;
+    color: $gray;
+}
+.pagination-summary {
+    float: right;
+    color: $gray;
+    margin-top: 5px;
+}
+/* override alerts */
+.alert-box {
+    position: fixed;
+    top: 60px;
+    left: 50%;
+    @include translate(-50%, 0);
+    padding: 5px;
+}
+.alert {
     display: block;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 0;
+    color: white;
+    @include box-shadow(none);
+}
+.alert-warning {
+    background-color: $orange; 
+}
+.alert-success {
+    background-color: $green; 
+}
+.alert-danger {
+    background-color: $light-red; 
 }
 
-.collapsing {
-    position: relative;
-    height: 0;
-    overflow: hidden;
-    transition: height .35s ease;
+/* ng-animate for alert */
+.alert.ng-enter, 
+.alert.ng-move,
+.alert.ng-leave
+{ 
+    @include transition(400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all);
+} 
+ 
+.alert.ng-enter.ng-enter-active, 
+.alert.ng-leave {
+    padding: 10px;
+    top: 0;
+    height: 42px;
+    margin-bottom: 5px;
+
+}
+ 
+.alert.ng-leave.ng-leave-active,
+.alert.ng-enter {
+    padding: 0;
+    margin-bottom: 0;
+    top: -50px;
+    height: 0px;
 }
 
-
-/*vm-table style start here*/
-
-#vm-edit {
-    border-top-width: 0px;
-    border-bottom-width: 0px;
+/*vm table font color*/
+.mark-as-blue{
+    color: $blue;
 }
-
-#vm-table {
-    border-bottom-width: 0;
-    tbody:nth-child(even) {
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        background-color: $lighter-gray1;
-    }
-    tbody:nth-child(odd) {
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-        background-color: $white;
-    }
-    thead > tr > th,
-    thead > tr > td,
-    tbody > tr > th,
-    tbody > tr > td,
-    tfoot > tr > th,
-    tfoot > tr > td {
-        border-left: 0px;
-        border-right: 0px;
-        border-top: 1px;
-    }
+.mark-as-red{
+    color: $red;
 }
-
-#vmName {
-    color: #0071C5;
-}
-
-#checkbox-column {
-    width: 60px;
-}
-
 
 
 
@@ -151,15 +190,6 @@ body {
     display: inline-block;
 }
 
-#dropdown-running {
-    color: $white;
-    background-color: $green;
-}
-
-#dropdown-action {
-    display: inline-block;
-    margin: .5em;
-}
 
 #delete-action {
     color: $red;
@@ -169,10 +199,6 @@ body {
     color: $blue;
     display: inline-block;
     cursor: pointer;
-}
-
-.intel-checkbox {
-    display: inline-block;
 }
 
 .search-panel {
@@ -303,81 +329,4 @@ body {
     min-width: 260px;
     max-width: 350px;
     width: 250px;
-}
-
-/* override navbar */
-.navbar {
-	box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
-}
-.navbar .container-fluid {
-	padding-left: 0;
-}
-.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
-    margin-left: 0;
-	padding: 0;
-	cursor: pointer;
-}
-.container-fluid>.navbar-header{
-    margin-left: 0;
-}
-
-/* override loading bar color */
-#loading-bar-spinner .spinner-icon {
-	border-top-color:  $yellow !important;
-  	border-left-color: $yellow !important;
-}
-#loading-bar .bar {
-  background: $yellow !important;
-}
-
-/* override pagination */
-.pagination {
-	margin-top: 0;
-}
-.pagination>li>a, .pagination>li>span {
-	border: none;
-}
-.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
-	background-color: white;
-	color: $gray;
-}
-.pagination-summary {
-	float: right;
-	color: $gray;
-	margin-top: 5px;
-}
-/* override alerts */
-.alert {
-	position: fixed;
-	top: 60px;
-	width: 500px;
-	min-height: 36px;
-	padding: 7px;
-	/*left: 50%;*/
-	// @include translate(50%, 0);
-	border: 0;
-	color: white;
-	@include box-shadow(none);
-	@include animation(slide-down 5s);
-	.close {
-		font-size: 21px;
-		top: 7px;
-	}
-}
-.alert-warning {
-	background-color: $orange; 
-}
-.alert-success {
-	background-color: $green; 
-}
-.alert-danger {
-	background-color: $light-red; 
-}
-@keyframes slide-down {
-	from {
-		@include translate(0, 0);
-	}
-	to {
-		@include translate(0, 200px);
-	}
 }

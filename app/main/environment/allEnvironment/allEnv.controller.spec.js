@@ -1,4 +1,4 @@
-describe('Environment lists controller', function() {	
+/*describe('Environment lists controller', function() {	
 	var scope, ctrl;
 
 	beforeEach(module('ilab'));	
@@ -12,4 +12,4 @@ describe('Environment lists controller', function() {
     expect(ctrl.check(ctrl.lists)).toBe(true);
   });
 
-});
+});*/
