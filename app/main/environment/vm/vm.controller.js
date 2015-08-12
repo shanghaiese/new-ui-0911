@@ -276,12 +276,13 @@
             modalInstance.result.then(function (result) {
                  if(result===true)
                  {
-                    console.log(vmId);   
+                    console.log(vmId);  
+                    return vmId; 
                 }
                   console.log('Modal dismissed at: ' + new Date());
                 });
         }
-        
+
         function selectNetwork(list) {
 
         }

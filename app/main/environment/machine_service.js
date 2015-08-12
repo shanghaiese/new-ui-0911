@@ -31,10 +31,10 @@
                 name: 'name'
             }, {
                 display: 'IP',
-                name: 'ip'
+                name: 'network[0].ip'
             }, {
                 display: 'Configuration',
-                name: 'configuration'
+                name: 'cpus'
             }, {
                 display: 'Connect',
                 name: 'console'
@@ -51,7 +51,7 @@
                     "id": 3638301,
                     "path": "/vmfs/volumes/.../vm1.vmx",
                     "name": '1ilabclient01_win2008R2_with_agent',
-                    "cpus": 2,
+                    "cpus": 1,
                     "mem": 1024,
                     "power": 0,
                     "maxcpus": 32,
