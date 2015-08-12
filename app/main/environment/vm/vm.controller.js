@@ -307,8 +307,8 @@
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
-                controller: 'ModalInstanceCtrl'
-                //animation: false
+                controller: 'ModalInstanceCtrl',
+                animation: false
 
             });
 
