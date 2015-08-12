@@ -92,13 +92,13 @@
                         <span class="intelicon-help-solid tip" tooltip-html="VM.htmlTooltipDisk" tooltip-placement="right"></span>
                     </div>
                     <label for="advEnvNetwork" class="network">Default Net:</label>
-                    <div class="intel-setting-group dropdown advEnvNetworkDiv" ng-repeat="(index, value) in VM.configTmp.network">
+                    <div class="intel-setting-group dropdown advEnvNetworkDiv" ng-repeat="(index, value) in VM.tplConfig">
                         <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                             {{value.label}}
                             <span class="caret"></span>
                         </button>
-                        <span class="intelicon-minus-solid" ng-click="addThisTpl()"></span>
-                        <span class="intelicon-plus-solid" ng-click="deleteThisTpl()"></span>
+                        <span class="intelicon-minus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, false)"></span>
+                        <span class="intelicon-plus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, true)"></span>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                             <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.label}}</a></li>
                         </ul>

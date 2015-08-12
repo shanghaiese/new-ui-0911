@@ -6,7 +6,6 @@ $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 @import "base";
 //add ilab customized iconfont lib
 $ilab-font-path: "../bower_components/ilabicon/fonts/";
-@import "dropdown.directive";
 @import "ilabicon/style";
 // import ilab customized scss partials
 //@import "header";
@@ -207,6 +206,18 @@ body {
 }
 
 .table-intel {
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
+        color: #00AEEF;
+        background-color: #53565A;
+    }       
+    .nav>li>a {
+        position: relative; 
+        display: block;
+        padding: 10px 20px 10px 20px;
+        color: #fff;
+        font-size: 20px;
+    }
     .nav-pills {
         background-color: #53565A;
         li > a {
