@@ -17,7 +17,8 @@
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = false;
+        that.showPage = true;
+        
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
@@ -177,8 +178,9 @@
                 that.showPage = 0;
                 //clear vm.configTmp.network
             } else {
-                getVMById(vmid);
                 that.showPage = vmid;
+                getVMById(vmid);
+                
                 //find the vm idx;
                 that.configTmp.name = that.vmFound.name;
                 that.configTmp.description = that.vmFound.description;
@@ -190,12 +192,12 @@
                 clearArr(that.configTmp.network);
                 angular.forEach(that.vmFound.network, function(obj,key) {
                     that.configTmp.network.push(obj);
-                    console.log(obj);
+                    //console.log(obj);
                 });                
                 //saveTemplate panel
                 that.saveTemp.name = that.vmFound.name;
                 //if have opened saveTemp panel and change, we need to reset that panel.
-
+                
             }
         }
 
@@ -268,8 +270,8 @@
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
-                controller: 'ModalInstanceCtrl',
-                animation: false
+                controller: 'ModalInstanceCtrl'
+                //animation: false
 
             });
 
