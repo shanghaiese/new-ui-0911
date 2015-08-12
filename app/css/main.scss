@@ -126,9 +126,9 @@ body {
 }
 
 /*vm table font color*/
-.mark-as-blue
+.mark-as-$blue
  {
-    color: $blue;
+    color: $$blue;
 }
 .mark-as-red
  {
@@ -184,7 +184,7 @@ body {
 #displaycolumn-vm {
     float: right;
     margin: 0.5em;
-    color: $blue;
+    color: $$blue;
     display: inline-block;
 }
 
@@ -194,7 +194,7 @@ body {
 }
 
 #vm-configuration {
-    color: $blue;
+    color: $$blue;
     display: inline-block;
     cursor: pointer;
 }
@@ -208,20 +208,20 @@ body {
 .table-intel {
 
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
-        color: #00AEEF;
-        background-color: #53565A;
+        color: $light-blue;
+        background-color: $dark-gray;
     }       
     .nav>li>a {
         position: relative; 
         display: block;
         padding: 10px 20px 10px 20px;
-        color: #fff;
+        color: $white;
         font-size: 20px;
     }
     .nav-pills {
-        background-color: #53565A;
+        background-color: $dark-gray;
         li > a {
-            color: #FFFFFF;
+            color: white;
             padding: 11px 20px;
             font-size: 18px;
         }
@@ -230,7 +230,7 @@ body {
         li.active > a:hover,
         li.active > a:focus,
         li > a:hover {
-            color: #00AEEF;
+            color: light-$blue;
             padding: 11px 20px;
             font-size: 18px;
         }
@@ -282,7 +282,7 @@ body {
             border-width: 1px;
             border-color: transparent;
             min-width: 11.2em;
-            color: #53565A;
+            color: $dark-gray;
         }
         input[type="radio"] {
             vertical-align: left;
@@ -296,10 +296,10 @@ body {
             border-radius: 50%;
         }
         input[type='radio']:hover {
-            box-shadow: 0 0 5px 0px #0071C5 inset;
+            box-shadow: 0 0 5px 0px $blue inset;
         }
         input[type='radio']:checked:before {
-            background: #0071C5;
+            background: $blue;
         }
         .settingButtonGroup {
             margin-left: 6.7em;
@@ -311,11 +311,11 @@ body {
             min-width: 4.5em;
         }
         .intelicon-help-solid {
-            color: #939598;
+            color: $gray;
             margin-top: 2px;
         }
         .intelicon-help-solid:hover {
-            color: #53565A;
+            color: $dark-gray;
         }
         .vmDefaultNicGroup {
             display: inline-block;
@@ -323,11 +323,11 @@ body {
         }   
         .intelicon-minus-solid{
             padding-left: 5px;
-            color: #0071c5;
+            color: $blue;
         }
         .intelicon-plus-solid {
             padding-left: 5px;
-            color: #0071c5;
+            color: $blue;
         }
     }
     .advEnvNetwork {
@@ -351,8 +351,8 @@ body {
     .intelicon-close-max {
         float: right;
         font-size: 15px;
-        background-color: #53565A;
-        color: #FFFFFF;
+        background-color: $dark-gray;
+        color: $white;
         margin: 1em;
     }
 }
@@ -363,7 +363,7 @@ body {
     max-width: 350px;
     width: 250px;
     table tbody {
-        color: #FFF;
+        color: $white;
         td {
             vertical-align: top;
             text-align: left;
