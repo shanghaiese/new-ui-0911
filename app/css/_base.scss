@@ -31,6 +31,7 @@ a[ng-click] {
 /* Dropdown */
 $dropdown-border: $lighter-gray4;
 .dropdown {
+	min-width: $btn-min-width;
 	.dropdown-menu {
 		border: 1px solid $dropdown-border;
 		box-shadow: $box-shadow;
@@ -43,7 +44,9 @@ $dropdown-border: $lighter-gray4;
 	}
 }
 
-
+.inline {
+	display:inline-block;
+}
 
 
 /* Table */
@@ -72,6 +75,7 @@ table {
 				border-right: none;
 				border-left: none;
 				border-bottom: none;
+				vertical-align: middle;
 
 			}
 			td.td-collapsed {
@@ -86,6 +90,9 @@ table {
 					border-top: 1px solid $light-gray;
 				}
 			}
+		}
+		p {
+			margin: 0px;
 		}
 	}
 	tbody + tbody {

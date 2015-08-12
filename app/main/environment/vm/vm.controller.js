@@ -80,11 +80,11 @@
             network: [{interface: "", label: "", ip: ""}]
         };
 
-        that.CPU = [{idx: 0,NumOfCPU: "1"},
-            {idx: 1,NumOfCPU: "2"},
-            {idx: 2,NumOfCPU: "4"},
-            {idx: 3,NumOfCPU: "8"},
-            {idx: 4,NumOfCPU: "16"}];
+        that.CPU = [{idx: 0,NumOfCPU: "1"}, 
+                    {idx: 1,NumOfCPU: "2"}, 
+                    {idx: 2,NumOfCPU: "4"}, 
+                    {idx: 3,NumOfCPU: "8"}, 
+                    {idx: 4,NumOfCPU: "16"}];
 
         that.Memory = [
             [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
@@ -191,7 +191,7 @@
                 angular.forEach(that.vmFound.network, function(obj,key) {
                     that.configTmp.network.push(obj);
                     console.log(obj);
-                });
+                });                
                 //saveTemplate panel
                 that.saveTemp.name = that.vmFound.name;
                 //if have opened saveTemp panel and change, we need to reset that panel.
@@ -274,19 +274,20 @@
             });
 
             modalInstance.result.then(function (result) {
-                if(result===true)
-                {
-                    console.log(vmId);
+                 if(result===true)
+                 {
+                    console.log(vmId);  
+                    return vmId; 
                 }
-                console.log('Modal dismissed at: ' + new Date());
-            });
+                  console.log('Modal dismissed at: ' + new Date());
+                });
         }
 
         function selectNetwork(list) {
 
         }
 
-
+        
     }
 
 })();

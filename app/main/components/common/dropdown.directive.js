@@ -33,7 +33,7 @@
                 listOpen: '=',
                 selectedList: '=',
                 attrToDisplay: '@',
-                isOptional: '='
+                isOptional: '@'
             },
             template: '<div class = \"ilab-dropdown-list\">\n' +
                 '<div class=\"ilab-dropdown-list-selected\">{{selectedList[attrToDisplay]}}&nbsp;</div>\n' +
@@ -64,7 +64,6 @@
                         scope.selectedList = {};
                         angular.copy(list, scope.selectedList);
                     }
-                    // scope.selectedList = list;
                 };
 
                 scope.listOpen = false;
