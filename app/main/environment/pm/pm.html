@@ -1,68 +1,60 @@
-<h3>List of PM</h3>
-    <ul>
-        <li ng-repeat="item in PhysicalMachine.envs">{{item}}</li>
-    </ul>
 <div>
-    {{PM.environments}}
-</div>
-<div>
-    <div class="progress active">
-        <div class="progress-bar progress-bar-success" id="statusBar{{tool.Value}}" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%">
-        </div>
-    </div>
-    <button type="button" class="btn btn-primary listButton">Add PM</button>
-    <div class="dropdown clearfix inline listButton">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="PhysicalMachine.deletePhysicalMachine.selectedPhysicalMachines.length == 0">
+    <button type="button" class="btn btn-primary" ng-click="PMdetail.addNewPhysicalMachine">Add PM</button>
+    <div class="dropdown clearfix inline">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="PMDetail.deletePhysicalMachine.selectedPhysicalMachines.length == 0">
             Actions
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(PMDetail.deletePhysicalMachine.selectedPhysicalMachines, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                     <span>Power On</span></a>
             </li>
-            <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+            <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(PMDetail.deletePhysicalMachine.selectedPhysicalMachines, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                     <span>Power Off</span></a>
             </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(PMDetail.deletePhysicalMachine.selectedPhysicalMachines, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
                     <span>Restart</span></a>
             </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="PMDetail.openDeleteDialog(PMDetail.deletePhysicalMachine.selectedPhysicalMachines)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
                     <span class="mark-as-red">Delete</span></a></li>
         </ul>
     </div>
-    <span class="ilabicon-displaycolumn" id="displaycolumn-PhysicalMachine"></span>
+    <span class="ilabicon-displaycolumn displaycolumn-pm"></span>
     <!-- <span class="intelicon-search" id="search-PhysicalMachine"></span>    -->
     <input type="search" class="search-panel" placeholder="Search" ng-model='searchInput' autofocus>
 </div>
-
+<!---->
 <!-- PhysicalMachine table from here-->
-<table ng-show="PhysicalMachine.PhysicalMachines.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="PhysicalMachine-table">
+<table ng-show="PMDetail.PhysicalMachines.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="PhysicalMachine-table">
     <thead>
         <tr>
             <th>
                 <div class="inline">
-                    <input type="checkbox" id="choose_all_env" ng-click="PhysicalMachine.toggleCheckAll()" ng-checked="PhysicalMachine.deletePhysicalMachine.selectedPhysicalMachines.length == PhysicalMachine.PhysicalMachines.length" />
+                    <input type="checkbox" id="choose_all_env" ng-click="PMDetail.toggleCheckAll()" ng-checked="PMDetail.deletePhysicalMachine.selectedPhysicalMachines.length == PMDetail.PhysicalMachines.length" />
                     <label for="choose_all_env"></label>
                 </div>
             </th>
-            <th ng-repeat="th in PhysicalMachine.thead" class="" ng-click="PhysicalMachine.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(PhysicalMachine.sort.descending)&&PhysicalMachine.sort.column == th.name, 'ilab-sort-asc':(PhysicalMachine.sort.descending&&PhysicalMachine.sort.column == th.name)}">{{th.display}}</th>
+            <th ng-repeat="th in PMDetail.PMThead">{{th.display}}</th>
         </tr>
     </thead>
         <tbody>
-        <tr dir-paginate-start="PhysicalMachines in PhysicalMachine.PhysicalMachines | itemsPerPage: 4|filter:searchInput">
+        <tr dir-paginate-start="PhysicalMachines in PMDetail.PhysicalMachines | itemsPerPage: 4|filter:searchInput">
             <td>
                 <div class="inline">
-                    <input type="checkbox" id="{{PhysicalMachines.id}}" checklist-model="PhysicalMachine.deletePhysicalMachine.selectedPhysicalMachines" checklist-value="PhysicalMachines.id" />
+                    <input type="checkbox" id="{{PhysicalMachines.id}}" checklist-model="PMDetail.deletePhysicalMachine.selectedPhysicalMachines" checklist-value="PhysicalMachines.id" />
                     <label for="{{PhysicalMachines.id}}"></label>
                 </div>
-                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="PhysicalMachine.showPhysicalMachineEdit(PhysicalMachines.id)" dialog-helper="exit-PhysicalMachineTpl-config" dialog-placement="bottom"></span>
+                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="PMDetail.showPhysicalMachineEdit(PhysicalMachines.id)" dialog-helper="exit-PhysicalMachineTpl-config" dialog-placement="bottom"></span>
             </td>
             <td class="mark-as-blue">{{PhysicalMachines.name}}</td>
             <td>
                 <span ng-repeat="networks in PhysicalMachines.network"><p>{{networks.ip}}</p></span>
             </td>
             <td>
-                <div ng-class="{'scuccess':physicalmachine.ststus === 'Running',  }"></div>
+                <div class="progress" popover="10 mins of 30 mins left" popover-trigger="mouseenter">
+                    <div class="progress-bar progress-bar-success" id="statusBar{{someType}" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:75%">
+                    </div>
+                </div>
             </td>
             <td>
                 <button type="button" class="btn btn-secondary">Connect</button>
@@ -92,3 +84,5 @@
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
+
+

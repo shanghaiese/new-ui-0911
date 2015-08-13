@@ -3,10 +3,8 @@
     //  declear modules
     angular.module('ilabService', []);
 
-    angular.module('ilabDirective', [
-                           'checklist-model'                           
-                           ]);
-
+    angular.module('ilabDirective', ['checklist-model',
+        'ecilab.directives']);
     angular.module('ilabFilter', []);
     angular.module('ilabWidget', []);
     angular.module('ilabConfig', ['ui.router', 'restangular','angularUtils.directives.dirPagination','angularUtils.directives.uiBreadcrumbs']);

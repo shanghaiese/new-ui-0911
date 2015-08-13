@@ -1,43 +1,55 @@
 /*Colin add pm list table style*/
 
 .listButton{
-	display:inline-block;
+	  display:inline-block;
 }
 
+.displaycolumn-pm {
+    float: right;
+    margin: 0.5em;
+    color: $blue;
+    display: inline-block;
+}
+
+/*progress bar style @todo maybe a directive*/
 .progress {
-  overflow: hidden;
-  height: 20px;
-  margin-bottom: 20px;
-  background-color: #edeff0;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    overflow: hidden;
+    width:100px;
+    height: 10px;
+    margin-bottom: 0px;
+    background-color: #edeff0;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    box-shadow: inset 0 1px 2px rgba(0,0,0,.1);
+    cursor: pointer;
+
+    .progress-bar {
+      float: left;
+      width: 0;
+      height: 100%;
+      font-size: 14px;
+      line-height: 20px;
+      color: $white;
+      text-align: center;
+      background-color: #0071c5;
+      -webkit-transition: width .6s ease;
+      -o-transition: width .6s ease;
+      transition: width .6s ease;
+      cursor: pointer;
+    }
+
+    .progress-bar-success {
+      background-color: $green;
+    }
+
+    .progress-bar-warning {
+      background-color: $yellow;
+    }
+
+    .progress-bar-danger {
+      background-color: $red;
+    }
 }
 
-.progress-bar {
-  float: left;
-  width: 0;
-  height: 100%;
-  font-size: 14px;
-  line-height: 20px;
-  color: #fff;
-  text-align: center;
-  background-color: #0071c5;
-  -webkit-transition: width .6s ease;
-  -o-transition: width .6s ease;
-  transition: width .6s ease;
-}
 
-.progress-bar-success {
-  background-color: #a6ce39;
-  width:25%;
-}
-
-.progress-bar-warning {
-  background-color: #fdb813;
-}
-
-.progress-bar-danger {
-  background-color: #ed1c1a;
-}
 

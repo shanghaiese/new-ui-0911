@@ -41,7 +41,9 @@
             })
             .state('env.pm', {
                 url: "/pm",
-                templateUrl: "main/environment/pm/pm.html"
+                templateUrl: "main/environment/pm/pm.html",
+                controller: "physicalMachineCtrl",
+                controllerAs: "PMDetail"
             })
             .state('envBasic', {
                 url: "/environment-basic/:envId",

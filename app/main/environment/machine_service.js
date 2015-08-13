@@ -19,7 +19,9 @@
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,
-            transDetailForDis:transDetailForDis,
+            getPhysicalMachineThead: getPhysicalMachineThead,
+            getPhysicalMachineDetail: getPhysicalMachineDetail,
+            transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
@@ -44,6 +46,106 @@
             }];
             return thead;
         }
+
+        //mock data for PM table 
+        function getPhysicalMachineThead() {
+            var physicalmachineThead = [{
+                display: 'Name',
+                name: 'name'
+            }, {
+                display: 'IP',
+                name: 'network[0].ip'
+            }, {
+                display: 'Reservation',
+                name: 'progressRate'
+            }, {
+                display: 'Connect',
+                name: 'console'
+            }, {
+                display: 'Power',
+                name: 'power'
+            }];
+            return physicalmachineThead;
+        }
+
+        function getPhysicalMachineDetail() {
+            var physicalmachineDetail = [{
+                    "id": 3638301,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '1ilabclient01_win2008R2_with_agentPM',
+                    "power": 0,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.241"
+                    }],
+                    "progressRate":'75%'                 
+                }, {
+                    "id": 3638302,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '1ilabclient01_win2008R2_with_agentPM',
+                    "power": 1,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.241"
+                    }],
+                    "progressRate":'75%'
+                }, {
+                    "id": 3638303,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '1ilabclient01_win2008R2_with_agentPM',
+                    "power": 0,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.241"
+                    }],
+                    "progressRate":'75%'
+                }, {
+                    "id": 3638304,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '1ilabclient01_win2008R2_with_agentPM',
+                    "power": 1,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.241"
+                    }],
+                    "progressRate":'75%'
+                }, {
+                    "id": 3638305,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '1ilabclient01_win2008R2_with_agentPM',
+                    "power": 2,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.241"
+                    }],
+                    "progressRate":'75%'
+                }
+            ];
+            
+            return physicalmachineDetail;
+
+        }
+
 
         //mock data for Table Body
         function getVMDetail() {
