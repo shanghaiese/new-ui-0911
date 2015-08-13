@@ -2,7 +2,6 @@
 
     //  declear modules
     angular.module('ilabService', []);
-
     angular.module('ilabDirective', ['checklist-model',
         'ecilab.directives']);
     angular.module('ilabFilter', []);

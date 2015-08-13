@@ -9,15 +9,12 @@
     function VMCtrl(machine, $filter, $modal, $sce) {
         var that = this;
         var orderBy = $filter('orderBy');
-
-        that.VMs = [];
-        that.thead = [];
-        that.VMInfo = [];
         that.deleteVM = {
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = false;
+        that.showPage = true;
+        
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
@@ -35,12 +32,17 @@
         that.CPU = []; //dropdown list
         that.Memory = []; //dropdown list, has relation with CPU
         that.Network = []; //dropdown list(test)
-        that.cancelConfig = cancelConfig; //configTmp=vmFound
+        that.cancelConfig = cancelConfig; //configTmp=vmTemp
         that.updateConfig = updateConfig; //update that.VMs
-        that.vmFound = {}; //store original data
+        that.vmTemp = {}; //store original data
         that.closePanel = closePanel; //close
+        //make the selected item in dropdown list to show
         that.selectNetwork = selectNetwork;
-
+        that.selectMemory = selectMemory;
+        that.selectCPU = selectCPU;
+        //change the repeat number of tpl
+        that.changeTplNumber = changeTplNumber;
+        that.tplConfig = [];
         //saveTemplatePanel
         that.saveTemp = {};
         that.saveVMTemplate = saveVMTemplate;
@@ -54,7 +56,7 @@
             network: []
         };
 
-        that.vmFound = {
+        that.vmTemp = {
             id: "",
             name: "",
             description: "",
@@ -117,28 +119,28 @@
             arr.splice(0, arr.length);
         }
 
-        /*store vmFound as a temp var by vmid*/
+        /*store vmTemp as a temp var by vmid*/
         function getVMById(vmid) {
-            clearArr(that.vmFound.network);
+            clearArr(that.vmTemp.network);
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
-                    that.vmFound.id = obj.id;
-                    that.vmFound.name = obj.name;
-                    that.vmFound.description = obj.description;
+                    that.vmTemp.id = obj.id;
+                    that.vmTemp.name = obj.name;
+                    that.vmTemp.description = obj.description;
                     //var CPUMemoryArr = obj.configuration.split(',');
-                    that.vmFound.CPU.NumOfCPU = obj.cpus;
-                    that.vmFound.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
+                    that.vmTemp.CPU.NumOfCPU = obj.cpus;
+                    that.vmTemp.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj,key) {
-                        that.vmFound.network.push(obj);
+                        that.vmTemp.network.push(obj);
                     });
                 }
             });
             angular.forEach(that.CPU, function(obj, key) {
-                if (obj.NumOfCPU == that.vmFound.CPU.NumOfCPU) {
-                    that.vmFound.CPU.idx = obj.idx;
+                if (obj.NumOfCPU == that.vmTemp.CPU.NumOfCPU) {
+                    that.vmTemp.CPU.idx = obj.idx;
                 }
             });
-            //            return that.vmFound;
+            //            return that.vmTemp;
         }
         //select Virtual machine for delete
 
@@ -177,27 +179,44 @@
                 that.showPage = 0;
                 //clear vm.configTmp.network
             } else {
-                getVMById(vmid);
                 that.showPage = vmid;
+                getVMById(vmid);
+                
                 //find the vm idx;
-                that.configTmp.name = that.vmFound.name;
-                that.configTmp.description = that.vmFound.description;
+                that.configTmp.name = that.vmTemp.name;
+                that.configTmp.description = that.vmTemp.description;
                 that.configTmp.CPU = {
-                    idx: that.vmFound.CPU.idx,
-                    NumOfCPU: that.vmFound.CPU.NumOfCPU
+                    idx: that.vmTemp.CPU.idx,
+                    NumOfCPU: that.vmTemp.CPU.NumOfCPU
                 };
-                that.configTmp.memory.memory = that.vmFound.memory;
+                that.configTmp.memory.memory = that.vmTemp.memory;
                 clearArr(that.configTmp.network);
-                angular.forEach(that.vmFound.network, function(obj,key) {
+                angular.forEach(that.vmTemp.network, function(obj,key) {
                     that.configTmp.network.push(obj);
-                    console.log(obj);
                 });                
                 //saveTemplate panel
-                that.saveTemp.name = that.vmFound.name;
+                that.saveTemp.name = that.vmTemp.name;
+                clearArr(that.tplConfig);
+                var temp = {
+                    interface: "1",
+                    label: "1",
+                    ip: ""
+                };
+                that.tplConfig.push(temp);
                 //if have opened saveTemp panel and change, we need to reset that panel.
-
+                
             }
         }
+
+        function selectNetwork(netIndex, network) {
+            that.configTmp.network[netIndex].label = network.label;
+        }
+        function selectMemory(memory) {
+            that.configTmp.memory.memory = memory.memory;
+        }
+        function selectCPU(CPU) {
+            that.configTmp.CPU = CPU;
+        } 
 
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
@@ -212,16 +231,16 @@
 
         function cancelConfig(vmid) {
             getVMById(vmid);
-            that.configTmp.name = that.vmFound.name;
-            that.configTmp.description = that.vmFound.description;
-            that.configTmp.CPU.NumOfCPU = that.vmFound.CPU.NumOfCPU;
-            that.configTmp.memory.memory = that.vmFound.memory;
+            that.configTmp.name = that.vmTemp.name;
+            that.configTmp.description = that.vmTemp.description;
+            that.configTmp.CPU.NumOfCPU = that.vmTemp.CPU.NumOfCPU;
+            that.configTmp.memory.memory = that.vmTemp.memory;
             clearArr(that.configTmp.network);
-            angular.forEach(that.vmFound.network, function(obj,key) {
+            angular.forEach(that.vmTemp.network, function(obj,key) {
                 console.log(obj.label);
                 that.configTmp.network.push(obj);
             });//? it doesn't work
-            that.saveTemp.name = that.vmFound.name;
+            that.saveTemp.name = that.vmTemp.name;
             that.saveTemp.modeSaveDisk.saveMode = "convert";
             that.saveTemp.modeSaveDisk.diskMode = "chain";
         }
@@ -245,6 +264,26 @@
             //Here need to add update();
             //close the panel
             showVmEdit(vmid);
+        }
+
+        function changeTplNumber(tplConfig, bool) {
+            var number = tplConfig.length;
+            console.log(number);
+            if (bool) {
+                if(number+1 > 4) 
+                    return -1;
+                var temp = {
+                    interface: number+1,
+                    label: number+1,
+                    ip: ""
+                };
+                tplConfig.push(temp);
+            } else {
+                if(number-1 < 1)
+                    return -1;
+                tplConfig.pop();
+            }
+            
         }
 
         function closePanel(vmid) {
@@ -283,9 +322,7 @@
                 });
         }
 
-        function selectNetwork(list) {
 
-        }
 
         
     }

@@ -2,7 +2,7 @@
 <!-- <table class="table table-bordered table-striped table-intel"> -->
 <!-- <tr> -->
 <td colspan="6" class="advVMInnerSetting td-collapsed">
-    <div collapse="vms.id != VM.showPage">
+    <div collapse="VM.showPage != vms.id">
         <span class="intelicon-close-max" ng-click="VM.closePanel(vms.id)"></span>
         <tabset class="VMSettingTabs" type="pills">
             <!--ChangeVMSettingPanel-->
@@ -22,33 +22,39 @@
                     </div>
                     <div class="intel-setting-group">
                         <label>CPU:</label>
-                        <ilab-dropdown lists="VM.CPU" attr-to-display="NumOfCPU" selected-list="VM.configTmp.CPU" list-open="false"></ilab-dropdown>
-                    </div>
-                    <div class="intel-setting-group">
-                        <label>Memory:</label>
-                        <span>
-                            <ilab-dropdown lists="VM.Memory[VM.configTmp.CPU.idx]" attr-to-display="memory" selected-list="VM.configTmp.memory"></ilab-dropdown>
-                        </span>
-                    </div>
-                    <div class="intel-setting-group">
-                        <label>Network:</label>
-                        <!--span class="ilab-dropdown-multiple" ng-repeat="networks in VM.configTmp.network">
-                            <ilab-dropdown lists="VM.Network" attr-to-display="label" selected-list="networks"></ilab-dropdown>
-                        </span-->
-                        <div class="dropdown" style="display: inline-block" ng-repeat="networks in VM.configTmp.network">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{networks.label}}
+                        <div class="dropdown" style="display: inline-block">
+                            <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                {{VM.configTmp.CPU.NumOfCPU}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="selectNetwork(list)"><a role="menuitem" tabindex="-1" href="#">{{list.label}}</a></li>
-
+                                <li role="presentation" ng-repeat="list in VM.CPU" ng-click="VM.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
                             </ul>
                         </div>
-
                     </div>
-                    <div> {{VM.configTmp.description}}</div>
-                    <div> {{VM.configTmp.network[0].label}}</div>
+                    <div class="intel-setting-group">
+                        <label>Memory:</label>
+                        <div class="dropdown" style="display: inline-block">
+                            <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                                {{VM.configTmp.memory.memory}}
+                                <span class="caret"></span>
+                            </button>
+
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li role="presentation" ng-repeat="list in VM.Memory[VM.configTmp.CPU.idx]" ng-click="VM.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <label class="network">Network:</label>
+                    <div class="intel-setting-group dropdown advEnvNetworkDiv" ng-repeat="(index, value) in VM.configTmp.network">
+                        <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            {{value.label}}
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.label}}</a></li>
+                        </ul>
+                    </div>
                     <div class="intel-setting-group">
                         <span class="settingButtonGroup">
                             <button class="btn btn-primary" type="submit">Update</button>
@@ -85,10 +91,17 @@
                         <span class="saveTempRadioLabel">Copy</span>
                         <span class="intelicon-help-solid tip" tooltip-html="VM.htmlTooltipDisk" tooltip-placement="right"></span>
                     </div>
-                    <div class="intel-setting-group">
-                        <label class="vmDefaultNet">Default Net:</label>
-                        <span class="vmDefaultNicGroup">Nic1:</span>
-                        <ilab-dropdown lists="VM.Network" attr-to-display="Nic" selected-list="VM.configTmp.Network"></ilab-dropdown>
+                    <label for="advEnvNetwork" class="network">Default Net:</label>
+                    <div class="intel-setting-group dropdown advEnvNetworkDiv" ng-repeat="(index, value) in VM.tplConfig">
+                        <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                            {{value.label}}
+                            <span class="caret"></span>
+                        </button>
+                        <span class="intelicon-minus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, false)"></span>
+                        <span class="intelicon-plus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, true)"></span>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                            <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.label}}</a></li>
+                        </ul>
                     </div>
                     <div class="intel-setting-group">
                         <span class="settingButtonGroup">

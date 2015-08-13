@@ -83,13 +83,9 @@ body {
 .alert-box {
     position: fixed;
     top: 60px;
-	left: 50%;
-	@include translate(-50%, 0);
 	padding: 5px;
 }
 .alert {
-	display: block;
-	padding: 10px;
 	margin-bottom: 5px;
     border: 0;
     color: white;
@@ -124,7 +120,6 @@ body {
  
 .alert.ng-leave.ng-leave-active,
 .alert.ng-enter {
-	padding: 0;
 	margin-bottom: 0;
     top: -50px;
     height: 0px;
@@ -211,10 +206,22 @@ body {
 }
 
 .table-intel {
+
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
+        color: $light-blue;
+        background-color: $dark-gray;
+    }       
+    .nav>li>a {
+        position: relative; 
+        display: block;
+        padding: 10px 20px 10px 20px;
+        color: $white;
+        font-size: 20px;
+    }
     .nav-pills {
-        background-color: #53565A;
+        background-color: $dark-gray;
         li > a {
-            color: #FFFFFF;
+            color: white;
             padding: 11px 20px;
             font-size: 18px;
         }
@@ -223,7 +230,7 @@ body {
         li.active > a:hover,
         li.active > a:focus,
         li > a:hover {
-            color: #00AEEF;
+            color: $light-blue;
             padding: 11px 20px;
             font-size: 18px;
         }
@@ -259,14 +266,7 @@ body {
     .intel-setting-group {
         height: 2.5em;
         padding-bottom: 0.5em;
-        label {
-            text-align: left;
-            margin-left: 0.5em;
-            display: inline-block;
-            vertical-align: middle;
-            width: 6em;
-            font-weight: normal;
-        }
+
         input[type="text"] {
             display: inline-block;
             vertical-align: left;
@@ -274,7 +274,7 @@ body {
             border-width: 1px;
             border-color: transparent;
             min-width: 11.2em;
-            color: #53565A;
+            color: $dark-gray;
         }
         input[type="radio"] {
             vertical-align: left;
@@ -288,10 +288,10 @@ body {
             border-radius: 50%;
         }
         input[type='radio']:hover {
-            box-shadow: 0 0 5px 0px #0071C5 inset;
+            box-shadow: 0 0 5px 0px $blue inset;
         }
         input[type='radio']:checked:before {
-            background: #0071C5;
+            background: $blue;
         }
         .settingButtonGroup {
             margin-left: 6.7em;
@@ -303,33 +303,63 @@ body {
             min-width: 4.5em;
         }
         .intelicon-help-solid {
-            color: #939598;
+            color: $gray;
             margin-top: 2px;
         }
         .intelicon-help-solid:hover {
-            color: #53565A;
+            color: $dark-gray;
         }
         .vmDefaultNicGroup {
             display: inline-block;
             width: 3em;
+        }   
+        .intelicon-minus-solid{
+            padding-left: 5px;
+            color: $blue;
+        }
+        .intelicon-plus-solid {
+            padding-left: 5px;
+            color: $blue;
         }
     }
+    .advEnvNetwork {
+        min-width: 11.2em;
+    }
+
+    .network+div {
+        display: inline-block;
+        min-width: 11.2em;
+        margin-left: 0em;
+    }
+
+    .advEnvNetworkDiv+.advEnvNetworkDiv {
+        margin-left: 6.7em;
+    }
+
+
 }
 
 .advVMInnerSetting {
     .intelicon-close-max {
         float: right;
         font-size: 15px;
-        background-color: #53565A;
-        color: #FFFFFF;
+        background-color: $dark-gray;
+        color: $white;
         margin: 1em;
     }
 }
 
 .tooltip-inner {
-    text-align: left;
     padding: 5px;
     min-width: 260px;
     max-width: 350px;
     width: 250px;
+    table tbody {
+        color: $white;
+        td {
+            vertical-align: top;
+            text-align: left;
+        }
+    }
+    
 }
