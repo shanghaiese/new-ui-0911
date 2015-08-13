@@ -30,8 +30,8 @@
         <tr>
             <th>
                 <div class="inline">
-                    <input type="checkbox" id="choose_all_env" ng-click="PMDetail.toggleCheckAll()" ng-checked="PMDetail.deletePhysicalMachine.selectedPhysicalMachines.length == PMDetail.PhysicalMachines.length" />
-                    <label for="choose_all_env"></label>
+                    <input type="checkbox" id="choose_all_pm" ng-click="PMDetail.toggleCheckAll()" ng-checked="PMDetail.deletePhysicalMachine.selectedPhysicalMachines.length == PMDetail.PhysicalMachines.length" />
+                    <label for="choose_all_pm"></label>
                 </div>
             </th>
             <th ng-repeat="th in PMDetail.PMThead">{{th.display}}</th>
