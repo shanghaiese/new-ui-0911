@@ -16,6 +16,7 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "welcome";
 @import "menu";
 @import "infoCard";
+@import "tableColumnFilter";
 
 body {
 	margin-top: 50px;
@@ -134,8 +135,7 @@ body {
 	position: relative;
 }
 div[ui-view] {
-	position: absolute;
-	width: 100%;
+	position: relative;
 }
 div[ui-view].ng-enter,
 div[ui-view].ng-leave {

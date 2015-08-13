@@ -2,7 +2,6 @@
 
     angular
         .module('ilabConfig')
-        .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
         .config(restangular)
         .config(pagination)
@@ -71,7 +70,7 @@
     restangular.$inject = ['RestangularProvider'];
 
     function restangular(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/mockapi');
+        RestangularProvider.setBaseUrl('/services/api');
         RestangularProvider.setRestangularFields({
             selfLink: 'self.href'
         });
