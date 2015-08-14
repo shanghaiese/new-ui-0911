@@ -20,7 +20,7 @@
         	}
         };
 
-        console.log(environment.get('2067601'));
+        // console.log(environment.get('2067601'));
         environment.getList({expand: 'virtualMachines'}).then(function(envs) {
             that.envs = envs;
             vm.get(envs[0].virtualMachines[0].id).then(function(data) {

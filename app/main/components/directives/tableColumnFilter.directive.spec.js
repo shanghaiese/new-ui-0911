@@ -12,7 +12,7 @@ describe('table column filter directive:', function() {
         scope.columns = ['a', 'b', 'c'];
         element = $compile(element)(scope);
         scope.$digest();
-    }))
+    }));
 
     describe('with the given columns value', function() {
         it('should compile directive to html', function() {
@@ -33,6 +33,6 @@ describe('table column filter directive:', function() {
             expect(isolated.isOpen).toBe(true);
         });
         
-    })
+    });
 
 });

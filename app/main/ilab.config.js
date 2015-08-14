@@ -71,9 +71,6 @@
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api');
-        RestangularProvider.setRestangularFields({
-            selfLink: 'self.href'
-        });
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
