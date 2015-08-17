@@ -8,6 +8,10 @@
 
     function VMCtrl(machine, $filter, $modal, $sce) {
         var that = this;
+
+        //that.vms = machine.getList();
+        //console.log(that.vms);
+        
         var orderBy = $filter('orderBy');
         that.deleteVM = {
             selectedVMs: []
@@ -176,8 +180,10 @@
             //that.showPage = !that.showPage;
             if (that.showPage == vmid) {
                 that.showPage = 0;
+
                 //clear vm.configTmp.network
             } else {
+                clearArr(that.vmTemp.network);
                 getVMById(vmid);
                 that.showPage = vmid;
                 //find the vm idx;

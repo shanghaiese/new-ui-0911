@@ -126,9 +126,9 @@ body {
 }
 
 /*vm table font color*/
-.mark-as-$blue
+.mark-as-blue
  {
-    color: $$blue;
+    color: $blue;
 }
 .mark-as-red
  {
@@ -184,7 +184,7 @@ body {
 #displaycolumn-vm {
     float: right;
     margin: 0.5em;
-    color: $$blue;
+    color: $blue;
     display: inline-block;
 }
 
@@ -194,7 +194,7 @@ body {
 }
 
 #vm-configuration {
-    color: $$blue;
+    color: $blue;
     display: inline-block;
     cursor: pointer;
 }
