@@ -3,9 +3,13 @@
 <div>
     <ol class="breadcrumb">
       <li><a ui-sref="allEnv">All Environment</a></li>
-      <li><a class="intel-selected" ui-sref="env.vm({envId: 'env1'})">advanced</a></li>
+      <li>Environment env1</li>
     </ol>
 </div>
+<div>
+    <li><a class="intel-selected" ui-sref="env.vm({envId: 'env1'})">advanced</a></li>
+</div class="listVMs">
+    <div> Virtual Machines : {{vmMulti.vmCount}}</div>
     <carousel>
           <slide ng-repeat="vm in vmMulti.vms">
               <div  class="caro">

@@ -11,7 +11,8 @@
                 var that = this;
                 
                 that.vms = multiPage.MultiVMMockData();
-                
+                that.vmCount = that.vms.length;
+                console.log(that.vmCount);
                 that.connect = connect;
 
                 function jumpDetail(id){

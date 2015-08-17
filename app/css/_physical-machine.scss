@@ -1,15 +1,16 @@
 /*Colin add pm list table style*/
 
-.listButton{
-	  display:inline-block;
+
+div{
+    .displaycolumn-pm {
+        float: right;
+        margin: 0.5em;
+        color: $blue;
+        display: inline-block;
+    }  
+    
 }
 
-.displaycolumn-pm {
-    float: right;
-    margin: 0.5em;
-    color: $blue;
-    display: inline-block;
-}
 
 /*progress bar style @todo maybe a directive*/
 .progress {
@@ -24,30 +25,30 @@
     cursor: pointer;
 
     .progress-bar {
-      float: left;
-      width: 0;
-      height: 100%;
-      font-size: 14px;
-      line-height: 20px;
-      color: $white;
-      text-align: center;
-      background-color: #0071c5;
-      -webkit-transition: width .6s ease;
-      -o-transition: width .6s ease;
-      transition: width .6s ease;
-      cursor: pointer;
+        float: left;
+        width: 0;
+        height: 100%;
+        font-size: 14px;
+        line-height: 20px;
+        color: $white;
+        text-align: center;
+        background-color: #0071c5;
+        -webkit-transition: width .6s ease;
+        -o-transition: width .6s ease;
+        transition: width .6s ease;
+        cursor: pointer;
     }
 
     .progress-bar-success {
-      background-color: $green;
+        background-color: $green;
     }
 
     .progress-bar-warning {
-      background-color: $yellow;
+        background-color: $yellow;
     }
 
     .progress-bar-danger {
-      background-color: $red;
+        background-color: $red;
     }
 }
 
