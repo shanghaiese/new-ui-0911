@@ -46,7 +46,7 @@
             if (!isMaxed()) {
             	var o = checkOption(option);
             	o.index = _id++;
-            	_alerts.push(o);
+            	_alerts.unshift(o);
                 if(o.type === 'success') {
                     $timeout(function() {
                         close(o.index);
