@@ -23,6 +23,15 @@ body {
 	margin-bottom: 50px;
 	min-width: 600px;
 }
+/* use this class to disbale selection of text when double/tripple click */
+.no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 /* style for menu btn that trigger menu hide/open */
 #menu-toggle {

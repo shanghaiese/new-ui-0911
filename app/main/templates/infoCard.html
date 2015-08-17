@@ -1,5 +1,5 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="clickCard()" dropdown-toggle >
+	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="toggle()" dropdown-toggle >
 		<div class="tag-icon">
 			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
@@ -8,7 +8,7 @@
 			<img src="image/refresh_icon_18x18.gif" ng-show="false"/>
 		</div>		
 	</div>
-	<div class="info" ng-show="showInfo();">
+	<div class="info" ng-show="isShown">
 		<h2 class="card-key">{{info.name}}</h2>
 		<small >{{info.description}}</small>
 
