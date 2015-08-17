@@ -1,15 +1,24 @@
  /*****************All Environment list style **********
   *********yufan add 07/22/2015******************/
   .all-env {
-      .btn {
+      .env {
         height: 8%;
         width: 100%;
         text-align: left;
+        float:left;
+        border: 1px solid $light-gray;
+        margin-top: 5px;
     }
-    .btn-group {
+      .env:hover{ 
+        background-color:$lighter-gray2;
+        cursor:pointer;
+    }
+
+    .env-list {
         h6 {
         margin: 1% 1%;
-        font-weight: 1000;
+        color:$blue;
+        font-weight: 600;
         }
          ul {
             list-style:none;

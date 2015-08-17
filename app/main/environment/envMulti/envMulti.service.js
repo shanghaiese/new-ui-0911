@@ -1,6 +1,3 @@
-/** @Display the all environment list in multiple pages
-    @add by yufan
- */
 (function() {
     'use strict';
 
@@ -171,9 +168,7 @@
                 }
 
                mockData = chunk(mockData,12);
-           
-
-              return {
+               return {
                 getVMDetail: getVMDetail,
 
                 MultiVMMockData: function(){
