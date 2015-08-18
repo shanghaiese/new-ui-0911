@@ -54,9 +54,7 @@
             }
 
              function outsideClick(evt) {
-                if (!scope.isOpen) {
-                    return;
-                }
+                
                 if (element[0].contains(evt.target)) {
                     return;
                 }
