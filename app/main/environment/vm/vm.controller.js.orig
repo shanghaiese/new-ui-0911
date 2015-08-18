@@ -17,7 +17,7 @@
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = 0;
+        that.showPage = true;
         
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
@@ -110,10 +110,7 @@
         activate();
 
         function activate() {
-            // machine.getVMDetail().then(function(data) {
-            //     that.VMs = data;
-            // });
-            that.VMs = machine.getVMDetail().$object;
+            that.VMs = machine.getVMDetail();
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -187,8 +184,11 @@
 
                 //clear vm.configTmp.network
             } else {
+<<<<<<< HEAD
+=======
                 clearArr(that.vmTemp.network);
                 getVMById(vmid);
+>>>>>>> 02b43b51d6ce71673a077f3cccca78ab9b3f1b0a
                 that.showPage = vmid;
                 getVMById(vmid);
                 
