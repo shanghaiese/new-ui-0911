@@ -43,19 +43,13 @@
                 url: "/pm",
                 templateUrl: "main/environment/pm/pm.html"
             })
-            .state('envBasic', {
-                url: "/environment-basic/:envId",
-                templateUrl: "main/environment/envBasic/envBasic.html",
-                controller: "envBasicCtrl",
-                controllerAs: 'envBasic'
-            })
             .state('envs', {
                 url: '/environments',
                 templateUrl: "main/environment/envs.html"
             })
-            .state('envMulti',{
-                url:"/envMulti",
-                templateUrl:"main/environment/envMulti/envMulti.html",
+            .state('envBasic',{
+                url:"/envBasic",
+                templateUrl:"main/environment/envBasicView/envBasicView.html",
                 controller:"VMMultiCtrl",
                 controllerAs:'vmMulti'
             })
