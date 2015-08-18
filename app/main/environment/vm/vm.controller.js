@@ -8,9 +8,6 @@
 
     function VMCtrl(machine, $filter, $modal, $sce) {
         var that = this;
-
-        //that.vms = machine.getList();
-        //console.log(that.vms);
         
         var orderBy = $filter('orderBy');
         that.deleteVM = {
@@ -32,23 +29,23 @@
 
         //For small table 4-panels setting
         that.configTmp = {}; //viewTemplate data
+        that.vmTemp = {}; //store original data
         that.CPU = []; //dropdown list
         that.Memory = []; //dropdown list, has relation with CPU
         that.Network = []; //dropdown list(test)
         that.cancelConfig = cancelConfig; //configTmp=vmTemp
         that.updateConfig = updateConfig; //update that.VMs
-        that.vmTemp = {}; //store original data
-        that.closePanel = closePanel; //close
+
         //make the selected item in dropdown list to show
         that.selectNetwork = selectNetwork;
         that.selectMemory = selectMemory;
         that.selectCPU = selectCPU;
-        //change the repeat number of tpl
-        that.changeTplNumber = changeTplNumber;
-        that.tplConfig = [];
+
         //saveTemplatePanel
         that.saveTemp = {};
         that.saveVMTemplate = saveVMTemplate;
+        that.changeTplNumber = changeTplNumber;
+        that.tplConfig = [];
 
         that.saveTemp = {
             name: "",
@@ -67,21 +64,8 @@
                 idx: "",
                 NumOfCPU: ""
             },
-            memory: "",
+            memory: {memory: ""},
             //? network maybe multiple
-            network: [{interface: "", label: "", ip: ""}]
-        };
-
-        that.configTmp = {
-            name: "",
-            description: "",
-            CPU: {
-                idx: 0,
-                NumOfCPU: ""
-            },
-            memory: {
-                memory: ""
-            },
             network: [{interface: "", label: "", ip: ""}]
         };
 
@@ -109,7 +93,9 @@
         activate();
 
         function activate() {
-            that.VMs = machine.getVMDetail();
+            machine.getVMDetail().then(function(data) {
+                that.VMs = data;
+            });
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -118,13 +104,9 @@
 
         }
 
-        function clearArr(arr) {
-            arr.splice(0, arr.length);
-        }
-
         /*store vmTemp as a temp var by vmid*/
         function getVMById(vmid) {
-            clearArr(that.vmTemp.network);
+            that.vmTemp.network = [];
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
@@ -132,7 +114,7 @@
                     that.vmTemp.description = obj.description;
                     //var CPUMemoryArr = obj.configuration.split(',');
                     that.vmTemp.CPU.NumOfCPU = obj.cpus;
-                    that.vmTemp.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
+                    that.vmTemp.memory.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj,key) {
                         that.vmTemp.network.push(obj);
                     });
@@ -180,27 +162,16 @@
             //that.showPage = !that.showPage;
             if (that.showPage == vmid) {
                 that.showPage = 0;
-
+                cancelConfig(vmid);
                 //clear vm.configTmp.network
             } else {
-                clearArr(that.vmTemp.network);
                 getVMById(vmid);
                 that.showPage = vmid;
                 //find the vm idx;
-                that.configTmp.name = that.vmTemp.name;
-                that.configTmp.description = that.vmTemp.description;
-                that.configTmp.CPU = {
-                    idx: that.vmTemp.CPU.idx,
-                    NumOfCPU: that.vmTemp.CPU.NumOfCPU
-                };
-                that.configTmp.memory.memory = that.vmTemp.memory;
-                clearArr(that.configTmp.network);
-                angular.forEach(that.vmTemp.network, function(obj,key) {
-                    that.configTmp.network.push(obj);
-                });                
+                angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel
                 that.saveTemp.name = that.vmTemp.name;
-                clearArr(that.tplConfig);
+                that.tplConfig = [];
                 var temp = {
                     interface: "1",
                     label: "1",
@@ -234,16 +205,7 @@
         }
 
         function cancelConfig(vmid) {
-            getVMById(vmid);
-            that.configTmp.name = that.vmTemp.name;
-            that.configTmp.description = that.vmTemp.description;
-            that.configTmp.CPU.NumOfCPU = that.vmTemp.CPU.NumOfCPU;
-            that.configTmp.memory.memory = that.vmTemp.memory;
-            clearArr(that.configTmp.network);
-            angular.forEach(that.vmTemp.network, function(obj,key) {
-                console.log(obj.label);
-                that.configTmp.network.push(obj);
-            });//? it doesn't work
+            angular.copy(that.vmTemp, that.configTmp);
             that.saveTemp.name = that.vmTemp.name;
             that.saveTemp.modeSaveDisk.saveMode = "convert";
             that.saveTemp.modeSaveDisk.diskMode = "chain";
@@ -260,9 +222,7 @@
                     angular.forEach(obj.network, function(obj,key) {
                         var idx=parseInt(obj.interface)-1;
                         obj.label = that.configTmp.network[idx].label;
-                        console.log(obj.label);
                     });
-                    //console.log(obj.network.length);
                 }
             });
             //Here need to add update();
@@ -272,7 +232,6 @@
 
         function changeTplNumber(tplConfig, bool) {
             var number = tplConfig.length;
-            console.log(number);
             if (bool) {
                 if(number+1 > 4) 
                     return -1;
@@ -288,11 +247,6 @@
                 tplConfig.pop();
             }
             
-        }
-
-        function closePanel(vmid) {
-            cancelConfig(vmid);
-            showVmEdit(vmid);
         }
 
         function saveVMTemplate(vmid) {
