@@ -13,7 +13,7 @@
     <carousel>
           <slide ng-repeat="vm in vmMulti.vms">
               <div  class="caro">
-                  <info-card class="list-VMs" type="vm" info="item" on-connect="vmMulti.connect(id)" on-power="envBasic.powerOperation(id,op)"  ng-repeat="item in vm" ></info-card> 
+                  <info-card class="list-VMs" type="vm" info="item" on-connect="vmMulti.connect(id)" on-power="vmMulti.powerOperation(id,op)"  ng-repeat="item in vm" ></info-card> 
               </div>
           </slide>
      </carousel>

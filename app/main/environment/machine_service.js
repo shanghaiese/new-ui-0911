@@ -14,14 +14,13 @@
         .module('ilabService')
         .factory('machine', machineService);
 
+    //machineService.$inject = ['restangular']
     function machineService() {
 
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,
-            getPhysicalMachineThead: getPhysicalMachineThead,
-            getPhysicalMachineDetail: getPhysicalMachineDetail,
-            transDetailForDis: transDetailForDis,
+            transDetailForDis:transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
@@ -33,10 +32,10 @@
                 name: 'name'
             }, {
                 display: 'IP',
-                name: 'network[0].ip'
+                name: 'ip'
             }, {
                 display: 'Configuration',
-                name: 'cpus'
+                name: 'configuration'
             }, {
                 display: 'Connect',
                 name: 'console'
@@ -47,113 +46,13 @@
             return thead;
         }
 
-        //mock data for PM table 
-        function getPhysicalMachineThead() {
-            var physicalmachineThead = [{
-                display: 'Name',
-                name: 'name'
-            }, {
-                display: 'IP',
-                name: 'network[0].ip'
-            }, {
-                display: 'Reservation',
-                name: 'progressRate'
-            }, {
-                display: 'Connect',
-                name: 'console'
-            }, {
-                display: 'Power',
-                name: 'power'
-            }];
-            return physicalmachineThead;
-        }
-
-        function getPhysicalMachineDetail() {
-            var physicalmachineDetail = [{
-                    "id": 3638301,
-                    "path": "/vmfs/volumes/.../vm1.vmx",
-                    "name": '1ilabclient01_win2008R2_with_agentPM',
-                    "power": 0,
-                    "os": "windows7srv-64",
-                    "created_date":  "2015-06-01",
-                    "disable": 0,
-                    "network": [{
-                        "interface": 1,
-                        "label": "3638301_NIC1",
-                        "ip": "169.254.186.241"
-                    }],
-                    "progressRate":'75%'                 
-                }, {
-                    "id": 3638302,
-                    "path": "/vmfs/volumes/.../vm1.vmx",
-                    "name": '1ilabclient01_win2008R2_with_agentPM',
-                    "power": 1,
-                    "os": "windows7srv-64",
-                    "created_date":  "2015-06-01",
-                    "disable": 0,
-                    "network": [{
-                        "interface": 1,
-                        "label": "3638301_NIC1",
-                        "ip": "169.254.186.241"
-                    }],
-                    "progressRate":'75%'
-                }, {
-                    "id": 3638303,
-                    "path": "/vmfs/volumes/.../vm1.vmx",
-                    "name": '1ilabclient01_win2008R2_with_agentPM',
-                    "power": 0,
-                    "os": "windows7srv-64",
-                    "created_date":  "2015-06-01",
-                    "disable": 0,
-                    "network": [{
-                        "interface": 1,
-                        "label": "3638301_NIC1",
-                        "ip": "169.254.186.241"
-                    }],
-                    "progressRate":'75%'
-                }, {
-                    "id": 3638304,
-                    "path": "/vmfs/volumes/.../vm1.vmx",
-                    "name": '1ilabclient01_win2008R2_with_agentPM',
-                    "power": 1,
-                    "os": "windows7srv-64",
-                    "created_date":  "2015-06-01",
-                    "disable": 0,
-                    "network": [{
-                        "interface": 1,
-                        "label": "3638301_NIC1",
-                        "ip": "169.254.186.241"
-                    }],
-                    "progressRate":'75%'
-                }, {
-                    "id": 3638305,
-                    "path": "/vmfs/volumes/.../vm1.vmx",
-                    "name": '1ilabclient01_win2008R2_with_agentPM',
-                    "power": 2,
-                    "os": "windows7srv-64",
-                    "created_date":  "2015-06-01",
-                    "disable": 0,
-                    "network": [{
-                        "interface": 1,
-                        "label": "3638301_NIC1",
-                        "ip": "169.254.186.241"
-                    }],
-                    "progressRate":'75%'
-                }
-            ];
-            
-            return physicalmachineDetail;
-
-        }
-
-
         //mock data for Table Body
         function getVMDetail() {
             var detail = [{
                     "id": 3638301,
                     "path": "/vmfs/volumes/.../vm1.vmx",
                     "name": '1ilabclient01_win2008R2_with_agent',
-                    "cpus": 1,
+                    "cpus": 2,
                     "mem": 1024,
                     "power": 0,
                     "maxcpus": 32,
@@ -266,6 +165,816 @@
                         "ip": "169.254.186.245"
                     }],
                     "vmm": "10.223.136.221",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638306,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638307,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638308,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638309,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638310,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638311,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638312,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638313,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638314,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638315,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638316,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638317,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638318,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638319,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638320,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638321,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638322,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638323,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638324,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638325,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638326,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638327,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638328,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638329,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638330,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638331,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
+                    "disk1": "TBD"
+                }, {
+                    "id": 3638332,
+                    "path": "/vmfs/volumes/.../vm1.vmx",
+                    "name": '2ilabclient02_win2008R2_with_agent',
+                    "cpus": 2,
+                    "mem": 1024,
+                    "power": 0,
+                    "maxcpus": 32,
+                    "maxmem": 1035264,
+                    "minmem": 512,
+                    "os": "windows7srv-64",
+                    "created_date":  "2015-06-01",
+                    "disable": 0,
+                    "description": "description",
+                    "locked": false,
+                    "network": [{
+                        "interface": 1,
+                        "label": "3638301_NIC1",
+                        "ip": "169.254.186.242"
+                    }, {
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.243"
+                    },{
+                        "interface": 2,
+                        "label": "3638301_NIC2",
+                        "ip": "169.254.186.247"
+                    }],
+                    "vmm": "10.223.136.211",
                     "disk1": "TBD"
                 }
             ];

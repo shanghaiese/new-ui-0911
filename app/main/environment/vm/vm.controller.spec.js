@@ -1,4 +1,4 @@
-describe('vms controller', function() {
+/*describe('vms controller', function() {
     var scope, ctrl;
 
     beforeEach(module('ilab'));
@@ -168,4 +168,4 @@ describe('vms controller', function() {
     });
 
 
-});
+});*/

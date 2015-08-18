@@ -5,18 +5,27 @@
         .module('ilab')
         .controller('VMMultiCtrl',  VMMultiCtrl);
 
-            VMMultiCtrl.$inject = ['multiPage'];
+            VMMultiCtrl.$inject = ['machine'];
 
-            function VMMultiCtrl(multiPage){
+            function VMMultiCtrl(machine){
                 var that = this;
-                
-                that.vms = multiPage.MultiVMMockData();
-                that.vmCount = that.vms.length;
-                console.log(that.vmCount);
-                that.connect = connect;
+                that.vms = [];
+                that.vmCount = [];
 
-                function jumpDetail(id){
-                    console.log(id);
+
+                activate();
+                function activate() {
+                    that.vms = machine.getVMDetail();
+                    function chunk(arr, size) {
+                        var newArr = [];
+                        for (var i=0; i<arr.length; i+=size) {
+                            newArr.push(arr.slice(i, i+size));
+                        }
+                        return newArr;
+                    }
+                    that.vms = chunk(that.vms,12);
+
+                    that.vmCount = that.vms.length;
                 }
 
                 function connect(id) {
@@ -24,7 +33,7 @@
                 }
                 
                 function powerOperation(id, op) {
-                        var vm_tmp = multiPage.MultiVMMockData(status);
+                        var vm_tmp = machine.getVMDetail(power);
                         if (op === 'powerOn' && vm_tmp.status !== 'Running') {
                             console.log(id);
                         } else if (op === 'powerOff' && vm_tmp.status !== 'Stopped') {
