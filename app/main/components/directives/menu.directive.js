@@ -26,6 +26,7 @@
 
                 /*first clear id of all link, and add the id to the corresponding link*/
                 $(element).find('a').attr('id', '');
+                    console.log(toState);
                 if (environmentPageRegex.test(toState.name)) {
                     $(element).find('a[ui-sref^="envBasic"]').attr('id', 'selected-link');
                 } else if (labPageRegex.test(toState.name)) {
@@ -35,7 +36,7 @@
 
             /*check window size by accessing media query of class no*/
             function checkWindowSize() {
-                if ($('.no').css('font-size') === '1px') {
+                if (element.find('.no').css('font-size') === '1px') {
                     /* small screen, hide*/
                     $(element).find('.ilab-menu').removeClass('open');
                 } else {
