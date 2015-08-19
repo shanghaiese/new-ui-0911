@@ -1,13 +1,3 @@
-
-<h3>List of VM</h3>
-    <ul>
-        <li ng-repeat="item in VM.envs">{{ item }}</li>
-    </ul>
-<div>
-	{{VM.environments}}
-</div>
-
-
 <div>
     <button type="button" class="btn btn-primary">Add VM</button>
     <div class="dropdown clearfix inline">
@@ -16,10 +6,10 @@
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+            <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                     <span>Power On</span></a>
             </li>
-            <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+            <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                     <span>Power Off</span></a>
             </li>
             <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
@@ -32,10 +22,13 @@
                     <span class="mark-as-red">Delete</span></a></li>
         </ul>
     </div>
-    
     <!-- <span class="intelicon-search" id="search-vm"></span>    -->
-    <input type="search" class="form-control" placeholder="Search" ng-model='searchInput' autofocus>
-    <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
+    <form class="form-inline default navbar-right " role="search">
+        <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search" ng-model='searchInput'>
+            <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
+        </div>
+    </form>
 </div>
 <!---->
 <!-- vm table from here-->
@@ -51,12 +44,13 @@
             <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}">{{th.display}}</th>
         </tr>
     </thead>
-        <tbody>
+    <tbody>
         <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 30|filter:searchInput">
             <td>
                 <div class="inline">
                     <input type="checkbox" id="{{vms.id}}" checklist-model="VM.deleteVM.selectedVMs" checklist-value="vms.id" />
-                    <lab30 for="{{vms.id}}"></label>
+                    <lab30 for="{{vms.id}}">
+                        </label>
                 </div>
                 <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id)"></span>
             </td>
@@ -72,15 +66,24 @@
             </td>
             <td>
                 <div class="dropdown inline">
+                <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vms.id)||vms.statusDisplay=='Disconnected'">
+                    {{vms.statusDisplay}}
+                   <span class="caret"></span>
+                </button>
+
+
+
+
+              <!--   <div class="dropdown inline">
                     <button class="btn btn-approve dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
                         Running
                         <span class="caret"></span>
-                    </button>
+                    </button> -->
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                                 <span>Power On</span></a>
                         </li>
-                        <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                                 <span>Power Off</span></a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
@@ -98,4 +101,3 @@
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
-
