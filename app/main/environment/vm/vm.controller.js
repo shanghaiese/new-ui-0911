@@ -13,9 +13,8 @@
         //console.log(that.vms);
         //variables
         var orderBy = $filter('orderBy');
-        that.deleteVM = {
-            selectedVMs: []
-        };
+        that.selectedVMs = [];
+            
         that.selectedAll = false;
         that.showPage = 0;
         that.sort = [];
@@ -31,7 +30,7 @@
         that.openDeleteDialog = openDeleteDialog;
         that.vmIsInOperation = vmIsInOperation;
         that.loadVMList = loadVMList;
-
+        that.disableSelection = disableSelection;
 
 
         //For small table 4-panels setting
@@ -165,7 +164,6 @@
             // });
             //that.VMs = machine.getVMDetail().$object;
             loadVMList();
-            console.log(that.VMs);
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -178,14 +176,12 @@
             arr.splice(0, arr.length);
         }
 
+        /*this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
             machine.getVMDetail().then(function(data) {
                 var list = data;
-                that.numOfVM = list.length;
-                console.log(that.numOfVM);
                 angular.forEach(list, function(value, index) {
-                    console.log(value.disable);
                     if (value.disable === 0) {
                         switch (value.power) {
                             case 0:
@@ -218,6 +214,15 @@
             });
         }
 
+        function disableSelection()
+        {
+            that.disableOption = 'enable';
+            angular.forEach(that.selectedVMs, function(item) {
+                if(item.statusDisplay === 'Stopped')
+                    that.disableOption = 'disabled';
+            });
+        }
+
         /*store vmTemp as a temp var by vmid*/
         function getVMById(vmid) {
             clearArr(that.vmTemp.network);
@@ -244,11 +249,11 @@
         //select Virtual machine for delete
 
         function toggleCheckAll() {
-            if (that.deleteVM.selectedVMs.length === that.VMs.length)
-                that.deleteVM.selectedVMs = [];
+            if (that.selectedVMs.length === that.VMs.length)
+                that.selectedVMs = [];
             else
-                that.deleteVM.selectedVMs = that.VMs.map(function(item) {
-                    return item.id;
+                that.selectedVMs = that.VMs.map(function(item) {
+                    return item;
                 });
         }
 

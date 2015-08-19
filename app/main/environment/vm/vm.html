@@ -1,24 +1,24 @@
 <div>
     <button type="button" class="btn btn-primary">Add VM</button>
     <div class="dropdown clearfix inline">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.deleteVM.selectedVMs.length == 0">
+        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.selectedVMs.length == 0" ng-click="VM.disableSelection()">
             Actions
             <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
-            <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" ng-click="powerOperation(VM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                     <span>Power On</span></a>
             </li>
-            <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+            <li role="presentation" class="{{VM.disableOption}}"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                     <span>Power Off</span></a>
             </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
                     <span>Suspend</span></a>
             </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.deleteVM.selectedVMs, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'restart')"><span aria-hidden="true" class="intelicon-refresh"></span>
                     <span>Restart</span></a>
             </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="VM.openDeleteDialog(VM.deleteVM.selectedVMs)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="VM.openDeleteDialog(VM.selectedVMs)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
                     <span class="mark-as-red">Delete</span></a></li>
         </ul>
     </div>
@@ -37,7 +37,7 @@
         <tr>
             <th>
                 <div class="inline">
-                    <input type="checkbox" id="choose_all_env" ng-click="VM.toggleCheckAll()" ng-checked="VM.deleteVM.selectedVMs.length == VM.VMs.length" />
+                    <input type="checkbox" id="choose_all_env" ng-click="VM.toggleCheckAll()" ng-checked="VM.selectedVMs.length == VM.VMs.length" />
                     <label for="choose_all_env"></label>
                 </div>
             </th>
@@ -48,8 +48,8 @@
         <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 30|filter:searchInput">
             <td>
                 <div class="inline">
-                    <input type="checkbox" id="{{vms.id}}" checklist-model="VM.deleteVM.selectedVMs" checklist-value="vms.id" />
-                    <lab30 for="{{vms.id}}">
+                    <input type="checkbox" id="{{vms.id}}" checklist-model="VM.selectedVMs" checklist-value="vms" />
+                    <lable for="{{vms.id}}">
                         </label>
                 </div>
                 <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id)"></span>
