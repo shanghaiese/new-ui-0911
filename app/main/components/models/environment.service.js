@@ -6,7 +6,7 @@
 
     environment.$inject = ['Restangular'];
     function environment(Restangular) {
-    	return Restangular.all('environments');
+    	return Restangular.service('environments');
     }
 
 })();

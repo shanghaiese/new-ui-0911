@@ -1,0 +1,14 @@
+<div>
+	<span class="ilabicon-displaycolumn" ng-click="toggleFilter()" title="filter column"></span>
+	<div class="filter-container" ng-show="isOpen">
+		<p>Colunm:</p>
+		<ul>
+			<li ng-repeat="col in currentColumns">
+				<label>
+					<input type="checkbox" ng-model="col.enabled">{{col.display}}
+				</label>
+			</li>
+		</ul>
+		<button class="btn btn-primary" ng-click="updateFilter()">Update</button>
+	</div>
+</div>

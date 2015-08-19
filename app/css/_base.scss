@@ -5,6 +5,7 @@
 
 /* Font Icon */
 span[class^="ilabicon-"], span[class*=" ilabicon-"] {
+	cursor: pointer;
 	font-size: 20px;
 }
 span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
@@ -62,6 +63,9 @@ table {
 				border-right: none;
 				border-left: none;
 			}
+			th:last-child {
+				border-right: 1px solid $light-gray;
+			}
 		}
 	}
 	tbody {
@@ -73,6 +77,9 @@ table {
 				border-left: none;
 				border-bottom: none;
 
+			}
+			td:last-child {
+				border-right: 1px solid $light-gray;
 			}
 			td.td-collapsed {
 				height: 0;

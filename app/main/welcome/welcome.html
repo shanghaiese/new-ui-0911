@@ -93,7 +93,7 @@
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label require">Email</label>
         <div class="col-sm-10">
-            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            <input type="email" class="form-control" id="inputEmail3" placeholder="Email" required>
             <div class="hint"><span class="intelicon-information-solid"></span>Don't tell them.</div>
         </div>
     </div>
@@ -129,23 +129,21 @@
 
 
 <h3 class="page-header">expandable table with pagination</h3>
+<table-column-filter columns="Welcome.columns" class="pull-right"></table-column-filter>
 <table class="table table-bordered table-intel table-expandable">
     <thead>
         <tr>
             <th>#</th>
-            <th>name</th>
-            <th>owner</th>
-            <th>capacity</th>
-            <th>deploy at</th>
+            <th ng-repeat="col in Welcome.columns" ng-if="col.enabled">{{col.display}}</th>
         </tr>
     </thead>
     <tbody>
         <tr dir-paginate-start="env in Welcome.envs | itemsPerPage: 3">
             <td><span class="intelicon-settings-solid clickable" ng-click="Welcome.collapse()"></span></td>
-            <td>{{env.name}}</td>
-            <td>{{env.owner}}</td>
-            <td>{{env.maxAllowedVms}}</td>
-            <td>{{env.deployedDate}}</td>
+            <td ng-if="Welcome.columns[0].enabled">{{env.name}}</td>
+            <td ng-if="Welcome.columns[1].enabled">{{env.owner}}</td>
+            <td ng-if="Welcome.columns[2].enabled">{{env.maxAllowedVms}}</td>
+            <td ng-if="Welcome.columns[3].enabled">{{env.deployedDate}}</td>
         </tr>
         <tr dir-paginate-end>
             <td colspan="5" class="td-collapsed">
@@ -157,11 +155,11 @@
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
 
 <h3 class="page-header">alert</h3>
-<button class="btn btn-secondary" ng-click="Welcome.show('success')">success</button>
-<button class="btn btn-secondary" ng-click="Welcome.show('warning')">warning</button>
-<button class="btn btn-secondary" ng-click="Welcome.show('danger')">danger</button>
+<button class="btn btn-success" ng-click="Welcome.show('success')">success</button>
+<button class="btn btn-suspend" ng-click="Welcome.show('warning')">warning</button>
+<button class="btn btn-danger" ng-click="Welcome.show('danger')">danger</button>
 
 <div class="alert-box col-xs-10 col-sm-8 col-md-6">
-    <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)">{{alert.message}}</alert>
+    <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)" ng-click="Welcome.close(alert.index)">{{alert.message}}</alert>
 </div>
 
