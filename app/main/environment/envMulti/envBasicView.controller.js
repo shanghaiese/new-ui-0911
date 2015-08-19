@@ -16,14 +16,14 @@
                 activate();
                 function activate() {
                     that.vms = machine.getVMDetail();
-                    function chunk(arr, size) {
+                    /*function chunk(arr, size) {
                         var newArr = [];
                         for (var i=0; i<arr.length; i+=size) {
                             newArr.push(arr.slice(i, i+size));
                         }
                         return newArr;
                     }
-                    that.vms = chunk(that.vms,12);
+                    that.vms = chunk(that.vms,12);*/
 
                     that.vmCount = that.vms.length;
                 }
