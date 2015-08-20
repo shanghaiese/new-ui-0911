@@ -16,12 +16,7 @@
 
     machineService.$inject = ['Restangular'];
 
-
-
     function machineService(Restangular) {
-        console.log(Restangular.all('admin/virtual-machines').getList());
-
-
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,

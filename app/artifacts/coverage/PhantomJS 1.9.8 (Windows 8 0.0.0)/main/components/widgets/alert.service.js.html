@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./main/components/widgets/alert.service.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./main/components/widgets/alert.service.js</span></h1>
+    <h2>
+        Statements: <span class="metric">17.39% <small>(8 / 46)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 18)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">14.29% <small>(1 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">17.39% <small>(8 / 46)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./main/components/widgets/</a> &#187; alert.service.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
+&nbsp;
+    angular
+        .module('ilabWidget')
+        .factory('alert', alert);
+&nbsp;
+    alert.$inject = ['$rootScope', '$timeout'];
+&nbsp;
+<span class="fstat-no" title="function not covered" >    function alert($rootScope, $timeout) {</span>
+<span class="cstat-no" title="statement not covered" >        var api = {</span>
+            open: open,
+            close: close
+        };
+<span class="cstat-no" title="statement not covered" >        var _alerts = [];</span>
+<span class="cstat-no" title="statement not covered" >        var MAX_SIZE = 2;</span>
+<span class="cstat-no" title="statement not covered" >        var TYPE = ['success', 'warning', 'danger'];</span>
+<span class="cstat-no" title="statement not covered" >        var _id = 0;</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope.alerts = _alerts;</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function isMaxed() {</span>
+<span class="cstat-no" title="statement not covered" >            var bool;</span>
+<span class="cstat-no" title="statement not covered" >            if (_alerts.length &gt;= MAX_SIZE) {</span>
+<span class="cstat-no" title="statement not covered" >                bool = true;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                bool = false;</span>
+            }
+<span class="cstat-no" title="statement not covered" >            return bool;</span>
+        }
+<span class="fstat-no" title="function not covered" >        function checkOption(option) {</span>
+<span class="cstat-no" title="statement not covered" >        	var o = {};</span>
+<span class="cstat-no" title="statement not covered" >        	if(!option) {</span>
+<span class="cstat-no" title="statement not covered" >	        	o = {type: 'success', message: 'default'};</span>
+<span class="cstat-no" title="statement not covered" >	        	return o;</span>
+        	}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        	o.type = option.type || 'success';</span>
+<span class="cstat-no" title="statement not covered" >        	o.message = option.message || 'default';</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        	if(TYPE.indexOf(o.type) &lt; 0){</span>
+<span class="cstat-no" title="statement not covered" >        		console.warn('no such alert type as: ', o.type);</span>
+<span class="cstat-no" title="statement not covered" >        		o.type = 'success';</span>
+        	}
+<span class="cstat-no" title="statement not covered" >        	return o;</span>
+        }
+<span class="fstat-no" title="function not covered" >        function open(option) {</span>
+<span class="cstat-no" title="statement not covered" >            if (!isMaxed()) {</span>
+<span class="cstat-no" title="statement not covered" >            	var o = checkOption(option);</span>
+<span class="cstat-no" title="statement not covered" >            	o.index = _id++;</span>
+<span class="cstat-no" title="statement not covered" >            	_alerts.unshift(o);</span>
+<span class="cstat-no" title="statement not covered" >                if(o.type === 'success') {</span>
+<span class="cstat-no" title="statement not covered" >                    $timeout(<span class="fstat-no" title="function not covered" >function() {</span></span>
+<span class="cstat-no" title="statement not covered" >                        close(o.index);</span>
+                    }, 1000);
+                }
+            }else {
+<span class="cstat-no" title="statement not covered" >            	console.error('exceeds alert max size.');</span>
+            }
+        }
+&nbsp;
+<span class="fstat-no" title="function not covered" >        function close(index) {</span>
+<span class="cstat-no" title="statement not covered" >        	var t = null;</span>
+<span class="cstat-no" title="statement not covered" >        	for (var i = _alerts.length - 1; i &gt;= 0; i--) {</span>
+<span class="cstat-no" title="statement not covered" >        		if(_alerts[i].index === index) {</span>
+<span class="cstat-no" title="statement not covered" >        			t = i;</span>
+<span class="cstat-no" title="statement not covered" >        			break; </span>
+        		}
+        	}
+<span class="cstat-no" title="statement not covered" >        	if(t !== null) {</span>
+<span class="cstat-no" title="statement not covered" >        		_alerts.splice(t, 1);</span>
+        	}else {
+<span class="cstat-no" title="statement not covered" >        		console.warn('no such alert with index: ', index);</span>
+        	}
+        }
+<span class="cstat-no" title="statement not covered" >        return api;</span>
+    }
+})();
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 20 2015 11:02:21 GMT+0800 (China Standard Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>
