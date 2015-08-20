@@ -20,15 +20,16 @@
 
     function machineService(Restangular) {
         console.log(Restangular.all('admin/virtual-machines').getList());
-
-
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,
+            updateVMDetail: updateVMDetail,
             transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
+
+        var vmBase;
 
         //mock data for Table Head
         function getThead() {
@@ -53,11 +54,17 @@
 
         //mock data for Table Body
         function getVMDetail() {
-            return Restangular.all('admin/virtual-machines').getList();
+            vmBase = Restangular.all('admin/virtual-machines').getList();
+            return vmBase;
         }
 
-        function updateVMDetail() {
-
+        function updateVMDetail(vmid, configTmp) {
+            vmBase.then(function(VmNeedToUpdate) {
+                var vmNeedToUpdate = VmNeedToUpdate[0];
+                var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
+                console.log(vmFound);
+                vmNeedToUpdate.put();
+            });
         }
 
         /*mock data for vm detail information tab*/

@@ -327,6 +327,7 @@
             //Here need to add update();
             //close the panel
             showVmEdit(vmid);
+            machine.updateVMDetail(vmid, that.configTmp);
         }
 
         function changeTplNumber(tplConfig, bool) {
