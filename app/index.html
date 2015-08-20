@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>new ui</title>
+    <title>iLab</title>
     <meta name="description" content="newui of iLab">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="image/favicon.png">
@@ -29,10 +29,17 @@
         </div>
     </nav>
     <section>
+        <!-- left menu -->
         <ilab-menu></ilab-menu>
+        
+        <!-- main view -->
         <div class="container content">
             <div ui-view></div>
+        </div>
 
+        <!-- overall page loading -->
+        <div class="loader-backdrop" backdrop show="isLoading">
+            <div class="spin-box"></div>
         </div>
     </section>
     <!-- We'll also add some navigation: -->
