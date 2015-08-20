@@ -1,7 +1,8 @@
 (function(){
 
     //  declear modules
-    angular.module('ilabService', []);
+    angular.module('ilabModel', ['shinetech.models']);
+    angular.module('ilabService', ['ilabModel']);
     angular.module('ilabDirective', ['ecilab.directives']);
     angular.module('ilabFilter', []);
     angular.module('ilabWidget', []);
