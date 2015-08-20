@@ -1,82 +1,157 @@
-/*describe('vms controller', function() {
+describe('vms controller', function() {
 	var scope, ctrl;
 
 	beforeEach(module('ilab'));
 	beforeEach(inject(function($rootScope, $controller) {
 		scope = $rootScope.$new();
-		ctrl = $controller('VMsCtrl', {'$scope': scope});
+		ctrl = $controller('VMCtrl', {'$scope': scope});
 	}));
 
-	it('should have a VMsCtrl controller', function() {
+	it('should have a VMCtrl controller', function() {
 		expect(ctrl).not.toEqual(null);
 
 	});
 
 	it('should have VMs on load', function() {
-		expect(ctrl.VMs).toEqual([
-			{ 
-            id: 'VM001',
-            name: 'ilab_id',
-            IP: '10.192.168.1',
-            displayName: 'iLab ID',
-            configuration: '2CPU,4G' 
+		expect(ctrl.VMs).toEqual([{
+            "id": 3638301,
+            "path": "/vmfs/volumes/.../vm1.vmx",
+            "name": '1ilabclient01_win2008R2_with_agent',
+            "cpus": 1,
+            "mem": 1024,
+            "power": 0,
+            "maxcpus": 32,
+            "maxmem": 1035264,
+            "minmem": 512,
+            "os": "windows7srv-64",
+            "created_date":  "2015-06-01",
+            "disable": 0,
+            "description": "description",
+            "locked": false,
+            "network": [{
+                "interface": 1,
+                "label": "3638301_NIC1",
+                "ip": "169.254.186.241"
+            }],
+            "vmm": "10.223.136.232",
+            "disk1": "TBD"
         }, {
-            id: 'VM002',
-            name: 'disk1',
-            IP: '10.192.168.2',
-            displayName: 'Disk1',
-            configuration: '2CPU,4G' 
+            "id": 3638302,
+            "path": "/vmfs/volumes/.../vm1.vmx",
+            "name": '2ilabclient02_win2008R2_with_agent',
+            "cpus": 2,
+            "mem": 1024,
+            "power": 0,
+            "maxcpus": 32,
+            "maxmem": 1035264,
+            "minmem": 512,
+            "os": "windows7srv-64",
+            "created_date":  "2015-06-01",
+            "disable": 0,
+            "description": "description",
+            "locked": false,
+            "network": [{
+                "interface": 1,
+                "label": "3638301_NIC1",
+                "ip": "169.254.186.242"
+            }, {
+                "interface": 2,
+                "label": "3638301_NIC2",
+                "ip": "169.254.186.243"
+            },{
+                "interface": 2,
+                "label": "3638301_NIC2",
+                "ip": "169.254.186.247"
+            }],
+            "vmm": "10.223.136.211",
+            "disk1": "TBD"
         }, {
-            id: 'VM003',
-            name: 'hostname',
-            IP: '10.192.168.3',
-            displayName: 'Hostname',
-            configuration: '2CPU,4G' 
+            "id": 3638303,
+            "path": "/vmfs/volumes/.../vm1.vmx",
+            "name": '3ilabclient03_win2008R2_with_agent',
+            "cpus": 2,
+            "mem": 1024,
+            "power": 0,
+            "maxcpus": 32,
+            "maxmem": 1035264,
+            "minmem": 512,
+            "os": "windows7srv-64",
+            "created_date":  "2015-06-01",
+            "disable": 0,
+            "description": "description",
+            "locked": false,
+            "network": [{
+                "interface": 1,
+                "label": "3638301_NIC1",
+                "ip": "169.254.186.243"
+            }],
+            "vmm": "10.223.136.243",
+            "disk1": "TBD"
         }, {
-            id: 'VM004',
-            name: 'nic1_mac',
-            IP: '10.192.168.6',
-            displayName: 'Nic1 MAC',
-            configuration: '2CPU,4G' 
+            "id": 3638304,
+            "path": "/vmfs/volumes/.../vm1.vmx",
+            "name": '4ilabclient04_win2008R2_with_agent',
+            "cpus": 2,
+            "mem": 1024,
+            "power": 0,
+            "maxcpus": 32,
+            "maxmem": 1035264,
+            "minmem": 512,
+            "os": "windows7srv-64",
+            "created_date": "2015-06-01",
+            "disable": 0,
+            "description": "description",
+            "locked": false,
+            "network": [{
+                "interface": 1,
+                "label": "3638301_NIC1",
+                "ip": "169.254.186.244"
+            }],
+            "vmm": "10.223.136.223",
+            "disk1": "TBD"
         }, {
-            id: 'VM005',
-            name: 'path',
-            IP: '10.192.168.4',
-            displayName: 'Path',
-            configuration: '2CPU,4G' 
-        }, {
-            id: 'VM006',
-            name: 'vmm',
-            IP: '10.192.168.5',
-            displayName: "VMM",
-            configuration: '2CPU,4G' 
-        },{
-            id: 'VM007',
-            name: 'vmm',
-            IP: '10.192.168.5',
-            displayName: "VMM02",
-            configuration: '2CPU,4G' 
+            "id": 3638305,
+            "path": "/vmfs/volumes/.../vm1.vmx",
+            "name": '5ilabclient05_win2008R2_with_agent',
+            "cpus": 2,
+            "mem": 1024,
+            "power": 0,
+            "maxcpus": 32,
+            "maxmem": 1035264,
+            "minmem": 512,
+            "os": "windows7srv-64",
+            "created_date":  "2015-06-01",
+            "disable": 0,
+            "description": "description",
+            "locked": false,
+            "network": [{
+                "interface": 1,
+                "label": "3638301_NIC5",
+                "ip": "169.254.186.245"
+            }],
+            "vmm": "10.223.136.221",
+            "disk1": "TBD"
         }]);
 	});
 
 	it('should have Thead on load', function() {
 		expect(ctrl.thead).toEqual([
 			{
-            display: 'Name',
-            name: 'displayName'
-        },  {
-            display: 'IP',
-            name: 'IP'
-        }, {
-            display: 'Configuration',
-            name: 'configuration'
-        }, {
-            display: 'Connect',
-            name: 'console'
-        }, {
-            display: 'Power',
-            name: 'statusOrderPriority'
-        }]);
+                display: 'Name',
+                name: 'name'
+            }, {
+                display: 'IP',
+                name: 'network[0].ip'
+            }, {
+                display: 'Configuration',
+                name: 'cpus'
+            }, {
+                display: 'Connect',
+                name: 'console'
+            }, {
+                display: 'Power',
+                name: 'statusOrderPriority'
+            }]);
 	});
 
 	it('should select all checkbox by toggleCheckAll function', function() {
@@ -86,4 +161,11 @@
 	});
 
 
-});*/
+    it('should return virtual machine id when click the delete button',function() {
+        var returnId = ctrl.openDeleteDialog('123');
+        expect(returnId).toEqual('123');
+
+    });
+
+
+});

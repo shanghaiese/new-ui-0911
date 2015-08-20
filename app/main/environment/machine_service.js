@@ -16,13 +16,16 @@
 
     machineService.$inject = ['Restangular'];    
 
+
+
     function machineService(Restangular) {
+        console.log(Restangular.all('admin/virtual-machines').getList());
 
 
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,
-            transDetailForDis:transDetailForDis,
+            transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
@@ -34,10 +37,10 @@
                 name: 'name'
             }, {
                 display: 'IP',
-                name: 'ip'
+                name: 'network[0].ip'
             }, {
                 display: 'Configuration',
-                name: 'configuration'
+                name: 'cpus'
             }, {
                 display: 'Connect',
                 name: 'console'
@@ -59,17 +62,15 @@
 
         /*mock data for vm detail information tab*/
         function transDetailForDis(vmFromAPI) {
-            var result =[];
-            var temp={};
-            angular.forEach(vmFromAPI, function(obj, key) 
-            { 
-                 temp = 
-                {
-                    "Name":       obj.name,
-                    "Description":obj.description,
-                    "iLab ID":         obj.id,
-                    "Power":      (obj.power === 0) ? "Stop":"Running",
-                    "Config":     obj.cpus + "CPU," + obj.mem
+            var result = [];
+            var temp = {};
+            angular.forEach(vmFromAPI, function(obj, key) {
+                temp = {
+                    "Name": obj.name,
+                    "Description": obj.description,
+                    "iLab ID": obj.id,
+                    "Power": (obj.power === 0) ? "Stop" : "Running",
+                    "Config": obj.cpus + "CPU," + obj.mem
 
                 };
                 result.push(temp);
@@ -82,7 +83,7 @@
         }
 
         function transMemFromGB2MB(gb) {
-            return gb*1024;
+            return gb * 1024;
         }
 
         return machinesData;

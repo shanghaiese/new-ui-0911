@@ -144,7 +144,7 @@
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Description:</strong>
-                                    <span class="col-md-10">{{vms.description}}</span>
+                                    <span class="col-md-10">{{(vms.description===null)?'NULL':vms.description}} </span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">iLab ID:</strong>
@@ -199,9 +199,9 @@
                     </div>
                 </form>
             </tab>
-            <tab disabled=" true " title="Delete VM ">
+            <tab disable=" true " title="Delete VM ">
                 <tab-heading>
-                    <span class="intelicon-trash-outlined " ng-click="VM.openDeleteDialog() "></span>
+                    <span class="intelicon-trash-outlined " ng-click="VM.openDeleteDialog(vms.id) "></span>
                 </tab-heading>
             </tab>
         </tabset>
