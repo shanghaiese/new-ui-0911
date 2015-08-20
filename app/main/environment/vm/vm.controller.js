@@ -4,9 +4,9 @@
     angular
         .module('ilab')
         .controller('VMCtrl', VMCtrl);
-    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce'];
+    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms'];
 
-    function VMCtrl(machine, $filter, $modal, $sce) {
+    function VMCtrl(machine, $filter, $modal, $sce, _vms) {
         var that = this;
         
         var orderBy = $filter('orderBy');
@@ -93,9 +93,7 @@
         activate();
 
         function activate() {
-            machine.getVMDetail().then(function(data) {
-                that.VMs = data;
-            });
+            that.VMs = _vms;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -105,8 +103,10 @@
         }
 
         /*store vmTemp as a temp var by vmid*/
+        //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
+            //?for 
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;

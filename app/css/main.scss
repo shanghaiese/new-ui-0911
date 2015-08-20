@@ -206,7 +206,6 @@ body {
 }
 
 .table-intel {
-
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
@@ -251,38 +250,27 @@ body {
     }
 }
 
-.pure-form-aligned {
-    background-color: rgb(211, 216, 219);
+.form-horizontal {
     text-align: left;
     clear: both;
-    .edit-virtual-machine {
+    .panel-topic {
         padding-top: 0.5em;
-        margin-left: 0.3em;
+        margin-left: 40px;
         width: 20em;
-        padding-bottom: 0.5em;
         font-size: 130%;
         color:$darker-gray;
     }
-    label {
-        text-align: left;
-        margin-left: 0.5em;
-        display: inline-block;
-        vertical-align: middle;
-        width: 6em;
-        font-weight: normal;
-    }
-    .intel-setting-group {
-        height: 2.5em;
-        padding-bottom: 0.5em;
-
-        input[type="text"] {
-            display: inline-block;
-            vertical-align: left;
-            border-style: solid;
-            border-width: 1px;
-            border-color: transparent;
-            min-width: 11.2em;
-            color: $dark-gray;
+    .form-group {      
+        @media (min-width: 768px) {
+            .col-sm-2 { 
+                width: 12%;
+            }
+        }
+        @media (min-width: 768px) {
+            .col-sm-offset-2 { 
+                width: 120%;
+                margin-left: 12%;
+            }
         }
         input[type="radio"] {
             vertical-align: left;
@@ -300,9 +288,6 @@ body {
         }
         input[type='radio']:checked:before {
             background: $blue;
-        }
-        .settingButtonGroup {
-            margin-left: 6.7em;
         }
         .saveTempRadioLabel {
             padding: 0 0.5em 0 0.5em;
@@ -331,17 +316,17 @@ body {
         }
     }
     .advEnvNetwork {
-        min-width: 11.2em;
+        min-width: 160px;
     }
 
     .network+div {
         display: inline-block;
-        min-width: 11.2em;
+        min-width: 160px;
         margin-left: 0em;
     }
 
     .advEnvNetworkDiv+.advEnvNetworkDiv {
-        margin-left: 6.7em;
+        margin-left: 12%;
     }
 
 

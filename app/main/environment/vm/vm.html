@@ -51,7 +51,7 @@
         </tr>
     </thead>
         <tbody>
-        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 30|filter:searchInput">
+        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 20|filter:searchInput">
             <td>
                 <div class="inline">
                     <input type="checkbox" id="{{vms.id}}" checklist-model="VM.deleteVM.selectedVMs" checklist-value="vms.id" />
