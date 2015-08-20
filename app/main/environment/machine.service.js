@@ -16,10 +16,7 @@
 
     machineService.$inject = ['Restangular'];    
 
-
-
     function machineService(Restangular) {
-        console.log(Restangular.all('admin/virtual-machines').getList());
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,
@@ -54,8 +51,10 @@
 
         //mock data for Table Body
         function getVMDetail() {
-            vmBase = Restangular.all('admin/virtual-machines').getList();
-            return vmBase;
+            var virtualMachineList = env.get({expand:'virtualMachines'});
+            console.log(virtualMachineList);
+            return virtualMachineList;
+            //return Restangular.all('admin/virtual-machines').getList();
         }
 
         function updateVMDetail(vmid, configTmp) {
