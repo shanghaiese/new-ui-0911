@@ -25,6 +25,7 @@
             transMemFromGB2MB: transMemFromGB2MB
         };
 
+
         //mock data for Table Head
         function getThead() {
             var thead = [{
@@ -48,7 +49,12 @@
 
         //mock data for Table Body
         function getVMDetail() {
-            return Restangular.all('admin/virtual-machines').getList();
+            var env = Restangular.one("environments",2068901);
+            console.log(env);
+            var virtualMachineList = env.get({expand:'virtualMachines'});
+            console.log(virtualMachineList);
+            return virtualMachineList;
+            //return Restangular.all('admin/virtual-machines').getList();
         }
 
         function updateVMDetail() {
