@@ -14,9 +14,20 @@
         .module('ilabService')
         .factory('machine', machineService);
 
+<<<<<<< HEAD
     machineService.$inject = ['Restangular'];    
 
     function machineService(Restangular) {
+=======
+    machineService.$inject = ['Restangular'];
+
+
+
+    function machineService(Restangular) {
+        console.log(Restangular.all('admin/virtual-machines').getList());
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
+
+
         var machinesData = {
             getVMDetail: getVMDetail,
             getThead: getThead,

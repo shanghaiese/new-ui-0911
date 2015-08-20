@@ -8,8 +8,14 @@
 
     function VMCtrl(machine, $filter, $modal, $sce, _vms) {
         var that = this;
+<<<<<<< HEAD
         
+=======
+
+        //that.vms = machine.getList();
+        //console.log(that.vms);
         //variables
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
         var orderBy = $filter('orderBy');
         that.selectedVMs = [];
             
@@ -77,6 +83,30 @@
             }]
         };
 
+<<<<<<< HEAD
+        that.CPU = [{idx: 0,NumOfCPU: "1"}, 
+                    {idx: 1,NumOfCPU: "2"}, 
+                    {idx: 2,NumOfCPU: "4"}, 
+                    {idx: 3,NumOfCPU: "8"}, 
+                    {idx: 4,NumOfCPU: "16"}];
+=======
+        that.configTmp = {
+            name: "",
+            description: "",
+            CPU: {
+                idx: 0,
+                NumOfCPU: ""
+            },
+            memory: {
+                memory: ""
+            },
+            network: [{
+                interface: "",
+                label: "",
+                ip: ""
+            }]
+        };
+
         that.CPU = [{
             idx: 0,
             NumOfCPU: "1"
@@ -93,6 +123,7 @@
             idx: 4,
             NumOfCPU: "16"
         }];
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
 
         that.Memory = [
             [{
@@ -140,11 +171,15 @@
         activate();
 
         function activate() {
-            //that.VMs = _vms;
+<<<<<<< HEAD
+            that.VMs = _vms;
+=======
+            // machine.getVMDetail().then(function(data) {
             //     that.VMs = data;
             // });
             //that.VMs = machine.getVMDetail().$object;
             loadVMList();
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -153,10 +188,17 @@
 
         }
 
+<<<<<<< HEAD
+=======
+        function clearArr(arr) {
+            arr.splice(0, arr.length);
+        }
+
         /*this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
-                var list = _vms;
+            machine.getVMDetail().then(function(data) {
+                var list = data;
                 angular.forEach(list, function(value, index) {
                     if (value.disable === 0) {
                         switch (value.power) {
@@ -185,6 +227,8 @@
                         });
                         that.VMs.push(value);
                     }
+
+                });
             });
         }
 
@@ -197,6 +241,7 @@
             });
         }
 
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
         /*store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
@@ -209,8 +254,13 @@
                     that.vmTemp.description = obj.description;
                     //var CPUMemoryArr = obj.configuration.split(',');
                     that.vmTemp.CPU.NumOfCPU = obj.cpus;
+<<<<<<< HEAD
                     that.vmTemp.memory.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
+                    angular.forEach(obj.network, function(obj,key) {
+=======
+                    that.vmTemp.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj, key) {
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
                         that.vmTemp.network.push(obj);
                     });
                 }
@@ -265,7 +315,21 @@
                 getVMById(vmid);
 
                 //find the vm idx;
+<<<<<<< HEAD
                 angular.copy(that.vmTemp, that.configTmp);
+=======
+                that.configTmp.name = that.vmTemp.name;
+                that.configTmp.description = that.vmTemp.description;
+                that.configTmp.CPU = {
+                    idx: that.vmTemp.CPU.idx,
+                    NumOfCPU: that.vmTemp.CPU.NumOfCPU
+                };
+                that.configTmp.memory.memory = that.vmTemp.memory;
+                clearArr(that.configTmp.network);
+                angular.forEach(that.vmTemp.network, function(obj, key) {
+                    that.configTmp.network.push(obj);
+                });
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
                 //saveTemplate panel
                 that.saveTemp.name = that.vmTemp.name;
                 that.tplConfig = [];
@@ -304,7 +368,20 @@
         }
 
         function cancelConfig(vmid) {
+<<<<<<< HEAD
             angular.copy(that.vmTemp, that.configTmp);
+=======
+            getVMById(vmid);
+            that.configTmp.name = that.vmTemp.name;
+            that.configTmp.description = that.vmTemp.description;
+            that.configTmp.CPU.NumOfCPU = that.vmTemp.CPU.NumOfCPU;
+            that.configTmp.memory.memory = that.vmTemp.memory;
+            clearArr(that.configTmp.network);
+            angular.forEach(that.vmTemp.network, function(obj, key) {
+                console.log(obj.label);
+                that.configTmp.network.push(obj);
+            }); //? it doesn't work
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
             that.saveTemp.name = that.vmTemp.name;
             that.saveTemp.modeSaveDisk.saveMode = "convert";
             that.saveTemp.modeSaveDisk.diskMode = "chain";

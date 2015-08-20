@@ -31,7 +31,12 @@
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
                 controller: 'VMCtrl',
-                controllerAs: 'VM'
+                controllerAs: 'VM',
+                resolve: {
+                    _vms: function(machine) {
+                        return machine.getVMDetail();
+                    }
+                }
             })
             .state('env.pm', {
                 url: "/pm",

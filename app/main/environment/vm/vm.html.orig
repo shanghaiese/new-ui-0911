@@ -44,8 +44,13 @@
             <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}">{{th.display}}</th>
         </tr>
     </thead>
-    <tbody>
+<<<<<<< HEAD
+        <tbody>
         <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 20|filter:searchInput">
+=======
+    <tbody>
+        <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 30|filter:searchInput">
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
             <td>
                 <div class="inline">
                     <input type="checkbox" id="{{vms.id}}" checklist-model="VM.selectedVMs" checklist-value="vms" />

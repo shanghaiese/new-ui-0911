@@ -2,8 +2,13 @@
 <!-- <table class="table table-bordered table-striped table-intel"> -->
 <!-- <tr> -->
 <td colspan="6" class="advVMInnerSetting td-collapsed">
+<<<<<<< HEAD
     <div collapse="vms.id != VM.showPage">
         <span class="intelicon-close-max" ng-click="VM.showVmEdit(vms.id)"></span>
+=======
+    <div collapse="VM.showPage != vms.id">
+        <span class="intelicon-close-max" ng-click="VM.closePanel(vms.id)"></span>
+>>>>>>> 1d8c49fa992d7c25a16758c4a39f9245a1d320d4
         <tabset class="VMSettingTabs" type="pills">
             <!--ChangeVMSettingPanel-->
                 <tab active="toolTab.active" title="Configure VM">
