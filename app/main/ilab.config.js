@@ -5,7 +5,8 @@
         .config(route)
         .config(restangular)
         .config(pagination)
-        .run(beforeRun);
+        .run(attachMenu)
+        .run(loading);
 
 
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -30,7 +31,12 @@
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
                 controller: 'VMCtrl',
-                controllerAs: 'VM'
+                controllerAs: 'VM',
+                resolve: {
+                    _envs: function(environment) {
+                        return environment.getList({expand: 'virtualMachines'});
+                    }
+                }
             })
             .state('env.pm', {
                 url: "/pm",
@@ -59,12 +65,34 @@
     /* config block */
 
     /* run block */
-    beforeRun.$inject = ['$rootScope'];
+    attachMenu.$inject = ['$rootScope'];
 
-    function beforeRun($rootScope) {
+    function attachMenu($rootScope) {
         $rootScope.toggleMenu = function() {
             $('.ilab-menu').toggleClass('open');
         };
+    }
+
+    loading.$inject = ['$rootScope'];
+
+    function loading($rootScope) {
+        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+            console.log('stateChangeStart');
+            $rootScope.isLoading = false;
+            if(toState && toState.resolve) {
+                $rootScope.isLoading = true;
+            }
+        });
+        $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
+            console.log('stateChangeSuccess');
+            $rootScope.isLoading = false;
+            
+        });
+        $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
+            console.log('stateChangeError');
+            $rootScope.isLoading = false;
+           
+        });
     }
 
     restangular.$inject = ['RestangularProvider'];

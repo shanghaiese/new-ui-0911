@@ -26,7 +26,6 @@
 
                 /*first clear id of all link, and add the id to the corresponding link*/
                 $(element).find('a').attr('id', '');
-                    console.log(toState);
                 if (environmentPageRegex.test(toState.name)) {
                     $(element).find('a[ui-sref^="envBasic"]').attr('id', 'selected-link');
                 } else if (labPageRegex.test(toState.name)) {

@@ -16,7 +16,6 @@
 
         that.vms = basicPage.getVMMockData();
         that.vmCount = that.vms.length;
-        console.log(that.vms.length);
 
 
         that.connect = connect;
