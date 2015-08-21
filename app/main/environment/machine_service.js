@@ -14,8 +14,8 @@
         .module('ilabService')
         .factory('machine', machineService);
 
-    //machineService.$inject = ['restangular']
-    function machineService() {
+    machineService.$inject = ['Restangular'];
+    function machineService(Restangular) {
 
         var machinesData = {
             getVMDetail: getVMDetail,
@@ -32,10 +32,10 @@
                 name: 'name'
             }, {
                 display: 'IP',
-                name: 'ip'
+                name: 'network[0].ip'
             }, {
                 display: 'Configuration',
-                name: 'configuration'
+                name: 'cpus'
             }, {
                 display: 'Connect',
                 name: 'console'
@@ -61,7 +61,7 @@
             var temp={};
             angular.forEach(vmFromAPI, function(obj, key)
             {
-                 temp =
+                 temp = 
                 {
                     "Name":       obj.name,
                     "Description":obj.description,

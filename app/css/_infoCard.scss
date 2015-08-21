@@ -1,29 +1,10 @@
-/*Colin add vmDetail directive scss*/
-/*vmBasic page style*/
-/* info card*/
-.list-VMs {
-    float:left;
+info-card {
     display: inline-block;
     margin-bottom: 15px;
-}
-
-.list-env {
-    height: 25%;
-    max-height:250px;
-    position: relative;
-    padding: 0 5px 5px 10px;
-    margin:0 10px 0 0 ;
-    background-color: $lighter-gray1;
-    color: $dark-gray;
-}
-
-info-card {
 	div{
 		.card {
-		    min-width: 160px;
-		    max-width: 200px;
+		    width: 160px;
             height: 44px;
-            text-align: center; 
 		    background-color: $body-bg;
 		    border-top: 1px  $lighter-gray4 solid ;
 		    border-right: 1px  $lighter-gray4 solid;
@@ -33,8 +14,6 @@ info-card {
 		    padding: 0px;
 		    border-radius: 4px;
 		    display: inline-block;
-
-           
 
 		    &:hover {
 		        color: $light-blue;
@@ -55,6 +34,9 @@ info-card {
 		.card.suspend {
 			border-left: 7px solid $yellow;
 		}
+        .card.spawing {
+            border-left: 7px solid $gray;
+        }
 		
 		.info {
             margin-top: 5px;

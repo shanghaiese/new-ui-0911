@@ -50,7 +50,7 @@
                 if(o.type === 'success') {
                     $timeout(function() {
                         close(o.index);
-                    }, 1000);
+                    }, 2000);
                 }
             }else {
             	console.error('exceeds alert max size.');

@@ -1,58 +1,63 @@
 (function() {
 
-	angular
-		.module('ilabDirective')
-		.directive('infoCard', infoCard);
+    angular
+        .module('ilabDirective')
+        .directive('infoCard', infoCard);
 
-	infoCard.$inject = ['$window'];
+    infoCard.$inject = ['$document', '$rootScope',];
 
-	function infoCard($window) {
-		return {
-			restrict: 'E',
-			scope: {
-				type: '@',
-				info: '=',
-				connect: '&onConnect',
-				power: '&onPower'  
-			},
-			templateUrl: 'main/templates/infoCard.html',
+    function infoCard($document, $rootScope) {
+        return {
+            restrict: 'E',
+            scope: {
+                type: '@',
+                info: '=',
+                connect: '&onConnect',
+                power: '&onPower'
+            },
+            templateUrl: 'main/templates/infoCard.tpl.html',
 
-			link: function(scope, element, attrs){
-				scope.isShown = false;
-				//console.log(scope.info.id);
-
-				/*operation for vm*/
-				scope.vmIsInOperation = function(){
-
-					
-				};
-
-				//click to show or unshown
-				//function to control info to show
-				scope.clickCard = function(){
-					if($window.currentCard == scope.info.id)
-						$window.currentCard = null;
-					else
-					$window.currentCard = scope.info.id;
-				};
-				//function to control directeive shown by id
-				scope.showInfo = function(){
-					return scope.info.id === $window.currentCard;
-				};
-
-				
+            link: function(scope, element, attrs) {
+                scope.isShown = false;
+                scope.toggle = toggle;
 
 
-				
-				
+                function toggle() {
+                    if (scope.isShown) {
+                        close();
+                    } else {
+                        open();
+                    }
+                }
+
+                function open() {
+                    scope.isShown = true;
+                    $document.bind('click', outsideClick);
+                }
+
+                function close() {
+                    scope.isShown = false;
+                    $document.unbind('click', outsideClick);
+                }
+
+                function outsideClick(evt) {
+                    if (element[0].contains(evt.target)) {
+                        return;
+                    }
+                    close();
+                    if (!$rootScope.$$phase) {
+                        scope.$apply();
+                    }
+                }
 
 
-			}
 
-		};
 
-	}
+
+
+            }
+
+        };
+
+    }
 })();
-
-
-

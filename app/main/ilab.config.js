@@ -55,12 +55,6 @@
                 url: '/environments',
                 templateUrl: "main/environment/envs.html"
             })
-            .state('envMulti',{
-                url:"/envMulti",
-                templateUrl:"main/environment/envMulti/envBasicView.html",
-                controller:"VMMultiCtrl",
-                controllerAs:'vmMulti'
-            })
             .state('lab', {
                 url: "/lab",
                 templateUrl: "main/lab/lab.html"

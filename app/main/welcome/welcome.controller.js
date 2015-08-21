@@ -5,6 +5,7 @@
         .controller('WelcomeCtrl', WelcomeCtrl);
 
     WelcomeCtrl.$inject = ['alert'];
+
     function WelcomeCtrl(alert) {
         var that = this;
 
@@ -27,6 +28,8 @@
         that.show = show;
         that.alerts = [];
         that.close = close;
+
+        that.columns = ['Name', 'Owner', 'Capacity', 'Deploy At'];
         that.envs = [{
             "id": 2067601,
             "name": "pskhodad_env_1",
@@ -215,7 +218,10 @@
         }
 
         function show(option) {
-            alert.open({type: option, message: 'hello'});
+            alert.open({
+                type: option,
+                message: 'hello'
+            });
         }
 
         function close(index) {

@@ -8,13 +8,17 @@
 
     function VMCtrl(machine, $filter, $modal, $sce) {
         var that = this;
+
+        //that.vms = machine.getList();
+        //console.log(that.vms);
+
         var orderBy = $filter('orderBy');
         that.deleteVM = {
             selectedVMs: []
         };
         that.selectedAll = false;
-        that.showPage = true;
-        
+        that.showPage = 0;
+
         that.toggleCheckAll = toggleCheckAll;
         that.sort = [];
         that.changeSorting = changeSorting;
@@ -82,11 +86,11 @@
             network: [{interface: "", label: "", ip: ""}]
         };
 
-        that.CPU = [{idx: 0,NumOfCPU: "1"}, 
-                    {idx: 1,NumOfCPU: "2"}, 
-                    {idx: 2,NumOfCPU: "4"}, 
-                    {idx: 3,NumOfCPU: "8"}, 
-                    {idx: 4,NumOfCPU: "16"}];
+        that.CPU = [{idx: 0,NumOfCPU: "1"},
+            {idx: 1,NumOfCPU: "2"},
+            {idx: 2,NumOfCPU: "4"},
+            {idx: 3,NumOfCPU: "8"},
+            {idx: 4,NumOfCPU: "16"}];
 
         that.Memory = [
             [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
@@ -106,7 +110,10 @@
         activate();
 
         function activate() {
-            that.VMs = machine.getVMDetail();
+            // machine.getVMDetail().then(function(data) {
+            //     that.VMs = data;
+            // });
+            that.VMs = machine.getVMDetail().$object;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -177,11 +184,14 @@
             //that.showPage = !that.showPage;
             if (that.showPage == vmid) {
                 that.showPage = 0;
+
                 //clear vm.configTmp.network
             } else {
+                clearArr(that.vmTemp.network);
+                getVMById(vmid);
                 that.showPage = vmid;
                 getVMById(vmid);
-                
+
                 //find the vm idx;
                 that.configTmp.name = that.vmTemp.name;
                 that.configTmp.description = that.vmTemp.description;
@@ -193,7 +203,7 @@
                 clearArr(that.configTmp.network);
                 angular.forEach(that.vmTemp.network, function(obj,key) {
                     that.configTmp.network.push(obj);
-                });                
+                });
                 //saveTemplate panel
                 that.saveTemp.name = that.vmTemp.name;
                 clearArr(that.tplConfig);
@@ -204,7 +214,7 @@
                 };
                 that.tplConfig.push(temp);
                 //if have opened saveTemp panel and change, we need to reset that panel.
-                
+
             }
         }
 
@@ -216,7 +226,7 @@
         }
         function selectCPU(CPU) {
             that.configTmp.CPU = CPU;
-        } 
+        }
 
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
@@ -270,7 +280,7 @@
             var number = tplConfig.length;
             console.log(number);
             if (bool) {
-                if(number+1 > 4) 
+                if(number+1 > 4)
                     return -1;
                 var temp = {
                     interface: number+1,
@@ -283,7 +293,7 @@
                     return -1;
                 tplConfig.pop();
             }
-            
+
         }
 
         function closePanel(vmid) {
@@ -313,18 +323,18 @@
             });
 
             modalInstance.result.then(function (result) {
-                 if(result===true)
-                 {
-                    console.log(vmId);  
-                    return vmId; 
+                if(result===true)
+                {
+                    console.log(vmId);
+                    return vmId;
                 }
-                  console.log('Modal dismissed at: ' + new Date());
-                });
+                console.log('Modal dismissed at: ' + new Date());
+            });
         }
 
 
 
-        
+
     }
 
 })();

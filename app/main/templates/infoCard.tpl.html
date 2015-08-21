@@ -1,0 +1,59 @@
+<div>
+	<div class="card" ng-class="{'on': info.disable === 0 && info.power === 1, 'off': info.disable === 0 && info.power === 0, 'suspend': info.disable === 0 && info.power === 2, 'disconnected': info.disable === 4, 'spawing': info.disable === 2 ,'disable': info.disable == 3 }" ng-click="toggle()" dropdown-toggle >
+		<div class="tag-icon">
+			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
+		</div>
+		<div class="tag-name">
+			<span>{{info.name | truncateString:1}}</span>
+			<img src="image/refresh_icon_18x18.gif" ng-show="info.isInOperation"/>
+		</div>		
+	</div>
+	<div class="info" ng-show="isShown">
+		<div class="container-fluid">
+			<h3 class="card-key">{{info.name}}</h3>
+			<small >{{info.description}} Some description</small>
+		</div>
+		<div class="container-fluid" ng-if="type === 'vm'">
+			<div class="row">
+				<strong class="col-xs-4">Config:</strong>
+				<span class="col-xs-7 col-xs-offset-1">{{info.cpus}}CPU, {{info.mem}}</span>
+			</div>
+			<div class="row">
+				<strong class="col-xs-4">IP:</strong>
+				<span class="col-xs-7 col-xs-offset-1">{{info.network}</span>
+			</div>
+			<div class="row">
+				<strong class="col-xs-4">Network:</strong>
+				<span class="col-xs-7 col-xs-offset-1">TBD</span>
+			</div>
+		</div>
+		<div ng-if="type === pm">
+		</div>
+		<div class="btn-operation">
+			<button class="btn btn-default btn-line" ng-click="connect({id: info.id})">Connect</button>
+			<div class="dropdown clearfix btn-line">
+			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" ng-class="{'btn-approve': info.disable === 0 && info.power === 1, 'btn-danger': info.disable === 0 && info.power === 0, 'btn-suspend': info.disable === 0 && info.power === 2}" ng-disable="vmIsInOperation(info.id)" >
+			        <span ng-if="info.disable === 0 && info.power === 1">Running</span>
+					<span ng-if="info.disable === 0 && info.power === 0">Stopped</span>
+					<span ng-if="info.disable === 0 && info.power === 2">Suspended</span>
+			        <span class="caret"></span>
+			    </button>
+			        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+		                        <span>Power On</span></a>
+		                </li>
+				        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+		                        <span>Power Off</span></a>
+		                </li>
+				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+		                        <span>Suspend</span></a>
+		                </li>
+		                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+		                		<span>Restart</span></a>
+		            	</li>
+			        </ul>
+		    </div>
+		</div>
+	</div>
+
+</div>
