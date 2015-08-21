@@ -68,6 +68,7 @@
         function updateVMDetail(vmid, configTmp) {
             var vm = Restangular.one("virtual-machines", vmid).get();
             vm.then(function(VmNeedToUpdate) {
+                console.log(vmid);
                 console.log(VmNeedToUpdate.getRestangularUrl());
                 console.log(VmNeedToUpdate.getRequestedUrl());
                 VmNeedToUpdate.name = configTmp.name;
@@ -77,7 +78,7 @@
                 angular.forEach(VmNeedToUpdate.network, function(obj,key) {
                     var idx = parseInt(obj.interface) - 1;
                     obj.label = configTmp.network[idx].label;
-                });
+                });  
                 //var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
                 VmNeedToUpdate.put();
             });
