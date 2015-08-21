@@ -9,7 +9,7 @@
 
             function envListService(Restangular) {
                 return{
-                all: function(){
+                allEnvlists: function(){
                         var that= this;
                         var allEnvlists = Restangular.one("admin","environments");
                         allEnvlists= allEnvlists.get({expand:'summary'});

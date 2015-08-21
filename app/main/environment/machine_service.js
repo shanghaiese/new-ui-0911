@@ -46,7 +46,7 @@
         }
 
         //mock data for Table Body
-        function getVMDetail() {
+        function getVMList() {
             var detail = [{
                     "id": 3638301,
                     "path": "/vmfs/volumes/.../vm1.vmx",

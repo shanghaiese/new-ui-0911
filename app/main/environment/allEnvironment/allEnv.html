@@ -8,26 +8,28 @@
     </button>
     <div ng-show="isCollapsed">
       <div class="well">
-        <form class="form-horizontal default" name="addEnv" ng-submit="addEnv(Envlists.id)">
+        <form class="form-horizontal default" name="addEnv" ng-submit="addEnv()">
             <div class="form-group">
                 <label class="required">Name:</label>
-                <input class="form-control" type="text" placeholder="Environment name" ng-model="Envlists.envs.name" required>
+                <input name="name" class="form-control" type="text" placeholder="Environment name" ng-model="name" required>
             </div>
             <div class="form-group">
                 <label>Description:</label>
-                <input class="form-control" placeholder="Description">
+                <input name="description" class="form-control" ng-model="description" placeholder="Description">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary">Add</button>
-                <button class="btn btn-default">Cancel</button>
+                <button class="btn btn-primary" type="submit">Add</button>
+                <button class="btn btn-secondary" type="button" ng-click="cancelAdd()">Cancel</button>
             </div>
         </form>
-      </div>
+        </div>
     </div>
     <div class="env-list">
         <ul>
                   <li ng-repeat="env in Envlist.envs"> 
                     <div class="env" ui-sref="envBasicView">
+                    <!-- @@ You can add link to your page here!
+                    <div class="env" ui-sref="envBasicView({env.id})"> -->
                         <h6>{{env.name}}</h6>
                         <p>{{env.expiryDate}}</p>
                          <ol>   
