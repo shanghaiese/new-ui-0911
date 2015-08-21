@@ -188,14 +188,22 @@
             });
         }
 
+        /*disable the Action dropdown options when selected vm has suspended*/
         function disableSelection()
         {
             that.disableOption = 'enable';
             angular.forEach(that.selectedVMs, function(item) {
-                if(item.statusDisplay === 'Stopped')
+                if(item.statusDisplay === 'Suspended')
                     that.disableOption = 'disabled';
             });
         }
+
+
+        /**/
+        function getVMDetailInfo(vmid) {
+            
+        }
+
 
         /*store vmTemp as a temp var by vmid*/
         //?return

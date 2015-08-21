@@ -1,45 +1,17 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.8 (Windows 8 0.0.0)" package="" timestamp="2015-08-20T03:02:20" id="0" hostname="linapan-MOBL2">
+  <testsuite name="PhantomJS 1.9.8 (Windows 8 0.0.0)" package="" timestamp="2015-08-21T04:36:59" id="0" hostname="linapan-MOBL2">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 8 0.0.0)" package="" timestamp="2015-08-20T03:02:21" id="0" hostname="linapan-MOBL2" tests="6" errors="0" failures="1" time="0.116">
+  <testsuite name="PhantomJS 1.9.8 (Windows 8 0.0.0)" package="" timestamp="2015-08-21T04:36:59" id="0" hostname="linapan-MOBL2" tests="6" errors="0" failures="0" time="0.041">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
-    <testcase name="should compile directive to html" time="0.057" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).menu directive"/>
-    <testcase name="should hide menu default" time="0.012" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).menu directive"/>
-    <testcase name="should open menu when I add a open class to menu" time="0.012" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).menu directive"/>
-    <testcase name="should load mocked out items" time="0.015" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).machine service item with inline mock">
-      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;machine.getThead()&apos;)
-    at activate (c:/Work/project/newui/app/main/environment/vm/vm.controller.js:9)
-    at VMCtrl (c:/Work/project/newui/app/main/environment/vm/vm.controller.js:9)
-    at invoke (c:/Work/project/newui/app/bower_components/angular/angular.js:4443)
-    at instantiate (c:/Work/project/newui/app/bower_components/angular/angular.js:4451)
-    at c:/Work/project/newui/app/bower_components/angular/angular.js:9006
-    at c:/Work/project/newui/app/bower_components/angular-mocks/angular-mocks.js:1848
-    at c:/Work/project/newui/app/main/environment/machine.service.spc.js:9
-    at invoke (c:/Work/project/newui/app/bower_components/angular/angular.js:4443)
-    at workFn (c:/Work/project/newui/app/bower_components/angular-mocks/angular-mocks.js:2404)
-    at c:/Work/project/newui/node_modules/karma-jasmine/lib/boot.js:126
-    at c:/Work/project/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:123
-undefined
-</failure>
-      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;ctrl.VMs&apos;)
-    at c:/Work/project/newui/app/main/environment/machine.service.spc.js:9
-    at c:/Work/project/newui/node_modules/karma-jasmine/lib/boot.js:126
-    at c:/Work/project/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:123
-</failure>
-    </testcase>
-    <testcase name="should have a VMCtrl controller" time="0.012" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).vms controller"/>
-    <testcase name="should select all checkbox by toggleCheckAll function" time="0.008" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).vms controller"/>
-    <system-out><![CDATA[
+    <testcase name="A description of what should the method do" time="0.041" classname="PhantomJS 1.9.8 (Windows 8 0.0.0).getNewRes test"/>
+    <system-out><![CDATA[PhantomJS 1.9.8 (Windows 8 0.0.0) LOG: Object{$$state: Object{status: 0}, call: function wrapper() { ... }, get: function wrapper() { ... }, restangularCollection: false, $object: Object{}}
+
 ]]></system-out>
     <system-err/>
   </testsuite>

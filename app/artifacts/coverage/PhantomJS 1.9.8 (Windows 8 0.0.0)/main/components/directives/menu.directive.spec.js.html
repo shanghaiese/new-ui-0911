@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header high">
+<div class="header low">
     <h1>Code coverage report for <span class="entity">./main/components/directives/menu.directive.spec.js</span></h1>
     <h2>
-        Statements: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">34.78% <small>(8 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">100% <small>(5 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">100% <small>(23 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">20% <small>(1 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">34.78% <small>(8 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./main/components/directives/</a> &#187; menu.directive.spec.js</div>
@@ -76,31 +76,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3</span>
-<span class="cline-any cline-yes">3</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">describe('menu directive', function() {
@@ -113,33 +113,33 @@
 &nbsp;
     // Store references to $rootScope and $compile
     // so they are available to all tests in this describe block
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
+    beforeEach(inject(<span class="fstat-no" title="function not covered" >function(_$compile_, _$rootScope_) {</span>
         // The injector unwraps the underscores (_) from around the parameter names when matching
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
+<span class="cstat-no" title="statement not covered" >        $compile = _$compile_;</span>
+<span class="cstat-no" title="statement not covered" >        $rootScope = _$rootScope_;</span>
     }));
 &nbsp;
-    it('should compile directive to html', function() {
-        var scope = $rootScope.$new();
-        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);
-        scope.$digest();
-        expect(ele.html()).toContain('&lt;section class="ilab-menu intel-accordion"&gt;');
+    it('should compile directive to html', <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        var scope = $rootScope.$new();</span>
+<span class="cstat-no" title="statement not covered" >        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);</span>
+<span class="cstat-no" title="statement not covered" >        scope.$digest();</span>
+<span class="cstat-no" title="statement not covered" >        expect(ele.html()).toContain('&lt;section class="ilab-menu intel-accordion"&gt;');</span>
 &nbsp;
     });
 &nbsp;
-    it('should hide menu default', function() {
-        var scope = $rootScope.$new();
-        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);
-        scope.$digest();
-        expect(ele.find('.ilab-menu').hasClass('open')).toBe(false);
+    it('should hide menu default', <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        var scope = $rootScope.$new();</span>
+<span class="cstat-no" title="statement not covered" >        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);</span>
+<span class="cstat-no" title="statement not covered" >        scope.$digest();</span>
+<span class="cstat-no" title="statement not covered" >        expect(ele.find('.ilab-menu').hasClass('open')).toBe(false);</span>
     });
 &nbsp;
-    it('should open menu when I add a open class to menu', function() {
-        var scope = $rootScope.$new();
-        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);
-        scope.$digest();
-        ele.find('.ilab-menu').addClass('open');
-        expect(ele.find('.ilab-menu').css('opacity')).toEqual('1');
+    it('should open menu when I add a open class to menu', <span class="fstat-no" title="function not covered" >function() {</span>
+<span class="cstat-no" title="statement not covered" >        var scope = $rootScope.$new();</span>
+<span class="cstat-no" title="statement not covered" >        var ele = $compile('&lt;ilab-menu&gt;&lt;/ilab-menu&gt;')(scope);</span>
+<span class="cstat-no" title="statement not covered" >        scope.$digest();</span>
+<span class="cstat-no" title="statement not covered" >        ele.find('.ilab-menu').addClass('open');</span>
+<span class="cstat-no" title="statement not covered" >        expect(ele.find('.ilab-menu').css('opacity')).toEqual('1');</span>
     });
 });
 &nbsp;</pre></td></tr>
@@ -147,7 +147,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Aug 20 2015 11:02:21 GMT+0800 (China Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Aug 21 2015 12:36:59 GMT+0800 (China Standard Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

@@ -34,7 +34,7 @@
                 controllerAs: 'VM',
                 resolve: {
                     _vms: function(machine) {
-                        return machine.getVMDetail();
+                        return machine.getVMList();
                     }
                 }
             })
