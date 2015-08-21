@@ -17,7 +17,7 @@
 
                 middleware: function(connect, options, middlewares) {
                     // inject a custom middleware into the array of default middlewares
-                    middlewares.push(function(req, res, next) {
+                    middlewares.unshift(function(req, res, next) {
                     console.log(req.url);
                         if (!req.url.match(/^\/services\/api/)) {
                             return next();

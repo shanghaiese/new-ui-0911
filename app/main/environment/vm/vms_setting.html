@@ -3,7 +3,7 @@
 <!-- <tr> -->
 <td colspan="6" class="advVMInnerSetting td-collapsed">
     <div collapse="vms.id != VM.showPage">
-        <span class="intelicon-close-max" ng-click="VM.showVmEdit(vms.id)"></span>
+        <span class="intelicon-close-max" ng-click="VM.showVmEdit(vms.id, false)"></span>
         <tabset class="VMSettingTabs" type="pills">
             <!--ChangeVMSettingPanel-->
                 <tab active="toolTab.active" title="Configure VM">
@@ -56,14 +56,14 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.label}}</a></li>
+                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="settingButtonGroup">
-                                <button class="btn btn-primary" type="submit">Update</button>
+                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Update</button>
                                 <button class="btn btn-secondary" type="button" ng-click="VM.cancelConfig(vms.id)">Cancel</button>
                             </span>
                         </div>
@@ -112,14 +112,14 @@
                             <span class="intelicon-minus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, false)"></span>
                             <span class="intelicon-plus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, true)"></span>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.label}}</a></li>
+                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="settingButtonGroup">
-                                <button class="btn btn-primary" type="submit">Save</button>
+                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Save</button>
                                 <button class="btn btn-secondary" type="button" ng-click="VM.cancelConfig()">Cancel</button>
                             </span>
                         </div>

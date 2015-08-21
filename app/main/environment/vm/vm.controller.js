@@ -132,12 +132,6 @@
             }]
         ];
 
-        that.Network = [{
-            label: "Nic1"
-        }, {
-            label: "Nic2"
-        }];
-
         //Functions
         activate();
 
@@ -147,6 +141,9 @@
             // });
             //that.VMs = machine.getVMDetail().$object;
             loadVMList();
+            machine.getEnvNetworks().then(function(data) {
+                that.Network = data.networks;
+            });
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -231,7 +228,6 @@
                     that.vmTemp.CPU.idx = obj.idx;
                 }
             });
-            //            return that.vmTemp;
         }
         //select Virtual machine for delete
 
@@ -264,18 +260,21 @@
         }
 
         /*show the vm edit page or close it*/
-        function showVmEdit(vmid) {
+        // if bool == true, means update, the data should change. Otherwise, no change in data.
+        function showVmEdit(vmid, bool) {
             //that.showPage = !that.showPage;
-            if (that.showPage == vmid) {
+            if (that.showPage == vmid && bool == true) {
+                that.showPage = 0;
+                //cancelConfig(vmid);
+                //clear vm.configTmp.network
+            } else if(that.showPage == vmid && bool == false) {
                 that.showPage = 0;
                 cancelConfig(vmid);
-                //clear vm.configTmp.network
             } else {
                 getVMById(vmid);
                 getVMDetailInfo(vmid);
                 that.showPage = vmid;
                 getVMById(vmid);
-
                 //find the vm idx;
                 angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel
@@ -293,7 +292,7 @@
         }
 
         function selectNetwork(netIndex, network) {
-            that.configTmp.network[netIndex].label = network.label;
+            that.configTmp.network[netIndex].label = network.name;
         }
 
         function selectMemory(memory) {
@@ -332,13 +331,15 @@
                     obj.description = that.configTmp.description;
                     angular.forEach(obj.network, function(obj, key) {
                         var idx = parseInt(obj.interface) - 1;
+                        console.log(idx);
                         obj.label = that.configTmp.network[idx].label;
                     });
                 }
             });
             //Here need to add update();
             //close the panel
-            showVmEdit(vmid);
+            machine.updateVMDetail(vmid, that.configTmp);
+            showVmEdit(vmid, true);
         }
 
         function changeTplNumber(tplConfig, bool) {

@@ -80,6 +80,7 @@
         RestangularProvider.setRestangularFields({
             selfLink: 'self.href'
         });
+        RestangularProvider.setParentless(true);
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
