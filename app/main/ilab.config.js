@@ -34,7 +34,7 @@
                 controllerAs: 'VM',
                 resolve: {
                     _vms: function(machine) {
-                        return machine.getVMDetail();
+                        return machine.getVMDetail();       
                     }
                 }
             })
@@ -80,6 +80,7 @@
         RestangularProvider.setRestangularFields({
             selfLink: 'self.href'
         });
+        RestangularProvider.setParentless(true);
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
