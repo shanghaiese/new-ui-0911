@@ -77,7 +77,7 @@
     restangular.$inject = ['RestangularProvider'];
 
     function restangular(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/mockapi');
+        RestangularProvider.setBaseUrl('/services/api/');
         RestangularProvider.setRestangularFields({
             selfLink: 'self.href'
         });

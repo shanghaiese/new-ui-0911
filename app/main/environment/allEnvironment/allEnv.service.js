@@ -1,40 +1,27 @@
-/** @Display the all environment list
- */
-(function() {
+/*@Display the all environment list
+  @Yufan*/
+(function(){
     'use strict';
+    angular
+        .module('ilabService')
+        .factory('envListService',envListService);
+            envListService.$inject = ['Restangular'];
 
-   angular
-		.module('ilabService')
-		.factory('envListService',envListService);
-             envListService.$inject = [];
-             function envListService() {
-    			var envs = [{name:'Environment 1',
-                             description:'Env description',
-                             virtualMachines:2,
-                             physicalMachines:3,
-                             networks:3,
-                             owner:'MrAa',
-                             users:2},
-                             {name:'Environment 2',
-                             description:'Env description',
-                             virtualMachines:2,
-                             physicalMachines:3,
-                             networks:3,
-                             owner:'MrAa',
-                             users:2},
-                             {name:'Environment 3',
-                             description:'Env description',
-                             virtualMachines:2,
-                             physicalMachines:3,
-                             networks:3,
-                             owner:'MrAa',
-                             users:2}];
-                	return{
-                        all: function(){
-                            return envs;
-                        },
-
-                    };
+            function envListService(Restangular) {
+                return{
+                all: function(){
+                        var that= this;
+                        var allEnvlists = Restangular.one("admin","environments");
+                        allEnvlists= allEnvlists.get({expand:'summary'});
+                        return allEnvlists;  
+                     /*Restangular.all("environments").getList("1",{"expand":"summary"});*/
+                     }
+                };
             }
 
 })();
+
+
+
+
+
