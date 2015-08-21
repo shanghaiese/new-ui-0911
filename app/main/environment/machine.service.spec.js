@@ -43,7 +43,7 @@ describe('Machine Service Call API', function() {
 
   
             // handle restangular expectations
-            // expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
+            expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
             
             httpBackend.flush();
             

@@ -20,6 +20,7 @@
         var machinesData = {
             getVMList: getVMList,
             getThead: getThead,
+            getVMDetail:getVMDetail,
             transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
@@ -54,6 +55,12 @@
             return virtualMachineList;
             //return Restangular.all('admin/virtual-machines').getList();
         }
+
+        function getVMDetail(vmid) {
+            var vmDetailInfo = Restangular.one("virtual-machines",vmid).get();
+            return vmDetailInfo;
+        }
+
 
         function updateVMDetail() {
 

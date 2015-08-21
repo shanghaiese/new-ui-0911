@@ -8,11 +8,11 @@
 
     function VMCtrl(machine, $filter, $modal, $sce, _vms) {
         var that = this;
-        
+
         //variables
         var orderBy = $filter('orderBy');
         that.selectedVMs = [];
-            
+
         that.selectedAll = false;
         that.showPage = 0;
         that.sort = [];
@@ -68,7 +68,9 @@
                 idx: "",
                 NumOfCPU: ""
             },
-            memory: {memory: ""},
+            memory: {
+                memory: ""
+            },
             //? network maybe multiple
             network: [{
                 interface: "",
@@ -140,7 +142,7 @@
         activate();
 
         function activate() {
-            //that.VMs = _vms;
+            //that.VMs = machine.getVMDetail().then(function(data) {
             //     that.VMs = data;
             // });
             //that.VMs = machine.getVMDetail().$object;
@@ -156,44 +158,43 @@
         /*this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
-                var list = _vms.virtualMachines;
-                angular.forEach(list, function(value, index) {
-                    if (value.disable === 0) {
-                        switch (value.power) {
-                            case 0:
-                                angular.extend(value, {
-                                    statusDisplay: 'Stopped'
-                                });
-                                that.VMs.push(value);
-                                break;
-                            case 1:
-                                angular.extend(value, {
-                                    statusDisplay: 'Running'
-                                });
-                                that.VMs.push(value);
-                                break;
-                            case 2:
-                                angular.extend(value, {
-                                    statusDisplay: 'Suspended'
-                                });
-                                that.VMs.push(value);
-                                break;
-                        }
-                    } else if (value.disable === 4) {
-                        angular.extend(value, {
-                            statusDisplay: 'Disconnected'
-                        });
-                        that.VMs.push(value);
+            var list = _vms.virtualMachines;
+            angular.forEach(list, function(value, index) {
+                if (value.disable === 0) {
+                    switch (value.power) {
+                        case 0:
+                            angular.extend(value, {
+                                statusDisplay: 'Stopped'
+                            });
+                            that.VMs.push(value);
+                            break;
+                        case 1:
+                            angular.extend(value, {
+                                statusDisplay: 'Running'
+                            });
+                            that.VMs.push(value);
+                            break;
+                        case 2:
+                            angular.extend(value, {
+                                statusDisplay: 'Suspended'
+                            });
+                            that.VMs.push(value);
+                            break;
                     }
+                } else if (value.disable === 4) {
+                    angular.extend(value, {
+                        statusDisplay: 'Disconnected'
+                    });
+                    that.VMs.push(value);
+                }
             });
         }
 
         /*disable the Action dropdown options when selected vm has suspended*/
-        function disableSelection()
-        {
+        function disableSelection() {
             that.disableOption = 'enable';
             angular.forEach(that.selectedVMs, function(item) {
-                if(item.statusDisplay === 'Suspended')
+                if (item.statusDisplay === 'Suspended')
                     that.disableOption = 'disabled';
             });
         }
@@ -201,7 +202,9 @@
 
         /**/
         function getVMDetailInfo(vmid) {
-            
+            that.oneVM = [];
+            that.oneVM = machine.getVMDetail(vmid).$object;
+
         }
 
 
@@ -269,6 +272,7 @@
                 //clear vm.configTmp.network
             } else {
                 getVMById(vmid);
+                getVMDetailInfo(vmid);
                 that.showPage = vmid;
                 getVMById(vmid);
 

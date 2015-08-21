@@ -140,37 +140,37 @@
                             <div class="form-group">
                                 <div>
                                     <strong class="col-md-2">Name:</strong>
-                                    <span class="col-md-10">{{vms.name}}</span>
+                                    <span class="col-md-10">{{VM.oneVM.name}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Description:</strong>
-                                    <span class="col-md-10">{{(vms.description===null)?'NULL':vms.description}} </span>
+                                    <span class="col-md-10">{{(VM.oneVM.description===null)?'NULL':VM.oneVM.description}} </span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">iLab ID:</strong>
-                                    <span class="col-md-10">{{vms.id}}</span>
+                                    <span class="col-md-10">{{VM.oneVM.id}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Power:</strong>
-                                    <span class="col-md-10">{{(vms.power>0)?'Running':'Stop'}}</span>
+                                    <span class="col-md-10">{{(VM.oneVM.power>0)?'Running':'Stop'}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Config:</strong>
-                                    <span class="col-md-10">{{vms.cups}}CPU,{{(vms.mem)/1024}}G</span>
+                                    <span class="col-md-10">{{VM.oneVM.cups}}CPU,{{(VM.oneVM.mem)/1024}}G</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">OS:</strong>
-                                    <span class="col-md-10">{{vms.os}}</span>
+                                    <span class="col-md-10">{{VM.oneVM.os}}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div ng-repeat="nics in vms.network">
+                                <div ng-repeat="nics in VM.oneVM.network">
                                     <strong class="col-md-2">Nic{{nics.interface}} Network:</strong>
                                     <span class="col-md-10">{{nics.label}}</span>
                                     <strong class="col-md-2">Nic{{nics.interface}} IP:</strong>
                                     <span class="col-md-10">{{nics.ip}}</span>
                                     <strong class="col-md-2">Nic{{nics.interface}} MAC:</strong>
-                                    <span class="col-md-10">{{nics.ip}}</span>
+                                    <span class="col-md-10">{{nics.mac}}</span>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -180,19 +180,19 @@
                             <strong class="col-md-2">Driver:</strong>
                             <span class="col-md-10">{{vms.driver}}</span> -->
                                 <strong class="col-md-2">VMM:</strong>
-                                <span class="col-md-10">{{vms.vmm}}</span>
+                                <span class="col-md-10">{{VM.oneVM.vmm}}</span>
                                 <strong class="col-md-2">Disk 1:</strong>
-                                <span class="col-md-10">{{vms.disk1}}</span>
+                                <span class="col-md-10">{{VM.oneVM.disk1}}</span>
                                 <!-- <strong class="col-md-2">Hostname:</strong>
                             <span class="col-md-10">{{vms.hostname}}</span>
 
                             <strong class="col-md-2">Creator:</strong>
                             <span class="col-md-10">{{vms.creator}}</span> -->
                                 <strong class="col-md-2">Creat Date:</strong>
-                                <span class="col-md-10">{{vms.created_date}}</span>
+                                <span class="col-md-10">{{VM.oneVM.created_date}}</span>
                             </div>
                             <div class="form-group">
-                                   <button class="btn btn-secondary col-md-offset-2" ng-click="VM.closePanel(vms.id)">Close</button>
+                                   <button class="btn btn-secondary col-md-offset-2" ng-click="VM.showVmEdit(vms.id)">Close</button>
                                 
                             </div>
                         </form>
