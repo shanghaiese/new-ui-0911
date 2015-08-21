@@ -1,68 +1,75 @@
-describe('machine service item with inline mock', function() {
-    beforeEach(module('ilab'));
+describe('Machine Service Call API', function() {
+    beforeEach(function() {
+        module('ilabService');
+        module('ilab');
+        module('ilabConfig');
+    });
 
-    var ctrl, mockService;
-
-    beforeEach(module(function($provide) {
-        mockService = {
-            getVMDetail: function() {
-                return [{
-                    "id": 1,
-                    "path": "/vmfs/volumes/ILAB_SAN_09/306841/269281-clone.vmx",
-                    "name": "PEVH-VHO-1",
-                    "cpus": 6,
-                    "mem": 16384,
-                    "power": 1,
-                    "maxcpus": 8,
-                    "maxmem": 261120,
-                    "minmem": 512,
-                    "os": "windows7srv-64",
-                    "created_date": "Jan  1 1970 12:00:00:000AM",
-                    "disable": 0,
-                    "description": null,
-                    "locked": false,
-                    "network": [{
-                        "interface": 1,
-                        "label": "1_NIC1",
-                        "ip": "10.88.16.69"
-                    }],
-                    "vmm": "pvms1113.pdx.intel.com",
-                    "disk1": "TBD"
-                }];
-            }
-        };
-
-        $provide.value('machine', mockService);
-
+    var httpBackend, restangular,q, scope;
+      
+    // then we use the $injector to obtain the instances of the services we would like to mock/use
+    // but not of the service that we want to test
+    beforeEach(inject(function( Restangular, _$httpBackend_, $q, $rootScope) {
+        httpBackend = _$httpBackend_;
+        restangular = Restangular;
+        q = $q;
+        scope = $rootScope.$new();
     }));
+      
+    // a sample definition on which method we are about to test
+    describe('getNewRes test', function(){
+        // actual test implementation
+        it('A description of what should the method do', inject(function(machine){ 
+            // set up a spy on Restangular, so we test with what parameters it was called, also allow the call to continue
+            // spyOn(restangular, 'one').and.callThrough();
+            // a mock to be returned from http. We would later expect our service to 'enhance' this mock with an additional property
+            var mockToReturn = {
+                a: 'a',
+                b: 'b'
+            };
+            // a parameter with which the http service we expect to be called
 
-    beforeEach(inject(function($controller) {
-        ctrl = $controller('VMCtrl');
-    }));
+            var expand = 'virtualMachines';
+            // httpBackend would append a "/" in front of a restangular call      
+            httpBackend.expectGET('/services/api/environments/2068901?expand=virtualMachines', {
+               "Accept":"application/json, text/plain, */*"
+            }).respond([mockToReturn]);
+            // respond with the mock
+            
 
-    it('should load mocked out items', function() {
-        expect(ctrl.VMs).toEqual([{
-            "id": 1,
-            "path": "/vmfs/volumes/ILAB_SAN_09/306841/269281-clone.vmx",
-            "name": "PEVH-VHO-1",
-            "cpus": 6,
-            "mem": 16384,
-            "power": 1,
-            "maxcpus": 8,
-            "maxmem": 261120,
-            "minmem": 512,
-            "os": "windows7srv-64",
-            "created_date": "Jan  1 1970 12:00:00:000AM",
-            "disable": 0,
-            "description": null,
-            "locked": false,
-            "network": [{
-                "interface": 1,
-                "label": "1_NIC1",
-                "ip": "10.88.16.69"
-            }],
-            "vmm": "pvms1113.pdx.intel.com",
-            "disk1": "TBD"
-        }]);
+            // now call our service
+            var newRes = machine.getVMList();  
+                console.log(newRes);
+
+  
+            // handle restangular expectations
+            // expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
+            
+            httpBackend.flush();
+            
+            var defer = q.defer();
+            var unproxiedPromise;
+            newRes.then(function(value){
+                unproxiedPromise = value;
+            });
+            defer.resolve();
+            scope.$apply();
+            newRes=unproxiedPromise;
+
+                
+              
+            // now follows the tricky part. The restangular promise has been unproxied by the httpBackend.flush call,
+            // but our promise, the one we return in the service, still hasn't been unproxied
+            // so, if we were to directly expect it to be unproxied, we are in for a surprise, it is a still a promise
+            // this took some fiddling, but I created a utility function that will do the unproxying for you:
+            //newRes = TestUtils.resolvePromise(newRes, q, scope);
+              
+            // expect the new object to have been 'enhanced' by the service
+            expect(newRes).toEqual([{
+                a: 'a',
+                b: 'b'
+                //newlyCreatedProp : 'newlyCreatedProp'
+            }]); 
+        }));
     });
 });

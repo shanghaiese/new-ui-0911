@@ -18,7 +18,7 @@
 
     function machineService(Restangular) {
         var machinesData = {
-            getVMDetail: getVMDetail,
+            getVMList: getVMList,
             getEnvNetworks: getEnvNetworks,
             getThead: getThead,
             updateVMDetail: updateVMDetail,
@@ -58,7 +58,7 @@
         }
 
         //mock data for Table Body
-        function getVMDetail() {
+        function getVMList() {
             var env = Restangular.one("environments",2068901);
             virtualMachineList = env.get({expand:'virtualMachines'});
             return virtualMachineList;
