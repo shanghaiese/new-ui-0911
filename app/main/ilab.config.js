@@ -2,11 +2,11 @@
 
     angular
         .module('ilabConfig')
-        .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
         .config(restangular)
         .config(pagination)
-        .run(beforeRun);
+        .run(attachMenu)
+        .run(loading);
 
 
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -65,21 +65,37 @@
     /* config block */
 
     /* run block */
-    beforeRun.$inject = ['$rootScope'];
+    attachMenu.$inject = ['$rootScope'];
 
-    function beforeRun($rootScope) {
+    function attachMenu($rootScope) {
         $rootScope.toggleMenu = function() {
             $('.ilab-menu').toggleClass('open');
         };
+    }
+
+    loading.$inject = ['$rootScope'];
+
+    function loading($rootScope) {
+        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+            $rootScope.isLoading = false;
+            if(toState && toState.resolve) {
+                $rootScope.isLoading = true;
+            }
+        });
+        $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
+            $rootScope.isLoading = false;
+            
+        });
+        $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
+            $rootScope.isLoading = false;
+           
+        });
     }
 
     restangular.$inject = ['RestangularProvider'];
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
-        RestangularProvider.setRestangularFields({
-            selfLink: 'self.href'
-        });
         RestangularProvider.setParentless(true);
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }

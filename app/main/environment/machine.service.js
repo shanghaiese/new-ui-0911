@@ -14,7 +14,7 @@
         .module('ilabService')
         .factory('machine', machineService);
 
-    machineService.$inject = ['Restangular'];    
+    machineService.$inject = ['Restangular'];
 
     function machineService(Restangular) {
 
@@ -22,6 +22,7 @@
             getVMList: getVMList,
             getEnvNetworks: getEnvNetworks,
             getThead: getThead,
+            getVMDetail: getVMDetail,
             updateVMDetail: updateVMDetail,
             saveVMTpl: saveVMTpl,
             transDetailForDis: transDetailForDis,
@@ -29,7 +30,6 @@
             transMemFromGB2MB: transMemFromGB2MB
         };
 
-        var virtualMachineList;
         var networksList;
 
         //mock data for Table Head
@@ -54,17 +54,26 @@
         }
 
         function getEnvNetworks() {
-            var networks = Restangular.one("environments",2068901);
-            networksList = networks.get({expand:'networks'});
+            var networks = Restangular.one("environments", 2068901);
+            networksList = networks.get({
+                expand: 'networks'
+            });
             return networksList;
         }
 
-        //mock data for Table Body
+        //get virtual machine list by calling api
         function getVMList() {
-            var env = Restangular.one("environments",2068901);
-            virtualMachineList = env.get({expand:'virtualMachines'});
+            var env = Restangular.one("environments", 2068901);
+            var virtualMachineList = env.get({
+                expand: 'virtualMachines'
+            });
             return virtualMachineList;
+            //return Restangular.all('admin/virtual-machines').getList();
+        }
 
+        function getVMDetail(vmid) {
+            var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
+            return vmDetailInfo;
         }
 
         function updateVMDetail(vmid, configTmp) {
@@ -74,7 +83,7 @@
                 VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;
                 var gb = parseInt(configTmp.memory.memory);
                 VmNeedToUpdate.mem = transMemFromGB2MB(gb);
-                angular.forEach(VmNeedToUpdate.network, function(obj,key) {
+                angular.forEach(VmNeedToUpdate.network, function(obj, key) {
                     var idx = parseInt(obj.interface) - 1;
                     obj.label = configTmp.network[idx].label;
                 });  
