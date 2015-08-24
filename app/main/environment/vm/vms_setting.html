@@ -32,7 +32,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.CPU" ng-click="VM.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
+                                <li class="cpuDropdownList" role="presentation" ng-repeat="list in VM.CPU" ng-click="VM.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -44,7 +44,7 @@
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Memory[VM.configTmp.CPU.idx]" ng-click="VM.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
+                                <li class="memoryDropdownList" role="presentation" ng-repeat="list in VM.Memory[VM.configTmp.CPU.idx]" ng-click="VM.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
                             </ul>
                         </div>
                     </div>

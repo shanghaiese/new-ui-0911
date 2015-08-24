@@ -1,60 +1,52 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T02:15:07" id="0" hostname="MINKUANY-MOBL">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T14:05:16" id="0" hostname="MINKUANY-MOBL">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T02:15:07" id="0" hostname="MINKUANY-MOBL" tests="6" errors="0" failures="2" time="0.171">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T14:05:16" id="0" hostname="MINKUANY-MOBL" tests="30" errors="0" failures="3" time="0.08">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
-    <testcase name="should compile directive to html" time="0.095" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive"/>
-    <testcase name="should hide menu default" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive"/>
-    <testcase name="should open menu when I add a open class to menu" time="0.022" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive"/>
-    <testcase name="A description of what should the method do" time="0.032" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).Machine Service Call API getNewRes test"/>
-    <testcase name="should have a VMCtrl controller" time="0.005" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller">
-      <failure type="">Error: [ng:areq] Argument &apos;VMCtrl&apos; is not a function, got undefined
-http://errors.angularjs.org/1.4.1/ng/areq?p0=VMCtrl&amp;p1=not%20a%20function%2C%20got%20undefined
-    at assertArg (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:1761)
-    at assertArgFn (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:1772)
-    at c:/Users/minkuany/newui/app/bower_components/angular/angular.js:8967
-    at c:/Users/minkuany/newui/app/bower_components/angular-mocks/angular-mocks.js:1848
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:9
-    at invoke (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:4443)
-    at workFn (c:/Users/minkuany/newui/app/bower_components/angular-mocks/angular-mocks.js:2404)
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:126
+    <testcase name="should have a VMCtrl controller" time="0.042" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should select all checkbox by toggleCheckAll function" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should that.VMs be array" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
+      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
+    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
     at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
     at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:123
-undefined
+    at http://localhost:9876/context.html:139
 </failure>
     </testcase>
-    <testcase name="should select all checkbox by toggleCheckAll function" time="0.003" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller">
-      <failure type="">Error: [ng:areq] Argument &apos;VMCtrl&apos; is not a function, got undefined
-http://errors.angularjs.org/1.4.1/ng/areq?p0=VMCtrl&amp;p1=not%20a%20function%2C%20got%20undefined
-    at assertArg (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:1761)
-    at assertArgFn (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:1772)
-    at c:/Users/minkuany/newui/app/bower_components/angular/angular.js:8967
-    at c:/Users/minkuany/newui/app/bower_components/angular-mocks/angular-mocks.js:1848
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:9
-    at invoke (c:/Users/minkuany/newui/app/bower_components/angular/angular.js:4443)
-    at workFn (c:/Users/minkuany/newui/app/bower_components/angular-mocks/angular-mocks.js:2404)
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:126
+    <testcase name="should have 2 virtual machines" time="0.013" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
+      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
+    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
     at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
     at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:123
-</failure>
-      <failure type="">TypeError: &apos;undefined&apos; is not an object (evaluating &apos;ctrl.selectedVMs=[]&apos;)
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:9
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:126
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:123
+    at http://localhost:9876/context.html:139
 </failure>
     </testcase>
-    <system-out><![CDATA[PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: Object{$$state: Object{status: 0}, call: function wrapper() { ... }, get: function wrapper() { ... }, restangularCollection: false, $object: Object{}}
-
+    <testcase name="should vmTemp be equal to the fakeData" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
+      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
+    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
+    at http://localhost:9876/karma.js:182
+    at http://localhost:9876/context.html:139
+</failure>
+      <failure type="">Expected &apos;&apos; to match &apos;3633301&apos;.
+Error: Expected &apos;&apos; to match &apos;3633301&apos;.
+    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:106
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
+    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
+    at http://localhost:9876/karma.js:182
+    at http://localhost:9876/context.html:139
+</failure>
+    </testcase>
+    <system-out><![CDATA[
 ]]></system-out>
     <system-err/>
   </testsuite>

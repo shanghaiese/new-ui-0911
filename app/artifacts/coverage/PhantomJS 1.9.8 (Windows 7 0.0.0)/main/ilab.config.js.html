@@ -12,13 +12,13 @@
     </style>
 </head>
 <body>
-<div class="header high">
+<div class="header medium">
     <h1>Code coverage report for <span class="entity">./main/ilab.config.js</span></h1>
     <h2>
-        Statements: <span class="metric">89.47% <small>(17 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">100% <small>(0 / 0)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">71.43% <small>(5 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">89.47% <small>(17 / 19)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">75% <small>(21 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 4)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">54.55% <small>(6 / 11)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">75% <small>(21 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">./main/</a> &#187; ilab.config.js</div>
@@ -118,7 +118,23 @@
 91
 92
 93
-94</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -133,10 +149,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -188,7 +204,7 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -196,18 +212,34 @@
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">4</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
-<span class="cline-any cline-yes">4</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-yes">5</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-yes">5</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,11 +247,11 @@
 &nbsp;
     angular
         .module('ilabConfig')
-        .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
         .config(restangular)
         .config(pagination)
-        .run(beforeRun);
+        .run(attachMenu)
+        .run(loading);
 &nbsp;
 &nbsp;
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -278,21 +310,37 @@
     /* config block */
 &nbsp;
     /* run block */
-    beforeRun.$inject = ['$rootScope'];
+    attachMenu.$inject = ['$rootScope'];
 &nbsp;
-    function beforeRun($rootScope) {
+    function attachMenu($rootScope) {
         $rootScope.toggleMenu = <span class="fstat-no" title="function not covered" >function() {</span>
 <span class="cstat-no" title="statement not covered" >            $('.ilab-menu').toggleClass('open');</span>
         };
+    }
+&nbsp;
+    loading.$inject = ['$rootScope'];
+&nbsp;
+    function loading($rootScope) {
+        $rootScope.$on('$stateChangeStart', <span class="fstat-no" title="function not covered" >function(e, toState, toParams, fromState, fromParams) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.isLoading = false;</span>
+<span class="cstat-no" title="statement not covered" >            if(toState &amp;&amp; toState.resolve) {</span>
+<span class="cstat-no" title="statement not covered" >                $rootScope.isLoading = true;</span>
+            }
+        });
+        $rootScope.$on('$stateChangeSuccess', <span class="fstat-no" title="function not covered" >function(e, toState, toParams, fromState, fromParams) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.isLoading = false;</span>
+            
+        });
+        $rootScope.$on('$stateChangeError', <span class="fstat-no" title="function not covered" >function(e, toState, toParams, fromState, fromParams, error) {</span>
+<span class="cstat-no" title="statement not covered" >            $rootScope.isLoading = false;</span>
+           
+        });
     }
 &nbsp;
     restangular.$inject = ['RestangularProvider'];
 &nbsp;
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
-        RestangularProvider.setRestangularFields({
-            selfLink: 'self.href'
-        });
         RestangularProvider.setParentless(true);
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
@@ -309,7 +357,7 @@
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 24 2015 10:15:07 GMT+0800 (China Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 24 2015 22:05:16 GMT+0800 (China Standard Time)</div>
 </div>
 <script src="../prettify.js"></script>
 <script>

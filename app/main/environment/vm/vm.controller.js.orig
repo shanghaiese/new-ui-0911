@@ -158,6 +158,8 @@
         }
 
 
+<<<<<<< HEAD
+=======
         /**/
         function getVMDetailInfo(vmid) {
             that.oneVM = [];
@@ -166,6 +168,7 @@
         }
 
 
+>>>>>>> 62de5b7a3337168dab7cc5d4d9b97a665aba4900
         /*store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
@@ -189,7 +192,6 @@
                     that.vmTemp.CPU.idx = obj.idx;
                 }
             });
-            console.log(that.vmTemp.id);
         }
         //select Virtual machine for delete
 
