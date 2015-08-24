@@ -8,6 +8,10 @@
         .run(attachMenu)
         .run(loading);
 
+    angular
+        .module('ilabConfig')
+        .constant('DATETIME_FORMAT', 'L');
+
 
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
 
@@ -25,27 +29,53 @@
             })
             .state('env', {
                 url: "/environment/:envId",
-                templateUrl: "main/environment/env.html"
+                templateUrl: "main/environment/env.html",
+                controller: 'EnvCtrl',
+                controllerAs: 'Env',
+                resolve: {
+                    _env: function(environmentService, $stateParams) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    }
+                }
             })
             .state('env.vm', {
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
-                controller: 'VMCtrl',
-                controllerAs: 'VM'
+                controller: 'VmCtrl',
+                controllerAs: 'Vm',
+                resolve: {
+                    _vms: function(_env) {
+                        return _env.virtualMachines;
+                    }
+                }
             })
             .state('env.pm', {
                 url: "/pm",
-                templateUrl: "main/environment/pm/pm.html"
+                templateUrl: "main/environment/pm/pm.html",
+                controller: 'PmCtrl',
+                controllerAs: "Pm"
             })
             .state('envBasic', {
                 url: "/environment-basic/:envId",
                 templateUrl: "main/environment/envBasic/envBasic.html",
-                controller: "envBasicCtrl",
-                controllerAs: 'envBasic'
+                controller: 'EnvCtrl',
+                controllerAs: 'EnvBasic',
+                resolve: {
+                    _env: function(environmentService, $stateParams) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    }
+                }
             })
             .state('envs', {
                 url: '/environments',
-                templateUrl: "main/environment/envs.html"
+                templateUrl: "main/environment/envs.html",
+                controller: 'EnvsCtrl',
+                controllerAs: 'Envs',
+                resolve: {
+                    _envs: function(environmentService) {
+                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                    }
+                }
             })
             .state('lab', {
                 url: "/lab",

@@ -37,14 +37,14 @@ describe('menu directive', function() {
         });
 
         it('should highlight my environment link', function() {
-            var toState = {name: 'envBasic'};
-            $rootScope.$broadcast('$stateChangeSuccess', toState);
-            expect(ele.find('a[ui-sref^="envBasic"]').attr('id')).toBe('selected-link');
+            var toState = {name: 'envs'};
+            $rootScope.$broadcast('$stateChangeStart', toState);
+            expect(ele.find('a[ui-sref^="envs"]').attr('id')).toBe('selected-link');
         });
 
         it('should highlight lab link', function() {
             var toState = {name: 'lab'};
-            $rootScope.$broadcast('$stateChangeSuccess', toState);
+            $rootScope.$broadcast('$stateChangeStart', toState);
             expect(ele.find('a[ui-sref^="lab"]').attr('id')).toBe('selected-link');
         });
 

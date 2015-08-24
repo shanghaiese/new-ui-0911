@@ -15,32 +15,38 @@
         };
 
         function linkFn(scope, element, attrs) {
+
+            var environmentPageRegex = /^envs/;
+            var labPageRegex = /^lab/;
+            var menu = element.find('.ilab-menu');
+            var allLink = element.find('a');
+            var windowSizeIndicator = element.find('.no');
+            var environmentLink = element.find('a[ui-sref^="envs"]');
+            var labLink = element.find('a[ui-sref^="lab"]');
+
             $($window).ready(checkWindowSize);
             $($window).resize(checkWindowSize);
-
-            var environmentPageRegex = /^envBasic/;
-            var labPageRegex = /^lab/;
             /* check if it's needed to hide menu. and active corresponding link*/
-            scope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParms) {
+            scope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParms) {
                 checkWindowSize();
 
                 /*first clear id of all link, and add the id to the corresponding link*/
-                $(element).find('a').attr('id', '');
+                allLink.attr('id', '');
                 if (environmentPageRegex.test(toState.name)) {
-                    $(element).find('a[ui-sref^="envBasic"]').attr('id', 'selected-link');
+                    environmentLink.attr('id', 'selected-link');
                 } else if (labPageRegex.test(toState.name)) {
-                    $(element).find('a[ui-sref="lab"]').attr('id', 'selected-link');
+                    labLink.attr('id', 'selected-link');
                 }
             });
 
             /*check window size by accessing media query of class no*/
             function checkWindowSize() {
-                if (element.find('.no').css('font-size') === '1px') {
+                if (windowSizeIndicator.css('font-size') === '1px') {
                     /* small screen, hide*/
-                    $(element).find('.ilab-menu').removeClass('open');
+                    menu.removeClass('open');
                 } else {
                     /* large screen, open*/
-                    $(element).find('.ilab-menu').addClass('open');
+                    menu.addClass('open');
                 }
             }
 

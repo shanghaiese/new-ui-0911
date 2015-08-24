@@ -1,21 +1,19 @@
 (function() {
     angular.module('ilab')
-        .controller('VMCtrl', VMCtrl);
+        .controller('VmCtrl', VmCtrl);
 
-    VMCtrl.$inject = ['environmentService', 'vmService'];
+    VmCtrl.$inject = ['environmentService', 'vmService', '_vms', '_env', '$scope'];
 
-    function VMCtrl(environmentService, vmService) {
+    function VmCtrl(environmentService, vmService, _vms, _env, $scope) {
         var that = this;
 
-        environmentService.getList().then(function(envs) {
-            console.log(envs[0]);
-            var env = envs[0];
-            env.name = "thj3";
-            env.put().then(function(newEnv) {
-                console.log(newEnv);
-            });
-        });
+        that.vms = _vms;
+        $scope.Env.activeTab = 1;
+        activate();
 
+        function activate() {
+            
+        }
     }
 
 

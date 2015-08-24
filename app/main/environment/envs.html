@@ -1,22 +1,12 @@
 <div>
     <h1>My Environment</h1>
     <div>
-        <span>
-            <ul>
-                <li>
-                    <div><a ui-sref="envBasic({envId: 'env1'})">Enviroment 1</a></div>
-                    <div> <span>Some Details:vm:1 pm:1 network:1 user:Mr.A</span></div>
-                </li>
-                <li>
-                    <div><a ui-sref="envBasic({envId: 'env2'})">Enviroment 2</a></div>
-                    <div> <span>Some Details:vm:1 pm:1 network:1 user:Mr.B</span></div>
-                </li>
-                <li>
-                    <div><a ui-sref="envBasic({envId: 'env3'})">Enviroment 3</a></div>
-                    <div> <span>Some Details:vm:1 pm:1 network:1 user:Ms.C</span></div>
-                </li>
-            </ul>
-        </span>
+        <ul>
+            <li ng-repeat="env in Envs.envs">
+                <div><a ui-sref="envBasic({envId: env.id})">{{env.name}}</a></div>
+                <div><span>vms:{{env.virtualMachines.length}}</span><span>pms:{{env.physicalMachines.length}}</span></div>
+            </li>
+        </ul>
     </div>
     <hr/>
 </div>

@@ -1,11 +1,11 @@
 <h1>My Environments</h1>
 <div>
     <a ui-sref="envs">all environments</a>
-    <a ui-sref="env.vm({envId: 'env1'})" class="pull-right">advanced</a>
+    <a ui-sref="env.vm({envId: EnvBasic.env.id})" class="pull-right">advanced</a>
 </div>
 <div class="list-env">
-    <h3>Virtual Machine: {{envBasic.vms.length}}</h3>
+    <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
     <div class="card-container">
-	    <info-card class="list-VMs" type="vm" info="vm" on-connect="envBasic.connect(id)" on-power="envBasic.powerOperation(id,op)" ng-repeat="vm in envBasic.vms"></info-card>
+	    <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="vm in EnvBasic.env.virtualMachines"></info-card>
     </div>
 </div>
