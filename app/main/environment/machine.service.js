@@ -39,6 +39,7 @@
                 display: 'IP',
                 name: 'network[0].ip'
             }, {
+                display: 'Configuration',
                 name: 'cpus'
             }, {
                 display: 'Connect',

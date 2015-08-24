@@ -1,5 +1,5 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="clickCard()" dropdown-toggle >
+	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="toggle()" dropdown-toggle >
 		<div class="tag-icon">
 			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
@@ -8,7 +8,7 @@
 			<img src="image/refresh_icon_18x18.gif" ng-show="false"/>
 		</div>		
 	</div>
-	<div class="info" ng-show="showInfo();">
+	<div class="info" ng-show="isShown">
 		<h2 class="card-key">{{info.name}}</h2>
 		<small >{{info.description}}</small>
 
@@ -31,7 +31,7 @@
 		<div class="btn-operation">
 			<button class="btn btn-default btn-line" ng-click="connect({id: info.id})">Connect</button>
 			<div class="dropdown clearfix btn-line">
-			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" ng-class="{'play-btn':info.status=='Running','stop-btn':info.status=='Stopped','pause-btn':info.status=='Suspend'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
+			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" ng-class="{'btn-approve':info.status=='Running','btn-danger':info.status=='Stopped','btn-suspend':info.status=='Suspend'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
 			        {{info.status}}
 			       <span class="caret"></span>
 			    </button>
@@ -39,7 +39,7 @@
 				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
 		                        <span>Power On</span></a>
 		                </li>
-				        <li role="presentation"><a  class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+				        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
 		                        <span>Power Off</span></a>
 		                </li>
 				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>

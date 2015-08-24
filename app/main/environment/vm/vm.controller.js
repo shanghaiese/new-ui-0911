@@ -263,11 +263,11 @@
         // if bool == true, means update, the data should change. Otherwise, no change in data.
         function showVmEdit(vmid, bool) {
             //that.showPage = !that.showPage;
-            if (that.showPage == vmid && bool == true) {
+            if (that.showPage == vmid && bool === true) {
                 that.showPage = 0;
                 //cancelConfig(vmid);
                 //clear vm.configTmp.network
-            } else if(that.showPage == vmid && bool == false) {
+            } else if(that.showPage == vmid && bool === false) {
                 that.showPage = 0;
                 cancelConfig(vmid);
             } else {

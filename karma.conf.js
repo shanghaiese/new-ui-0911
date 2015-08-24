@@ -44,7 +44,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
      preprocessors: {
          'main/templates/*.html': ['ng-html2js'],
-          'main/**/*.js': 'coverage'
+         'main/**/!(*spec).js': ['coverage']
      },
      ngHtml2JsPreprocessor: {
       // If your build process changes the path to your templates,
@@ -56,8 +56,8 @@ module.exports = function(config) {
         moduleName: "templates"
     },
     reporters :[
-         'coverage',
-         'junit',
+        'coverage',
+        'junit',
         'progress'
     ],
 

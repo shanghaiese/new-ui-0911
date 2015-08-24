@@ -12,16 +12,16 @@ module.exports = {
         // files: ['<%= meta.srcPath %>/**/*.js', '<%= meta.srcPath %>/**/*.html'],
         options: {
             livereload: true,
-            nospawn: true,
+            // nospawn: true,
             interrupt: true,
             debounceDelay: 250
         },
         srcScripts: {
-            files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js', '!<%= meta.srcPath %>/bower_components/**/*.js'],
-            tasks: ['jshint', 'concat']
+            files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js', '!<%= meta.srcPath %>/bower_components/**/*.js', '!<%= meta.srcPath %>/**/*spec.js', '!<%= meta.srcPath %>/artifacts/**'],
+            tasks: ['jshint', 'beep:error:3', 'concat']
         },
         html: {
-            files: ['<%= meta.srcPath %>/**/*.html', '<%= meta.srcPath %>/main/**/*.tpl.html'],
+            files: ['<%= meta.srcPath %>/**/*.html', '<%= meta.srcPath %>/main/**/*.tpl.html', '!<%= meta.srcPath %>/artifacts/**'],
             tasks: ['concat']
         },
         css: {

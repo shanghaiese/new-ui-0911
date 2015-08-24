@@ -1,3 +1,4 @@
+<p>
 <div>
     <button type="button" class="btn btn-primary">Add VM</button>
     <div class="dropdown clearfix inline">
@@ -23,13 +24,15 @@
         </ul>
     </div>
     <!-- <span class="intelicon-search" id="search-vm"></span>    -->
-    <form class="form-inline default navbar-right " role="search">
+    <table-column-filter columns="VM.thead" class="pull-right"></table-column-filter>
+    <form class="form-inline default pull-right" role="search">
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Search" ng-model='searchInput'>
-            <span class="ilabicon-displaycolumn" id="displaycolumn-vm"></span>
         </div>
     </form>
+    
 </div>
+</p>
 <!---->
 <!-- vm table from here-->
 <table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
@@ -41,7 +44,7 @@
                     <label for="choose_all_env"></label>
                 </div>
             </th>
-            <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}">{{th.display}}</th>
+            <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}" ng-if="th.enabled">{{th.display.display}}</th>
         </tr>
     </thead>
     <tbody>
@@ -54,31 +57,22 @@
                 </div>
                 <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id, false)"></span>
             </td>
-            <td class="mark-as-blue">{{vms.name}}</td>
-            <td>
+            <td ng-if="VM.thead[0].enabled" class="mark-as-blue">{{vms.name}}</td>
+            <td ng-if="VM.thead[1].enabled">
                 <span ng-repeat="networks in vms.network"><p>{{networks.ip}}</p></span>
             </td>
-            <td>
+            <td ng-if="VM.thead[2].enabled">
                 {{vms.cpus}}CPU,{{vms.mem}}
             </td>
-            <td>
+            <td ng-if="VM.thead[3].enabled">
                 <button type="button" class="btn btn-secondary">Connect</button>
             </td>
-            <td>
+            <td ng-if="VM.thead[4].enabled">
                 <div class="dropdown inline">
                 <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vms.id)||vms.statusDisplay=='Disconnected'">
                     {{vms.statusDisplay}}
                    <span class="caret"></span>
                 </button>
-
-
-
-
-              <!--   <div class="dropdown inline">
-                    <button class="btn btn-approve dropdown-toggle" id="dropdown-running" type="button" data-toggle="dropdown" aria-expanded="true">
-                        Running
-                        <span class="caret"></span>
-                    </button> -->
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                                 <span>Power On</span></a>
