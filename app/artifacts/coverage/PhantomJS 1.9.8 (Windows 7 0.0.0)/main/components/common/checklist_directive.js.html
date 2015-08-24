@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for ./main/components/common/checklist_directive.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../../../prettify.css">
+    <link rel="stylesheet" href="../../../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">./main/components/common/checklist_directive.js</span></h1>
+    <h2>
+        Statements: <span class="metric">12% <small>(6 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 28)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 8)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">12% <small>(6 / 50)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./main/components/common/</a> &#187; checklist_directive.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116</td><td class="line-coverage"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Checklist-model
+ * AngularJS directive for list of checkboxes
+ */
+&nbsp;
+angular.module('checklist-model', [])
+.directive('checklistModel', ['$parse', '$compile', <span class="fstat-no" title="function not covered" >function($parse, $compile) {</span>
+  // contains
+<span class="fstat-no" title="function not covered" >  function contains(arr, item, comparator) {</span>
+<span class="cstat-no" title="statement not covered" >    if (angular.isArray(arr)) {</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = arr.length; i--;) {</span>
+<span class="cstat-no" title="statement not covered" >        if (comparator(arr[i], item)) {</span>
+<span class="cstat-no" title="statement not covered" >          return true;</span>
+        }
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return false;</span>
+  }
+&nbsp;
+  // add
+<span class="fstat-no" title="function not covered" >  function add(arr, item, comparator) {</span>
+<span class="cstat-no" title="statement not covered" >    arr = angular.isArray(arr) ? arr : [];</span>
+<span class="cstat-no" title="statement not covered" >      if(!contains(arr, item, comparator)) {</span>
+<span class="cstat-no" title="statement not covered" >          arr.push(item);</span>
+      }
+<span class="cstat-no" title="statement not covered" >    return arr;</span>
+  }  
+&nbsp;
+  // remove
+<span class="fstat-no" title="function not covered" >  function remove(arr, item, comparator) {</span>
+<span class="cstat-no" title="statement not covered" >    if (angular.isArray(arr)) {</span>
+<span class="cstat-no" title="statement not covered" >      for (var i = arr.length; i--;) {</span>
+<span class="cstat-no" title="statement not covered" >        if (comparator(arr[i], item)) {</span>
+<span class="cstat-no" title="statement not covered" >          arr.splice(i, 1);</span>
+<span class="cstat-no" title="statement not covered" >          break;</span>
+        }
+      }
+    }
+<span class="cstat-no" title="statement not covered" >    return arr;</span>
+  }
+&nbsp;
+  // http://stackoverflow.com/a/19228302/1458162
+<span class="fstat-no" title="function not covered" >  function postLinkFn(scope, elem, attrs) {</span>
+    // compile with `ng-model` pointing to `checked`
+<span class="cstat-no" title="statement not covered" >    $compile(elem)(scope);</span>
+&nbsp;
+    // getter / setter for original model
+<span class="cstat-no" title="statement not covered" >    var getter = $parse(attrs.checklistModel);</span>
+<span class="cstat-no" title="statement not covered" >    var setter = getter.assign;</span>
+<span class="cstat-no" title="statement not covered" >    var checklistChange = $parse(attrs.checklistChange);</span>
+&nbsp;
+    // value added to list
+<span class="cstat-no" title="statement not covered" >    var value = $parse(attrs.checklistValue)(scope.$parent);</span>
+&nbsp;
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  var comparator = angular.equals;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  if (attrs.hasOwnProperty('checklistComparator')){</span>
+<span class="cstat-no" title="statement not covered" >    comparator = $parse(attrs.checklistComparator)(scope.$parent);</span>
+  }
+&nbsp;
+    // watch UI checked change
+<span class="cstat-no" title="statement not covered" >    scope.$watch('checked', <span class="fstat-no" title="function not covered" >function(newValue, oldValue) {</span></span>
+<span class="cstat-no" title="statement not covered" >      if (newValue === oldValue) { </span>
+<span class="cstat-no" title="statement not covered" >        return;</span>
+      } 
+<span class="cstat-no" title="statement not covered" >      var current = getter(scope.$parent);</span>
+<span class="cstat-no" title="statement not covered" >      if (newValue === true) {</span>
+<span class="cstat-no" title="statement not covered" >        setter(scope.$parent, add(current, value, comparator));</span>
+      } else {
+<span class="cstat-no" title="statement not covered" >        setter(scope.$parent, remove(current, value, comparator));</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (checklistChange) {</span>
+<span class="cstat-no" title="statement not covered" >        checklistChange(scope);</span>
+      }
+    });
+    
+    // declare one function to be used for both $watch functions
+<span class="fstat-no" title="function not covered" >    function setChecked(newArr, oldArr) {</span>
+<span class="cstat-no" title="statement not covered" >        scope.checked = contains(newArr, value, comparator);</span>
+    }
+&nbsp;
+    // watch original model change
+    // use the faster $watchCollection method if it's available
+<span class="cstat-no" title="statement not covered" >    if (angular.isFunction(scope.$parent.$watchCollection)) {</span>
+<span class="cstat-no" title="statement not covered" >        scope.$parent.$watchCollection(attrs.checklistModel, setChecked);</span>
+    } else {
+<span class="cstat-no" title="statement not covered" >        scope.$parent.$watch(attrs.checklistModel, setChecked, true);</span>
+    }
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  return {</span>
+    restrict: 'A',
+    priority: 1000,
+    terminal: true,
+    scope: true,
+    compile: <span class="fstat-no" title="function not covered" >function(tElement, tAttrs) {</span>
+<span class="cstat-no" title="statement not covered" >      if (tElement[0].tagName !== 'INPUT' || tAttrs.type !== 'checkbox') {</span>
+<span class="cstat-no" title="statement not covered" >        throw 'checklist-model should be applied to `input[type="checkbox"]`.';</span>
+      }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      if (!tAttrs.checklistValue) {</span>
+<span class="cstat-no" title="statement not covered" >        throw 'You should provide `checklist-value`.';</span>
+      }
+&nbsp;
+      // exclude recursion
+<span class="cstat-no" title="statement not covered" >      tElement.removeAttr('checklist-model');</span>
+      
+      // local scope var storing individual checkbox model
+<span class="cstat-no" title="statement not covered" >      tElement.attr('ng-model', 'checked');</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >      return postLinkFn;</span>
+    }
+  };
+}]);</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 24 2015 10:15:07 GMT+0800 (China Standard Time)</div>
+</div>
+<script src="../../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../../sorter.js"></script>
+</body>
+</html>

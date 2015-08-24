@@ -17,11 +17,13 @@
     machineService.$inject = ['Restangular'];    
 
     function machineService(Restangular) {
+
         var machinesData = {
             getVMList: getVMList,
             getEnvNetworks: getEnvNetworks,
             getThead: getThead,
             updateVMDetail: updateVMDetail,
+            saveVMTpl: saveVMTpl,
             transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
@@ -68,9 +70,6 @@
         function updateVMDetail(vmid, configTmp) {
             var vm = Restangular.one("virtual-machines", vmid).get();
             vm.then(function(VmNeedToUpdate) {
-                console.log(vmid);
-                console.log(VmNeedToUpdate.getRestangularUrl());
-                console.log(VmNeedToUpdate.getRequestedUrl());
                 VmNeedToUpdate.name = configTmp.name;
                 VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;
                 var gb = parseInt(configTmp.memory.memory);
@@ -81,6 +80,17 @@
                 });  
                 //var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
                 VmNeedToUpdate.put();
+            });
+        }
+
+        function saveVMTpl(vmid, saveTpl) {
+            var vm = Restangular.one("virtual-machines", vmid).get();
+            vm.then(function(vmTplNeedToSave) {
+                vmTplNeedToSave.post('saveAsTemplate', saveTpl). then(function() {
+                    console.log("save Success");
+                }, function() {
+                    console.log("save Failed");
+                });
             });
         }
 

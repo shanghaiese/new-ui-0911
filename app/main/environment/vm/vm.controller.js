@@ -77,58 +77,19 @@
             }]
         };
 
-        that.CPU = [{
-            idx: 0,
-            NumOfCPU: "1"
-        }, {
-            idx: 1,
-            NumOfCPU: "2"
-        }, {
-            idx: 2,
-            NumOfCPU: "4"
-        }, {
-            idx: 3,
-            NumOfCPU: "8"
-        }, {
-            idx: 4,
-            NumOfCPU: "16"
-        }];
+        that.CPU = [{idx: 0, NumOfCPU: "1"}, 
+                    {idx: 1, NumOfCPU: "2"}, 
+                    {idx: 2, NumOfCPU: "4"}, 
+                    {idx: 3, NumOfCPU: "8"}, 
+                    {idx: 4, NumOfCPU: "16"}];
 
         that.Memory = [
-            [{
-                memory: "0.5G"
-            }, {
-                memory: "1G"
-            }, {
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }],
-            [{
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }],
-            [{
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "16G"
-            }, {
-                memory: "32G"
-            }]
-        ];
+            [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
+            [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
+            [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
+            [{memory: "8G"}, {memory: "16G"}],
+            [{memory: "16G"}, {memory: "32G"}]
+            ];
 
         //Functions
         activate();
@@ -193,12 +154,6 @@
                 if(item.statusDisplay === 'Suspended')
                     that.disableOption = 'disabled';
             });
-        }
-
-
-        /**/
-        function getVMDetailInfo(vmid) {
-            
         }
 
 
@@ -358,12 +313,23 @@
         }
 
         function saveVMTemplate(vmid) {
+            var saveTpl = {
+                "name": "",
+                "copy": false,
+                "clone": false,
+                "nic" : ["0", "0", "0", "0"],
+                "details": "",
+                "async": false
+            };
             //use API and transport newName and information
-            if (that.saveTemp.modeSaveDisk.diskMode === "chain" && that.saveTemp.modeSaveDisk.saveMode === "convert") {
-                console.log("chain+convert");
-            } else if (that.saveTemp.modeSaveDisk.diskMode === "copy" && that.saveTemp.modeSaveDisk.saveMode === "save") {
-                console.log("copy+save");
+            saveTpl.name = that.saveTemp.name;
+            if (that.saveTemp.modeSaveDisk.diskMode === "copy") {
+                saveTpl.copy = true;
             }
+            if (that.saveTemp.modeSaveDisk.saveMode === "clone") {
+                saveTpl.clone = true;
+            }
+            machine.saveVMTpl(vmid, saveTpl);
         }
 
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');

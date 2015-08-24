@@ -17,12 +17,13 @@
     machineService.$inject = ['Restangular'];    
 
     function machineService(Restangular) {
-<<<<<<< HEAD:app/main/environment/machine_service.js
-        console.log(Restangular.all('admin/virtual-machines').getList());
-=======
->>>>>>> 15e818191f2650646d344f964b5c2e936d4756d4:app/main/environment/machine.service.js
         var machinesData = {
+<<<<<<< HEAD
             getVMDetail: getVMDetail,
+            getEnvNetworks: getEnvNetworks,
+=======
+            getVMList: getVMList,
+>>>>>>> 499ae0c5b4d5a780113791856e788e39577d0aaa
             getThead: getThead,
             updateVMDetail: updateVMDetail,
             transDetailForDis: transDetailForDis,
@@ -30,10 +31,8 @@
             transMemFromGB2MB: transMemFromGB2MB
         };
 
-<<<<<<< HEAD:app/main/environment/machine_service.js
-        var vmBase;
-=======
->>>>>>> 15e818191f2650646d344f964b5c2e936d4756d4:app/main/environment/machine.service.js
+        var virtualMachineList;
+        var networksList;
 
         //mock data for Table Head
         function getThead() {
@@ -56,27 +55,40 @@
             return thead;
         }
 
+        function getEnvNetworks() {
+            var networks = Restangular.one("environments",2068901);
+            networksList = networks.get({expand:'networks'});
+            return networksList;
+        }
+
         //mock data for Table Body
-        function getVMDetail() {
-<<<<<<< HEAD:app/main/environment/machine_service.js
-            vmBase = Restangular.all('admin/virtual-machines').getList();
-            return vmBase;
-=======
+        function getVMList() {
             var env = Restangular.one("environments",2068901);
-            console.log(env);
+<<<<<<< HEAD
+            virtualMachineList = env.get({expand:'virtualMachines'});
+=======
             var virtualMachineList = env.get({expand:'virtualMachines'});
-            console.log(virtualMachineList);
+>>>>>>> 499ae0c5b4d5a780113791856e788e39577d0aaa
             return virtualMachineList;
-            //return Restangular.all('admin/virtual-machines').getList();
->>>>>>> 15e818191f2650646d344f964b5c2e936d4756d4:app/main/environment/machine.service.js
+
         }
 
         function updateVMDetail(vmid, configTmp) {
-            vmBase.then(function(VmNeedToUpdate) {
-                var vmNeedToUpdate = VmNeedToUpdate[0];
-                var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
-                console.log(vmFound);
-                vmNeedToUpdate.put();
+            var vm = Restangular.one("virtual-machines", vmid).get();
+            vm.then(function(VmNeedToUpdate) {
+                console.log(vmid);
+                console.log(VmNeedToUpdate.getRestangularUrl());
+                console.log(VmNeedToUpdate.getRequestedUrl());
+                VmNeedToUpdate.name = configTmp.name;
+                VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;
+                var gb = parseInt(configTmp.memory.memory);
+                VmNeedToUpdate.mem = transMemFromGB2MB(gb);
+                angular.forEach(VmNeedToUpdate.network, function(obj,key) {
+                    var idx = parseInt(obj.interface) - 1;
+                    obj.label = configTmp.network[idx].label;
+                });  
+                //var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
+                VmNeedToUpdate.put();
             });
         }
 

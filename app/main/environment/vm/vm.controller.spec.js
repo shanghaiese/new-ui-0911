@@ -1,7 +1,6 @@
 describe('vms controller', function() {
 	var scope, ctrl;
-
-	beforeEach(module('ilab'));
+	
 	beforeEach(inject(function($rootScope, $controller) {
 		scope = $rootScope.$new();
 		ctrl = $controller('VMCtrl', {'$scope': scope});
