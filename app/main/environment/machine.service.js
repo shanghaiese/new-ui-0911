@@ -22,6 +22,7 @@
             getEnvNetworks: getEnvNetworks,
             getThead: getThead,
             getVMDetail: getVMDetail,
+            deleteVM:deleteVM,
             updateVMDetail: updateVMDetail,
             transDetailForDis: transDetailForDis,
             transMemFromMB2GB: transMemFromMB2GB,
@@ -72,6 +73,12 @@
         function getVMDetail(vmid) {
             var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
             return vmDetailInfo;
+        }
+
+        function deleteVM(vmid) {
+            var vm = Restangular.one("virtual-machines", vmid);
+            var vmAfterDelete = vm.remove();
+            return vmAfterDelete;
         }
 
         function updateVMDetail(vmid, configTmp) {

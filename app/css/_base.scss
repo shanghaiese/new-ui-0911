@@ -62,7 +62,7 @@ table {
 		tr {
 			th {
 				height: $table-row-height;
-				text-align: center;
+				text-align: left;
 				border-right: none;
 				border-left: none;
 			}
@@ -75,7 +75,7 @@ table {
 		tr {
 			td {
 				height: $table-row-height;
-				text-align: center;
+				text-align: left;
 				border-right: none;
 				border-left: none;
 				border-bottom: none;

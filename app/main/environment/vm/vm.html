@@ -1,40 +1,40 @@
 <p>
-<div>
-    <button type="button" class="btn btn-primary">Add VM</button>
-    <div class="dropdown clearfix inline">
-        <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.selectedVMs.length == 0" ng-click="VM.disableSelection()">
-            Actions
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
-            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" ng-click="powerOperation(VM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+    <div>
+        <button type="button" class="btn btn-primary">Add VM</button>
+        <div class="dropdown clearfix inline">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="VM.selectedVMs.length == 0" ng-click="VM.disableSelection()">
+                Actions
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-action">
+                <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" ng-click="VM.powerOperation(VM.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                     <span>Power On</span></a>
-            </li>
-            <li role="presentation" class="{{VM.disableOption}}"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                </li>
+                <li role="presentation" class="{{VM.disableOption}}"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(VM.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                     <span>Power Off</span></a>
-            </li>
-            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                </li>
+                <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(VM.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
                     <span>Suspend</span></a>
-            </li>
-            <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(VM.selectedVMs, 'restart')"><span aria-hidden="true" class="intelicon-refresh"></span>
+                </li>
+                <li role="presentation" class="{{VM.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(VM.selectedVMs, 'restart')"><span aria-hidden="true" class="intelicon-refresh"></span>
                     <span>Restart</span></a>
-            </li>
-            <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="VM.openDeleteDialog(VM.selectedVMs)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+                </li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="VM.openDeleteDialog()"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
                     <span class="mark-as-red">Delete</span></a></li>
-        </ul>
-    </div>
-    <!-- <span class="intelicon-search" id="search-vm"></span>    -->
-    <table-column-filter columns="VM.thead" class="pull-right"></table-column-filter>
-    <form class="form-inline default pull-right" role="search">
-        <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search" ng-model='searchInput'>
+            </ul>
         </div>
-    </form>
-    
-</div>
+        <!-- <span class="intelicon-search" id="search-vm"></span>    -->
+        <table-column-filter columns="VM.thead" class="pull-right"></table-column-filter>
+        <form class="form-inline default pull-right" role="search">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search" ng-model='searchInput'>
+            </div>
+        </form>
+    </div>
 </p>
 <!---->
 <!-- vm table from here-->
+
 <table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
@@ -44,14 +44,22 @@
                     <label for="choose_all_env"></label>
                 </div>
             </th>
-            <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}" ng-if="th.enabled">{{th.display.display}}</th>
+            <th ng-repeat="th in VM.thead" class="" ng-click="VM.changeSorting(th.name);" ng-class="{'ilab-sort-desc':!(VM.sort.descending)&&VM.sort.column == th.name, 'ilab-sort-asc':(VM.sort.descending&&VM.sort.column == th.name)}" ng-if="th.enabled">{{th.display}}</th>
         </tr>
     </thead>
     <tbody>
         <tr dir-paginate-start="vms in VM.VMs | itemsPerPage: 20|filter:searchInput">
             <td>
                 <div class="inline">
-                    <input type="checkbox" id="{{vms.id}}" checklist-model="VM.selectedVMs" checklist-value="vms" />
+                    {{VM.vmIsInOpertation(vms.id)}}
+                    <div class="intel-checkbox" ng-show="!(VM.vmIsInOperation({{vms.id}})||{{vms.locked}})">
+
+                        <input type="checkbox" id="{{vms.id}}" checklist-model="VM.selectedVMs" checklist-value="vms" />
+                    </div>
+                    <div ng-show="VM.vmIsInOperation(vms.id)||{{vms.locked}}">
+                        <!-- <span  class="intelicon-refresh spin" style="font-size:1.4em;color:#0071c5;display:inline-block;margin:11px 0 12px"></span> -->
+                        <img src="../../image/refresh_icon_18x18.gif">
+                    </div>
                     <lable for="{{vms.id}}">
                         </label>
                 </div>
@@ -69,10 +77,10 @@
             </td>
             <td ng-if="VM.thead[4].enabled">
                 <div class="dropdown inline">
-                <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vms.id)||vms.statusDisplay=='Disconnected'">
-                    {{vms.statusDisplay}}
-                   <span class="caret"></span>
-                </button>
+                    <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vms.id)||vms.statusDisplay=='Disconnected'">
+                        {{vms.statusDisplay}}
+                        <span class="caret"></span>
+                    </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                                 <span>Power On</span></a>

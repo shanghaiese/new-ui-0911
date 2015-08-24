@@ -17,11 +17,11 @@ describe('Machine Service Call API', function() {
     }));
       
     // a sample definition on which method we are about to test
-    describe('getNewRes test', function(){
+    describe('call API data for virtual machine opertation', function(){
         // actual test implementation
-        it('A description of what should the method do', inject(function(machine){ 
+        it('call the virtual machine list data', inject(function(machine){ 
             // set up a spy on Restangular, so we test with what parameters it was called, also allow the call to continue
-            // spyOn(restangular, 'one').and.callThrough();
+            spyOn(restangular, 'one').and.callThrough();
             // a mock to be returned from http. We would later expect our service to 'enhance' this mock with an additional property
             var mockToReturn = {
                 a: 'a',
@@ -40,7 +40,6 @@ describe('Machine Service Call API', function() {
             // now call our service
             var newRes = machine.getVMList();  
                 console.log(newRes);
-
   
             // handle restangular expectations
             expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
@@ -55,9 +54,7 @@ describe('Machine Service Call API', function() {
             defer.resolve();
             scope.$apply();
             newRes=unproxiedPromise;
-
-                
-              
+  
             // now follows the tricky part. The restangular promise has been unproxied by the httpBackend.flush call,
             // but our promise, the one we return in the service, still hasn't been unproxied
             // so, if we were to directly expect it to be unproxied, we are in for a surprise, it is a still a promise
@@ -71,5 +68,8 @@ describe('Machine Service Call API', function() {
                 //newlyCreatedProp : 'newlyCreatedProp'
             }]); 
         }));
+
+
+
     });
 });

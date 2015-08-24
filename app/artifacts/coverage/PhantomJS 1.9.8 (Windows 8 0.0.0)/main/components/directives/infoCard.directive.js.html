@@ -15,10 +15,10 @@
 <div class="header low">
     <h1>Code coverage report for <span class="entity">./main/components/directives/infoCard.directive.js</span></h1>
     <h2>
-        Statements: <span class="metric">30.77% <small>(4 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Functions: <span class="metric">16.67% <small>(1 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
-        Lines: <span class="metric">30.77% <small>(4 / 13)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Statements: <span class="metric">34.78% <small>(8 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 6)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">14.29% <small>(1 / 7)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">34.78% <small>(8 / 23)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
     <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">./main/components/directives/</a> &#187; infoCard.directive.js</div>
@@ -83,7 +83,12 @@
 56
 57
 58
-59</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+59
+60
+61
+62
+63
+64</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,29 +109,34 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,68 +153,73 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">(function() {
 &nbsp;
-	angular
-		.module('ilabDirective')
-		.directive('infoCard', infoCard);
+    angular
+        .module('ilabDirective')
+        .directive('infoCard', infoCard);
 &nbsp;
-	infoCard.$inject = ['$window'];
+    infoCard.$inject = ['$window', '$document', '$rootScope'];
 &nbsp;
-<span class="fstat-no" title="function not covered" >	function infoCard($window) {</span>
-<span class="cstat-no" title="statement not covered" >		return {</span>
-			restrict: 'E',
-			scope: {
-				type: '@',
-				info: '=',
-				connect: '&amp;onConnect',
-				power: '&amp;onPower'  
-			},
-			templateUrl: 'main/templates/infoCard.html',
+<span class="fstat-no" title="function not covered" >    function infoCard($window, $document, $rootScope) {</span>
+<span class="cstat-no" title="statement not covered" >        return {</span>
+            restrict: 'E',
+            scope: {
+                type: '@',
+                info: '=',
+                connect: '&amp;onConnect',
+                power: '&amp;onPower'
+            },
+            templateUrl: 'main/templates/infoCard.html',
 &nbsp;
-			link: <span class="fstat-no" title="function not covered" >function(scope, element, attrs){</span>
-<span class="cstat-no" title="statement not covered" >				scope.isShown = false;</span>
-				//console.log(scope.info.id);
-&nbsp;
-				/*operation for vm*/
-<span class="cstat-no" title="statement not covered" >				scope.vmIsInOperation = <span class="fstat-no" title="function not covered" >function(){</span></span>
-&nbsp;
-					
-				};
-&nbsp;
-				//click to show or unshown
-				//function to control info to show
-<span class="cstat-no" title="statement not covered" >				scope.clickCard = <span class="fstat-no" title="function not covered" >function(){</span></span>
-<span class="cstat-no" title="statement not covered" >					if($window.currentCard == scope.info.id)</span>
-<span class="cstat-no" title="statement not covered" >						$window.currentCard = null;</span>
-					else
-<span class="cstat-no" title="statement not covered" >					$window.currentCard = scope.info.id;</span>
-				};
-				//function to control directeive shown by id
-<span class="cstat-no" title="statement not covered" >				scope.showInfo = <span class="fstat-no" title="function not covered" >function(){</span></span>
-<span class="cstat-no" title="statement not covered" >					return scope.info.id === $window.currentCard;</span>
-				};
-&nbsp;
-				
+            link: <span class="fstat-no" title="function not covered" >function(scope, element, attrs) {</span>
+<span class="cstat-no" title="statement not covered" >                scope.isShown = false;</span>
+<span class="cstat-no" title="statement not covered" >                scope.toggle = toggle;</span>
 &nbsp;
 &nbsp;
-				
-				
+<span class="fstat-no" title="function not covered" >                function toggle() {</span>
+<span class="cstat-no" title="statement not covered" >                    if (scope.isShown) {</span>
+<span class="cstat-no" title="statement not covered" >                        close();</span>
+                    } else {
+<span class="cstat-no" title="statement not covered" >                        open();</span>
+                    }
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function open() {</span>
+<span class="cstat-no" title="statement not covered" >                    scope.isShown = true;</span>
+<span class="cstat-no" title="statement not covered" >                    $document.bind('click', outsideClick);</span>
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function close() {</span>
+<span class="cstat-no" title="statement not covered" >                    scope.isShown = false;</span>
+<span class="cstat-no" title="statement not covered" >                    $document.unbind('click', outsideClick);</span>
+                }
+&nbsp;
+<span class="fstat-no" title="function not covered" >                function outsideClick(evt) {</span>
+<span class="cstat-no" title="statement not covered" >                    if (element[0].contains(evt.target)) {</span>
+<span class="cstat-no" title="statement not covered" >                        return;</span>
+                    }
+<span class="cstat-no" title="statement not covered" >                    close();</span>
+<span class="cstat-no" title="statement not covered" >                    if (!$rootScope.$$phase) {</span>
+<span class="cstat-no" title="statement not covered" >                        scope.$apply();</span>
+                    }
+                }
 &nbsp;
 &nbsp;
-			}
 &nbsp;
-		};
 &nbsp;
-	}
+&nbsp;
+&nbsp;
+            }
+&nbsp;
+        };
+&nbsp;
+    }
 })();
-&nbsp;
-&nbsp;
-&nbsp;
 &nbsp;</pre></td></tr>
 </table></pre>
 
 </div>
 <div class="footer">
-    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Fri Aug 21 2015 12:36:59 GMT+0800 (China Standard Time)</div>
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Mon Aug 24 2015 17:13:48 GMT+0800 (China Standard Time)</div>
 </div>
 <script src="../../../prettify.js"></script>
 <script>

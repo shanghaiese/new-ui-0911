@@ -4,15 +4,15 @@
     angular
         .module('ilab')
         .controller('VMCtrl', VMCtrl);
-    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms'];
+    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms','Restangular'];
 
-    function VMCtrl(machine, $filter, $modal, $sce, _vms) {
+    function VMCtrl(machine, $filter, $modal, $sce, _vms,Restangular) {
         var that = this;
 
         //variables
         var orderBy = $filter('orderBy');
         that.selectedVMs = [];
-
+        that.inOperationVMs = [];
         that.selectedAll = false;
         that.showPage = 0;
         that.sort = [];
@@ -29,6 +29,7 @@
         that.vmIsInOperation = vmIsInOperation;
         that.loadVMList = loadVMList;
         that.disableSelection = disableSelection;
+        that.powerOperation = powerOperation;
 
 
         //For small table 4-panels setting
@@ -209,6 +210,7 @@
         //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
+            var index = -1;
             //?for 
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
@@ -221,6 +223,7 @@
                     angular.forEach(obj.network, function(obj, key) {
                         that.vmTemp.network.push(obj);
                     });
+                    index = key;
                 }
             });
             angular.forEach(that.CPU, function(obj, key) {
@@ -228,6 +231,9 @@
                     that.vmTemp.CPU.idx = obj.idx;
                 }
             });
+            if (index !== -1) {
+                return that.VMs[index];
+            }
         }
         //select Virtual machine for delete
 
@@ -267,7 +273,7 @@
                 that.showPage = 0;
                 //cancelConfig(vmid);
                 //clear vm.configTmp.network
-            } else if(that.showPage == vmid && bool === false) {
+            } else if (that.showPage == vmid && bool === false) {
                 that.showPage = 0;
                 cancelConfig(vmid);
             } else {
@@ -306,8 +312,8 @@
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
             var isInOperation = false;
-            angular.forEach(that.inOperation, function(item, index) {
-                if (item == vmId) {
+            angular.forEach(that.inOperationVMs, function(item, index) {
+                if (item.id === vmId) {
                     isInOperation = true;
                 }
             });
@@ -373,7 +379,75 @@
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
         that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
-        function openDeleteDialog(vmId) {
+        function powerOperation(vms, op) {
+            angular.forEach(vms, function(vm) {
+                var vmFromAPI = Restangular.one("virtual-machines",vm.id);
+                var vmFrontEnd = getVMById(vm.id);
+                console.log(vmFrontEnd);
+                
+                if (op === 'powerOn' && vmFrontEnd.power !== 1) {
+                    that.inOperationVMs.push(vmFrontEnd);
+                    vmFromAPI.post("powerOn", vm.id).then(function(returnData) {
+                        console.log(returnData);
+                        if (returnData.power === 1) {
+                            vmFrontEnd.statusDisplay = 'Running';
+                            console.log("Power on successfully!");
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        } else {
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("Power on FAILED!");
+                        }
+
+                    });
+                } else if (op === 'powerOff' && vmFrontEnd.power !== 0) {
+                    that.inOperationVMs.push(vmFrontEnd);
+                    vmFromAPI.post("powerOff", vm.id).then(function(returnData) {
+                        console.log(returnData);
+                        if (returnData.power === 0) {
+                            vmFrontEnd.statusDisplay = 'Stopped';
+                            console.log("Power off successfully!");
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        } else {
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("Power off FAILED!");
+                        }
+
+                    });
+                } else if (op === 'restart' && vmFrontEnd.power !== 0) {
+                    that.inOperationVMs.push(vmFrontEnd);
+                    vmFromAPI.post("powerReset", vm.id).then(function(returnData) {
+                        console.log(returnData);
+                        if (returnData.power === 1) {
+                            vmFrontEnd.statusDisplay = 'Running';
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("RESTART successfully!");
+                        } else {
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("restart FAILED!");
+                        }
+
+                    });
+                } else if (op === 'suspend' && vmFrontEnd.power !== 0 && vmFrontEnd.power !== 2) {
+                    that.inOperationVMs.push(vmFrontEnd);
+                    
+                    vmFromAPI.post("powerPause", vm.id).then(function(returnData) {
+                        console.log(returnData);
+                        if (returnData.power === 2) {
+                            vmFrontEnd.statusDisplay = 'Suspended';
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("Suspended successfully!");
+                        } else {
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                            console.log("Suspended FAILED!");
+                        }
+
+                    });
+                }
+
+            });
+        }
+
+        function openDeleteDialog() {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
@@ -384,15 +458,24 @@
 
             modalInstance.result.then(function(result) {
                 if (result === true) {
-                    console.log(vmId);
-                    return vmId;
+                    console.log();
+
+                    /*push vm into inOperation*/
+                    angular.forEach(that.selectedVMs, function(selectedVM) {
+                        that.inOperationVMs.push(selectedVM);
+                    });
+                    /*call api to delete vm*/
+                    angular.forEach(that.selectedVMs, function(virtualMachineForDelete) {
+                        machine.deleteVM(virtualMachineForDelete.id).then(function() {
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(virtualMachineForDelete));
+                            that.VMs.splice(that.VMs.indexOf(virtualMachineForDelete));
+                        });
+                    });
+
                 }
                 console.log('Modal dismissed at: ' + new Date());
             });
         }
-
-
-
 
     }
 
