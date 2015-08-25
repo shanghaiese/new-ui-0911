@@ -6,5 +6,6 @@ module.exports = {
 		force: true
 	},
     all: ['<%= meta.srcPath %>/main/**/*.js','<%= meta.srcPath %>/components/**/*.js']
+    // all: ['<%= meta.srcPath %>/deploy/*.js']
 
 }
