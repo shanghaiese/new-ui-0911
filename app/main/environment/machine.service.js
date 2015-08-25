@@ -51,7 +51,7 @@
                 name: 'statusOrderPriority'
             }];
             return thead;
-        }
+        };
 
         function getEnvNetworks() {
             var networks = Restangular.one("environments", 2068901);
@@ -59,7 +59,7 @@
                 expand: 'networks'
             });
             return networksList;
-        }
+        };
 
         //get virtual machine list by calling api
         function getVMList() {
@@ -69,12 +69,12 @@
             });
             return virtualMachineList;
             //return Restangular.all('admin/virtual-machines').getList();
-        }
+        };
 
         function getVMDetail(vmid) {
             var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
             return vmDetailInfo;
-        }
+        };
 
         function updateVMDetail(vmid, configTmp) {
             var vm = Restangular.one("virtual-machines", vmid).get();
@@ -90,7 +90,7 @@
                 //var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
                 VmNeedToUpdate.put();
             });
-        }
+        };
 
         function saveVMTpl(vmid, saveTpl) {
             var vm = Restangular.one("virtual-machines", vmid).get();
@@ -101,7 +101,7 @@
                     console.log("save Failed");
                 });
             });
-        }
+        };
 
         /*mock data for vm detail information tab*/
         function transDetailForDis(vmFromAPI) {
@@ -119,15 +119,15 @@
                 result.push(temp);
             });
             return result;
-        }
+        };
 
         function transMemFromMB2GB(mb) {
             return Math.floor(mb / 1024 * 100) / 100;
-        }
+        };
 
         function transMemFromGB2MB(gb) {
             return gb * 1024;
-        }
+        };
 
         return machinesData;
     }

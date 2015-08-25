@@ -1,51 +1,27 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T14:05:16" id="0" hostname="MINKUANY-MOBL">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T05:36:21" id="0" hostname="MINKUANY-MOBL">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-24T14:05:16" id="0" hostname="MINKUANY-MOBL" tests="30" errors="0" failures="3" time="0.08">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T05:36:21" id="0" hostname="MINKUANY-MOBL" tests="38" errors="0" failures="0" time="0.176">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
-    <testcase name="should have a VMCtrl controller" time="0.042" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should select all checkbox by toggleCheckAll function" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should that.VMs be array" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
-      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:139
-</failure>
-    </testcase>
-    <testcase name="should have 2 virtual machines" time="0.013" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
-      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:139
-</failure>
-    </testcase>
-    <testcase name="should vmTemp be equal to the fakeData" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number">
-      <failure type="">TypeError: &apos;undefined&apos; is not a function (evaluating &apos;ctrl.getVMById(vmid)&apos;)
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:93
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:139
-</failure>
-      <failure type="">Expected &apos;&apos; to match &apos;3633301&apos;.
-Error: Expected &apos;&apos; to match &apos;3633301&apos;.
-    at c:/Users/minkuany/newui/app/main/environment/vm/vm.controller.spec.js:106
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/boot.js:124
-    at c:/Users/minkuany/newui/node_modules/karma-jasmine/lib/adapter.js:171
-    at http://localhost:9876/karma.js:182
-    at http://localhost:9876/context.html:139
-</failure>
-    </testcase>
+    <testcase name="should have a VMCtrl controller" time="0.052" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should select all checkbox by toggleCheckAll function" time="0.01" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should ctrl.VMs be array" time="0.007" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should have 2 virtual machines" time="0.013" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should load vmTemp" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should loaded vmSaveTemp for first click to expand" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should close the expanded table if click 2 times" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the configTmp network" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the memory if click" time="0.024" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the cpu if click" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should revert any change on configTmp to the origin" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should revert any change on saveTemp to the origin" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should increase the number of Template" time="0.006" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
     <system-out><![CDATA[
 ]]></system-out>
     <system-err/>

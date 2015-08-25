@@ -19,7 +19,7 @@
         that.tabDeleteDialog = []; //array to indicate which vm is in operation
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
         that.isCollapse = true;
-
+        that.getVMDetailInfo = getVMDetailInfo;
 
         //functions
         that.toggleCheckAll = toggleCheckAll;
@@ -29,7 +29,7 @@
         that.vmIsInOperation = vmIsInOperation;
         that.loadVMList = loadVMList;
         that.disableSelection = disableSelection;
-
+        that.getVMById = getVMById;
 
         //For small table 4-panels setting
         that.configTmp = {}; //viewTemplate data
@@ -111,9 +111,9 @@
                 isOpen: false
             };
 
-        }
+        };
 
-        /*this function use to load the VM data from API and add a new attr to vm*/
+        /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
             var list = _vms.virtualMachines;
@@ -146,7 +146,7 @@
                     that.VMs.push(value);
                 }
             });
-        }
+        };
 
         /*disable the Action dropdown options when selected vm has suspended*/
         function disableSelection() {
@@ -155,7 +155,7 @@
                 if (item.statusDisplay === 'Suspended')
                     that.disableOption = 'disabled';
             });
-        }
+        };
 
 
         /**/
@@ -163,10 +163,10 @@
             that.oneVM = [];
             that.oneVM = machine.getVMDetail(vmid).$object;
 
-        }
+        };
 
 
-        /*store vmTemp as a temp var by vmid*/
+        /*UT-ok store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
@@ -189,8 +189,7 @@
                     that.vmTemp.CPU.idx = obj.idx;
                 }
             });
-            console.log(that.vmTemp.id);
-        }
+        };
         //select Virtual machine for delete
 
         function toggleCheckAll() {
@@ -200,7 +199,7 @@
                 that.selectedVMs = that.VMs.map(function(item) {
                     return item;
                 });
-        }
+        };
 
         that.sort = {
             column: 'name',
@@ -219,9 +218,9 @@
                 sort.descending = false;
                 that.VMs = orderBy(that.VMs, that.sort.column, that.sort.descending);
             }
-        }
+        };
 
-        /*show the vm edit page or close it*/
+        /*UT-ok show the vm edit page or close it*/
         // if bool == true, means update, the data should change. Otherwise, no change in data.
         function showVmEdit(vmid, bool) {
             //that.showPage = !that.showPage;
@@ -236,7 +235,6 @@
                 getVMById(vmid);
                 getVMDetailInfo(vmid);
                 that.showPage = vmid;
-                getVMById(vmid);
                 //find the vm idx;
                 angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel
@@ -244,26 +242,29 @@
                 that.tplConfig = [];
                 var temp = {
                     interface: "1",
-                    label: "1",
+                    label: that.vmTemp.network[0].label,
                     ip: ""
                 };
                 that.tplConfig.push(temp);
                 //if have opened saveTemp panel and change, we need to reset that panel.
 
             }
-        }
-
+        };
+        
+        //UT-ok
         function selectNetwork(netIndex, network) {
             that.configTmp.network[netIndex].label = network.name;
-        }
+        };
 
+        //UT-ok
         function selectMemory(memory) {
             that.configTmp.memory.memory = memory.memory;
-        }
+        };
 
+        //UT-ok
         function selectCPU(CPU) {
             that.configTmp.CPU = CPU;
-        }
+        };
 
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
@@ -274,14 +275,15 @@
                 }
             });
             return isInOperation;
-        }
+        };
 
+        //UT-ok
         function cancelConfig(vmid) {
             angular.copy(that.vmTemp, that.configTmp);
             that.saveTemp.name = that.vmTemp.name;
             that.saveTemp.modeSaveDisk.saveMode = "convert";
             that.saveTemp.modeSaveDisk.diskMode = "chain";
-        }
+        };
 
         function updateConfig(vmid) {
             angular.forEach(that.VMs, function(obj, key) {
@@ -302,7 +304,7 @@
             //close the panel
             machine.updateVMDetail(vmid, that.configTmp);
             showVmEdit(vmid, true);
-        }
+        };
 
         function changeTplNumber(tplConfig, bool) {
             var number = tplConfig.length;
@@ -314,14 +316,14 @@
                     label: number + 1,
                     ip: ""
                 };
-                tplConfig.push(temp);
+                that.tplConfig.push(temp);
             } else {
                 if (number - 1 < 1)
                     return -1;
-                tplConfig.pop();
+                that.tplConfig.pop();
             }
 
-        }
+        };
 
         function saveVMTemplate(vmid) {
             var saveTpl = {
@@ -341,7 +343,7 @@
                 saveTpl.clone = true;
             }
             machine.saveVMTpl(vmid, saveTpl);
-        }
+        };
 
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
         that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
@@ -362,11 +364,11 @@
                 }
                 console.log('Modal dismissed at: ' + new Date());
             });
-        }
+        };
 
 
 
 
-    }
+    };
 
 })();
