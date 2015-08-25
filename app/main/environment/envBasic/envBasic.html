@@ -1,0 +1,15 @@
+<h1>My Environments</h1>
+<div>
+    <a ui-sref="envs">all environments</a>
+    <a ui-sref="env.vm({envId: EnvBasic.env.id})" class="pull-right">advanced</a>
+</div>
+<div class="vm-multi">
+    <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
+    	 <carousel>
+          	<slide ng-repeat="allVMs in EnvBasic.allVMs">
+              	<div class="caro">
+				    <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="item in allVMs"></info-card>
+				</div>
+          	</slide>
+    	</carousel>
+</div>

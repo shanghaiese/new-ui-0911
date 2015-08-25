@@ -52,6 +52,7 @@
                         close(o.index);
                     }, 2000);
                 }
+                return o;
             }else {
             	console.error('exceeds alert max size.');
             }

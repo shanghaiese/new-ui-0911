@@ -1,32 +1,19 @@
-(function(){
+(function() {
     angular.module('ilab')
-        .controller('VMCtrl', VMCtrl);
+        .controller('VmCtrl', VmCtrl);
 
-    VMCtrl.$inject = ['environment', 'vm'];
-    function VMCtrl(environment, vm) {
+    VmCtrl.$inject = ['environmentService', 'vmService', '_vms', '_env', '$scope'];
+
+    function VmCtrl(environmentService, vmService, _vms, _env, $scope) {
         var that = this;
-        that.item = 1;
 
-        that.check = function(item) {
-        	if(item === 1) {
-        		return true;
-        	}else {
-        		return false;
-        	}
-        	if(item === 1) {
-        		return true;
-        	}else {
-        		return false;
-        	}
-        };
+        that.vms = _vms;
+        $scope.Env.activeTab = 1;
+        activate();
 
-        // console.log(environment.get('2067601'));
-        environment.getList({expand: 'virtualMachines'}).then(function(envs) {
-            that.envs = envs;
-            vm.get(envs[0].virtualMachines[0].id).then(function(data) {
-                console.log(data);
-            });
-        });
+        function activate() {
+            
+        }
     }
 
 

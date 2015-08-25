@@ -6,7 +6,12 @@
         .config(route)
         .config(restangular)
         .config(pagination)
-        .run(beforeRun);
+        .run(attachMenu)
+        .run(loading);
+
+    angular
+        .module('ilabConfig')
+        .constant('DATETIME_FORMAT', 'L');
 
 
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
@@ -29,29 +34,62 @@
                 controller: 'EnvlistCtrl',
                 controllerAs: 'Envlist'
             })
+            .state('editEnv', {
+                url: "/editEnv",
+                templateUrl: "main/environment/editEnv/editEnv.html",
+                controller: 'editEnvCtrl',
+                controllerAs: 'editEnv'
+            })
+
             .state('env', {
                 url: "/environment/:envId",
-                templateUrl: "main/environment/env.html"
+                templateUrl: "main/environment/env.html",
+                controller: 'EnvCtrl',
+                controllerAs: 'Env',
+                resolve: {
+                    _env: function(environmentService, $stateParams) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    }
+                }
             })
             .state('env.vm', {
                 url: "/vm",
                 templateUrl: "main/environment/vm/vm.html",
-                controller: 'VMCtrl',
-                controllerAs: 'VM'
+                controller: 'VmCtrl',
+                controllerAs: 'Vm',
+                resolve: {
+                    _vms: function(_env) {
+                        return _env.virtualMachines;
+                    }
+                }
             })
             .state('env.pm', {
                 url: "/pm",
-                templateUrl: "main/environment/pm/pm.html"
+                templateUrl: "main/environment/pm/pm.html",
+                controller: 'PmCtrl',
+                controllerAs: "Pm"
             })
-            .state('envBasicView', {
-                url: "/envBasicView/:envId",
-                templateUrl: "main/environment/envBasicView/envBasicView.html",
-                controller: "envBasicCtrl",
-                controllerAs: 'envBasic'
+         .state('envBasic', {
+                url: "/environment-basic/:envId",
+                templateUrl: "main/environment/envBasic/envBasic.html",
+                controller: 'EnvCtrl',
+                controllerAs: 'EnvBasic',
+                resolve: {
+                    _env: function(environmentService, $stateParams) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    }
+                }
             })
             .state('envs', {
                 url: '/environments',
-                templateUrl: "main/environment/envs.html"
+                templateUrl: "main/environment/envs.html",
+                controller: 'EnvsCtrl',
+                controllerAs: 'Envs',
+                resolve: {
+                    _envs: function(environmentService) {
+                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                    }
+                }
             })
             .state('lab', {
                 url: "/lab",
@@ -66,21 +104,37 @@
     /* config block */
 
     /* run block */
-    beforeRun.$inject = ['$rootScope'];
+    attachMenu.$inject = ['$rootScope'];
 
-    function beforeRun($rootScope) {
+    function attachMenu($rootScope) {
         $rootScope.toggleMenu = function() {
             $('.ilab-menu').toggleClass('open');
         };
+    }
+
+    loading.$inject = ['$rootScope'];
+
+    function loading($rootScope) {
+        $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+            $rootScope.isLoading = false;
+            if(toState && toState.resolve) {
+                $rootScope.isLoading = true;
+            }
+        });
+        $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
+            $rootScope.isLoading = false;
+            
+        });
+        $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
+            $rootScope.isLoading = false;
+           
+        });
     }
 
     restangular.$inject = ['RestangularProvider'];
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
-        RestangularProvider.setRestangularFields({
-            selfLink: 'self.href'
-        });
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 

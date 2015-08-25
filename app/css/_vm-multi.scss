@@ -4,12 +4,6 @@
 		text-align: left;
 		margin-left: 5%;
 	}
-	.breadcrumb{
-    background-color: #fff;
-    li + li::before {
-	    content: "/ ";
-	}
- }
 	.carousel-indicators { 
 		top: auto;
 	    bottom: -40px; 

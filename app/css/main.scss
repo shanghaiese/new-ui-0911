@@ -21,11 +21,13 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "menu";
 @import "infoCard";
 @import "tableColumnFilter";
+@import "loading";
 
 body {
 	margin-top: 50px;
 	margin-bottom: 50px;
 	min-width: 600px;
+	overflow-y: scroll;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -147,3 +149,14 @@ body {
 .form-group {
 	margin-bottom: 5px;
 }
+/* override dropdown */
+.btn.dropdown-toggle {
+	text-align: left;
+	padding-right: 22px;
+}
+.btn .caret {
+	position: absolute;
+	top: 20px;
+	right: 22px;
+}
+
