@@ -8,7 +8,7 @@
     </button>
     <div ng-show="isCollapsed">
       <div class="well">
-        <form class="form-horizontal default" name="addEnv" ng-submit="addEnv()">
+        <form class="form-horizontal default" name="newEnv" ng-submit="submitForm()">
             <div class="form-group">
                 <label class="required">Name:</label>
                 <input name="name" class="form-control" type="text" placeholder="Environment name" ng-model="name" required>
@@ -18,7 +18,7 @@
                 <input name="description" class="form-control" ng-model="description" placeholder="Description">
             </div>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Add</button>
+                <button class="btn btn-primary" type="submit" ng-click="addEnv()">Add</button>
                 <button class="btn btn-secondary" type="button" ng-click="cancelAdd()">Cancel</button>
             </div>
         </form>

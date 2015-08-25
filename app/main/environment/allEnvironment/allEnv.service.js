@@ -8,20 +8,30 @@
             envListService.$inject = ['Restangular'];
 
             function envListService(Restangular) {
-                return{
-                allEnvlists: function(){
-                        var that= this;
-                        var allEnvlists = Restangular.one("admin","environments");
-                        allEnvlists= allEnvlists.get({expand:'summary'});
-                        return allEnvlists;  
-                     /*Restangular.all("environments").getList("1",{"expand":"summary"});*/
+                var allEnv ={
+                    allEnvlists: allEnvlists,
+                    addEnv : addEnv
+                 };
+                function allEnvlists(){
+                    /*var Envlists = Restangular.all("environments");
+                      Envlists= Envlists.getList({expand:'summary'});
+                    */
+                    var Envlists = Restangular.one("admin","environments");
+                    Envlists= Envlists.get({expand:'summary'});
+                    return Envlists;  
                      }
-                };
-            }
-
+                function addEnv(newEnv){
+                    var newEnvlists = Restangular.all("environments");
+                    newEnvlists.post(newEnv).then(function() {
+                        console.log("Object saved OK");
+                        return newEnvlists;
+                    }, function() {
+                        console.log("There was an error saving");
+                    });
+                }
+                
+                return allEnv;
+                }
 })();
-
-
-
 
 
