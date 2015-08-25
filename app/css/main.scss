@@ -155,3 +155,18 @@ body {
 	top: 20px;
 	right: 22px;
 }
+/* override nav tabs */
+.nav.nav-tabs-intel {
+	margin-bottom: 10px;
+}
+/* override checkbox size */
+input[type="checkbox"] {
+	width: 15px;
+	height: 15px;
+}
+/* override progress */
+.progress {
+	height: 10px;
+	margin-bottom: 5px;
+	cursor: pointer;
+}

@@ -33,8 +33,11 @@
                 controller: 'EnvCtrl',
                 controllerAs: 'Env',
                 resolve: {
-                    _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    // _env: function(environmentService, $stateParams) {
+                    //     return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines'});
+                    // }
+                    _env: function(_envs, $stateParams) {
+                        return _envs.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines'});
                     }
                 }
             })
@@ -121,6 +124,7 @@
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
+        RestangularProvider.setDefaultHttpFields({cache: true});
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
