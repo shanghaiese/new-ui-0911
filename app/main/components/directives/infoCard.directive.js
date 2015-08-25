@@ -4,9 +4,9 @@
         .module('ilabDirective')
         .directive('infoCard', infoCard);
 
-    infoCard.$inject = ['$document', '$rootScope',];
+    infoCard.$inject = ['$document', '$rootScope','machine'];
 
-    function infoCard($document, $rootScope) {
+    function infoCard($document, $rootScope, machine) {
         return {
             restrict: 'E',
             scope: {
@@ -18,6 +18,7 @@
             templateUrl: 'main/templates/infoCard.tpl.html',
 
             link: function(scope, element, attrs) {
+                scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
                 scope.isShown = false;
                 scope.toggle = toggle;
 

@@ -2,23 +2,19 @@
  * Created by luyongjx on 7/23/2015.
  */
 describe('info-card directive', function() {
-    var $compile, $rootScope;
+    var compile, scope, rootScope, element, document;
 
     // Load the ilab module, which contains the card directive
     beforeEach(module('ilab'));
     beforeEach(module('templates'));
     
     // Store references to $rootScope and $compile
-    beforeEach(inject(function(_$compile_, _$rootScope_) {
-        $compile = _$compile_;
-        $rootScope = _$rootScope_;
-    }));
+    beforeEach(inject(function($compile, $rootScope, $document, $compile) {
+        document = $document;
+        compile = $compile; 
+        scope = $rootScope.$new();
+        element = '<info-card info="myMockData"></info-card>';
 
-    
-    
-
-    it('should have funcitons and data on scope correctly',function(){
-        var scope = $rootScope.$new();
         //create myMockData to test card directive
         scope.myMockData = [{
                     "id": "test1",
@@ -73,27 +69,36 @@ describe('info-card directive', function() {
                     "vmm": "10.223.136.211",
                     "disk1": "TBD"
                 }];
-
-    });
-
-    it('should compile directive to html', function() {
-        var scope = $rootScope.$new();
-        var ele = $compile('<info-card></info-card>')(scope);
+        element = $compile(element)(scope);
         scope.$digest();
-        expect(ele.html()).toContain('<div class="card">');
+    }));
 
+    
+    
+    describe('with different virtual machines', function(){
+        it('should have different status on panels',function(){
+           expect(element.html()).toContain('class="card"');
+        });
     });
-
-    // it('should have test scope data correctly', function(){
-    //      var compileElementscope = element.isolateScope();
-    //      expect(compiledelementScope.stockData).toEqual(scope.myMockData);
-    //      //expect(compiledelementscope.getchange(compiledElementScope.stockData)).toEqual(-50);
-        
-    // });
-
-    // it('should have 3 fifferent color classes changing due to the status',function(){
-    //     var scope = $rootScope.$new();
-        
-    // });
+    
+    describe('when clicked', function(){
+        it('should open when I first toggle', function() {
+            var isolated = element.isolateScope();
+            isolated.toggle();
+            expect(isolated.isShown).toBe(true);
+        });
+        it('should close when I toggle twice', function () {
+            var isolated = element.isolateScope();
+            isolated.toggle();
+            isolated.toggle();
+            expect(isolated.isShown).toBe(false);
+        });
+        it('should close when I click outside', function() {
+            var isolated = element.isolateScope();
+            isolated.toggle();
+            document.trigger('click');
+            expect(isolated.isShown).toBe(false);
+        });
+    });
 
 });
