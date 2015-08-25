@@ -170,3 +170,12 @@ input[type="checkbox"] {
 	margin-bottom: 5px;
 	cursor: pointer;
 }
+/* override breadcrumb */
+.breadcrumb {
+	padding: 0;
+	margin-bottom: 10px;
+	background-color: white;
+}
+.breadcrumb > li + li:before {
+    content: "/\00a0";
+}

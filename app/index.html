@@ -27,20 +27,18 @@
             </div>
         </div>
     </nav>
-    <section>
-        <!-- left menu -->
-        <ilab-menu></ilab-menu>
-        
-        <!-- main view -->
-        <div class="container">
-            <div ui-view></div>
-        </div>
+    <!-- left menu -->
+    <ilab-menu></ilab-menu>
+    
+    <!-- main view -->
+    <div class="container">
+        <div ui-view="page"></div>
+    </div>
 
-        <!-- overall page loading -->
-        <div class="loader-backdrop" ng-show="isLoading">
-            <div class="spin-box"></div>
-        </div>
-    </section>
+    <!-- overall page loading -->
+    <div class="loader-backdrop" ng-show="isLoading">
+        <div class="spin-box"></div>
+    </div>
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
