@@ -31,7 +31,7 @@ describe('Machine Service Call API', function() {
 
             var expand = 'virtualMachines';
             // httpBackend would append a "/" in front of a restangular call      
-            httpBackend.expectGET('/services/api/environments/2068901?expand=virtualMachines', {
+            httpBackend.expectGET('/services/api/environments/2067701?expand=virtualMachines', {
                "Accept":"application/json, text/plain, */*"
             }).respond([mockToReturn]);
             // respond with the mock
@@ -42,7 +42,7 @@ describe('Machine Service Call API', function() {
                 console.log(newRes);
   
             // handle restangular expectations
-            expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
+            expect(restangular.one).toHaveBeenCalledWith('environments',2067701);
             
             httpBackend.flush();
             

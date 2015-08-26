@@ -82,16 +82,16 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="dropdown-running">
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(vms, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                                 <span>Power On</span></a>
                         </li>
-                        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(vms, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
                                 <span>Power Off</span></a>
                         </li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(vms, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
                                 <span>Suspend</span></a>
                         </li>
-                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
+                        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="VM.powerOperation(vms, 'restart')" ng-show="vms.status !='restart'"><span aria-hidden="vms" class="intelicon-refresh"></span>
                                 <span>Restart</span></a>
                         </li>
                     </ul>
@@ -103,3 +103,8 @@
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
+
+
+<div class="alert-box col-xs-10 col-sm-8 col-md-6">
+    <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="VM.close(alert.index)" ng-click="VM.close(alert.index)">{{alert.message}}</alert>
+</div>
