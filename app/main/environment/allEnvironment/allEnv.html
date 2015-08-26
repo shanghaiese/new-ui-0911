@@ -29,7 +29,7 @@
         <ul>
             <li ng-repeat="env in Envlist.envs"> 
                     <!-- <div class="env" ui-sref="envBasicView"> -->
-                <div class="env" ui-sref="envBasic({envId: env.summary.id})">
+                <div class="env" ui-sref="envBasic({envId: env.id})">
                         <h6>{{env.name}}</h6>
                         <p>expiey data:{{env.expiryDate}}</p>
                         <ol>   

@@ -5,11 +5,11 @@
 </div>
 <div class="vm-multi">
     <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
-    	 <carousel>
-          	<slide ng-repeat="allVMs in EnvBasic.allVMs">
-              	<div class="caro">
-				    <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="item in allVMs"></info-card>
-				</div>
-          	</slide>
-    	</carousel>
+	<carousel no-wrap="true" interval="-1" disable-ng-animate>
+      	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
+            <div class="caro">
+			    <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="vm in vmBucket"></info-card>
+			</div>
+      	</slide>
+	</carousel>
 </div>

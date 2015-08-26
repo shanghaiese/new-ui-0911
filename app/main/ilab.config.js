@@ -72,7 +72,7 @@
          .state('envBasic', {
                 url: "/environment-basic/:envId",
                 templateUrl: "main/environment/envBasic/envBasic.html",
-                controller: 'EnvCtrl',
+                controller: 'EnvBasicCtrl',
                 controllerAs: 'EnvBasic',
                 resolve: {
                     _env: function(environmentService, $stateParams) {
@@ -87,7 +87,7 @@
                 controllerAs: 'Envs',
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users,summary'});
                     }
                 }
             })

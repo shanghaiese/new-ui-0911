@@ -11,6 +11,8 @@
 	        function EnvlistCtrl(envListService){
 	        	var that = this;
                 that.addEnv = addEnv;
+                that.cancelAdd = cancelAdd;
+                that.saveTemp = {};
 
                 envListService.allEnvlists().then(function(data){
                     that.envs= data;
@@ -24,7 +26,15 @@
                                        };
                 function addEnv(){
                     var newEnv = that.newEnv;
+                    
                     envListService.addEnv(newEnv);
+
+                }
+                function cancelAdd(){
+                    var newEnv = that.newEnv;
+                    angular.copy(that.saveTemp ,that.newEnv.name);
+                    console.log("asda");
+
                 }
             }
 

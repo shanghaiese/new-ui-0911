@@ -7,7 +7,7 @@ describe('Environment lists controller', function() {
 	 	ctrl = $controller('EnvlistCtrl', {'$scope': scope});	
 	 }));
     it('should have an environment lists controller', function() {
-    expect(ctrl.check(ctrl.lists)).toBe(true);
+    expect(ctrl.check(ctrl.envs)).toBe(true);
   });
 
 });

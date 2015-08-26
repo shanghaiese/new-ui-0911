@@ -14,9 +14,9 @@
                  };
                 function allEnvlists(){
                     /*var Envlists = Restangular.all("environments");
-                      Envlists= Envlists.getList({expand:'summary'});
-                    */
-                    var Envlists = Restangular.one("admin","environments");
+                    Envlists= Envlists.getList({expand:'summary'});*/
+                    
+                     var Envlists = Restangular.one("admin","environments");
                     Envlists= Envlists.get({expand:'summary'});
                     return Envlists;  
                      }
