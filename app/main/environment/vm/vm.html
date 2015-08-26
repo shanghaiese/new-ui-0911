@@ -63,7 +63,8 @@
                     <lable for="{{vms.id}}">
                         </label>
                 </div>
-                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id, false)"></span>
+                <div class="inline" ng-show="!(VM.vmIsInOperation({{vms.id}})||{{vms.locked}})">
+                <span class="intelicon-settings-solid clickable mark-as-blue" ng-click="VM.showVmEdit(vms.id, false)"></span></div>
             </td>
             <td ng-if="VM.thead[0].enabled" class="mark-as-blue">{{vms.name}}</td>
             <td ng-if="VM.thead[1].enabled">
@@ -73,11 +74,11 @@
                 {{vms.cpus}}CPU,{{vms.mem}}
             </td>
             <td ng-if="VM.thead[3].enabled">
-                <button type="button" class="btn btn-secondary">Connect</button>
+                <button type="button" class="btn btn-secondary" ng-disabled="VM.vmIsInOperation(vms.id)||{{vms.locked}}">Connect</button>
             </td>
             <td ng-if="VM.thead[4].enabled">
                 <div class="dropdown inline">
-                    <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation(vms.id)||vms.statusDisplay=='Disconnected'">
+                    <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="VM.vmIsInOperation(vms.id)||{{vms.locked}}">
                         {{vms.statusDisplay}}
                         <span class="caret"></span>
                     </button>
