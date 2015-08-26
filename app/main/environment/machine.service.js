@@ -54,7 +54,7 @@
         };
 
         function getEnvNetworks() {
-            var networks = Restangular.one("environments", 2068901);
+            var networks = Restangular.one("environments", 2067701);
             networksList = networks.get({
                 expand: 'networks'
             });
@@ -63,7 +63,7 @@
 
         //get virtual machine list by calling api
         function getVMList() {
-            var env = Restangular.one("environments", 2068901);
+            var env = Restangular.one("environments", 2067701);
             var virtualMachineList = env.get({
                 expand: 'virtualMachines'
             });

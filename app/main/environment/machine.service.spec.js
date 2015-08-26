@@ -9,19 +9,55 @@ describe('Machine Service Call API', function() {
       
     // then we use the $injector to obtain the instances of the services we would like to mock/use
     // but not of the service that we want to test
-    beforeEach(inject(function( Restangular, _$httpBackend_, $q, $rootScope) {
+    beforeEach(inject(function( _Restangular_, _$httpBackend_, $q, $rootScope, _machine_) {
         httpBackend = _$httpBackend_;
-        restangular = Restangular;
+        restangular = _Restangular_;
         q = $q;
         scope = $rootScope.$new();
+        machine = _machine_;
+        spyOn(restangular, 'one').and.callThrough();
     }));
+
+    describe('the test for get EnvNetworks', function() {
+        it('it should get the network of an environment', function() {
+            var mockToReturn = {
+                firstProp: 'firstValue',
+                secondProp: 'secondValue'
+            };
+
+            httpBackend.expectGET('/services/api/environments/2067701?expand=networks', {
+                "Accept":"application/json, text/plain, */*"
+            }).respond([mockToReturn]);
+
+
+            var newRespond = machine.getEnvNetworks();
+
+            expect(restangular.one).toHaveBeenCalledWith('environments', 2067701);
+            httpBackend.flush();
+
+            var defer = q.defer();
+            var unproxiedPromise;
+            newRespond.then(function(value){
+                unproxiedPromise = value;
+            });
+            defer.resolve();
+            scope.$apply();
+            newRespond=unproxiedPromise;
+
+            expect(newRespond).toEqual([{
+                firstProp: 'firstValue',
+                secondProp: 'secondValue'
+            }]); 
+        });
+    });
       
+
     // a sample definition on which method we are about to test
     describe('getNewRes test', function(){
         // actual test implementation
-        it('A description of what should the method do', inject(function(machine){ 
+        it('A description of what should the method do', function(){ 
             // set up a spy on Restangular, so we test with what parameters it was called, also allow the call to continue
-            // spyOn(restangular, 'one').and.callThrough();
+
             // a mock to be returned from http. We would later expect our service to 'enhance' this mock with an additional property
             var mockToReturn = {
                 a: 'a',
@@ -31,7 +67,7 @@ describe('Machine Service Call API', function() {
 
             var expand = 'virtualMachines';
             // httpBackend would append a "/" in front of a restangular call      
-            httpBackend.expectGET('/services/api/environments/2068901?expand=virtualMachines', {
+            httpBackend.expectGET('/services/api/environments/2067701?expand=virtualMachines', {
                "Accept":"application/json, text/plain, */*"
             }).respond([mockToReturn]);
             // respond with the mock
@@ -43,7 +79,7 @@ describe('Machine Service Call API', function() {
 
   
             // handle restangular expectations
-            expect(restangular.one).toHaveBeenCalledWith('environments',2068901);
+            expect(restangular.one).toHaveBeenCalledWith('environments',2067701);
             
             httpBackend.flush();
             
@@ -70,6 +106,17 @@ describe('Machine Service Call API', function() {
                 b: 'b'
                 //newlyCreatedProp : 'newlyCreatedProp'
             }]); 
-        }));
+        });
+    });
+
+    describe('transfer data value', function() {
+        it('should transfer mb to gb', function() {
+            var mb = 2048;
+            expect(machine.transMemFromMB2GB(mb)).toEqual(2);
+        });
+        it('should transfer gb to mb', function() {
+            var gb = 2;
+            expect(machine.transMemFromGB2MB(gb)).toEqual(2048);
+        });
     });
 });

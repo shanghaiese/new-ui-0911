@@ -1,64 +1,63 @@
 <?xml version="1.0"?>
 <testsuites>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T14:03:00" id="0" hostname="MINKUANY-MOBL">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-26T05:39:05" id="0" hostname="MINKUANY-MOBL">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
   </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T14:03:00" id="0" hostname="MINKUANY-MOBL">
+  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-26T05:39:06" id="0" hostname="MINKUANY-MOBL" tests="45" errors="0" failures="0" time="0.837">
     <properties>
       <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
     </properties>
-  </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T14:03:00" id="0" hostname="MINKUANY-MOBL" tests="42" errors="0" failures="0" time="0.254">
-    <properties>
-      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
-    </properties>
-    <testcase name="should have a VMCtrl controller" time="0.053" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should select all checkbox by toggleCheckAll function" time="0.01" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should ctrl.VMs be array" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should have 2 virtual machines" time="0.01" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should load vmTemp" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should loaded vmSaveTemp for first click to expand" time="0.017" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should close the expanded table if click 2 times" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should close the expanded table and revert the data to the original" time="0.01" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the configTmp network" time="0.022" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the memory if click" time="0.01" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the cpu if click" time="0.017" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should compile directive to html" time="0.09" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive default: "/>
+    <testcase name="should hide menu default" time="0.016" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive default: "/>
+    <testcase name="should open menu when I add a open class to menu" time="0.016" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive action: "/>
+    <testcase name="should highlight my environment link" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive action: "/>
+    <testcase name="should highlight lab link" time="0.029" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive action: "/>
+    <testcase name="should auto hide in small screen" time="0.022" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive action: "/>
+    <testcase name="should auot show in large screen" time="0.017" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).menu directive action: "/>
+    <testcase name="should compile directive to html" time="0.038" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: with the given columns value"/>
+    <testcase name="should have columns" time="0.019" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: with the given columns value"/>
+    <testcase name="should hide in default" time="0.033" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: with the given columns value"/>
+    <testcase name="should open when I first toggle" time="0.032" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should close when I toggle twice" time="0.028" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should close when I click outside" time="0.037" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should do nothing when I click outside if open" time="0.02" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should restore when I click outside if open" time="0.028" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should update and close when I click update" time="0.043" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).table column filter directive: when clicked"/>
+    <testcase name="should have api of open and close" time="0.003" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should have no alert default" time="0.002" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should open one success alert" time="0.004" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should dismiss success alert after several seconds" time="0.002" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should close alert" time="0.003" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should not close alert if invalid index is given" time="0.004" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should not exceeds max number of alerts" time="0.003" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="should transform random alert type to success type" time="0.003" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).alert service:"/>
+    <testcase name="it should get the network of an environment" time="0.027" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).Machine Service Call API the test for get EnvNetworks"/>
+    <testcase name="A description of what should the method do" time="0.013" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).Machine Service Call API getNewRes test"/>
+    <testcase name="should transfer mb to gb" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).Machine Service Call API transfer data value"/>
+    <testcase name="should transfer gb to mb" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).Machine Service Call API transfer data value"/>
+    <testcase name="should have a VMCtrl controller" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should select all checkbox by toggleCheckAll function" time="0.017" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
+    <testcase name="should ctrl.VMs be array" time="0.017" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should have 2 virtual machines" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should load vmTemp" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
+    <testcase name="should loaded vmSaveTemp for first click to expand" time="0.048" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should close the expanded table if click 2 times" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should close the expanded table and revert the data to the original" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the configTmp network" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the memory if click" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should change the cpu if click" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
     <testcase name="should revert any change on configTmp to the origin" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should revert any change on saveTemp to the origin" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should increase the number of Template up to 4" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should decrease the number of Template least to 1" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should update VM&apos; info" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should revert any change on saveTemp to the origin" time="0.03" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should increase the number of Template up to 4" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should decrease the number of Template least to 1" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
+    <testcase name="should update VM&apos; info" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
     <testcase name="should save VM template" time="0.009" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <system-out><![CDATA[PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: 0
-,PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: 0
-
-]]></system-out>
-    <system-err/>
-  </testsuite>
-  <testsuite name="PhantomJS 1.9.8 (Windows 7 0.0.0)" package="" timestamp="2015-08-25T14:03:00" id="0" hostname="MINKUANY-MOBL" tests="42" errors="0" failures="0" time="0.279">
-    <properties>
-      <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/534.34 (KHTML, like Gecko) PhantomJS/1.9.8 Safari/534.34"/>
-    </properties>
-    <testcase name="should have a VMCtrl controller" time="0.074" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should select all checkbox by toggleCheckAll function" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller"/>
-    <testcase name="should ctrl.VMs be array" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should have 2 virtual machines" time="0.007" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should load vmTemp" time="0.016" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number"/>
-    <testcase name="should loaded vmSaveTemp for first click to expand" time="0.013" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should close the expanded table if click 2 times" time="0.007" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should close the expanded table and revert the data to the original" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the configTmp network" time="0.022" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the memory if click" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should change the cpu if click" time="0.015" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should revert any change on configTmp to the origin" time="0.012" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should revert any change on saveTemp to the origin" time="0.016" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should increase the number of Template up to 4" time="0.016" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should decrease the number of Template least to 1" time="0.008" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should update VM&apos; info" time="0.011" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <testcase name="should save VM template" time="0.014" classname="PhantomJS 1.9.8 (Windows 7 0.0.0).vms controller with the given vmid number after loadVMs and showVmEdit"/>
-    <system-out><![CDATA[PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: 0
+    <system-out><![CDATA[PhantomJS 1.9.8 (Windows 7 0.0.0) WARN: 'no such alert with index: ', 2
+,PhantomJS 1.9.8 (Windows 7 0.0.0) ERROR: 'exceeds alert max size.'
+,PhantomJS 1.9.8 (Windows 7 0.0.0) WARN: 'no such alert type as: ', 'random'
+,PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: Promise{$$state: Object{status: 0}, call: function wrapper() { ... }, get: function wrapper() { ... }, restangularCollection: false, $object: Object{}}
 ,PhantomJS 1.9.8 (Windows 7 0.0.0) LOG: 0
 
 ]]></system-out>
