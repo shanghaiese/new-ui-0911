@@ -80,6 +80,10 @@ describe('info-card directive', function() {
            expect(element.html()).toContain('class="card"');
         });
     });
+
+    describe('with given memory',function(){
+        it('should h')
+    })
     
     describe('when clicked', function(){
         it('should open when I first toggle', function() {

@@ -3,15 +3,15 @@
         .module('ilab')
         .controller('envBasicCtrl',  envBasicCtrl);
 
-    envBasicCtrl.$inject = ['machine'];
+    envBasicCtrl.$inject = ['machine','Restangular'];
 
-    function envBasicCtrl(machine){
+    function envBasicCtrl(machine,Restangular){
         var that = this;
         that.vms = [];
-        that.isInOperation = false;
+        that.inOperation = [];
         
         that.connect = connect;
-        that.powerOperation = powerOperation;
+        that.power = power;
 
         //init functions
         activate();
@@ -26,42 +26,54 @@
                     return vm.disable !== 3;
                 }
                 var filtered = that.vms.filter(notDeleteVM);
-                console.log(filtered);
+                //console.log(filtered);
                 that.vmCount = filtered.length;
             });
         }
 
         //virtual machines to get console
         function connect(vmId) {
-           
+            console.log(vmId);
         }
 
-        function powerOperation(op, vmId) {
+        function vmIsInOperation(vmId) {
+            that.isInOperation = false;
+                angular.forEach(that.inOperation, function(item, index) {
+                    if (item == vmId) {
+                        that.isInOperation = true;
+                    }
+                });
+                return that.isInOperation;
+        }
+
+        function power(op, vmId) {
+                that.isShown = false;
+                //console.log(1);
                 var vm = Restangular.one("virtual-machines",vmId).get();
-                if (op === 'powerOn' && that.vms.power !== 1) {
-                    that.isInOperation = true;
-                    that.isShown = false;
+                console.log(vm);
+                if (op === 'powerOn' && vm.power !== 1) {
+                    that.isInOperation.push(vmId);
                     vm.then(function(vmPower){
+                        that.inOperation.splice(that.inOperation.indexOf(vmId));
                         vmPower.post("powerOn",vmId);
-                        
                     });
-                } else if (op === 'powerOff' && that.vms.power !== 0) {
-                    that.isInOperation = true;
-                    that.isShown = false;
+                } else if (op === 'powerOff' && vm.power !== 0) {
+                    that.isInOperation.push(vmId);
                     vm.then(function(vmPower){
+                        that.inOperation.splice(that.inOperation.indexOf(vmId));
                         vmPower.post("powerOff",vmId);
                     });
-                } else if (op === 'restart' && that.vms.power !== 0) {
-                    that.isInOperation = true;
-                    that.isShown = false;
+                } else if (op === 'suspend' && vm.power !== 0) {
+                    that.isInOperation.push(vmId);
                     vm.then(function(vmPower){
-                        vmPower.post("powerReset",vmId);
-                    });
-                } else if (op === 'suspend' && that.vms.power !== 0 && that.vms.power !== 2) {
-                    that.isInOperation = true;
-                    that.isShown = false;
-                    vm.then(function(vmPower){
+                        that.inOperation.splice(that.inOperation.indexOf(vmId));
                         vmPower.post("powerPause",vmId);
+                    });
+                } else if (op === 'restart' && vm.power !== 0 && vm.power !== 2) {
+                    that.isInOperation.push(vmId);
+                    vm.then(function(vmPower){
+                        that.inOperation.splice(that.inOperation.indexOf(vmId));
+                        vmPower.post("powerReset",vmId);
                     });
                 } 
             }

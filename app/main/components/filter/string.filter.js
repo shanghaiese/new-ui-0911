@@ -11,9 +11,9 @@
                 // console.log(ele.width());
 
                 if (ele.width() < 50) {
-                    length = 10;
+                    length = 9;
                 } else {
-                    length = 20;
+                    length = 10;
                 }
                 // console.log(length);
 

@@ -13,15 +13,19 @@
                 type: '@',
                 info: '=',
                 connect: '&onConnect',
-                power: '&onPower'
+                power: '&onPower',
+                isShown: '=',
+                isInOperation: '='
             },
             templateUrl: 'main/templates/infoCard.tpl.html',
 
             link: function(scope, element, attrs) {
+                //change memory MB to GB
                 scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
                 scope.isShown = false;
                 scope.toggle = toggle;
 
+                //angular.element('#id',element).attr('disabled','disabled');
 
                 function toggle() {
                     if (scope.isShown) {

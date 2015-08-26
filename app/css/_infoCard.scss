@@ -36,6 +36,12 @@ info-card {
 		}
         .card.spawing {
             border-left: 7px solid $gray;
+            cursor: not-allowed;
+            pointer-events: none;
+            opacity: .65;
+            filter: alpha(opacity=65);
+            -webkit-box-shadow: none;
+            box-shadow: none;
         }
         .card.delete{
             display: none;
@@ -85,12 +91,11 @@ info-card {
         .tag-icon {
             width: 20px;
             height: 20px;
-            margin-right: 3px;
+            padding-top: 5px;
+            margin-right: 5px;
             padding: 8px 5px 5px 5px;
-            display: inline-block;
         }
         .tag-name {
-            display: inline-block;
             span {
                 margin-right: 3px;
             }

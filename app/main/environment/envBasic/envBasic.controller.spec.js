@@ -1,67 +1,97 @@
 /**
  * Created by luyongjx on 7/17/2015.
  */
-/*describe("VMBasic Controller",function() {
+describe("VMBasic Controller",function() {
     var scope, ctrl;
 
-    //Load module 
-    beforEach(module('ilab'));
-    //get $rootScope $compile references
-    beforeEach(inject(function ($scope,$controller) {
-        scope = $scope;
-        ctrl = $controller('vmBaiscCtrl',{'$scope':scope});
+    var mockData = [{
+                      "id": 2068901,
+                      "name": "4.7_switch_test",
+                      "groupId": 1123201,
+                      "deployedDate": "Jan  1 1900 05:05:17:480PM",
+                      "expiryDate": "Feb  2 2016 12:00:00:000AM",
+                      "expiryNotificationDate": null,
+                      "owner": "Kumari, Neetu",
+                      "maxAllowedVms": 10,
+                      "virtualMachines": [
+                        {
+                          "id": 3633301,
+                          "env_id": 2068901,
+                          "path": "/vmfs/volumes/datastore1/ilabcontroller-devba10/ilabcontroller-devba10.vmx",
+                          "name": "ilabredis-devba",
+                          "cpus": 1,
+                          "mem": 2048,
+                          "power": 1,
+                          "maxcpus": 32,
+                          "maxmem": 1035264,
+                          "minmem": 256,
+                          "os": "ubuntu-64",
+                          "created_date": null,
+                          "disable": 0,
+                          "description": null,
+                          "locked": false,
+                          "network": [
+                            {
+                              "interface": 1,
+                              "label": "3633301_NIC1",
+                              "ip": "10.223.136.203"
+                            }
+                          ],
+                          "vmm": "10.223.136.241",
+                          "disk1": "TBD"
+                        },
+                        {
+                          "id": 3633401,
+                          "env_id": 2068901,
+                          "path": "/vmfs/volumes/shared_NFS/testnetwork/testnetwork.vmx",
+                          "name": "testnetwork",
+                          "cpus": 1,
+                          "mem": 2048,
+                          "power": 1,
+                          "maxcpus": 32,
+                          "maxmem": 1035264,
+                          "minmem": 512,
+                          "os": "rhel6-64",
+                          "created_date": null,
+                          "disable": 4,
+                          "description": null,
+                          "locked": true,
+                          "network": [
+                            {
+                              "interface": 1,
+                              "label": "3633401_NIC1",
+                              "ip": ""
+                            }
+                          ],
+                          "vmm": "sathiya",
+                          "disk1": "TBD"
+                        }
+                      ]
+                    }];
+
+
+    //load module
+    beforeEach(module('ilab'));
+
+    beforeEach(inject(function($rootScope, _machine_ ,$controller) {
+        scope = $rootScope.$new();
+        ctrl = $controller('VMCtrl', {'$scope': scope, _vms:mockData , machine:machine});
+        spyOn(machine, 'transMemFromMB2GB').and.callFake(function(mb) {
+            return Math.floor(mb / 1024 * 100) / 100;
+        });
+
+        it('should have a envBasicCtrl controller', function() {
+            expect(ctrl).not.toEqual(null);
+        });
     }));
 
-    it('should bind to controller', function(){
-        expect(ctrl.item).toBe(1);
+    describe('with the given VM ID',function() {
+        var vmId = 3647501;
+        beforeEach(function(){
+            ctrl.loadVMList();
+        });
     });
 
-    it('should have mock data on load',function(){
-        expect(ctrl.vms).toEqual([{
-                    id: 1,
-                    status:'Running',
-                    name:'Virtual Machine 1',
-                    description:'This a test VM',
-                    config:'2CPU,4G',
-                    ip:'10.239.00.01',
-                    network:'Subnet1'
-                },{
-                    id: 2,
-                    status:'Stopped',
-                    name:'Virtual Machine 2',
-                    description:'This a test VM',
-                    config:'2CPU,4G',
-                    ip:'10.239.00.01',
-                    network:'Subnet1'
-                },{
-                    id: 3,
-                    status:'Running',
-                    name:'Virtual Machine 3',
-                    description:'This a test VM',
-                    config:'2CPU,4G',
-                    ip:'10.239.00.01',
-                    network:'Subnet1'
-                },{
-                    id: 4,
-                    status:'Suspend',
-                    name:'Virtual Machine 4',
-                    description:'This a test VM',
-                    config:'2CPU,4G',
-                    ip:'10.239.00.01',
-                    network:'Subnet1'
-                },{
-                    id: 5,
-                    status:'Running',
-                    name:'Virtual Machine 5',
-                    description:'This a test VM',
-                    config:'2CPU,4G',
-                    ip:'10.239.00.01',
-                    network:'Subnet1'
-                }]);
+    
 
-    });
-
-    it('should work', function(){
-        expect(ctrl,check(ctrl,item)).toBe(true);
-    });
-});*/
+});
