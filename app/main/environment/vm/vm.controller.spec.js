@@ -1,4 +1,4 @@
-ddescribe('vms controller', function() {
+describe('vms controller', function() {
     var vmFakeData = {
         "id": 2068901,
         "name": "4.7_switch_test",
@@ -139,6 +139,13 @@ ddescribe('vms controller', function() {
         spyOn(modalDialog, 'open').and.callThrough();
 
         //spyOn(modalDialog, 'open').and.returnValue(fakeModal);
+		spyOn(machine, 'transMemFromGB2MB').and.callFake(function(gb) {
+            return gb * 1024;
+		});
+		spyOn(machine, 'updateVMDetail').and.callThrough();
+		spyOn(machine, 'saveVMTpl').and.callFake(function(vmid, saveTpl) {
+			return 'successSave';
+		});
     }));
 
     it('should have a VMCtrl controller', function() {
@@ -285,6 +292,19 @@ ddescribe('vms controller', function() {
                 expect(ctrl.showPage).toEqual(0);
             });
 
+			it('should close the expanded table and revert the data to the original', function() {
+				ctrl.configTmp.name = 'change1';
+				ctrl.configTmp.description = 'change2';
+				ctrl.configTmp.id = 'change3';
+				ctrl.configTmp.CPU.NumOfCPU = 'change4';
+				ctrl.configTmp.memory.memory = 'change5';
+				ctrl.configTmp.network = [];
+				ctrl.showVmEdit(vmid, false);
+				expect(ctrl.showPage).toEqual(0);
+				expect(ctrl.configTmp.name).toBe('ilabredis-devba');
+				expect(ctrl.configTmp).toEqual(ctrl.vmTemp);				
+			});
+			
             it('should change the configTmp network', function() {
                 network = {
                     "vlanId": 2347301,
@@ -333,8 +353,53 @@ ddescribe('vms controller', function() {
                 expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('chain');
             });
 
-            it('should increase the number of Template', function() {
+			it('should increase the number of Template up to 4', function() {
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				expect(ctrl.tplConfig.length).toEqual(2);
+				expect(ctrl.tplConfig[1].label).toEqual(2);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				expect(ctrl.tplConfig.length).toEqual(4);												
+			});
 
+			it('should decrease the number of Template least to 1', function() {
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				expect(ctrl.tplConfig.length).toEqual(3);
+				expect(ctrl.tplConfig[2].label).toEqual(3);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				expect(ctrl.tplConfig.length).toEqual(1);
+				expect(ctrl.tplConfig[0].interface).toEqual('1');
+			});
+
+			it('should update VM\' info', function() {
+				ctrl.configTmp.name = 'change1';
+				ctrl.configTmp.description = 'change2';
+				ctrl.configTmp.id = vmid;
+				ctrl.configTmp.CPU.NumOfCPU = 'change4';
+				ctrl.configTmp.memory.memory = '2';				
+				ctrl.updateConfig(vmid);
+				expect(ctrl.VMs[0].name).toBe('change1');
+				expect(ctrl.VMs[0].cpus).toBe('change4');
+				expect(ctrl.VMs[0].mem).toEqual(2048);
+				expect(ctrl.VMs[0].description).toBe('change2');
+				expect(ctrl.showPage).toEqual(0);
+			});
+
+			it('should save VM template', function() {
+				ctrl.saveTemp.name = 'a';
+				ctrl.saveTemp.modeSaveDisk.diskMode = 'copy';
+				ctrl.saveTemp.modeSaveDisk.saveMode = 'clone';
+				ctrl.saveVMTemplate(vmid);
+				expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('copy');
+				expect(ctrl.saveTemp.modeSaveDisk.saveMode).toBe('clone');
             });
         });
     });
