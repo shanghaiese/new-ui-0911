@@ -228,21 +228,6 @@ input[type="checkbox"] {
     width: 400px;
 }
 
-#search-vm,
-#displaycolumn-vm {
-    float: right;
-    margin: 0.5em;
-    color: $blue;
-    display: inline-block;
-}
-
-
-#vm-configuration {
-    color: $blue;
-    display: inline-block;
-    cursor: pointer;
-}
-
 .table-intel {
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;

@@ -1,6 +1,6 @@
 node_modules
 /app/main/tmp/
-/app/artifacts/
+/app/artifacts/*
 /test/e2e/reports
 /app/deploy/
 .sass-cache

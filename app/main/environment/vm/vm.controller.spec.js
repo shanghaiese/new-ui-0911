@@ -421,11 +421,12 @@ describe('vms controller', function() {
         });
 
         it('should open modal dialog when openDeleteDialog()', function() {
-            ctrl.openDeleteDialog();
+            ctrl.openDeleteDialog(400);
             expect(modalDialog.open).toHaveBeenCalledWith({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
-                animation: false
+                animation: false,
+                width:400
             });
 
         });

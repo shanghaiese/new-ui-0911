@@ -501,12 +501,13 @@
             });
         }
 
-        function openDeleteDialog() {
+        function openDeleteDialog(width) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
-                animation: false
+                animation: false,
+                width:width
 
             });
 
