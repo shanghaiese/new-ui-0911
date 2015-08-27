@@ -124,7 +124,9 @@ describe('vms controller', function() {
         };
         ctrl = $controller('VMCtrl', {
             '$scope': scope,
-            _vms: vmFakeData
+            _env:vmFakeData,
+            _vms:vmFakeData.virtualMachines
+           // _vms: vmFakeData
 
         });
         ctrlDelete = $controller('ModalInstanceCtrl', {
