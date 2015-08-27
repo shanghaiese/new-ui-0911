@@ -2,7 +2,15 @@
     @@yufan -->
 
 <div class="all-env">
+
     <h1>My Environments</h1>   
+
+    <div id="addSuccess" class="alert alert-dismissable alert-success ng-hide">
+        <i class="alert-icon intelicon-check" aria-hidden="true"></i>
+        <p class="alert-text">Hey add new environment success! <a ui-sref="envBasic({envId: Envs.createdEnv.id})">Check this out</a> to see the new environment details.</p>
+        <button type="button" class="close" data-dismiss="alert" aria-label="close"><i class="intelicon-close-max" aria-hidden="true"></i></button>
+    </div>
+    <!-- {{Envs.createdEnv}} -->
     <button class="btn btn-primary" type="button" ng-click="isCollapsed=!isCollapsed">
         Add Env
     </button>
@@ -17,9 +25,9 @@
                 <label>Description:</label>
                 <input name="description" class="form-control" ng-model="Envs.newEnv.description" placeholder="Description">
             </div>
-            <p>Expiration: {{Envs.newEnv.expDate| date: 'yyyy-MM-dd'}}</p>
+            <p>Expiration: {{Envs.newEnv.expire_date| date: 'yyyy-MM-dd'}}</p>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" ng-click="Envs.addEnv()">Add</button>
+                <button class="btn btn-primary" type="submit" id="addEnv" ng-click="Envs.addEnv()">Add</button>
                 <button class="btn btn-secondary" type="button" ng-click="Envs.cancelAdd()">Cancel</button>
             </div>
         </form>

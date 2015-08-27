@@ -38,9 +38,13 @@
                 url: "/editEnv",
                 templateUrl: "main/environment/editEnv/editEnv.html",
                 controller: 'editEnvCtrl',
-                controllerAs: 'editEnv'
+                controllerAs: 'editEnv',
+                resolve: {
+                    _env: function(environmentService) {
+                        return environmentService.get(2069501 , {expand: 'summary'});
+                    }
+                }
             })
-
             .state('env', {
                 url: "/environment/:envId",
                 templateUrl: "main/environment/env.html",

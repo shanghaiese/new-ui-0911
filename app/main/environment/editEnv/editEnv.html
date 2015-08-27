@@ -1,24 +1,24 @@
 <h1>My Environments</h1>
 <div>
-    <ol class="breadcrumb">
-        <li><a ui-sref="allEnv">All Environment</a></li>
-        <li><a ui-sref="env.vm({envId: env.summary.id})">Environment1</a></li>
-        <li><a  class="intel-selected">Environment Settings</a></li>
-    </ol>
+    <a ui-sref="envs">all environments/</a>
+    <a ui-sref="env.vm({envId: env.summary.id})">Environment1/</a>
+    <a >Environment Settings</a>
 </div>
+
 <div class="editEnv">
     <h4>Basic Setting</h4>
+     <!-- {{editEnv.env}} -->
     <form name="addEnv" class="form-horizontal default ng-scope">
         <div class="form-group">
             <label class="col-sm-2 control-label require">Name:</label>
             <div class="col-sm-10">
-                <input class="form-control" name="name" placeholder="Environment1" ng-model="editEnv.createdEnv.name">
+                <input class="form-control" name="name" placeholder="{{editEnv.env.name}}" ng-model="editEnv.createdEnv.name">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label">Description:</label>
             <div class="col-sm-10">
-                <input class="form-control" name="description" id="env-description" placeholder="Description">
+                <input class="form-control" name="description" placeholder="{{editEnv.env.expire_date}}">
             </div>
         </div>
          <div class="form-group">

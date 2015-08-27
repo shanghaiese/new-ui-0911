@@ -9,27 +9,32 @@
         var that = this;
         activate();
         function activate() {
-            that.envs = _envs;
             that.isCollapsed = 1;
             that.addEnv = addEnv;
             that.cancelAdd = cancelAdd;
+            that.createdEnv = {};
+
         }
 
         //POST to /environments
         that.newEnv = {'name':'',
-                       'expire_date': '2015-08-19 06:04:00'
+                       'expire_date': '2015-08-30 06:04:00'
                        };
         function addEnv(){
                     var newEnv = that.newEnv;
-                    that.envs.post(that.newEnv).then(function() {
-                        console.log("Object saved OK");
+                    var addSuccess = angular.element( document.querySelector( '#addSuccess' ) );
+                    _envs.post(that.newEnv).then(function(returnData) {
+                        console.log(returnData.id);
+                        that.createdEnv = returnData;
+                        that.createdEnv.id = returnData.id;
+                        addSuccess.removeClass( "ng-hide" ).addClass( "ng-show" );
                     }, function() {
                         console.log("There was an error saving");
                     });
                 }
-        function cancelAdd(){
-            that.newEnv = {'name':'',
-                          'expDate': '2015-08-19T06:04:00'
+        function cancelAdd(){ 
+                        that.newEnv = {'name':'',
+                          'expire_date': '2015-08-19T06:04:00'
                         };
         }
 

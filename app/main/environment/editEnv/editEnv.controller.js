@@ -6,17 +6,21 @@
     angular
         .module('ilab') 
         .controller('editEnvCtrl',editEnvCtrl);
-	        editEnvCtrl.$inject = ['Restangular'];
-	        function editEnvCtrl(Restangular){
+	        editEnvCtrl.$inject = ['Restangular','_env'];
+	        function editEnvCtrl(Restangular, _env){
 	        	var that = this;
-                that.editEnv = editEnv;
-                that.cancelEdit = cancelEdit;
-                 //POST to /environments
-                that.createdEnv = {'name':'',
-                                   'expire_date': ''
+                activate();
+                function activate(){
+                    that.env = _env;
+                    that.editEnv = editEnv;
+                    that.cancelEdit = cancelEdit;
+                    that.createdEnv = {'name':'',
+                                       'expire_date': ''
                                        };
+                }
+                
                 function editEnv(){
-                    var env = Restangular.one('environments',2086801); /*EnvId=101*/
+                    var env = Restangular.one('environments',22069501);
                     var createdEnv = that.createdEnv;
                     env.put(createdEnv);
                 }
