@@ -6,6 +6,6 @@
 <div class="list-env">
     <h3>Virtual Machine: {{EnvBasic.vmCount}}</h3>
     <div class="card-container">
-        <info-card class="list-VMs" type="vm" act-operation="EnvBasic.vmIsInOperation(vmId)" info="vms" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="VM in EnvBasic.VMs"></info-card>
+        <info-card class="list-VMs" type="VMs" act-operation="EnvBasic.vmIsInOperation(vmId)" info="vms" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="VM in EnvBasic.VMs"></info-card>
     </div>
 </div>

@@ -11,6 +11,7 @@
 
     function EnvCtrl(environmentService,_env,machine,alert){
         var that = this;
+        console.log(1);
 
         //variables
         that.vms = [];

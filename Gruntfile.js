@@ -18,6 +18,9 @@
  */
 module.exports = function(grunt) {
 
+    require('time-grunt')(grunt);  
+    require('jit-grunt')(grunt);
+
 // config object for grunt.
 // including customized config(constants, env variables, etc) & task scpecific config
     var config = {
@@ -34,7 +37,7 @@ module.exports = function(grunt) {
     grunt.initConfig(config);
 
 //  load npm taks and register customized tasks.
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    // require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
     grunt.loadTasks('./grunt/tasks');
 
 /**

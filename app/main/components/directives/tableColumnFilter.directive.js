@@ -31,8 +31,7 @@
                 angular.copy(scope.columns, scope.currentColumns);
 
 				scope.currentColumns = scope.currentColumns.map(function(cur, i) {
-                    var t = {};
-                    t.display = cur;
+                    var t = cur;
                     t.enabled = true;
                     return t;
                 });

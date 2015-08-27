@@ -32,9 +32,13 @@
             })
             .state('default', {
                 url: "/",
-                templateUrl: "main/welcome/welcome.html",
-                controller: 'WelcomeCtrl',
-                controllerAs: 'Welcome'
+                views: {
+                    'page@': {
+                        templateUrl: "main/welcome/welcome.html",
+                        controller: 'WelcomeCtrl',
+                        controllerAs: 'Welcome'
+                    }
+                }
             })
             .state('envs', {
                 abstract: true,
@@ -83,7 +87,7 @@
                 },
                 resolve: {
                     _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines'});
                     }
                 },
                 breadcrumb: {

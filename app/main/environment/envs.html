@@ -1,12 +1,6 @@
-<div>
-    <h1>My Environment</h1>
-    <div>
-        <ul>
-            <li ng-repeat="env in Envs.envs">
-                <div><a ui-sref="envBasic({envId: env.id})">{{env.name}}</a></div>
-                <div><span>vms:{{env.virtualMachines.length}}</span><span>pms:{{env.physicalMachines.length}}</span></div>
-            </li>
-        </ul>
-    </div>
-    <hr/>
-</div>
+<ul>
+    <li ng-repeat="env in Envs.envs">
+        <div><a ui-sref="envs.basic({envId: env.id})">{{env.name}}</a></div>
+        <div><span>vms:{{env.virtualMachines.length}}</span><span>pms:{{env.physicalMachines.length}}</span></div>
+    </li>
+</ul>

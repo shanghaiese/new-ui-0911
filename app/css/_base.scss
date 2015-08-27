@@ -7,9 +7,12 @@
 span[class^="ilabicon-"], span[class*=" ilabicon-"] {
 	cursor: pointer;
 	font-size: 20px;
+	color: $blue;
 }
 span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
+	font-size: 20px;
 	cursor: pointer;
+	color: $blue;
 }
 /* A */
 a[ng-click] {
@@ -50,6 +53,7 @@ $dropdown-border: $lighter-gray4;
 }
 
 
+
 /* Table */
 table {
 	tbody {
@@ -65,6 +69,11 @@ table {
 				text-align: center;
 				border-right: none;
 				border-left: none;
+
+				input[type="checkbox"] {
+					position: relative;
+					left: -10px;
+				}
 			}
 			th:last-child {
 				border-right: 1px solid $light-gray;
@@ -80,6 +89,11 @@ table {
 				border-left: none;
 				border-bottom: none;
 				vertical-align: middle;
+
+				span.clickable {
+					position: relative;
+					left: 10px;
+				}
 
 			}
 			td:last-child {
@@ -107,6 +121,9 @@ table {
 	}
 
 
+}
+div.table-action {
+	margin-bottom: 10px;
 }
 
 

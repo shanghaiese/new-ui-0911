@@ -50,6 +50,7 @@
     "http-auth": "^2.2.8",
     "http-proxy": "^1.11.1",
     "jasmine-reporters": "^1.0.1",
+    "jit-grunt": "^0.9.1",
     "karma": "^0.12.16",
     "karma-chrome-launcher": "^0.1.4",
     "karma-coverage": "^0.2.6",
@@ -59,11 +60,12 @@
     "karma-jasmine": "~0.2.0",
     "karma-junit-reporter": "^0.2.2",
     "karma-ng-html2js-preprocessor": "^0.1.2",
+    "karma-ng-scenario": "latest",
     "karma-opera-launcher": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-safari-launcher": "^0.1.1",
     "matchdep": "~0.3.0",
     "phantomjs": "^1.9.11",
-    "karma-ng-scenario": "latest"
+    "time-grunt": "^1.2.1"
   }
 }
