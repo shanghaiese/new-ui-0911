@@ -1,18 +1,15 @@
 (function() {
 
     angular.module('ilab')
-        .controller('EnvsCtrl', EnvsCtrl);
+           .controller('EnvsCtrl', EnvsCtrl);
 
-    EnvsCtrl.$inject = ['_envs', 'environmentService'];
+    EnvsCtrl.$inject = ['_envs'];
 
-    function EnvsCtrl(_envs, environmentService) {
+    function EnvsCtrl(_envs) {
         var that = this;
-
-        that.envs = _envs;
         activate();
-
-
         function activate() {
+            that.envs = _envs;
             that.isCollapsed = 1;
             that.addEnv = addEnv;
             that.cancelAdd = cancelAdd;
@@ -20,7 +17,7 @@
 
         //POST to /environments
         that.newEnv = {'name':'',
-                       'expDate': '2015-08-19T06:04:00'
+                       'expire_date': '2015-08-19 06:04:00'
                        };
         function addEnv(){
                     var newEnv = that.newEnv;
@@ -33,7 +30,7 @@
         function cancelAdd(){
             that.newEnv = {'name':'',
                           'expDate': '2015-08-19T06:04:00'
-                       };
+                        };
         }
 
                 

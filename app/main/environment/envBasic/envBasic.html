@@ -4,7 +4,7 @@
     <a ui-sref="env.vm({envId: EnvBasic.env.id})" class="pull-right">advanced</a>
 </div>
 <div class="vm-multi">
-    <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
+    <h3>Virtual Machine: {{env.virtualMachines.length}}</h3>
 	<carousel no-wrap="true" interval="-1" disable-ng-animate>
       	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
             <div class="caro">

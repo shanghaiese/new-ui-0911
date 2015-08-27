@@ -87,7 +87,7 @@
                 controllerAs: 'Envs',
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users,summary'});
+                        return environmentService.getList({expand: 'summary'});
                     }
                 }
             })

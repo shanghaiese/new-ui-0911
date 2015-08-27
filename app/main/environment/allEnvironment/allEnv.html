@@ -17,7 +17,7 @@
                 <label>Description:</label>
                 <input name="description" class="form-control" ng-model="Envlsits.newEnv.description" placeholder="Description">
             </div>
-            <p>Expiration: {{Envlist.newEnv.expDate| date: 'yyyy-MM-dd'}}</p>
+            <p>Expiration: {{Envlist.newEnv.expire_date| date: 'yyyy-MM-dd'}}</p>
             <div class="form-group">
                 <button class="btn btn-primary" type="submit" ng-click="Envlist.addEnv()">Add</button>
                 <button class="btn btn-secondary" type="button" ng-click="Envlists.cancelAdd()">Cancel</button>
@@ -28,10 +28,9 @@
     <div class="env-list">
         <ul>
             <li ng-repeat="env in Envlist.envs"> 
-                    <!-- <div class="env" ui-sref="envBasicView"> -->
                 <div class="env" ui-sref="envBasic({envId: env.id})">
                         <h6>{{env.name}}</h6>
-                        <p>expiey data:{{env.expiryDate}}</p>
+                        <p>expire data:{{env.expiryDate}}</p>
                         <ol>   
                                 <li> <i class="intelicon-server-solid"></i>Virtual Machines: {{env.summary.virtualMachines}} </li>
                                 <li> <i class="intelicon-devices"></i>Physical Machines: {{env.summary.physicalMachines}} </li>
