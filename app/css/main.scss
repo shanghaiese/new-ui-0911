@@ -20,11 +20,13 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "vm-multi";
 @import "all-environment";
 @import "physical-machine";
+@import "loading";
 
 body {
 	margin-top: 50px;
 	margin-bottom: 50px;
 	min-width: 600px;
+	overflow-y: scroll;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -145,243 +147,14 @@ body {
 /* override form group */
 .form-group {
 	margin-bottom: 5px;
-}    
-
-/*vm table font color*/
-.mark-as-blue
- {
-    color: $blue;
 }
-.mark-as-red
- {
-    color: $red;
+/* override dropdown */
+.btn.dropdown-toggle {
+	text-align: left;
+	padding-right: 22px;
 }
-
-
-
-/*sortable table header */
-
-.ilab-sortable thead tr {
-    &:first-child th {
-        /* background: $lighter-gray3;
-    border: 0px;
-    color: $black; */
-        cursor: pointer;
-        padding-right: 1.5em;
-        position: relative;
-        &.ilab-sort-desc:after {
-            border-color: transparent transparent $light-gray transparent;
-            border-style: solid;
-            border-width: 0.5em;
-            top: .05em;
-            content: ' ';
-            height: 0.75em;
-            position: absolute;
-            //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-            border-radius: 4px;
-            width: 0;
-            z-index: 6;
-        }
-        &.ilab-sort-asc:after {
-            border-color: $light-gray transparent transparent transparent;
-            border-style: solid;
-            border-width: 0.5em;
-            bottom: .05em;
-            content: ' ';
-            height: 0.75em;
-            position: absolute;
-            //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
-            border-radius: 4px;
-            width: 0;
-            z-index: 6;
-        }
-    }
-}
-
-.modal-dialog {
-    width: 400px;
-}
-
-#search-vm,
-#displaycolumn-vm {
-    float: right;
-    margin: 0.5em;
-    color: $blue;
-    display: inline-block;
-}
-
-
-#delete-action {
-    color: $red;
-}
-
-#vm-configuration {
-    color: $blue;
-    display: inline-block;
-    cursor: pointer;
-}
-
-.search-panel {
-    float: right;
-    border: 1px solid $gray4;
-    margin: .5em 0;
-}
-
-.table-intel {
-
-    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
-        color: $light-blue;
-        background-color: $dark-gray;
-    }       
-    .nav>li>a {
-        position: relative; 
-        display: block;
-        padding: 10px 20px 10px 20px;
-        color: $white;
-        font-size: 20px;
-    }
-    .nav-pills {
-        background-color: $dark-gray;
-        li > a {
-            color: white;
-            padding: 11px 20px;
-            font-size: 18px;
-        }
-        li > a:active,
-        li.active > a,
-        li.active > a:hover,
-        li.active > a:focus,
-        li > a:hover {
-            color: $light-blue;
-            padding: 11px 20px;
-            font-size: 18px;
-        }
-        li.disabled > a,
-        li.disabled > a:hover,
-        li.disabled > a:focus,
-        li > a:hover {
-            cursor: pointer;
-        }
-    }
-    .table-span-td {
-        padding: 0em;
-    }
-    .advVMInnerSetting {
-        padding: 0px;
-        border-top-width: 0px;
-        border-bottom-width: 0px;
-    }
-}
-
-.pure-form-aligned {
-    background-color: rgb(211, 216, 219);
-    text-align: left;
-    clear: both;
-    .edit-virtual-machine {
-        padding-top: 0.5em;
-        margin-left: 0.3em;
-        width: 20em;
-        padding-bottom: 0.5em;
-        font-size: 130%;
-        color:$darker-gray;
-    }
-    .intel-setting-group {
-        height: 2.5em;
-        padding-bottom: 0.5em;
-
-        input[type="text"] {
-            display: inline-block;
-            vertical-align: left;
-            border-style: solid;
-            border-width: 1px;
-            border-color: transparent;
-            min-width: 11.2em;
-            color: $dark-gray;
-        }
-        input[type="radio"] {
-            vertical-align: left;
-        }
-        input[type='radio']:before {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 50%;
-            margin: 24% 25% auto;
-            border-radius: 50%;
-        }
-        input[type='radio']:hover {
-            box-shadow: 0 0 5px 0px $blue inset;
-        }
-        input[type='radio']:checked:before {
-            background: $blue;
-        }
-        .settingButtonGroup {
-            margin-left: 6.7em;
-        }
-        .saveTempRadioLabel {
-            padding: 0 0.5em 0 0.5em;
-            display: inline-block;
-            vertical-align: left;
-            min-width: 4.5em;
-        }
-        .intelicon-help-solid {
-            color: $gray;
-            margin-top: 2px;
-        }
-        .intelicon-help-solid:hover {
-            color: $dark-gray;
-        }
-        .vmDefaultNicGroup {
-            display: inline-block;
-            width: 3em;
-        }   
-        .intelicon-minus-solid{
-            padding-left: 5px;
-            color: $blue;
-        }
-        .intelicon-plus-solid {
-            padding-left: 5px;
-            color: $blue;
-        }
-    }
-    .advEnvNetwork {
-        min-width: 11.2em;
-    }
-
-    .network+div {
-        display: inline-block;
-        min-width: 11.2em;
-        margin-left: 0em;
-    }
-
-    .advEnvNetworkDiv+.advEnvNetworkDiv {
-        margin-left: 6.7em;
-    }
-
-
-}
-
-.advVMInnerSetting {
-    .intelicon-close-max {
-        float: right;
-        font-size: 15px;
-        background-color: $dark-gray;
-        color: $white;
-        margin: 1em;
-    }
-}
-
-.tooltip-inner {
-    padding: 5px;
-    min-width: 260px;
-    max-width: 350px;
-    width: 250px;
-    table tbody {
-        color: $white;
-        td {
-            vertical-align: top;
-            text-align: left;
-        }
-    }
-    
+.btn .caret {
+	position: absolute;
+	top: 20px;
+	right: 22px;
 }

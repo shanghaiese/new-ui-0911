@@ -10,10 +10,10 @@
                 var ele = angular.element("." + id);
                 // console.log(ele.width());
 
-                if (ele.width() < 50) {
-                    length = 9;
-                } else {
+                if (ele.width() < 20) {
                     length = 10;
+                } else {
+                    length = 8;
                 }
                 // console.log(length);
 

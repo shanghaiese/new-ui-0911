@@ -4,7 +4,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="utf-8">
-    <title>new ui</title>
+    <title>iLab</title>
     <meta name="description" content="newui of iLab">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="image/favicon.png">
@@ -19,7 +19,6 @@
 
 <body ng-app="ilab">
     <nav class="navbar navbar-default navbar-fixed-top">
-        <!-- We use the fluid option here to avoid overriding the fixed width of a normal container within the narrow content columns. -->
         <div class="container-fluid">
             <div class="navbar-header">
                 <span id="menu-toggle" class="intelicon-menu" ng-click="toggleMenu()"></span>
@@ -29,19 +28,24 @@
         </div>
     </nav>
     <section>
+        <!-- left menu -->
         <ilab-menu></ilab-menu>
-        <div class="container content">
+        
+        <!-- main view -->
+        <div class="container">
             <div ui-view></div>
+        </div>
 
+        <!-- overall page loading -->
+        <div class="loader-backdrop" ng-show="isLoading">
+            <div class="spin-box"></div>
         </div>
     </section>
-    <!-- We'll also add some navigation: -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -54,6 +58,7 @@
     <script src="bower_components/restangular/dist/restangular.js"></script>
     <script src="bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js"></script>
     <script src="bower_components/angular-utils-pagination/dirPagination.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
     <!-- endbower -->
     
     <!-- internal dependencies -->

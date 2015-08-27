@@ -1,25 +1,11 @@
 <h1>My Environments</h1>
-<div class="vm-multi">
 <div>
-    <ol class="breadcrumb">
-      <li><a ui-sref="allEnv">All Environment</a></li>
-      <li>Environment env1</li>
-    </ol>
+    <a ui-sref="envs">all environments</a>
+    <a ui-sref="env.vm({envId: 'env1'})" class="pull-right">advanced</a>
 </div>
-<div>
-    <li><a class="intel-selected" ui-sref="env.vm({envId: 'env1'})">advanced</a></li>
-</div>
-<div class="listVMs">
-    <div> Virtual Machines : {{envBasic.vmCount}}</div>
-   <!--  <carousel>
-          <slide ng-repeat="vm in envBasic.vms"> 
-              <div  class="caro">
-                  <info-card class="list-VMs" type="vm" info="item" on-connect="envBasic.connect(id)" on-power="envBasic.powerOperation(id,op)"></info-card>
-              </div>
-          </slide>
-     </carousel> -->
-     <info-card class="list-VMs" type="vm" info="vm" on-connect="envBasic.connect(id)" on-power="envBasic.power(op,vmId)" ng-repeat="vm in envBasic.vms"></info-card>
+<div class="list-env">
+    <h3>Virtual Machine: {{EnvBasic.vmCount}}</h3>
+    <div class="card-container">
+        <info-card class="list-VMs" type="vm" act-operation="EnvBasic.vmIsInOperation(vmId)" info="vms" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="VM in EnvBasic.VMs"></info-card>
     </div>
 </div>
-
-

@@ -85,12 +85,12 @@ describe("VMBasic Controller",function() {
         });
     }));
 
-    describe('with the given VM ID',function() {
-        var vmId = 3647501;
-        beforeEach(function(){
-            ctrl.loadVMList();
-        });
-    });
+    //describe('with the given VM ID',function() {
+    //    var vmId = 3647501;
+    //    beforeEach(function(){
+    //        ctrl.loadVMList();
+    //    });
+    //});
 
     
 

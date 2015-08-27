@@ -9,7 +9,7 @@ describe('info-card directive', function() {
     beforeEach(module('templates'));
     
     // Store references to $rootScope and $compile
-    beforeEach(inject(function($compile, $rootScope, $document, $compile) {
+    beforeEach(inject(function($compile, $rootScope, $document) {
         document = $document;
         compile = $compile; 
         scope = $rootScope.$new();
@@ -77,13 +77,14 @@ describe('info-card directive', function() {
     
     describe('with different virtual machines', function(){
         it('should have different status on panels',function(){
-           expect(element.html()).toContain('class="card"');
+            expect(element.html()).toContain('class="card"');
         });
+        // it('should have right cout of virtual machines', function(){
+        //     expect(element).toEqual('16');
+        // })
     });
 
-    describe('with given memory',function(){
-        it('should h')
-    })
+
     
     describe('when clicked', function(){
         it('should open when I first toggle', function() {
@@ -102,6 +103,12 @@ describe('info-card directive', function() {
             isolated.toggle();
             document.trigger('click');
             expect(isolated.isShown).toBe(false);
+        });
+        it('should do nothing when I click outside if open', function() {
+            var isolated = element.isolateScope();
+            isolated.toggle();
+            element.trigger('click');
+            expect(isolated.isShown).toBe(true);
         });
     });
 
