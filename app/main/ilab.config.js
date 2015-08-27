@@ -83,7 +83,7 @@
                 },
                 resolve: {
                     _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines'});
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
                     }
                 },
                 breadcrumb: {

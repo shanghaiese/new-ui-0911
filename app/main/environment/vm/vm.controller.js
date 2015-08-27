@@ -4,9 +4,9 @@
     angular
         .module('ilab')
         .controller('VMCtrl', VMCtrl);
-    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms','alert'];
+    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
 
-    function VMCtrl(machine, $filter, $modal, $sce, _vms,alert) {
+    function VMCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
         var that = this;
 
         //variables
@@ -145,8 +145,9 @@
             //that.VMs = machine.getVMDetail().$object;
             loadVMList();
             // machine.getEnvNetworks().then(function(data) {
-            //     that.Network = data.networks;
+            //      that.Network = data.networks;
             // });
+            that.Network = _env.networks;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
