@@ -1,5 +1,51 @@
-<h2>List of PM</h2>
-<ul>
-	<li>pm1</li>
-	<li>pm2</li>
-</ul>
+<div class="table-action">
+    <a class="btn btn-primary" ui-sref="envs.detail.pm.add">Add</a>
+    <div class="dropdown" style="display: inline-block">
+        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+            Action
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power On</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Power Off</a></li>
+            <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Restart</a></li>
+        </ul>
+    </div>
+    <table-column-filter columns="Pm.columns" class="pull-right"></table-column-filter>
+    <form class="default pull-right">
+	    <input type="search" class="form-control" ng-model="searchPm">
+    </form>
+</div>
+
+<table class="table table-bordered table-intel table-expandable">
+    <thead>
+        <tr>
+            <th><input type="checkbox"></th>
+            <th ng-repeat="col in Pm.columns" ng-if="col.enabled">{{col.display}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr dir-paginate-start="pm in Pm.pms | itemsPerPage: 3 | filter:searchPm">
+        	<td><input type="checkbox"><span class="intelicon-settings-solid clickable" ng-click="Pm.collapse(pm)"></span></td>
+            <td ng-if="Pm.columns[0].enabled">{{pm.name}}</td>
+            <td ng-if="Pm.columns[1].enabled">{{pm.network[0].ip}}</td>
+            <td ng-if="Pm.columns[2].enabled">
+                <progressbar max="100" value="60" type="success" popover="20 mins left" popover-trigger="mouseenter"></progressbar>
+            </td>
+            <td ng-if="Pm.columns[3].enabled">{{pm.connect}}</td>
+            <td ng-if="Pm.columns[3].enabled">{{pm.power}}</td>
+        </tr>
+		<tr dir-paginate-end>
+		    <td colspan="6" class="td-collapsed">
+
+		        <!-- collpase content begins -->
+		        <div collapse="Pm.collapsed !== pm.id">
+		        	config pm
+		        </div>
+		        <!-- collpase content ends -->
+		    </td>
+		</tr>
+
+    </tbody>
+</table>
+<dir-pagination-controls max-size="5"></dir-pagination-controls>
