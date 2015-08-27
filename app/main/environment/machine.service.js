@@ -19,8 +19,6 @@
     function machineService(Restangular) {
 
         var machinesData = {
-            getVMList: getVMList,
-            getEnvNetworks: getEnvNetworks,
             getThead: getThead,
             getVMDetail: getVMDetail,
             getOneVmForOperation:getOneVmForOperation,
@@ -55,23 +53,6 @@
             return thead;
         }
 
-        function getEnvNetworks() {
-            var networks = Restangular.one("environments", 2067701);
-            networksList = networks.get({
-                expand: 'networks'
-            });
-            return networksList;
-        }
-
-        //get virtual machine list by calling api
-        function getVMList() {
-            var env = Restangular.one("environments", 2067701);
-            var virtualMachineList = env.get({
-                expand: 'virtualMachines'
-            });
-            return virtualMachineList;
-            //return Restangular.all('admin/virtual-machines').getList();
-        }
 
         function getVMDetail(vmid) {
             var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
