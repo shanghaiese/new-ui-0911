@@ -122,7 +122,7 @@ describe('vms controller', function() {
                 then: true
             }
         };
-        ctrl = $controller('VMCtrl', {
+        ctrl = $controller('VmCtrl', {
             '$scope': scope,
             _env:vmFakeData,
             _vms:vmFakeData.virtualMachines

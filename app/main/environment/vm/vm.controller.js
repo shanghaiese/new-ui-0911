@@ -3,10 +3,10 @@
 
     angular
         .module('ilab')
-        .controller('VMCtrl', VMCtrl);
-    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
+        .controller('VmCtrl', VmCtrl);
+    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
 
-    function VMCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
+    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
         var that = this;
 
         //variables

@@ -95,7 +95,7 @@
                 views: {
                     'tab@envs.detail': {
                         templateUrl: "main/environment/vm/vm.html",
-                        controller: 'VMCtrl',
+                        controller: 'VmCtrl',
                         controllerAs: 'Vm'
                     }
                 },
