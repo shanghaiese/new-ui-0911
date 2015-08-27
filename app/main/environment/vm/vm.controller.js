@@ -157,7 +157,7 @@
         /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
-            var list = _vms.virtualMachines;
+            var list = _vms;
             angular.forEach(list, function(value, index) {
                 if (value.disable === 0) {
                     switch (value.power) {
