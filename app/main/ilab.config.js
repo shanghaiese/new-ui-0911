@@ -96,7 +96,7 @@
                     'tab@envs.detail': {
                         templateUrl: "main/environment/vm/vm.html",
                         controller: 'VMCtrl',
-                        controllerAs: 'VM'
+                        controllerAs: 'Vm'
                     }
                 },
                 resolve: {

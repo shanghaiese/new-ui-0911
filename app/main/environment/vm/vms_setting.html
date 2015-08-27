@@ -2,37 +2,37 @@
 <!-- <table class="table table-bordered table-striped table-intel"> -->
 <!-- <tr> -->
 <td colspan="6" class="advVMInnerSetting td-collapsed">
-    <div collapse="vms.id != VM.showPage">
-        <span class="intelicon-close-max" ng-click="VM.showVmEdit(vms.id, false)"></span>
+    <div collapse="vms.id != Vm.showPage">
+        <span class="intelicon-close-max" ng-click="Vm.showVmEdit(vms.id, false)"></span>
         <tabset class="VMSettingTabs" type="pills">
             <!--ChangeVMSettingPanel-->
-                <tab active="toolTab.active" title="Configure VM">
+                <tab active="toolTab.active" title="Configure Vm">
                 <tab-heading>
                     <span class="intelicon-tools"></span>
                 </tab-heading>
-                <form class="form-horizontal default" id="config-vm" ng-submit="VM.updateConfig(vms.id)">
+                <form class="form-horizontal default" id="config-vm" ng-submit="Vm.updateConfig(vms.id)">
                     <div class="form-group"><label class="panel-topic">Edit Virtual Machine:</label></div>
                     <div class="form-group">
-                        <label for="vm-name" class="col-sm-2 control-label require">VM name:</label>
+                        <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
                         <div class="col-sm-10">
-                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="VM.configTmp.name" required />
+                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.configTmp.name" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vm-description" class="col-sm-2 control-label">Description:</label>
                         <div class="col-sm-10">
-                            <input id="vm-description" type="text" class="form-control" placeholder="Description" ng-model="VM.configTmp.description" />
+                            <input id="vm-description" type="text" class="form-control" placeholder="Description" ng-model="Vm.configTmp.description" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vm-CPU" class="col-sm-2 control-label">CPU:</label>
                         <div id="vm-CPU" class="dropdown col-sm-10" style="display: inline-block">
                             <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{VM.configTmp.CPU.NumOfCPU}}
+                                {{Vm.configTmp.CPU.NumOfCPU}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li class="cpuDropdownList" role="presentation" ng-repeat="list in VM.CPU" ng-click="VM.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
+                                <li class="cpuDropdownList" role="presentation" ng-repeat="list in Vm.CPU" ng-click="Vm.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -40,23 +40,23 @@
                         <label class="col-sm-2 control-label">Memory:</label>
                         <div id="vm-Memory" class="dropdown col-sm-10" style="display: inline-block">
                             <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{VM.configTmp.memory.memory}}
+                                {{Vm.configTmp.memory.memory}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li class="memoryDropdownList" role="presentation" ng-repeat="list in VM.Memory[VM.configTmp.CPU.idx]" ng-click="VM.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
+                                <li class="memoryDropdownList" role="presentation" ng-repeat="list in Vm.Memory[Vm.configTmp.CPU.idx]" ng-click="Vm.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div class="form-group">
                     <label class="col-sm-2 control-label">Network:</label>
-                        <div class="dropdown advEnvNetworkDiv col-sm-10" ng-repeat="(index, value) in VM.configTmp.network">
+                        <div class="dropdown advEnvNetworkDiv col-sm-10" ng-repeat="(index, value) in Vm.configTmp.network">
                             <button class="btn btn-default dropdown-toggle advEnvNetwork " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                 {{value.label}}
                                 <span class="caret"></span>
                             </button>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
+                                <li role="presentation" ng-repeat="list in Vm.Network" ng-click="Vm.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -64,55 +64,55 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="settingButtonGroup">
                                 <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Update</button>
-                                <button class="btn btn-secondary" type="button" ng-click="VM.cancelConfig(vms.id)">Cancel</button>
+                                <button class="btn btn-secondary" type="button" ng-click="Vm.cancelConfig(vms.id)">Cancel</button>
                             </span>
                         </div>
                     </div>
                 </form>
             </tab>
             <!--SaveTemplatePanel-->
-            <tab title="Save VM as template">
+            <tab title="Save Vm as template">
                 <tab-heading>
                     <span class="intelicon-save-solid"></span>
                 </tab-heading>
-                <form class="form-horizontal default" id="saveVMTemplate" ng-submit="VM.saveVMTemplate(vms.id)">
+                <form class="form-horizontal default" id="saveVMTemplate" ng-submit="Vm.saveVMTemplate(vms.id)">
                     <div class="form-group">
-                        <label class="panel-topic">Save VM Template:</label>
+                        <label class="panel-topic">Save Vm Template:</label>
                     </div>
                     <div class="form-group">
-                        <label for="vm-name" class="col-sm-2 control-label require">VM name:</label>
-                        <!--Only can be saved when VM is not running-->
+                        <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
+                        <!--Only can be saved when Vm is not running-->
                         <div class="col-sm-10">
-                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="VM.saveTemp.name" required />
+                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.saveTemp.name" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vmSaveRadio" label class="col-sm-2 control-label">Save mode:</label>
-                        <input id="vmConvertRadio" class="radioCheckboxA" type="radio" name="saveMode" ng-model="VM.saveTemp.modeSaveDisk.saveMode" value="convert" />
+                        <input id="vmConvertRadio" class="radioCheckboxA" type="radio" name="saveMode" ng-model="Vm.saveTemp.modeSaveDisk.saveMode" value="convert" />
                         <span class="saveTempRadioLabel">Convert</span>
-                        <input id="vmSaveRadio" class="radioCheckboxB" type="radio" name="saveMode" ng-model="VM.saveTemp.modeSaveDisk.saveMode" value="save" />
+                        <input id="vmSaveRadio" class="radioCheckboxB" type="radio" name="saveMode" ng-model="Vm.saveTemp.modeSaveDisk.saveMode" value="save" />
                         <span class="saveTempRadioLabel">Clone</span>
-                        <span class="intelicon-help-solid tip" tooltip-html="VM.htmlTooltipSave" tooltip-placement="right"></span>
+                        <span class="intelicon-help-solid tip" tooltip-html="Vm.htmlTooltipSave" tooltip-placement="right"></span>
                     </div>
                     <div class="form-group">
                         <label for="vmSaveRadio" label class="col-sm-2 control-label">Disk mode:</label>
-                        <input id="vmChainRadio" class="radioCheckboxA" type="radio" name="diskMode" ng-model="VM.saveTemp.modeSaveDisk.diskMode" value="chain" />
+                        <input id="vmChainRadio" class="radioCheckboxA" type="radio" name="diskMode" ng-model="Vm.saveTemp.modeSaveDisk.diskMode" value="chain" />
                         <span class="saveTempRadioLabel">Chain</span>
-                        <input id="vmCopyRadio" class="radioCheckboxB" type="radio" name="diskMode" ng-model="VM.saveTemp.modeSaveDisk.diskMode" value="copy" />
+                        <input id="vmCopyRadio" class="radioCheckboxB" type="radio" name="diskMode" ng-model="Vm.saveTemp.modeSaveDisk.diskMode" value="copy" />
                         <span class="saveTempRadioLabel">Copy</span>
-                        <span class="intelicon-help-solid tip" tooltip-html="VM.htmlTooltipDisk" tooltip-placement="right"></span>
+                        <span class="intelicon-help-solid tip" tooltip-html="Vm.htmlTooltipDisk" tooltip-placement="right"></span>
                     </div>
                     <div class="form-group">
                         <label for="advEnvNetwork" class="network col-sm-2 control-label">Default Net:</label>
-                        <div class="dropdown advEnvNetworkDiv col-sm-10" ng-repeat="(index, value) in VM.tplConfig">
+                        <div class="dropdown advEnvNetworkDiv col-sm-10" ng-repeat="(index, value) in Vm.tplConfig">
                             <button class="btn btn-default dropdown-toggle advEnvNetwork" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                                 {{value.label}}
                                 <span class="caret"></span>
                             </button>
-                            <span class="intelicon-minus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, false)"></span>
-                            <span class="intelicon-plus-solid" ng-click="VM.changeTplNumber(VM.tplConfig, true)"></span>
+                            <span class="intelicon-minus-solid" ng-click="Vm.changeTplNumber(Vm.tplConfig, false)"></span>
+                            <span class="intelicon-plus-solid" ng-click="Vm.changeTplNumber(Vm.tplConfig, true)"></span>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in VM.Network" ng-click="VM.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
+                                <li role="presentation" ng-repeat="list in Vm.Network" ng-click="Vm.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -120,14 +120,14 @@
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="settingButtonGroup">
                                 <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Save</button>
-                                <button class="btn btn-secondary" type="button" ng-click="VM.cancelConfig()">Cancel</button>
+                                <button class="btn btn-secondary" type="button" ng-click="Vm.cancelConfig()">Cancel</button>
                             </span>
                         </div>
                     </div>
                 </form>
             </tab>
-            <!--VM information Panel-->
-            <tab title="VM Information">
+            <!--Vm information Panel-->
+            <tab title="Vm Information">
                 <tab-heading>
                     <span class="intelicon-information-solid"></span>
                 </tab-heading>
@@ -140,31 +140,31 @@
                             <div class="form-group">
                                 <div>
                                     <strong class="col-md-2">Name:</strong>
-                                    <span class="col-md-10">{{VM.oneVM.name}}</span>
+                                    <span class="col-md-10">{{Vm.oneVM.name}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Description:</strong>
-                                    <span class="col-md-10">{{(VM.oneVM.description===null)?'NULL':VM.oneVM.description}} </span>
+                                    <span class="col-md-10">{{(Vm.oneVM.description===null)?'NULL':Vm.oneVM.description}} </span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">iLab ID:</strong>
-                                    <span class="col-md-10">{{VM.oneVM.id}}</span>
+                                    <span class="col-md-10">{{Vm.oneVM.id}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Power:</strong>
-                                    <span class="col-md-10">{{(VM.oneVM.power>0)?'Running':'Stop'}}</span>
+                                    <span class="col-md-10">{{(Vm.oneVM.power>0)?'Running':'Stop'}}</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Config:</strong>
-                                    <span class="col-md-10">{{VM.oneVM.cups}}CPU,{{(VM.oneVM.mem)/1024}}G</span>
+                                    <span class="col-md-10">{{Vm.oneVM.cups}}CPU,{{(Vm.oneVM.mem)/1024}}G</span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">OS:</strong>
-                                    <span class="col-md-10">{{VM.oneVM.os}}</span>
+                                    <span class="col-md-10">{{Vm.oneVM.os}}</span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div ng-repeat="nics in VM.oneVM.network">
+                                <div ng-repeat="nics in Vm.oneVM.network">
                                     <strong class="col-md-2">Nic{{nics.interface}} Network:</strong>
                                     <span class="col-md-10">{{nics.label}}</span>
                                     <strong class="col-md-2">Nic{{nics.interface}} IP:</strong>
@@ -180,28 +180,28 @@
                             <strong class="col-md-2">Driver:</strong>
                             <span class="col-md-10">{{vms.driver}}</span> -->
                                 <strong class="col-md-2">VMM:</strong>
-                                <span class="col-md-10">{{VM.oneVM.vmm}}</span>
+                                <span class="col-md-10">{{Vm.oneVM.vmm}}</span>
                                 <strong class="col-md-2">Disk 1:</strong>
-                                <span class="col-md-10">{{VM.oneVM.disk1}}</span>
+                                <span class="col-md-10">{{Vm.oneVM.disk1}}</span>
                                 <!-- <strong class="col-md-2">Hostname:</strong>
                             <span class="col-md-10">{{vms.hostname}}</span>
 
                             <strong class="col-md-2">Creator:</strong>
                             <span class="col-md-10">{{vms.creator}}</span> -->
                                 <strong class="col-md-2">Creat Date:</strong>
-                                <span class="col-md-10">{{VM.oneVM.created_date}}</span>
+                                <span class="col-md-10">{{Vm.oneVM.created_date}}</span>
                             </div>
                             <div class="form-group">
-                                   <button class="btn btn-secondary col-md-offset-2" ng-click="VM.showVmEdit(vms.id, false)">Close</button>
+                                   <button class="btn btn-secondary col-md-offset-2" ng-click="Vm.showVmEdit(vms.id, false)">Close</button>
                                 
                             </div>
                         </form>
                     </div>
                 </form>
             </tab>
-            <tab disable=" true " title="Delete VM ">
+            <tab disable=" true " title="Delete Vm ">
                 <tab-heading>
-                    <span class="intelicon-trash-outlined " ng-click="VM.openDeleteDialog(vms.id) "></span>
+                    <span class="intelicon-trash-outlined " ng-click="Vm.openDeleteDialog(vms.id) "></span>
                 </tab-heading>
             </tab>
         </tabset>

@@ -14,6 +14,11 @@ span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
 	cursor: pointer;
 	color: $blue;
 }
+span[class^="intelicon-"].disabled, span[class*="intelicon-"].disabled {
+	font-size: 20px;
+	cursor: not-allowed;
+	color: $gray;
+}
 /* A */
 a[ng-click] {
 	cursor: pointer;
@@ -68,7 +73,11 @@ table {
 				text-align: left;
 				border-right: none;
 				border-left: none;
-
+				input[type="checkbox"] {
+				 	width: 20px;
+				 	height: 20px;
+				// 	left: -10px;
+				}
 				// input[type="checkbox"] {
 				// 	position: relative;
 				// 	left: -10px;
@@ -93,6 +102,19 @@ table {
 					position: relative;
 					left: 10px;
 				}
+				span.disabled {
+					position: relative;
+					left: 10px;
+				}
+				input[type="checkbox"] {
+				 	width: 20px;
+				 	height: 20px;
+				// 	left: -10px;
+				 }
+				img {
+				 	font-size:20px;
+				}
+
 
 			}
 			td:last-child {
