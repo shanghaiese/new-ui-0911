@@ -10,13 +10,16 @@
     	Restangular.extendModel('virtual-machines', function(vms) {
     		var api = {
                 getOne: function() {
+                    console.log(this.name);
                     return virtualMachines.get(this.id);
                 }
 
+
+
             };
-            return vmModel.mixInto(vms);
+            return angular.extend(vmModel.mixInto(vms), api);
     	});
-    	return Restangular.all('admin/virtual-machines');
+    	return virtualMachines;
     }
 
 

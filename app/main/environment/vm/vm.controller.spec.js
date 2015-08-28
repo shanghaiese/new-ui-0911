@@ -450,16 +450,16 @@ describe('vms controller', function() {
             oneVMToPowerOn = ctrl.VMs[1]; //power=0
             oneVMPowerOffSuccess = {
                 power: 0
-            }
+            };
             oneVMSuspendSuccess = {
                 power: 2
-            }
+            };
             oneVMPowerOnSuccess = {
                 power: 1
-            }
+            };
             oneVMPowerOnFail = {
                 power: 0
-            }
+            };
 
         });
         afterEach(function() {

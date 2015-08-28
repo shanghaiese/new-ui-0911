@@ -59,9 +59,7 @@ body {
 .navbar .container-fluid {
     padding-left: 0;
 }
-
-.navbar>.container .navbar-logo,
-.navbar>.container-fluid .navbar-logo {
+.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
     margin-left: 0;
     padding: 0;
     cursor: pointer;
@@ -89,15 +87,10 @@ body {
 .pagination {
     margin-top: 0;
 }
-
-.pagination>li>a,
-.pagination>li>span {
+.pagination>li>a, .pagination>li>span {
     border: none;
 }
-
-.pagination>li.active>a,
-.pagination>li.active>a:hover,
-.pagination>li.active>a:focus {
+.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
     background-color: white;
     color: $gray;
 }
@@ -146,11 +139,12 @@ body {
 
 .alert.ng-enter,
 .alert.ng-move,
-.alert.ng-leave {
-    @include transition(400ms ease-out all);
-}
-
-.alert.ng-enter.ng-enter-active,
+.alert.ng-leave
+{ 
+	@include transition(400ms ease-out all);
+} 
+ 
+.alert.ng-enter.ng-enter-active, 
 .alert.ng-leave {
     padding: 10px;
     top: 0;
@@ -280,10 +274,7 @@ input[type="checkbox"] {
 }
 
 .table-intel {
-    .nav-pills > li.active > a,
-    .nav-pills > li.active > a:hover,
-    .nav-pills > li.active > a:focus,
-    .nav > li > a:hover {
+    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
     }
@@ -320,7 +311,7 @@ input[type="checkbox"] {
     .table-span-td {
         padding: 0em;
     }
-    .advVMInnerSetting {
+    .adv-vm-inner-setting {
         padding: 0px;
         border-top-width: 0px;
         border-bottom-width: 0px;
@@ -366,7 +357,7 @@ input[type="checkbox"] {
         input[type='radio']:checked:before {
             background: $blue;
         }
-        .saveTempRadioLabel {
+        .save-temp-radio-label {
             padding: 0 0.5em 0 0.5em;
             display: inline-block;
             vertical-align: left;
@@ -392,7 +383,7 @@ input[type="checkbox"] {
             color: $blue;
         }
     }
-    .advEnvNetwork {
+    .adv-env-network {
         min-width: 160px;
     }
     .network+div {
@@ -400,12 +391,12 @@ input[type="checkbox"] {
         min-width: 160px;
         margin-left: 0em;
     }
-    .advEnvNetworkDiv+.advEnvNetworkDiv {
+    .adv-env-network-div+.adv-env-network-div {
         margin-left: 12%;
     }
 }
 
-.advVMInnerSetting {
+.adv-vm-inner-setting {
     .intelicon-close-max {
         float: right;
         font-size: 15px;
