@@ -1,4 +1,4 @@
-ddescribe('editEnvCtrl', function() {
+describe('editEnvCtrl', function() {
         var envFakeData = [{
         "id": 2069501,
         "name": "defect test",
@@ -35,7 +35,7 @@ ddescribe('editEnvCtrl', function() {
 
 
      
-    ddescribe('test edit env function',function(){
+    describe('test edit env function',function(){
 
         var api = '/services/api/environments/2069501';
         var createdEnv = {'name':'',
@@ -48,7 +48,7 @@ ddescribe('editEnvCtrl', function() {
 
         it('should cancel editing env by function cancelAdd', function() {
         expect(ctrl.cancelEdit).not.toEqual(null);
-        ctrl.createdEnv = createdEnv;
+        expect(ctrl.createdEnv).toEqual(createdEnv);
 
     });
 

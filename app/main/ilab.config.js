@@ -28,12 +28,6 @@
                 controller: 'WelcomeCtrl',
                 controllerAs: 'Welcome'
             })
-            .state('allEnv', {
-                url: "/allEnv",
-                templateUrl: "main/environment/allEnvironment/allEnv.html",
-                controller: 'EnvlistCtrl',
-                controllerAs: 'Envlist'
-            })
             .state('editEnv', {
                 url: "/editEnv",
                 templateUrl: "main/environment/editEnv/editEnv.html",
@@ -73,7 +67,7 @@
                 controller: 'PmCtrl',
                 controllerAs: "Pm"
             })
-         .state('envBasic', {
+            .state('envBasic', {
                 url: "/environment-basic/:envId",
                 templateUrl: "main/environment/envBasic/envBasic.html",
                 controller: 'EnvBasicCtrl',

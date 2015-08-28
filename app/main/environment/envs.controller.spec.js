@@ -188,13 +188,4 @@ describe('EnvsCtrl', function() {
 });
  
 
-        /*beforeEach(function(){
-            httpBackend.expectPOST(api, newEnv).respond(returndata);
-            scope.$apply(function() {
-                ctrl.addEnv();
-            });
-            httpBackend.flush();
-        });
-        */
-
 

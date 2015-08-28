@@ -9,6 +9,7 @@
         var that = this;
         activate();
         function activate() {
+            that.envs=_envs;
             that.isCollapsed = 1;
             that.addEnv = addEnv;
             that.cancelAdd = cancelAdd;
@@ -28,13 +29,14 @@
                         that.createdEnv = returnData;
                         that.createdEnv.id = returnData.id;
                         addSuccess.removeClass( "ng-hide" ).addClass( "ng-show" );
+                        /*$state.go('environment-basic/:returnData.id');*/
                     }, function() {
                         console.log("There was an error saving");
                     });
                 }
         function cancelAdd(){ 
                         that.newEnv = {'name':'',
-                          'expire_date': '2015-08-19T06:04:00'
+                                       'expire_date': '2015-08-19T06:04:00'
                         };
         }
 
