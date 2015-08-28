@@ -41,7 +41,7 @@
         that.Memory = []; //dropdown list, has relation with CPU
         that.Network = []; //dropdown list(test)
         that.cancelConfig = cancelConfig; //configTmp=vmTemp
-        that.updateConfig = updateConfig; //update that.VMs
+        that.updateConfig = updateConfig; //update that.vms
 
         //make the selected item in dropdown list to show
         that.selectNetwork = selectNetwork;
@@ -139,10 +139,10 @@
         activate();
 
         function activate() {
-            //that.VMs = machine.getVMDetail().then(function(data) {
-            //     that.VMs = data;
+            //that.vms = machine.getVMDetail().then(function(data) {
+            //     that.vms = data;
             // });
-            //that.VMs = machine.getVMDetail().$object;
+            //that.vms = machine.getVMDetail().$object;
             loadVMList();
             // machine.getEnvNetworks().then(function(data) {
             //      that.Network = data.networks;
@@ -155,9 +155,9 @@
             };
         }
 
-        /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
+        /*this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
-            that.VMs = []; //empty the set before reload;
+            that.vms = []; //empty the set before reload;
             var list = _vms;
             angular.forEach(list, function(value, index) {
                 if (value.disable === 0) {
@@ -166,26 +166,26 @@
                             angular.extend(value, {
                                 statusDisplay: 'Stopped'
                             });
-                            that.VMs.push(value);
+                            that.vms.push(value);
                             break;
                         case 1:
                             angular.extend(value, {
                                 statusDisplay: 'Running'
                             });
-                            that.VMs.push(value);
+                            that.vms.push(value);
                             break;
                         case 2:
                             angular.extend(value, {
                                 statusDisplay: 'Suspended'
                             });
-                            that.VMs.push(value);
+                            that.vms.push(value);
                             break;
                     }
                 } else if (value.disable === 4) {
                     angular.extend(value, {
                         statusDisplay: 'Disconnected'
                     });
-                    that.VMs.push(value);
+                    that.vms.push(value);
                 }
             });
         }
@@ -200,21 +200,20 @@
         }
 
 
-        /**/
+        /*get one vm detail information*/
         function getVMDetailInfo(vmid) {
-            that.oneVM = [];
+            that.oneVM = [];        //empty the oneVM before reload
             that.oneVM = machine.getVMDetail(vmid).$object;
-
         }
 
 
-        /*UT-ok store vmTemp as a temp var by vmid*/
+        /*store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
             var index = -1;
             //?for 
-            angular.forEach(that.VMs, function(obj, key) {
+            angular.forEach(that.vms, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
                     that.vmTemp.name = obj.name;
@@ -234,16 +233,16 @@
                 }
             });
             if (index !== -1) {
-                return that.VMs[index];
+                return that.vms[index];
             }
         }
         //select Virtual machine for delete
 
         function toggleCheckAll() {
-            if (that.selectedVMs.length === that.VMs.length)
+            if (that.selectedVMs.length === that.vms.length)
                 that.selectedVMs = [];
             else
-                that.selectedVMs = that.VMs.map(function(item) {
+                that.selectedVMs = that.vms.map(function(item) {
                     return item;
                 });
         }
@@ -254,11 +253,11 @@
             var sort = that.sort;
             if (sort.column === column) {
                 sort.descending = !sort.descending;
-                that.VMs = orderBy(that.VMs, that.sort.column, that.sort.descending);
+                that.vms = orderBy(that.vms, that.sort.column, that.sort.descending);
             } else {
                 sort.column = column;
                 sort.descending = false;
-                that.VMs = orderBy(that.VMs, that.sort.column, that.sort.descending);
+                that.vms = orderBy(that.vms, that.sort.column, that.sort.descending);
             }
         }
 
@@ -328,7 +327,7 @@
         }
 
         function updateConfig(vmid) {
-            angular.forEach(that.VMs, function(obj, key) {
+            angular.forEach(that.vms, function(obj, key) {
                 if (obj.id == vmid) {
                     obj.name = that.configTmp.name;
                     obj.cpus = that.configTmp.CPU.NumOfCPU;
@@ -388,7 +387,7 @@
         }
 
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
-        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
+        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported vms and when you want to remove dependency on parent template</td></tr></table>');
 
         function powerOperation(vms, op) {
             //make sure that the enter type is array
@@ -501,13 +500,13 @@
             });
         }
 
-        function openDeleteDialog(width) {
+        function openDeleteDialog(size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                width:width
+                size:size
 
             });
 
@@ -524,7 +523,7 @@
                     angular.forEach(that.selectedVMs, function(virtualMachineForDelete) {
                         machine.deleteVM(virtualMachineForDelete.id).then(function() {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(virtualMachineForDelete));
-                            that.VMs.splice(that.VMs.indexOf(virtualMachineForDelete));
+                            that.vms.splice(that.vms.indexOf(virtualMachineForDelete));
                         });
                     });
 

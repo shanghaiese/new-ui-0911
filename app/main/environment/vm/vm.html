@@ -19,11 +19,10 @@
                 <li role="presentation" class="{{Vm.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(Vm.selectedVMs, 'restart')"><span aria-hidden="true" class="intelicon-refresh"></span>
                     <span>Restart</span></a>
                 </li>
-                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="Vm.openDeleteDialog(400)"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#" ng-click="Vm.openDeleteDialog('middle')"><span aria-hidden="true" class="intelicon-trash-outlined mark-as-red"></span>
                     <span class="mark-as-red">Delete</span></a></li>
             </ul>
         </div>
-        <!-- <span class="intelicon-search" id="search-vm"></span>    -->
         <table-column-filter columns="Vm.thead" class="pull-right"></table-column-filter>
         <form class="form-inline default pull-right" role="search">
             <div class="form-group">
@@ -57,7 +56,6 @@
                         <input type="checkbox" id="{{vms.id}}" checklist-model="Vm.selectedVMs" checklist-value="vms" />
                     </div>
                     <div ng-show="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
-                        <!-- <span  class="intelicon-refresh spin" style="font-size:1.4em;color:#0071c5;display:inline-block;margin:11px 0 12px"></span> -->
                         <img src="../../image/refresh_icon_18x18.gif">
                     </div>
                     <lable for="{{vms.id}}">

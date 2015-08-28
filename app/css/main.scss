@@ -19,9 +19,12 @@ body {
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
+
+
 /* use this class to disbale selection of text when double/tripple click */
+
 .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -31,7 +34,9 @@ body {
     user-select: none;
 }
 
+
 /* style for menu btn that trigger menu hide/open */
+
 #menu-toggle {
     float: left;
     padding: 10px;
@@ -39,54 +44,73 @@ body {
     color: white;
     background-color: #0055a5;
     cursor: pointer;
-
-    &:active{
+    &:active {
         background-color: #1891ee;
     }
 }
 
+
 /* override navbar */
+
 .navbar {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 }
+
 .navbar .container-fluid {
     padding-left: 0;
 }
-.navbar>.container .navbar-logo,.navbar>.container-fluid .navbar-logo {
+
+.navbar>.container .navbar-logo,
+.navbar>.container-fluid .navbar-logo {
     margin-left: 0;
     padding: 0;
     cursor: pointer;
 }
-.container-fluid>.navbar-header{
+
+.container-fluid>.navbar-header {
     margin-left: 0;
 }
 
+
 /* override loading bar color */
+
 #loading-bar-spinner .spinner-icon {
-    border-top-color:  $yellow !important;
+    border-top-color: $yellow !important;
     border-left-color: $yellow !important;
 }
+
 #loading-bar .bar {
-  background: $yellow !important;
+    background: $yellow !important;
 }
 
+
 /* override pagination */
+
 .pagination {
     margin-top: 0;
 }
-.pagination>li>a, .pagination>li>span {
+
+.pagination>li>a,
+.pagination>li>span {
     border: none;
 }
-.pagination>li.active>a, .pagination>li.active>a:hover, .pagination>li.active>a:focus {
+
+.pagination>li.active>a,
+.pagination>li.active>a:hover,
+.pagination>li.active>a:focus {
     background-color: white;
     color: $gray;
 }
+
 .pagination-summary {
     float: right;
     color: $gray;
     margin-top: 5px;
 }
+
+
 /* override alerts */
+
 .alert-box {
     position: fixed;
     top: 60px;
@@ -94,6 +118,7 @@ body {
     @include translate(-50%, 0);
     padding: 5px;
 }
+
 .alert {
     display: block;
     padding: 10px;
@@ -101,35 +126,38 @@ body {
     border: 0;
     color: white;
     @include box-shadow(none);
-	cursor: pointer;
-}
-.alert-warning {
-    background-color: $orange; 
-}
-.alert-success {
-    background-color: $green; 
-}
-.alert-danger {
-    background-color: $light-red; 
+    cursor: pointer;
 }
 
+.alert-warning {
+    background-color: $orange;
+}
+
+.alert-success {
+    background-color: $green;
+}
+
+.alert-danger {
+    background-color: $light-red;
+}
+
+
 /* ng-animate for alert */
-.alert.ng-enter, 
+
+.alert.ng-enter,
 .alert.ng-move,
-.alert.ng-leave
-{ 
-	@include transition(400ms ease-out all);
-} 
- 
-.alert.ng-enter.ng-enter-active, 
+.alert.ng-leave {
+    @include transition(400ms ease-out all);
+}
+
+.alert.ng-enter.ng-enter-active,
 .alert.ng-leave {
     padding: 10px;
     top: 0;
     height: 42px;
     margin-bottom: 5px;
-
 }
- 
+
 .alert.ng-leave.ng-leave-active,
 .alert.ng-enter {
     padding: 0;
@@ -137,52 +165,79 @@ body {
     top: -50px;
     height: 0;
 }
+
+
 /* override form group */
+
 .form-group {
-	margin-bottom: 5px;
+    margin-bottom: 5px;
 }
+
+
 /* override dropdown */
+
 .btn.dropdown-toggle {
-	text-align: left;
-	padding-right: 22px;
+    text-align: left;
+    padding-right: 22px;
 }
+
 .btn .caret {
-	position: absolute;
-	top: 20px;
-	right: 22px;
+    position: absolute;
+    top: 20px;
+    right: 22px;
 }
+
+
 /* override nav tabs */
+
 .nav.nav-tabs-intel {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
+
+
 /* override checkbox size */
+
 input[type="checkbox"] {
-	width: 15px;
-	height: 15px;
+    width: 15px;
+    height: 15px;
 }
+
+
 /* override progress */
+
 .progress {
-	height: 10px;
-	margin-bottom: 5px;
-	cursor: pointer;
+    height: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
+
 /* override breadcrumb */
+
 .breadcrumb {
-	padding: 0;
-	margin-bottom: 10px;
-	background-color: white;
+    padding: 0;
+    margin-bottom: 10px;
+    background-color: white;
 }
+
 .breadcrumb > li + li:before {
     content: "/\00a0";
 }
-
-
-/*vm table font color*/
-.mark-as-red
- {
-    color: $red;
+/* overwrite modal dialog */
+@media (min-width: 768px) {
+    //when you call middle modal please call as: modalDialog(middle)
+    .modal-middle {
+        width: 400px
+    }
 }
 
+/*vm table font color*/
+
+.mark-as-red {
+    color: $red;
+}
+.mark-as-blue {
+    color: $blue;
+}
 
 
 /*sortable table header */
@@ -224,17 +279,16 @@ input[type="checkbox"] {
     }
 }
 
-.modal-dialog {
-    width: 400px;
-}
-
 .table-intel {
-    .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
+    .nav-pills > li.active > a,
+    .nav-pills > li.active > a:hover,
+    .nav-pills > li.active > a:focus,
+    .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
-    }       
+    }
     .nav>li>a {
-        position: relative; 
+        position: relative;
         display: block;
         padding: 10px 20px 10px 20px;
         color: $white;
@@ -281,16 +335,16 @@ input[type="checkbox"] {
         margin-left: 40px;
         width: 20em;
         font-size: 130%;
-        color:$darker-gray;
+        color: $darker-gray;
     }
-    .form-group {      
+    .form-group {
         @media (min-width: 768px) {
-            .col-sm-2 { 
+            .col-sm-2 {
                 width: 12%;
             }
         }
         @media (min-width: 768px) {
-            .col-sm-offset-2 { 
+            .col-sm-offset-2 {
                 width: 120%;
                 margin-left: 12%;
             }
@@ -328,8 +382,8 @@ input[type="checkbox"] {
         .vmDefaultNicGroup {
             display: inline-block;
             width: 3em;
-        }   
-        .intelicon-minus-solid{
+        }
+        .intelicon-minus-solid {
             padding-left: 5px;
             color: $blue;
         }
@@ -341,18 +395,14 @@ input[type="checkbox"] {
     .advEnvNetwork {
         min-width: 160px;
     }
-
     .network+div {
         display: inline-block;
         min-width: 160px;
         margin-left: 0em;
     }
-
     .advEnvNetworkDiv+.advEnvNetworkDiv {
         margin-left: 12%;
     }
-
-
 }
 
 .advVMInnerSetting {
@@ -377,5 +427,4 @@ input[type="checkbox"] {
             text-align: left;
         }
     }
-    
 }

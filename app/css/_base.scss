@@ -76,12 +76,8 @@ table {
 				input[type="checkbox"] {
 				 	width: 20px;
 				 	height: 20px;
-				// 	left: -10px;
 				}
-				// input[type="checkbox"] {
-				// 	position: relative;
-				// 	left: -10px;
-				// }
+				
 			}
 			th:last-child {
 				border-right: 1px solid $light-gray;
@@ -109,10 +105,10 @@ table {
 				input[type="checkbox"] {
 				 	width: 20px;
 				 	height: 20px;
-				// 	left: -10px;
 				 }
 				img {
-				 	font-size:20px;
+				 	width:20px;
+				 	height: 20px;
 				}
 
 

@@ -55,8 +55,8 @@
 
 
         function getVMDetail(vmid) {
-            var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
-            return vmDetailInfo;
+            return Restangular.one("virtual-machines", vmid).get();
+            
         }
 
         function getOneVmForOperation(vmid) {
@@ -64,14 +64,12 @@
         }
 
         function deleteVM(vmid) {
-            var vm = Restangular.one("virtual-machines", vmid);
-            var vmAfterDelete = vm.remove();
-            return vmAfterDelete;
+            return Restangular.one("virtual-machines", vmid).remove();
         }
 
         function updateVMDetail(vmid, configTmp) {
-            var vm = Restangular.one("virtual-machines", vmid).get();
-            vm.then(function(VmNeedToUpdate) {
+            Restangular.one("virtual-machines", vmid).get()
+            .then(function(VmNeedToUpdate) {
                 VmNeedToUpdate.name = configTmp.name;
                 VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;
                 var gb = parseInt(configTmp.memory.memory);
@@ -86,8 +84,8 @@
         }
 
         function saveVMTpl(vmid, saveTpl) {
-            var vm = Restangular.one("virtual-machines", vmid).get();
-            vm.then(function(vmTplNeedToSave) {
+            Restangular.one("virtual-machines", vmid).get()
+            .then(function(vmTplNeedToSave) {
                 vmTplNeedToSave.post('saveAsTemplate', saveTpl). then(function() {
                     console.log("save Success");
                 }, function() {
