@@ -14,9 +14,9 @@
         .module('ilabService')
         .factory('machine', machineService);
 
-    machineService.$inject = ['Restangular'];
+    machineService.$inject = ['Restangular', 'vmService'];
 
-    function machineService(Restangular) {
+    function machineService(Restangular, vmService) {
 
         var machinesData = {
             getThead: getThead,
@@ -70,7 +70,12 @@
         }
 
         function updateVMDetail(vmid, configTmp) {
-            var vm = Restangular.one("virtual-machines", vmid).get();
+            // vmService.get(vmid).then(function(vm) {
+            //     vm.getOne().then(function(data) {
+            //         console.log(data);
+            //     });
+            // });
+            var vm = Restangular.all("virtual-machines").get(vmid);
             vm.then(function(VmNeedToUpdate) {
                 VmNeedToUpdate.name = configTmp.name;
                 VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;

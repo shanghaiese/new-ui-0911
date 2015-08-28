@@ -284,7 +284,7 @@
                 that.tplConfig = [];
                 var temp = {
                     interface: "1",
-                    label: that.vmTemp.network[0].label,
+                    label: "1",
                     ip: ""
                 };
                 that.tplConfig.push(temp);
