@@ -12,25 +12,27 @@ module.exports = {
         // files: ['<%= meta.srcPath %>/**/*.js', '<%= meta.srcPath %>/**/*.html'],
         options: {
             livereload: true,
-            // nospawn: true,
-            interrupt: true,
-            debounceDelay: 250
+            spawn: true,
+            interrupt: true
         },
         srcScripts: {
             files: ['<%= meta.srcPath %>/**/*.js', '!<%= meta.deployPath %>/*.js', '!<%= meta.srcPath %>/bower_components/**/*.js', '!<%= meta.srcPath %>/**/*spec.js', '!<%= meta.srcPath %>/artifacts/**'],
             tasks: ['jshint', 'beep:error:3', 'concat']
         },
         html: {
-            files: ['<%= meta.srcPath %>/**/*.html', '<%= meta.srcPath %>/main/**/*.tpl.html', '!<%= meta.srcPath %>/artifacts/**'],
+            files: ['<%= meta.srcPath %>/main/**/*.html', '<%= meta.srcPath %>/main/*.html'],
             tasks: ['concat']
         },
-        css: {
+        scss: {
             files: ['<%= meta.srcPath %>/css/*.scss'],
-            tasks: ['sass']
+            tasks: ['sass'],
+            options: {
+                livereload: false
+            }
         },
-        bower: {
-            files: ['<%= meta.srcPath %>/bower_components/*'],
-            tasks:['wiredep']
+        css: {
+            files: ['<%= meta.deployPath %>/main.css'],
+            tasks: []
         }
 
 }

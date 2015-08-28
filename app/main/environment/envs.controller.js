@@ -14,7 +14,6 @@
             that.addEnv = addEnv;
             that.cancelAdd = cancelAdd;
             that.createdEnv = {};
-
         }
 
         //POST to /environments

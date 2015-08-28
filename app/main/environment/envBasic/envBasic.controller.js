@@ -1,6 +1,3 @@
-/**
- * Created by luyongjx on 7/7/2015.
- */
 (function() {
     angular
         .module('ilab')
@@ -18,6 +15,7 @@
 
         function activate() {
             that.vmsInBuckets = that.env.virtualMachines;
+            that.vms = that.env.virtualMachines;
             if(that.env.virtualMachines.length > 12){
                 that.vmsInBuckets = paging(that.env.virtualMachines,12);
             }
