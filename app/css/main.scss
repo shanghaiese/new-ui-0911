@@ -266,7 +266,7 @@ input[type="checkbox"] {
     .table-span-td {
         padding: 0em;
     }
-    .advVMInnerSetting {
+    .adv-vm-inner-setting {
         padding: 0px;
         border-top-width: 0px;
         border-bottom-width: 0px;
@@ -312,7 +312,7 @@ input[type="checkbox"] {
         input[type='radio']:checked:before {
             background: $blue;
         }
-        .saveTempRadioLabel {
+        .save-temp-radio-label {
             padding: 0 0.5em 0 0.5em;
             display: inline-block;
             vertical-align: left;
@@ -338,7 +338,7 @@ input[type="checkbox"] {
             color: $blue;
         }
     }
-    .advEnvNetwork {
+    .adv-env-network {
         min-width: 160px;
     }
 
@@ -348,14 +348,14 @@ input[type="checkbox"] {
         margin-left: 0em;
     }
 
-    .advEnvNetworkDiv+.advEnvNetworkDiv {
+    .adv-env-network-div+.adv-env-network-div {
         margin-left: 12%;
     }
 
 
 }
 
-.advVMInnerSetting {
+.adv-vm-inner-setting {
     .intelicon-close-max {
         float: right;
         font-size: 15px;

@@ -36,9 +36,6 @@
 
         //For small table 4-panels setting
         that.configTmp = {}; //viewTemplate data
-        that.vmTemp = {}; //store original data
-        that.CPU = []; //dropdown list
-        that.Memory = []; //dropdown list, has relation with CPU
         that.Network = []; //dropdown list(test)
         that.cancelConfig = cancelConfig; //configTmp=vmTemp
         that.updateConfig = updateConfig; //update that.VMs
@@ -49,11 +46,10 @@
         that.selectCPU = selectCPU;
 
         //saveTemplatePanel
-        that.saveTemp = {};
         that.saveVMTemplate = saveVMTemplate;
         that.changeTplNumber = changeTplNumber;
         that.tplConfig = [];
-
+        
         that.saveTemp = {
             name: "",
             modeSaveDisk: {
@@ -68,7 +64,7 @@
             name: "",
             description: "",
             CPU: {
-                idx: "",
+                index: "",
                 NumOfCPU: ""
             },
             memory: {
@@ -82,58 +78,22 @@
             }]
         };
 
-        that.CPU = [{
-            idx: 0,
-            NumOfCPU: "1"
-        }, {
-            idx: 1,
-            NumOfCPU: "2"
-        }, {
-            idx: 2,
-            NumOfCPU: "4"
-        }, {
-            idx: 3,
-            NumOfCPU: "8"
-        }, {
-            idx: 4,
-            NumOfCPU: "16"
-        }];
+        that.CPU = [{index: 0, NumOfCPU: "1"}, 
+                    {index: 1, NumOfCPU: "2"}, 
+                    {index: 2, NumOfCPU: "4"}, 
+                    {index: 3, NumOfCPU: "8"}, 
+                    {index: 4, NumOfCPU: "16"}];
 
         that.Memory = [
-            [{
-                memory: "0.5G"
-            }, {
-                memory: "1G"
-            }, {
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }],
-            [{
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }],
-            [{
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "16G"
-            }, {
-                memory: "32G"
-            }]
-        ];
+                        [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
+                        [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
+                        [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
+                        [{memory: "8G"}, {memory: "16G"}],
+                        [{memory: "16G"}, {memory: "32G"}]
+                      ];
+        
+        that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
+        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
         //Functions
         activate();
@@ -204,7 +164,6 @@
         function getVMDetailInfo(vmid) {
             that.oneVM = [];
             that.oneVM = machine.getVMDetail(vmid).$object;
-
         }
 
 
@@ -230,7 +189,7 @@
             });
             angular.forEach(that.CPU, function(obj, key) {
                 if (obj.NumOfCPU == that.vmTemp.CPU.NumOfCPU) {
-                    that.vmTemp.CPU.idx = obj.idx;
+                    that.vmTemp.CPU.index = obj.index;
                 }
             });
             if (index !== -1) {
@@ -265,6 +224,11 @@
         /*UT-ok show the vm edit page or close it*/
         // if bool == true, means update, the data should change. Otherwise, no change in data.
         function showVmEdit(vmid, bool) {
+            var temp = {
+                interface: "1",
+                label: "1",
+                ip: ""
+            };
             //that.showPage = !that.showPage;
             if (that.showPage == vmid && bool === true) {
                 that.showPage = 0;
@@ -277,16 +241,12 @@
                 getVMById(vmid);
                 getVMDetailInfo(vmid);
                 that.showPage = vmid;
-                //find the vm idx;
+                //find the vm index;
                 angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel
                 that.saveTemp.name = that.vmTemp.name;
                 that.tplConfig = [];
-                var temp = {
-                    interface: "1",
-                    label: "1",
-                    ip: ""
-                };
+
                 that.tplConfig.push(temp);
                 //if have opened saveTemp panel and change, we need to reset that panel.
 
@@ -328,6 +288,7 @@
         }
 
         function updateConfig(vmid) {
+            var index;
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     obj.name = that.configTmp.name;
@@ -336,9 +297,9 @@
                     obj.mem = machine.transMemFromGB2MB(gb);
                     obj.description = that.configTmp.description;
                     angular.forEach(obj.network, function(obj, key) {
-                        var idx = parseInt(obj.interface) - 1;
-                        console.log(idx);
-                        obj.label = that.configTmp.network[idx].label;
+                        index = parseInt(obj.interface) - 1;
+                        console.log(index);
+                        obj.label = that.configTmp.network[index].label;
                     });
                 }
             });
@@ -349,11 +310,16 @@
         }
 
         function changeTplNumber(tplConfig, bool) {
+            var temp = {
+                interface: "",
+                label: "",
+                ip: ""
+            };
             var number = tplConfig.length;
             if (bool) {
                 if (number + 1 > 4)
                     return -1;
-                var temp = {
+                temp = {
                     interface: number + 1,
                     label: number + 1,
                     ip: ""
@@ -387,8 +353,6 @@
             machine.saveVMTpl(vmid, saveTpl);
         }
 
-        that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
-        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
         function powerOperation(vms, op) {
             //make sure that the enter type is array
