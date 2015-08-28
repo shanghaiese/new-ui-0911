@@ -232,7 +232,11 @@ input[type="checkbox"] {
 .mark-as-blue {
     color: $blue;
 }
-
+/* overwrite the ilabicon-stop icon */
+span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
+    font-size:1em;
+    color:$dark-gray;
+}
 
 /*sortable table header */
 

@@ -176,17 +176,17 @@ describe('vms controller', function() {
         it('should select all checkbox by toggleCheckAll function', function() {
             ctrl.selectedVMs = [];
             var toggle = ctrl.toggleCheckAll();
-            expect(ctrl.selectedVMs.length).toEqual(ctrl.VMs.length);
+            expect(ctrl.selectedVMs.length).toEqual(ctrl.vms.length);
         });
 
         it('should diselect all checkbox by toggleCheckAll function when all machine checked', function() {
-            ctrl.selectedVMs = ctrl.VMs;
+            ctrl.selectedVMs = ctrl.vms;
             var toggle = ctrl.toggleCheckAll();
             expect(ctrl.selectedVMs.length).toEqual(0);
         });
 
         it('should disable the disableOption if one of vm is suspend', function() {
-            ctrl.selectedVMs = ctrl.VMs;
+            ctrl.selectedVMs = ctrl.vms;
             ctrl.disableSelection();
             expect(ctrl.disableOption === 'disabled');
         });
@@ -199,7 +199,7 @@ describe('vms controller', function() {
                 column: 'name',
                 descending: false
             };
-            ctrl.VMs = [{
+            ctrl.vms = [{
                 name: 'a',
                 id: 2
             }, {
@@ -213,7 +213,7 @@ describe('vms controller', function() {
 
         it('should change sort when column is the same as sort.column', function() {
             ctrl.changeSorting('name');
-            expect(ctrl.VMs).toEqual([{
+            expect(ctrl.vms).toEqual([{
                 name: 'c',
                 id: 1
             }, {
@@ -227,7 +227,7 @@ describe('vms controller', function() {
 
         it('should sort new column when column is the not same as sort.column', function() {
             ctrl.changeSorting('id');
-            expect(ctrl.VMs).toEqual([{
+            expect(ctrl.vms).toEqual([{
                 name: 'c',
                 id: 1
             }, {
@@ -243,19 +243,19 @@ describe('vms controller', function() {
 
 
     describe('with the given vmid number', function() {
-        //first load _vms->ctrl.VMs
+        //first load _vms->ctrl.vms
         var vmid = 3633301;
         beforeEach(function() {
             ctrl.loadVMList();
         });
         //spyOn(ctrl, 'getVMById').and.CallThrough();
 
-        //after loading, ctrl.VMs contains 2 vms in an array
-        it('should ctrl.VMs be array', function() {
-            expect(ctrl.VMs).toEqual(jasmine.any(Array));
+        //after loading, ctrl.vms contains 2 vms in an array
+        it('should ctrl.vms be array', function() {
+            expect(ctrl.vms).toEqual(jasmine.any(Array));
         });
         it('should have 4 virtual machines', function() {
-            expect(ctrl.VMs.length).toEqual(4);
+            expect(ctrl.vms.length).toEqual(4);
         });
 
         it('should load vmTemp', function() {
@@ -388,10 +388,10 @@ describe('vms controller', function() {
 				ctrl.configTmp.CPU.NumOfCPU = 'change4';
 				ctrl.configTmp.memory.memory = '2';				
 				ctrl.updateConfig(vmid);
-				expect(ctrl.VMs[0].name).toBe('change1');
-				expect(ctrl.VMs[0].cpus).toBe('change4');
-				expect(ctrl.VMs[0].mem).toEqual(2048);
-				expect(ctrl.VMs[0].description).toBe('change2');
+				expect(ctrl.vms[0].name).toBe('change1');
+				expect(ctrl.vms[0].cpus).toBe('change4');
+				expect(ctrl.vms[0].mem).toEqual(2048);
+				expect(ctrl.vms[0].description).toBe('change2');
 				expect(ctrl.showPage).toEqual(0);
 			});
 
@@ -446,8 +446,8 @@ describe('vms controller', function() {
     var oneVM;
     describe('test the vm operation function', function() {
         beforeEach(function() {
-            oneVMToPowerOff = ctrl.VMs[0]; //power=1
-            oneVMToPowerOn = ctrl.VMs[1]; //power=0
+            oneVMToPowerOff = ctrl.vms[0]; //power=1
+            oneVMToPowerOn = ctrl.vms[1]; //power=0
             oneVMPowerOffSuccess = {
                 power: 0
             };

@@ -10,7 +10,7 @@
                 <li role="presentation" class="{{Vm.disableOption}}"><a role="menuitem" tabindex="-1" ng-click="Vm.powerOperation(Vm.selectedVMs, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                     <span>Power On</span></a>
                 </li>
-                <li role="presentation" class="{{Vm.disableOption}}"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(Vm.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                <li role="presentation" class="{{Vm.disableOption}}"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(Vm.selectedVMs, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop stop-icon" ></span>
                     <span>Power Off</span></a>
                 </li>
                 <li role="presentation" class="{{Vm.disableOption}}"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(Vm.selectedVMs, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
@@ -33,13 +33,12 @@
 </p>
 <!---->
 <!-- vm table from here-->
-
-<table ng-show="vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
+<table ng-show="Vm.vms.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
             <th>
                 <div class="inline">
-                    <input type="checkbox" id="choose_all_env" ng-click="Vm.toggleCheckAll()" ng-checked="Vm.selectedVMs.length == Vm.VMs.length" />
+                    <input type="checkbox" id="choose_all_env" ng-click="Vm.toggleCheckAll()" ng-checked="Vm.selectedVMs.length == Vm.vms.length" />
                     <label for="choose_all_env"></label>
                 </div>
             </th>
@@ -47,12 +46,11 @@
         </tr>
     </thead>
     <tbody>
-        <tr dir-paginate-start="vms in Vm.VMs | itemsPerPage: 20|filter:searchInput">
+        <tr dir-paginate-start="vms in Vm.vms | itemsPerPage: 20|filter:searchInput">
             <td>
                 <div class="inline">
                     {{Vm.vmIsInOpertation(vms.id)}}
                     <div class="intel-checkbox" ng-show="!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}})">
-
                         <input type="checkbox" id="{{vms.id}}" checklist-model="Vm.selectedVMs" checklist-value="vms" />
                     </div>
                     <div ng-show="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
@@ -61,7 +59,6 @@
                     <lable for="{{vms.id}}">
                         </label>
                 </div>
-               
                 <span class="intelicon-settings-solid" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="Vm.showVmEdit(vms.id, false)"></span>
             </td>
             <td ng-if="Vm.thead[0].enabled" class="mark-as-blue">{{vms.name}}</td>
@@ -84,7 +81,7 @@
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(vms, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
                                 <span>Power On</span></a>
                         </li>
-                        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(vms, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+                        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(vms, 'powerOff')"><span aria-hidden="true" class="stop-icon ilabicon-stop"></span>
                                 <span>Power Off</span></a>
                         </li>
                         <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="Vm.powerOperation(vms, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
@@ -97,13 +94,13 @@
                 </div>
             </td>
         </tr>
-        <tr dir-paginate-end ng-if="vms.id == Vm.showPage" ng-include="'main/environment/vm/vm_setting.html'">
+        <tr dir-paginate-end ng-if="vms.id == Vm.showPage" ng-include="'main/environment/vm/vmSetting.html'">
         </tr>
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
 
-
 <div class="alert-box col-xs-10 col-sm-8 col-md-6">
     <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Vm.close(alert.index)" ng-click="Vm.close(alert.index)">{{alert.message}}</alert>
 </div>
+

@@ -39,10 +39,6 @@
     <div class="loader-backdrop" ng-show="isLoading">
         <div class="spin-box"></div>
     </div>
-    <!-- alert box -->
-    <div class="alert-box col-xs-10 col-sm-8 col-md-6">
-        <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="VmCtrl.close(alert.index)" ng-click="VmCtrl.close(alert.index)">{{alert.message}}</alert>
-    </div>
 
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
