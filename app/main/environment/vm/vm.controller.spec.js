@@ -122,9 +122,11 @@ describe('vms controller', function() {
                 then: true
             }
         };
-        ctrl = $controller('VMCtrl', {
+        ctrl = $controller('VmCtrl', {
             '$scope': scope,
-            _vms: vmFakeData
+            _env:vmFakeData,
+            _vms:vmFakeData.virtualMachines
+           // _vms: vmFakeData
 
         });
         ctrlDelete = $controller('ModalInstanceCtrl', {
@@ -419,11 +421,12 @@ describe('vms controller', function() {
         });
 
         it('should open modal dialog when openDeleteDialog()', function() {
-            ctrl.openDeleteDialog();
+            ctrl.openDeleteDialog(400);
             expect(modalDialog.open).toHaveBeenCalledWith({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
-                animation: false
+                animation: false,
+                width:400
             });
 
         });

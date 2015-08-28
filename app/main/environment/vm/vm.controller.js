@@ -3,10 +3,10 @@
 
     angular
         .module('ilab')
-        .controller('VMCtrl', VMCtrl);
-    VMCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
+        .controller('VmCtrl', VmCtrl);
+    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
 
-    function VMCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
+    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
         var that = this;
 
         //variables
@@ -501,12 +501,13 @@
             });
         }
 
-        function openDeleteDialog() {
+        function openDeleteDialog(width) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
-                animation: false
+                animation: false,
+                width:width
 
             });
 
