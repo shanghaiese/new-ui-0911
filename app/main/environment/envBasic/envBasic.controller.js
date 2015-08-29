@@ -7,7 +7,6 @@
 
     function EnvBasicCtrl(environmentService, _env) {
         var that = this;
-
         that.env = _env;
         that.vmsInBuckets = []; // Divided all vms into arrays
 

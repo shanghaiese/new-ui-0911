@@ -135,22 +135,6 @@ describe('EnvsCtrl', function() {
 
      it('should fetch list of envs', function() {
         expect(ctrl._envs).not.toEqual(null);
-        /*expect(ctrl._envs).toContain({
-        "id": 2088701,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:38:30:830AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-        });*/
     });
     
     describe('test add env function',function(){

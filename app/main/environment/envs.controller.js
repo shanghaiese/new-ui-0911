@@ -26,10 +26,9 @@
                     _envs.post(that.newEnv).then(function(returnData) {
                         console.log(returnData.id);
                         that.createdEnv = returnData;
-                        that.createdEnv.id = returnData.id;
                         addSuccess.removeClass( "ng-hide" ).addClass( "ng-show" );
                         /*$state.go('environment-basic/:returnData.id');*/
-                    }, function() {
+                    }, function () {
                         console.log("There was an error saving");
                     });
                 }
@@ -37,9 +36,6 @@
                         that.newEnv = {'name':'',
                                        'expire_date': '2015-08-19T06:04:00'
                         };
-        }
-
-                
-        
+        }  
     }
 })();

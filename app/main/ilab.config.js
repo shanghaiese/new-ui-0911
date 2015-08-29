@@ -58,17 +58,6 @@
                     proxy: 'envs.list'
                 }
             })
-            .state('editEnv', {
-                url: "/editEnv",
-                templateUrl: "main/environment/editEnv/editEnv.html",
-                controller: 'editEnvCtrl',
-                controllerAs: 'editEnv',
-                resolve: {
-                    _env: function(environmentService) {
-                        return environmentService.get(2069501 , {expand: 'summary'});
-                    }
-                }
-            })
             .state('envs.list', {
                 url: '/environments',
                 views: {
@@ -80,7 +69,7 @@
                 },
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users,summary'});
                     }
                 },
                 breadcrumb: {
@@ -105,6 +94,24 @@
                 breadcrumb: {
                     name: false
                 }            
+            })
+            .state('envs.editEnv', {
+                url: "/editEnv",
+                views: {
+                    'content@envs': {
+                        templateUrl: "main/environment/editEnv/editEnv.html",
+                        controller: 'EnvCtrl',
+                        controllerAs: 'editEnv'
+                    }
+                },
+                resolve: {
+                    _env: function(environmentService) {
+                        return environmentService.get(2088101);
+                    }
+                },
+                breadcrumb: {
+                    name: 'Edit Environment'
+                }
             })
             .state('envs.detail.vm', {
                 url: "/vm",
@@ -166,7 +173,7 @@
                 views: {
                     'content@envs': {
                         templateUrl: "main/environment/envBasic/envBasic.html",
-                        controller: 'EnvCtrl',
+                        controller: 'EnvBasicCtrl',
                         controllerAs: 'EnvBasic'
                     }
                 },

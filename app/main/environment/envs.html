@@ -1,21 +1,18 @@
 <!--@Display the all environment list-->
 
 <div class="all-env">
-
-    <h1>My Environments</h1>   
-
     <div id="addSuccess" class="alert alert-dismissable alert-success ng-hide">
         <i class="alert-icon intelicon-check" aria-hidden="true"></i>
-        <p class="alert-text">Hey add new environment success! <a ui-sref="envBasic({envId: Envs.createdEnv.id})">Check this out</a> to see the new environment details.</p>
+        <p class="alert-text">Add new environment success! <a ui-sref="envs.basic({envId: Envs.createdEnv.id})">Check this out</a> to see the new environment details.</p>
         <button type="button" class="close" data-dismiss="alert" aria-label="close"><i class="intelicon-close-max" aria-hidden="true"></i></button>
     </div>
     <!-- {{Envs.createdEnv}} -->
-    <button class="btn btn-primary" type="button" ng-click="isCollapsed=!isCollapsed">
+    <button class="btn btn-primary" id="addButton" type="button" ng-click="isCollapsed=!isCollapsed">
         Add Env
     </button>
     <div ng-show="isCollapsed">
       <div class="well">
-        <form class="form-horizontal default" name="newEnvForm">
+        <form class="form-horizontal default" name="addEnv">
             <div class="form-group">
                 <label class="required">Name:</label>
                 <input name="name" class="form-control" type="text" placeholder="Environment name" ng-model="Envs.newEnv.name" required>
@@ -26,7 +23,7 @@
             </div>
             <p>Expiration: {{Envs.newEnv.expire_date| date: 'yyyy-MM-dd'}}</p>
             <div class="form-group">
-                <button class="btn btn-primary" type="submit" id="addEnv" ng-click="Envs.addEnv()">Add</button>
+                <button class="btn btn-primary" type="submit" id="addEnv" ng-click="Envs.addEnv()" ng-disabled="addEnv.$pristine">Add</button>
                 <button class="btn btn-secondary" type="button" ng-click="Envs.cancelAdd()">Cancel</button>
             </div>
         </form>
@@ -36,14 +33,14 @@
         <ul>
             <li ng-repeat="env in Envs.envs"> 
                     <!-- <div class="env" ui-sref="envBasicView"> -->
-                <div class="env" ui-sref="envBasic({envId: env.id})">
+                <div class="env" ui-sref="envs.basic({envId: env.id})">
                         <h6>{{env.name}}</h6>
                         <p>expiey date:{{env.expiryDate}}</p>
                         <ol>   
-                                <li> <i class="intelicon-server-solid"></i>Virtual Machines: {{env.summary.virtualMachines}} </li>
-                                <li> <i class="intelicon-devices"></i>Physical Machines: {{env.summary.physicalMachines}} </li>
-                                <li> <i class="intelicon-network"></i>Networks: {{env.summary.networks}} </li>
-                                <li> <i class="intelicon-users-people-solid"></i>Users: {{env.summary.users}} </li>
+                            <li> <i class="intelicon-server-solid"></i>Virtual Machines: {{env.summary.virtualMachines}} </li>
+                            <li> <i class="intelicon-devices"></i>Physical Machines: {{env.summary.physicalMachines}} </li>
+                            <li> <i class="intelicon-network"></i>Networks: {{env.summary.networks}} </li>
+                            <li> <i class="intelicon-users-people-solid"></i>Users: {{env.summary.users}} </li>
                         </ol>  
                 </div>  
             </li> 

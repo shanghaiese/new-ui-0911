@@ -1,10 +1,8 @@
-<h1>My Environments</h1>
-<div>
-    <a ui-sref="envs.list">all environments</a>
-    <a ui-sref="envs.detail.vm({envId: EnvBasic.env.id})" class="pull-right">advanced</a>
-</div>
 <div class="vm-multi">
     <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
+    <div class="card-container">
+        <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="vm in EnvBasic.vms"></info-card>
+    </div>
     <carousel no-wrap="true" interval="-1" disable-ng-animate>
       	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
             <div class="caro">
@@ -12,13 +10,5 @@
 			</div>
       	</slide>
 	</carousel>
-    <div class="card-container">gru
-        <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="vm in EnvBasic.vms"></info-card>
-    </div>
 
-<!-- <div class="list-env">
-    <h3>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h3>
-    <div class="card-container">
-        <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(id)" on-power="EnvBasic.powerOperation(id,op)" ng-repeat="vm in EnvBasic.env.virtualMachines"></info-card>
-    </div>
-</div> -->
+

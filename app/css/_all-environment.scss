@@ -1,7 +1,14 @@
  /*****************All Environment list style **********
   *********yufan add 07/22/2015******************/
-  .all-env {
-      .env {
+    .all-env {
+        #addButton{
+        margin-left: 11px;
+        }
+        .well{
+        margin-left:11px;
+        width:98%;
+        }
+        .env {
         height: 8%;
         width: 100%;
         text-align: left;
@@ -9,18 +16,18 @@
         border: 1px solid $light-gray;
         margin-top: 5px;
     }
-      .env:hover{ 
+        .env:hover{ 
         background-color:$lighter-gray2;
         cursor:pointer;
     }
 
-    .env-list {
+        .env-list {
         h6 {
         margin: 1% 1%;
         color:$blue;
         font-weight: 600;
         }
-         ul {
+            ul {
             list-style:none;
             padding-left: 0;
             li {

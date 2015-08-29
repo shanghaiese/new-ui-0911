@@ -1,4 +1,4 @@
-describe('editEnvCtrl', function() {
+describe('EnvCtrl', function() {
         var envFakeData = [{
         "id": 2069501,
         "name": "defect test",
@@ -25,7 +25,7 @@ describe('editEnvCtrl', function() {
 		scope = $rootScope.$new();
 		httpBackend = _$httpBackend_;
         restangular = Restangular;
-		ctrl = $controller('editEnvCtrl', {'$scope': scope,  _env : envFakeData}); 
+		ctrl = $controller('EnvCtrl', {'$scope': scope,  _env : envFakeData}); 
         
 	}));
 
@@ -33,8 +33,6 @@ describe('editEnvCtrl', function() {
 		expect(ctrl).not.toEqual(null);
 	});
 
-
-     
     describe('test edit env function',function(){
 
         var api = '/services/api/environments/2069501';
@@ -48,20 +46,9 @@ describe('editEnvCtrl', function() {
 
         it('should cancel editing env by function cancelAdd', function() {
         expect(ctrl.cancelEdit).not.toEqual(null);
-        expect(ctrl.createdEnv).toEqual(createdEnv);
+        expect(ctrl.editedEnv).toEqual(createdEnv);
 
     });
 
     });
 });
- 
-
-/*    it('should cancel editing env by function cancelAdd', function() {
-        expect(scope.cancelAdd).not.toEqual(null);
-        scope.newEnv = {'name':'newEnv1',
-                       'expire_date': '2015-10-20 06:04:00'
-                       };
-
-    });*/
-
-
