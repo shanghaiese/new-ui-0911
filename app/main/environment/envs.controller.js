@@ -1,18 +1,41 @@
 (function() {
 
     angular.module('ilab')
-        .controller('EnvsCtrl', EnvsCtrl);
+           .controller('EnvsCtrl', EnvsCtrl);
 
-    EnvsCtrl.$inject = ['_envs', 'environmentService', '$rootScope'];
+    EnvsCtrl.$inject = ['_envs'];
 
-    function EnvsCtrl(_envs, environmentService, $rootScope) {
+    function EnvsCtrl(_envs) {
         var that = this;
-
-        that.envs = _envs;
         activate();
-
         function activate() {
-            console.log($rootScope.page);
+            that.envs=_envs;
+            that.isCollapsed = 1;
+            that.addEnv = addEnv;
+            that.cancelAdd = cancelAdd;
+            that.createdEnv = {};
         }
+
+        //POST to /environments
+        that.newEnv = {'name':'',
+                       'expire_date': '2015-08-30 06:04:00'
+                       };
+        function addEnv(){
+                    var newEnv = that.newEnv;
+                    var addSuccess = angular.element( document.querySelector( '#addSuccess' ) );
+                    _envs.post(that.newEnv).then(function(returnData) {
+                        console.log(returnData.id);
+                        that.createdEnv = returnData;
+                        addSuccess.removeClass( "ng-hide" ).addClass( "ng-show" );
+                        /*$state.go('environment-basic/:returnData.id');*/
+                    }, function () {
+                        console.log("There was an error saving");
+                    });
+                }
+        function cancelAdd(){ 
+                        that.newEnv = {'name':'',
+                                       'expire_date': '2015-08-19T06:04:00'
+                        };
+        }  
     }
 })();

@@ -14,6 +14,7 @@
         .module('ilabService')
         .factory('machine', machineService);
 
+
     machineService.$inject = ['Restangular'];
 
     function machineService(Restangular) {
@@ -29,8 +30,6 @@
             transMemFromMB2GB: transMemFromMB2GB,
             transMemFromGB2MB: transMemFromGB2MB
         };
-
-        var networksList;
 
         //mock data for Table Head
         function getThead() {
@@ -94,20 +93,22 @@
                     console.log("save Failed");
                 });
             });
+
         }
 
         /*mock data for vm detail information tab*/
         function transDetailForDis(vmFromAPI) {
-            var result = [];
-            var temp = {};
-            angular.forEach(vmFromAPI, function(obj, key) {
-                temp = {
-                    "Name": obj.name,
-                    "Description": obj.description,
-                    "iLab ID": obj.id,
-                    "Power": (obj.power === 0) ? "Stop" : "Running",
-                    "Config": obj.cpus + "CPU," + obj.mem
-
+            var result =[];
+            var temp={};
+            angular.forEach(vmFromAPI, function(obj, key) 
+            { 
+                 temp = 
+                {
+                    "Name":       obj.name,
+                    "Description":obj.description,
+                    "iLab ID":         obj.id,
+                    "Power":      (obj.power === 0) ? "Stop":"Running",
+                    "Config":     obj.cpus + "CPU," + obj.mem
                 };
                 result.push(temp);
             });
@@ -119,9 +120,10 @@
         }
 
         function transMemFromGB2MB(gb) {
-            return gb * 1024;
+            return gb*1024;
         }
 
         return machinesData;
     }
 })();
+

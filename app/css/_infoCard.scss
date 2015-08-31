@@ -20,11 +20,16 @@ info-card {
 		        display: inline-block;
 		        text-decoration: none;
 		        cursor: pointer;
-		    }
-		    span{
-		    	padding-top: 3px;
-		    }
-		}
+
+                .icon-color {
+                    color:$light-blue;
+                }
+            }
+	    }
+	    span{
+	    	padding-top: 3px;
+	    }
+	
 		.card.on {
 			border-left: 7px solid $green;
 		}
@@ -87,14 +92,16 @@ info-card {
                 pointer-evevts: none;
             }
         }
-
+        
         .tag-icon {
-            color:$dark-gray;
-            width: 20px;
-            height: 20px;
-            padding-top: 5px;
-            margin-right: 5px;
-            padding: 8px 5px 5px 5px;
+            width: 24px;
+            height: 42px;
+            padding: 8px 0px 5px 5px;
+
+            .icon-color {
+                color:$dark-gray;
+            }
+            
         }
         .tag-name {
             span {
@@ -109,55 +116,6 @@ info-card {
         }
         .group-margin {
             margin-left:8px;
-        }
-
-        /*4 icon buttons for play/stop/pause/restart*/
-        .play-btn {
-            background-color: $green;
-            color: $white;
-            &:hover {
-                background-color: $light-green;
-                color: $white;
-            }
-            &:active {
-                background-color: $med-dark-green;
-                color: $white;
-            }
-            &:focus{
-                color: $white;
-            }
-        }
-       
-        .stop-btn {
-            background-color: $red;
-            color: $white;
-            &:hover {
-                background-color: $light-red;
-                color: $white;
-            }
-            &:active {
-                background-color: $mediumDarkRed;
-                color: $white;
-            }
-            &:focus{
-                color: $white;
-            }
-        }
-
-        .pause-btn {
-            background-color: $yellow;
-            color: $white;
-            &:hover {
-                background-color: $orange;
-                color: $white;
-            }
-            &:active {
-                background-color: $darkYellow;
-                color: $white;
-            }
-            &:focus{
-                color: $white;
-            }
         }
         
         /*use dropdown-menu from bootstrap.css-------*/

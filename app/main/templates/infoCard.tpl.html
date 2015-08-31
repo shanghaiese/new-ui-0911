@@ -1,7 +1,7 @@
 <div> 
 	<div class="card" class="spawing" ng-class="{'on': info.disable === 0 && info.power === 1, 'off': info.disable === 0 && info.power === 0, 'suspend': info.disable === 0 && info.power === 2, 'disconnected': info.disable === 4, 'spawing': info.disable === 2 , 'delete': info.disable === 3}" ng-click="toggle()" dropdown-toggle>
 		<div class="tag-icon inline">
-			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
+			<span class="icon-color" ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
 		<div class="tag-name inline">
 			<span title="{{info.name}}">{{info.name | truncateString:2}}</span>

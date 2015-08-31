@@ -1,12 +1,16 @@
-<!-- <h1>My Environments</h1>
-<div>
-    <a ui-sref="envs">all environments</a>
-    <a ui-sref="env.vm({envId: 'env1'})" class="pull-right">advanced</a>
-</div> -->
 <div class="list-env">
     <h3>Virtual Machine: {{EnvBasic.vmCount}}</h3>
-
-    <div class="card-container">
-        <info-card class="list-VMs" type="vm" info="VM" act-operation="EnvBasic.vmIsInOperation(vmId)"  on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="VM in EnvBasic.VMs"></info-card>
+    <div class="card-container" ng-show="EnvBasic.env.virtualMachines.length < 13">
+        <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="vm in EnvBasic.vms"></info-card>
     </div>
+    <div class="env-basic">
+    <carousel no-wrap="true" interval="-1" disable-ng-animate ng-show="EnvBasic.env.virtualMachines.length > 12">
+      	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
+            <div class="caro">
+                <info-card class="list-VMs" type="vm" info="vm" act-operation="EnvBasic.vmIsInOperation(vmId)"  on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="vm in vmBucket"></info-card>
+			      </div>
+      	</slide>
+	</carousel>
 </div>
+</div>
+

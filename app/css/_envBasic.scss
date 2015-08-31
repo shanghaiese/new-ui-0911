@@ -1,22 +1,13 @@
-.vm-multi{
+.env-basic{
 	.caro{
-		padding-left:30px;
 		padding-top: 15px;
-	}
-	.breadcrumb{
-    background-color: #fff;
-    li + li::before {
-	    content: "/ ";
-	}
- }
-	
-	.glyphicon-chevron-left::before,.glyphicon-chevron-right::before {
-	    color: $blue;
+		text-align: left;
+		margin-left: 5%;
 	}
 	.carousel-indicators { 
-		position: absolute;
-		margin-bottom: -18%;
-		z-index:-10;
+		top: auto;
+	    bottom: -40px; 
+	    z-index: -20;
 	    li {
 	    	border: 1px solid $light-blue;
 	    }
@@ -27,25 +18,22 @@
 	    }
 
 	.carousel-control {
-		position: absolute;
-		top: 50px;
 	 	background-color: $lighter-gray1;
 	    color:$light-blue;
 	    opacity: 0.3;
 	    width: 3%;
 	    cursor:pointer;
-	        
+
 	}
 	.carousel-control.left{
 	    background-image:linear-gradient(to right, rgba(0, 0, 0, 0.1) 100px, rgba(0, 0, 0, 0) 50%);
 	}
 	.carousel-control.right{
-	    background-image:linear-gradient(to right, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0.1) 50%);
+	    background-image:linear-gradient(to right, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 50%);
 	}
 	.carousel-inner {
 	    background: $lighter-gray1 none repeat scroll 0 0;
-	    width: 100%; 
-	    position: absolute;
-	    overflow: inherit;
+	    width: 100%;
+	    overflow: visible;
 	}
 }
