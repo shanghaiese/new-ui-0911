@@ -9,6 +9,7 @@
     function WelcomeCtrl(alert) {
         var that = this;
 
+        that.activeTab = 1;
         that.lists = [{
             name: 'Tom',
             height: 20,

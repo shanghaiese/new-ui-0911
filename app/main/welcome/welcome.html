@@ -121,9 +121,9 @@
 
 <h3 class="page-header">tabs</h3>
 <ul class="nav nav-tabs nav-tabs-intel" role="tablist">
-    <li class="active"><a href="#home" role="tab" data-toggle="tab">VM</a></li>
-    <li class=""><a href="#profile" role="tab" data-toggle="tab">PM</a></li>
-    <li class=""><a href="#profile" role="tab" data-toggle="tab">Network</a></li>
+    <li ng-class="{active: Welcome.activeTab === 1}" ng-click="Welcome.activeTab = 1"><a ui-sref="default">VM</a></li>
+    <li ng-class="{active: Welcome.activeTab === 2}" ng-click="Welcome.activeTab = 2"><a ui-sref="default">PM</a></li>
+    <li ng-class="{active: Welcome.activeTab === 3}" ng-click="Welcome.activeTab = 3"><a ui-sref="default">Network</a></li>
     
 </ul>
 
