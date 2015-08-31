@@ -378,3 +378,8 @@ input[type="checkbox"] {
     }
     
 }
+/* class that uses in controller area that pulls them up */
+.pull-up {
+    position: relative;
+    top: -40px;
+}

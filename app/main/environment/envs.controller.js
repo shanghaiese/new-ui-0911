@@ -24,7 +24,7 @@
             environmentService.post(that.newEnv).then(function(data) {
                 console.log(data);
                 $state.go('envs.basic', {envId: data.id});
-            })
+            });
         }
 
         function resetEnv() {

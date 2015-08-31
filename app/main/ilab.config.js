@@ -50,8 +50,10 @@
                         }
                     }
                 },
-                controller: function() {
-                    console.log('data');
+                resolve: {
+                    _envs: function(environmentService) {
+                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                    }
                 },
                 breadcrumb: {
                     proxy: 'envs.list'
@@ -66,17 +68,12 @@
                         controllerAs: 'Envs'
                     }
                 },
-                resolve: {
-                    _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
-                    }
-                },
                 breadcrumb: {
                     name: 'All environments'
                 }
             })
-            .state('envs.detail', {
-                abstract: true,
+            .state('envs.detail', { 
+                // abstract: true,
                 url: "/environment/:envId",
                 views: {
                     'content@envs': {
@@ -91,7 +88,7 @@
                     }
                 },
                 breadcrumb: {
-                    name: false
+                    name: '{{_env.name}}'
                 }            
             })
             .state('envs.detail.vm', {
@@ -105,12 +102,11 @@
                 },
                 resolve: {
                     _vms: function(_env) {
-                        console.log(_env.virtualMachines);
                         return _env.virtualMachines;
                     }
                 },
                 breadcrumb: {
-                    name: '{{_env.name}}'
+                    name: 'Virtual Machines'
                 }            
             })
             .state('envs.detail.pm', {
@@ -129,7 +125,7 @@
                     }
                 },
                 breadcrumb: {
-                    name: '{{_env.name}}'
+                    name: 'Physical Machines'
                 }
             })
             .state('envs.detail.pm.add', {
@@ -165,6 +161,19 @@
                 },
                 breadcrumb: {
                     name: 'Basic View'
+                }
+            })
+            .state('envs.detail.setting', {
+                url: "/setting",
+                views: {
+                    'content@envs': {
+                        templateUrl: "main/environment/setting/setting.html",
+                        controller: 'EnvSettingCtrl',
+                        controllerAs: 'EnvSetting'
+                    }
+                },
+                breadcrumb: {
+                    name: 'Environment Settings'
                 }
             })
             .state('lab', {
@@ -229,7 +238,7 @@
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
-        RestangularProvider.setDefaultHttpFields({cache: true});
+        // RestangularProvider.setDefaultHttpFields({cache: true});
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 
@@ -239,11 +248,16 @@
         paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }
 
-    init.$inject = ['$rootScope'];
+    init.$inject = ['$rootScope', '$state'];
 
-    function init($rootScope) {
+    function init($rootScope, $state) {
         $rootScope.page = {
             title: 'default page title'
         };
+        $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
+            if(toState.name === 'envs.detail') {
+                $state.go('envs.detail.vm', toParams);
+            }
+        });
     }
 })();

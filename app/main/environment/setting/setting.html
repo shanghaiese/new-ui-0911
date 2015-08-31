@@ -1,0 +1,31 @@
+<div class="ilab-section">
+	<h5>Basic Settings</h5>
+	<form class="form-horizontal default" ng-submit="EnvSetting.updateEnv()">
+	    <div class="form-group">
+	        <label for="env_name" class="col-sm-2 control-label require">Name:</label>
+	        <div class="col-sm-10">
+	            <input type="text" class="form-control" id="env_name" ng-model="EnvSetting.tmpEnv.name" placeholder="Environment name" required>
+	        </div>
+	    </div>
+	    <div class="form-group">
+	        <label for="env_desc" class="col-sm-2 control-label">Description:</label>
+	        <div class="col-sm-10">
+	            <input type="text" class="form-control" id="env_desc" ng-model="EnvSetting.tmpEnv.description" placeholder="Description">
+	        </div>
+	    </div>
+	    <div class="form-group">
+	        <label for="env_expire" class="col-sm-2 control-label">Expiration:</label>
+	        <div class="col-sm-10">
+	            <input type="date" class="form-control" id="env_expire" ng-model="EnvSetting.tmpEnv.expiryDate">
+	            <input type="checkbox" id="env_never_expire" ng-model="EnvSetting.tmpEnv.neverExpire">
+	            <label for="env_never_expire">Never</label>
+	        </div>
+	    </div>
+	    <div class="form-group">
+	        <div class="col-sm-offset-2 col-sm-10">
+	            <button type="submit" class="btn btn-primary">update</button>
+	            <button type="button" class="btn btn-default" ng-click="EnvSetting.resetEnv()">Cancel</button>
+	        </div>
+	    </div>
+	</form>
+</div>
