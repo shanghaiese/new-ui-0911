@@ -11,10 +11,10 @@
         that.collapsed = null; // pm id that is collapsed
         that.collapse = collapse;
         that.columns = [{display:'Name'}, {display:'IP'}, {display:'Reservation'}, {display:'Connect'}, {display:'Power'}];
-        $scope.Env.activeTab = 2;
         activate();
 
         function activate() {
+            $scope.Env.activeTab = 2;
             
         }
 

@@ -4,9 +4,9 @@
     angular
         .module('ilab')
         .controller('VmCtrl', VmCtrl);
-    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
+    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env', '$scope'];
 
-    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
+    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env, $scope) {
         var that = this;
 
         //variables
@@ -99,6 +99,7 @@
         activate();
 
         function activate() {
+            $scope.Env.activeTab = 1;
             loadVMList();
             that.Network = _env.networks;
             that.thead = machine.getThead();
