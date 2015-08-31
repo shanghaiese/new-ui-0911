@@ -75,7 +75,7 @@
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
             var isInOperation = false;
-            angular.forEach(that.inOperationVMs, function(item, index) {
+            angular.forEach(inOperationVMs, function(item, index) {
                 if (item.id === vmId) {
                     isInOperation = true;
                 }
@@ -105,7 +105,7 @@
                 //var vmFrontEnd = getVMById(vmId);
                 
                 if (op === 'powerOn' && vms.power !== 1) {
-                    that.inOperationVMs.push(vms);
+                    inOperationVMs.push(vms);
                     vmFromAPI.post("powerOn", vmid).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 1) {
@@ -116,9 +116,9 @@
                                 type: 'success',
                                 message: 'Power on successfully!'
                             });
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                         } else {
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("Power on FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -127,8 +127,8 @@
                         }
                     });
                 } else if (op === 'powerOff' && vms.power !== 0) {
-                    console.log(that.inOperationVMs);
-                    that.inOperationVMs.push(vms);
+                    console.log(inOperationVMs);
+                    inOperationVMs.push(vms);
                     vmFromAPI.post("powerOff", vmid).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 0) {
@@ -139,9 +139,9 @@
                                 type: 'success',
                                 message: 'Power off successfully!'
                             });
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                         } else {
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("Power off FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -151,20 +151,20 @@
 
                     });
                 } else if (op === 'restart' && vms.power !== 0) {
-                    that.inOperationVMs.push(vms);
+                    inOperationVMs.push(vms);
                     vmFromAPI.post("powerReset", vmid).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 1) {
                             vms.statusDisplay = 'Running';
                             vms.power = 1;
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("RESTART successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Restart successfully!'
                             });
                         } else {
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("restart FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -174,21 +174,21 @@
 
                     });
                 } else if (op === 'suspend' && vms.power !== 0 && vms.power !== 2) {
-                    that.inOperationVMs.push(vms);
+                    inOperationVMs.push(vms);
 
                     vmFromAPI.post("powerPause", vmid).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 2) {
                             vms.statusDisplay = 'Suspended';
                             vms.power = 2;
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("Suspended successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Suspend successfully!'
                             });
                         } else {
-                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vms));
+                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
                             //console.log("Suspended FAILED!");
                             alert.open({
                                 type: 'danger',
