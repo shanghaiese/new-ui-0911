@@ -15,6 +15,7 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "infoCard";
 @import "tableColumnFilter";
 @import "loading";
+@import "envList";
 body {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -139,7 +140,10 @@ body {
 }
 /* override form group */
 .form-group {
-	margin-bottom: 5px;
+	margin-bottom: $common-margin/2;
+}
+form .form-group:nth-last-child(2) {
+    margin-bottom: $common-margin;
 }
 /* override dropdown */
 .btn.dropdown-toggle {

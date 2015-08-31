@@ -4,17 +4,17 @@
 @import 'base-variables';
 
 /* Font Icon */
-span[class^="ilabicon-"], span[class*=" ilabicon-"] {
+span[class^="ilabicon-"], span[class^="intelicon-"] {
 	cursor: pointer;
 	font-size: 20px;
-	color: $blue;
+	color: $dark-gray;
 }
-span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
+span[class^="ilabicon-"].clickable, span[class^="intelicon-"].clickable {
 	font-size: 20px;
 	cursor: pointer;
 	color: $blue;
 }
-span[class^="intelicon-"].disabled, span[class*="intelicon-"].disabled {
+span[class^="ilabicon-"].disabled, span[class^="intelicon-"].disabled {
 	font-size: 20px;
 	cursor: not-allowed;
 	color: $gray;
@@ -217,4 +217,11 @@ label.require {
 }
 ::-webkit-scrollbar-thumb:window-inactive {
     background-color: $lighter-gray4;
+}
+/* iLab Section */
+.ilab-section {
+	background-color: $lighter-gray1;
+	display: block;
+	padding: 10px;
+	margin: 10px 0;
 }
