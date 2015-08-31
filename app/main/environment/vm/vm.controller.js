@@ -30,20 +30,15 @@
         that.loadVMList = loadVMList;
         that.disableSelection = disableSelection;
         that.powerOperation = powerOperation;
-        that.getVMById = getVMById;
-        that.getVMDetailInfo = getVMDetailInfo;
+        that.setVMTemp = setVMTemp;
+        that.setVMDetailInfo = setVMDetailInfoToOneVM;
         that.close = close;
 
         //For small table 4-panels setting
         that.configTmp = {}; //viewTemplate data
-        that.Network = []; //dropdown list(test)
+        that.network = []; //dropdown list(test)
         that.cancelConfig = cancelConfig; //configTmp=vmTemp
         that.updateConfig = updateConfig; //update that.VMs
-
-        //make the selected item in dropdown list to show
-        that.selectNetwork = selectNetwork;
-        that.selectMemory = selectMemory;
-        that.selectCPU = selectCPU;
 
         //saveTemplatePanel
         that.saveVMTemplate = saveVMTemplate;
@@ -71,11 +66,7 @@
                 memory: ""
             },
             //? network maybe multiple
-            network: [{
-                interface: "",
-                label: "",
-                ip: ""
-            }]
+            network: []
         };
 
         that.CPU = [{index: 0, NumOfCPU: "1"}, 
@@ -101,7 +92,7 @@
         function activate() {
             $scope.Env.activeTab = 1;
             loadVMList();
-            that.Network = _env.networks;
+            that.network = _env.networks;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
             that.tabDeleteDialog = {
@@ -155,7 +146,7 @@
 
 
         /**/
-        function getVMDetailInfo(vmid) {
+        function setVMDetailInfoToOneVM(vmid) {
             that.oneVM = [];
             that.oneVM = machine.getVMDetail(vmid).$object;
         }
@@ -163,7 +154,7 @@
 
         /* store vmTemp as a temp var by vmid*/
         //?return
-        function getVMById(vmid) {
+        function setVMTemp(vmid) {
             that.vmTemp.network = [];
             var index = -1;
             angular.forEach(that.VMs, function(obj, key) {
@@ -174,7 +165,12 @@
                     that.vmTemp.CPU.NumOfCPU = obj.cpus;
                     that.vmTemp.memory.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj, key) {
-                        that.vmTemp.network.push(obj);
+                        var temp = {
+                            interface: obj.interface,
+                            name: obj.label,
+                            ip: obj.ip
+                        };
+                        that.vmTemp.network.push(temp);
                     });
                     index = key;
                 }
@@ -218,7 +214,7 @@
         function showVmEdit(vmid, bool) {
             var temp = {
                 interface: "1",
-                label: "1",
+                name: "1",
                 ip: ""
             };
             //that.showPage = !that.showPage;
@@ -228,8 +224,8 @@
                 that.showPage = 0;
                 cancelConfig(vmid);
             } else {
-                getVMById(vmid);
-                getVMDetailInfo(vmid);
+                setVMTemp(vmid);
+                setVMDetailInfoToOneVM(vmid);
                 that.showPage = vmid;
                 //find the vm index;
                 angular.copy(that.vmTemp, that.configTmp);
@@ -239,21 +235,6 @@
 
                 that.tplConfig.push(temp);
             }
-        }
-
-
-        function selectNetwork(netIndex, network) {
-            that.configTmp.network[netIndex].label = network.name;
-        }
-
-
-        function selectMemory(memory) {
-            that.configTmp.memory.memory = memory.memory;
-        }
-
-
-        function selectCPU(CPU) {
-            that.configTmp.CPU = CPU;
         }
 
         function vmIsInOperation(vmId) {
@@ -286,7 +267,7 @@
                     angular.forEach(obj.network, function(obj, key) {
                         index = parseInt(obj.interface) - 1;
                         console.log(index);
-                        obj.label = that.configTmp.network[index].label;
+                        obj.label = that.configTmp.network[index].name;
                     });
                 }
             });
@@ -299,7 +280,7 @@
         function changeTplNumber(tplConfig, bool) {
             var temp = {
                 interface: "",
-                label: "",
+                name: "",
                 ip: ""
             };
             var number = tplConfig.length;
@@ -308,7 +289,7 @@
                     return -1;
                 temp = {
                     interface: number + 1,
-                    label: number + 1,
+                    name: number + 1,
                     ip: ""
                 };
                 that.tplConfig.push(temp);
@@ -352,7 +333,7 @@
 
             angular.forEach(vmsForOperation, function(vm) {
                 var vmFromAPI = machine.getOneVmForOperation(vm.id);
-                var vmFrontEnd = getVMById(vm.id);
+                var vmFrontEnd = setVMTemp(vm.id);
                 if (op === 'powerOn' && vmFrontEnd.power !== 1) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOn", vm.id).then(function(returnData) {
