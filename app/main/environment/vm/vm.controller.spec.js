@@ -112,6 +112,9 @@ describe('vms controller', function() {
 
     beforeEach(inject(function($rootScope, $controller, _machine_, $modal, Restangular, _$httpBackend_, $q) {
         scope = $rootScope.$new();
+        scope.Env = {
+            activateTab: 1
+        };
         httpBackend = _$httpBackend_;
         restangular = Restangular;
         q = $q;
