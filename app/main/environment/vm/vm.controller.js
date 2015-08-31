@@ -99,14 +99,7 @@
         activate();
 
         function activate() {
-            //that.VMs = machine.getVMDetail().then(function(data) {
-            //     that.VMs = data;
-            // });
-            //that.VMs = machine.getVMDetail().$object;
             loadVMList();
-            // machine.getEnvNetworks().then(function(data) {
-            //      that.Network = data.networks;
-            // });
             that.Network = _env.networks;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
@@ -115,7 +108,7 @@
             };
         }
 
-        /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
+        /* this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
             var list = _vms;
@@ -167,18 +160,16 @@
         }
 
 
-        /*UT-ok store vmTemp as a temp var by vmid*/
+        /* store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
             var index = -1;
-            //?for 
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
                     that.vmTemp.name = obj.name;
                     that.vmTemp.description = obj.description;
-                    //var CPUMemoryArr = obj.configuration.split(',');
                     that.vmTemp.CPU.NumOfCPU = obj.cpus;
                     that.vmTemp.memory.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj, key) {
@@ -221,7 +212,7 @@
             }
         }
 
-        /*UT-ok show the vm edit page or close it*/
+        /*show the vm edit page or close it*/
         // if bool == true, means update, the data should change. Otherwise, no change in data.
         function showVmEdit(vmid, bool) {
             var temp = {
@@ -232,8 +223,6 @@
             //that.showPage = !that.showPage;
             if (that.showPage == vmid && bool === true) {
                 that.showPage = 0;
-                //cancelConfig(vmid);
-                //clear vm.configTmp.network
             } else if (that.showPage == vmid && bool === false) {
                 that.showPage = 0;
                 cancelConfig(vmid);
@@ -248,28 +237,25 @@
                 that.tplConfig = [];
 
                 that.tplConfig.push(temp);
-                //if have opened saveTemp panel and change, we need to reset that panel.
-
             }
         }
 
-        //UT-ok
+
         function selectNetwork(netIndex, network) {
             that.configTmp.network[netIndex].label = network.name;
         }
 
-        //UT-ok
+
         function selectMemory(memory) {
             that.configTmp.memory.memory = memory.memory;
         }
 
-        //UT-ok
+
         function selectCPU(CPU) {
             that.configTmp.CPU = CPU;
         }
 
         function vmIsInOperation(vmId) {
-            //console.log('vmIsInOperation: '+vmId);
             var isInOperation = false;
             angular.forEach(that.inOperationVMs, function(item, index) {
                 if (item.id === vmId) {
@@ -279,7 +265,7 @@
             return isInOperation;
         }
 
-        //UT-ok
+
         function cancelConfig(vmid) {
             angular.copy(that.vmTemp, that.configTmp);
             that.saveTemp.name = that.vmTemp.name;
@@ -357,7 +343,6 @@
         function powerOperation(vms, op) {
             //make sure that the enter type is array
             var vmsForOperation = [];
-            //console.log(typeof(vms.length));
             if (typeof(vms.length) == 'undefined') {
                 vmsForOperation.push(vms);
             } else {
@@ -367,15 +352,12 @@
             angular.forEach(vmsForOperation, function(vm) {
                 var vmFromAPI = machine.getOneVmForOperation(vm.id);
                 var vmFrontEnd = getVMById(vm.id);
-                // console.log(vmFrontEnd);
                 if (op === 'powerOn' && vmFrontEnd.power !== 1) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOn", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 1) {
                             vmFrontEnd.statusDisplay = 'Running';
                             vmFrontEnd.power = 1;
-                            //console.log("Power on successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power on successfully!'
@@ -383,7 +365,6 @@
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Power on FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Power on FAILED!'
@@ -393,11 +374,9 @@
                 } else if (op === 'powerOff' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOff", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 0) {
                             vmFrontEnd.statusDisplay = 'Stopped';
                             vmFrontEnd.power = 0;
-                            //console.log("Power off successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power off successfully!'
@@ -405,7 +384,6 @@
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Power off FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Power off FAILED!'
@@ -416,19 +394,16 @@
                 } else if (op === 'restart' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerReset", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 1) {
                             vmFrontEnd.statusDisplay = 'Running';
                             vmFrontEnd.power = 1;
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("RESTART successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Restart successfully!'
                             });
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("restart FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'restart FAILED!'
@@ -440,19 +415,16 @@
                     that.inOperationVMs.push(vmFrontEnd);
 
                     vmFromAPI.post("powerPause", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 2) {
                             vmFrontEnd.statusDisplay = 'Suspended';
                             vmFrontEnd.power = 2;
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Suspended successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Suspend successfully!'
                             });
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Suspended FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Suspended FAILED!'

@@ -55,8 +55,7 @@
 
 
         function getVMDetail(vmid) {
-            var vmDetailInfo = Restangular.one("virtual-machines", vmid).get();
-            return vmDetailInfo;
+            return Restangular.one("virtual-machines", vmid).get();
         }
 
         function getOneVmForOperation(vmid) {
@@ -64,17 +63,10 @@
         }
 
         function deleteVM(vmid) {
-            var vm = Restangular.one("virtual-machines", vmid);
-            var vmAfterDelete = vm.remove();
-            return vmAfterDelete;
+            return Restangular.one("virtual-machines", vmid).remove();
         }
 
         function updateVMDetail(vmid, configTmp) {
-            // vmService.get(vmid).then(function(vm) {
-            //     vm.getOne().then(function(data) {
-            //         console.log(data);
-            //     });
-            // });
             var vm = Restangular.all("virtual-machines").get(vmid);
             vm.then(function(VmNeedToUpdate) {
                 VmNeedToUpdate.name = configTmp.name;
@@ -85,7 +77,6 @@
                     var idx = parseInt(obj.interface) - 1;
                     obj.label = configTmp.network[idx].label;
                 });  
-                //var vmFound = _.find(VmNeedToUpdate, function(vmFound) {return vmFound.id == vmid;});
                 VmNeedToUpdate.put();
             });
         }
