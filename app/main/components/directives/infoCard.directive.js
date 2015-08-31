@@ -20,7 +20,7 @@
 
             link: function(scope, element, attrs) {
                 //change memory MB to GB
-                // scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
+                scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
 
                 scope.isShown = false;
                 scope.toggle = toggle;

@@ -5,11 +5,11 @@ info-card {
 		.card {
 		    width: 160px;
             height: 44px;
+            color: $dark-gray;
 		    background-color: $body-bg;
 		    border-top: 1px  $lighter-gray4 solid ;
 		    border-right: 1px  $lighter-gray4 solid;
 		    border-bottom: 1px  $lighter-gray4 solid;
-		    border-left: 7px $green solid;
 		    margin-left: 5px;
 		    padding: 0px;
 		    border-radius: 4px;
@@ -89,6 +89,7 @@ info-card {
         }
 
         .tag-icon {
+            color:$dark-gray;
             width: 20px;
             height: 20px;
             padding-top: 5px;

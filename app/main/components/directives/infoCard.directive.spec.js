@@ -104,12 +104,6 @@ describe('info-card directive', function() {
             document.trigger('click');
             expect(isolated.isShown).toBe(false);
         });
-        it('should do nothing when I click outside if open', function() {
-            var isolated = element.isolateScope();
-            isolated.toggle();
-            element.trigger('click');
-            expect(isolated.isShown).toBe(true);
-        });
     });
 
 });

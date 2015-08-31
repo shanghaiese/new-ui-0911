@@ -5,24 +5,24 @@
 		</div>
 		<div class="tag-name inline">
 			<span title="{{info.name}}">{{info.name | truncateString:2}}</span>
-			<span ng-show="vmIsInOperation({vmId:info.id})||{{info.locked}}">
+			<span ng-show="vm-is-in-operation({vmId:info.id})||{{info.locked}}">
 				<img src="image/refresh_icon_18x18.gif"/>
 			</span>
 		</div>		
 	</div>
 	<div class="info" ng-show="isShown">
-		<div class="container-fluid">
-			<h3 class="card-key">{{info.name}}</h3>
+		<div class="container">
+			<h3 class="card-key container-fluid">{{info.name}}</h3>
 			<small >{{info.description}} Some description</small>
 		</div>
 		<div class="container-fluid" ng-if="type === 'vm'">
 			<div class="row">
 				<strong class="col-xs-4">Config:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{info.cpus}}CPU, {{info.mem}}</span>
+				<span class="col-xs-7 col-xs-offset-1">{{info.cpus}}CPU, {{tmpMem}}</span>
 			</div>
 			<div class="row">
 				<strong class="col-xs-4">IP:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{networks.ip}}</span>
+				<span class="col-xs-7 col-xs-offset-1">{{info.network[0].ip}}</span>
 			</div>
 			<div class="row">
 				<strong class="col-xs-4">Network:</strong>
@@ -32,23 +32,23 @@
 		<div ng-if="type === pm">
 		</div>
 		<div class="btn-operation">
-			<button class="btn btn-default inline" ng-click="connect({vmId: info.id})" ng-disabled="vmIsInOperation({vmId:info.id})||{{info.locked}}">Console</button>
+			<button class="btn btn-default inline" ng-click="connect({vmId: info.id})" ng-disabled="vm-is-in-operation({vmId:info.id})||{{info.locked}}">Console</button>
 			<div class="dropdown clearfix inline group-margin">
-			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" ng-class="{'btn-approve':info.statusDisplay == 'Running' ,'btn-danger':info.statusDisplay =='Stopped','btn-suspend':info.statusDisplay=='Suspended'}" ng-disabled="vmIsInOperation({vmId:info.id})||{{info.locked}}"  dropdown-toggle>
+			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" ng-class="{'btn-approve':info.statusDisplay == 'Running' ,'btn-danger':info.statusDisplay =='Stopped','btn-suspend':info.statusDisplay=='Suspended'}" ng-disabled="vm-is-in-operation({vmId:info.id})||{{info.locked}}"  dropdown-toggle>
 			    	{{info.statusDisplay}}
 			        <span class="caret"></span>
 			    </button>
 		        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-			        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:opSelect[0].op})"><span aria-hidden="true" class="intelicon-play"></span>
+			        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:'powerOn'})"><span aria-hidden="true" class="intelicon-play"></span>
 	                        <span>Power On</span></a>
 	                </li>
-			        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:opSelect[1].op})"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
+			        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:'powerOff'})"><span aria-hidden="true" class="stop-icon ilabicon-stop" style="font-size:0.8em;"></span>
 	                        <span>Power Off</span></a>
 	                </li>
-			        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:opSelect[2].op})"><span aria-hidden="true" class="intelicon-pause"></span>
+			        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:'powerPause'})"><span aria-hidden="true" class="intelicon-pause"></span>
 	                        <span>Suspend</span></a>
 	                </li>
-	                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:opSelect[3].op})"><span aria-hidden="true" class="intelicon-refresh"></span>
+	                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:'powerReset'})"><span aria-hidden="true" class="intelicon-refresh"></span>
 	                		<span>Restart</span></a>
 	            	</li>
 		        </ul>
