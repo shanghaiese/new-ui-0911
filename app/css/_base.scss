@@ -14,6 +14,11 @@ span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
 	cursor: pointer;
 	color: $blue;
 }
+span[class^="intelicon-"].disabled, span[class*="intelicon-"].disabled {
+	font-size: 20px;
+	cursor: not-allowed;
+	color: $gray;
+}
 /* A */
 a[ng-click] {
 	cursor: pointer;
@@ -35,6 +40,7 @@ a[ng-click] {
 /* Dropdown */
 $dropdown-border: $lighter-gray4;
 .dropdown {
+	min-width: $btn-min-width;
 	.dropdown-menu {
 		border: 1px solid $dropdown-border;
 		box-shadow: $box-shadow;
@@ -47,7 +53,9 @@ $dropdown-border: $lighter-gray4;
 	}
 }
 
-
+.inline {
+	display:inline-block;
+}
 
 
 /* Table */
@@ -62,14 +70,18 @@ table {
 		tr {
 			th {
 				height: $table-row-height;
-				text-align: center;
+				text-align: left;
 				border-right: none;
 				border-left: none;
-
 				input[type="checkbox"] {
-					position: relative;
-					left: -10px;
+				 	width: 20px;
+				 	height: 20px;
+				// 	left: -10px;
 				}
+				// input[type="checkbox"] {
+				// 	position: relative;
+				// 	left: -10px;
+				// }
 			}
 			th:last-child {
 				border-right: 1px solid $light-gray;
@@ -80,7 +92,7 @@ table {
 		tr {
 			td {
 				height: $table-row-height;
-				text-align: center;
+				text-align: left;
 				border-right: none;
 				border-left: none;
 				border-bottom: none;
@@ -90,6 +102,19 @@ table {
 					position: relative;
 					left: 10px;
 				}
+				span.disabled {
+					position: relative;
+					left: 10px;
+				}
+				input[type="checkbox"] {
+				 	width: 20px;
+				 	height: 20px;
+				// 	left: -10px;
+				 }
+				img {
+				 	font-size:20px;
+				}
+
 
 			}
 			td:last-child {

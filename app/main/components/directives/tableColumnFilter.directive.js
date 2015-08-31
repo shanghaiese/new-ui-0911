@@ -32,6 +32,7 @@
 
 				scope.currentColumns = scope.currentColumns.map(function(cur, i) {
                     var t = cur;
+                    
                     t.enabled = true;
                     return t;
                 });
