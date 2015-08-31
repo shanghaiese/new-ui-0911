@@ -271,7 +271,7 @@ describe('vms controller', function() {
             expect(ctrl.vmTemp.description).toBeNull();
             expect(ctrl.vmTemp.CPU.NumOfCPU).toEqual(1);
             expect(ctrl.vmTemp.memory.memory).toBe('2G');
-            expect(ctrl.vmTemp.CPU.idx).toEqual(0);
+            expect(ctrl.vmTemp.CPU.index).toEqual(0);
 
             expect(ctrl.vmTemp.network).toEqual(jasmine.any(Array));
             expect(ctrl.vmTemp.network).toContain(testNet);
@@ -286,7 +286,7 @@ describe('vms controller', function() {
                 expect(ctrl.saveTemp.name).toBe('ilabredis-devba');
                 expect(ctrl.vmTemp).toEqual(ctrl.configTmp);
                 expect(ctrl.tplConfig[0].interface).toEqual('1');
-                expect(ctrl.tplConfig[0].label).toBe('3633301_NIC1');
+                expect(ctrl.tplConfig[0].label).toBe('1');
             });
 
             it('should close the expanded table if click 2 times', function() {
@@ -426,7 +426,7 @@ describe('vms controller', function() {
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                width:400
+                size:400
             });
 
         });
