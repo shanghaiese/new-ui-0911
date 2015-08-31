@@ -36,7 +36,7 @@
 <button class="btn btn-approve">button</button>
 <button class="btn btn-suspend">button</button>
 <h3 class="page-header">dropdown button</h3>
-<div class="dropdown" style="display: inline-block">
+<div class="dropdown inline">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
         Dropdown
         <span class="caret"></span>
@@ -47,7 +47,7 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
     </ul>
 </div>
-<div class="dropdown" style="display: inline-block">
+<div class="dropdown inline">
     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
         Dropdown
         <span class="caret"></span>
@@ -59,7 +59,7 @@
     </ul>
 </div>
 <h3 class="page-header">select</h3>
-<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected"></ilab-select>selected:{{Welcome.selected}}
+<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected" with-search></ilab-select>selected:{{Welcome.selected}}
 <h3 class="page-header">form (with class default)</h3>
 <form class="default">
     <div class="form-group">

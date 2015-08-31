@@ -21,6 +21,34 @@
             name: 'Mary',
             height: 50,
             age: 70
+        }, {
+            name: 'David',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Tim',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Tony',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Harry',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Max',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Good',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Lina',
+            height: 50,
+            age: 70
         }];
         that.selected = that.lists[0];
         that.collapse = collapse;
