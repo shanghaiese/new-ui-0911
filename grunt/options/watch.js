@@ -20,7 +20,7 @@ module.exports = {
             tasks: ['jshint', 'beep:error:3', 'concat']
         },
         html: {
-            files: ['<%= meta.srcPath %>/main/**/*.html', '<%= meta.srcPath %>/main/*.html'],
+            files: ['<%= meta.srcPath %>/main/**/*.html', '<%= meta.srcPath %>/*.html'],
             tasks: ['concat']
         },
         scss: {
