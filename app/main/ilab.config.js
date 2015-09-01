@@ -32,9 +32,13 @@
             })
             .state('default', {
                 url: "/",
-                templateUrl: "main/welcome/welcome.html",
-                controller: 'WelcomeCtrl',
-                controllerAs: 'Welcome'
+                views: {
+                    'page@': {
+                        templateUrl: "main/welcome/welcome.html",
+                        controller: 'WelcomeCtrl',
+                        controllerAs: 'Welcome'
+                    }
+                }
             })
             .state('envs', {
                 abstract: true,

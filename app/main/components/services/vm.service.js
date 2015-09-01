@@ -6,20 +6,12 @@
 
     vmService.$inject = ['Restangular', 'vmModel'];
     function vmService(Restangular, vmModel) {
-        var virtualMachines = Restangular.all('virtual-machines');
-    	Restangular.extendModel('virtual-machines', function(vms) {
-    		var api = {
-                getOne: function() {
-                    console.log(this.name);
-                    return virtualMachines.get(this.id);
-                }
-
-
-
-            };
-            return angular.extend(vmModel.mixInto(vms), api);
+        var service =  Restangular.all('virtual-machines');
+    	Restangular.extendModel('virtual-machines', function(obj) {
+    		return vmModel.mixInto(obj);
     	});
-    	return virtualMachines;
+
+        return service;
     }
 
 

@@ -8,7 +8,7 @@
 
     function environmentService(Restangular, environmentModel) {
     	var environments = Restangular.all('environments');
-    	Restangular.extendModel('environments', function(envs) {
+    	Restangular.extendModel('environments', function(model) {
     		var api = {
     			getAll: function() {
     				return environments.get(this.id, {expand: 'virtualMachines,physicalMachines,networks,users,wireless,owner'});
@@ -45,7 +45,7 @@
 	    		},
     		};
 
-    		return angular.extend(environmentModel.mixInto(envs), api);
+    		return angular.extend(environmentModel.mixInto(model), api);
     	});
     	return environments;
     }

@@ -7,7 +7,7 @@
     vmModel.$inject = ['BaseModel'];
     function vmModel(BaseModel) {
     	return BaseModel.extend({
-    		get power_() {
+    		getPower: function() {
     			return this.power===1? 'on': 'off';
     		}
     	});

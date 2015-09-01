@@ -21,7 +21,7 @@
             name: 'Mary',
             height: 50,
             age: 70
-        }, ];
+        }];
         that.selected = that.lists[0];
         that.collapse = collapse;
         that.collapsed = true;
@@ -29,7 +29,7 @@
         that.alerts = [];
         that.close = close;
 
-        that.columns = ['Name', 'Owner', 'Capacity', 'Deploy At'];
+        that.columns = [{display: 'Name'}, {display: 'Owner'}, {display: 'Capacity'}, {display: 'Deploy At'}];
         that.envs = [{
             "id": 2067601,
             "name": "pskhodad_env_1",

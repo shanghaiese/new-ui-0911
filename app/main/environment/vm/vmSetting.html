@@ -26,38 +26,20 @@
                     </div>
                     <div class="form-group">
                         <label for="vm-CPU" class="col-sm-2 control-label">CPU:</label>
-                        <div id="vm-CPU" class="dropdown col-sm-10" style="display: inline-block">
-                            <button class="btn btn-default dropdown-toggle adv-env-network" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{Vm.configTmp.CPU.NumOfCPU}}
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li class="cpu-dropdown-list" role="presentation" ng-repeat="list in Vm.CPU" ng-click="Vm.selectCPU(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.NumOfCPU}}</a></li>
-                            </ul>
+                        <div class="col-sm-10">
+                            <ilab-select class="drop-select" list="Vm.CPU" selected-item="Vm.configTmp.CPU" attr-to-display="NumOfCPU"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Memory:</label>
-                        <div id="vm-Memory" class="dropdown col-sm-10" style="display: inline-block">
-                            <button class="btn btn-default dropdown-toggle adv-env-network" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{Vm.configTmp.memory.memory}}
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li class="memory-dropdown-list" role="presentation" ng-repeat="list in Vm.Memory[Vm.configTmp.CPU.index]" ng-click="Vm.selectMemory(list)"><a role="menuitem" tabindex="-1" href="#" >{{list.memory}}</a></li>
-                            </ul>
+                        <div class="col-sm-10">
+                            <ilab-select class="drop-select" list="Vm.Memory[Vm.configTmp.CPU.index]" selected-item="Vm.configTmp.memory" attr-to-display="memory"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
-                    <label class="col-sm-2 control-label">Network:</label>
+                        <label class="col-sm-2 control-label">Network:</label>
                         <div class="dropdown adv-env-network-div col-sm-10" ng-repeat="(index, value) in Vm.configTmp.network">
-                            <button class="btn btn-default dropdown-toggle adv-env-network " type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{value.label}}
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in Vm.Network" ng-click="Vm.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
-                            </ul>
+                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
@@ -105,15 +87,9 @@
                     <div class="form-group">
                         <label for="adv-env-network" class="network col-sm-2 control-label">Default Net:</label>
                         <div class="dropdown adv-env-network-div col-sm-10" ng-repeat="(index, value) in Vm.tplConfig">
-                            <button class="btn btn-default dropdown-toggle adv-env-network" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-                                {{value.label}}
-                                <span class="caret"></span>
-                            </button>
-                            <span class="intelicon-minus-solid" ng-click="Vm.changeTplNumber(Vm.tplConfig, false)"></span>
-                            <span class="intelicon-plus-solid" ng-click="Vm.changeTplNumber(Vm.tplConfig, true)"></span>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li role="presentation" ng-repeat="list in Vm.Network" ng-click="Vm.selectNetwork(index, list)"><a role="menuitem" tabindex="-1" href="#" >{{list.name}}</a></li>
-                            </ul>
+                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name"></ilab-select>
+                            <span class="intelicon-minus-solid clickable" ng-click="Vm.changeTplNumber(Vm.tplConfig, false)"></span>
+                            <span class="intelicon-plus-solid clickable" ng-click="Vm.changeTplNumber(Vm.tplConfig, true)"></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -174,21 +150,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <!-- don't remove these marks -->
-                                <!-- <strong class="col-md-2">Template:</strong>
-                            <span class="col-md-10">{{vms.template}}</span>
-
-                            <strong class="col-md-2">Driver:</strong>
-                            <span class="col-md-10">{{vms.driver}}</span> -->
                                 <strong class="col-md-2">VMM:</strong>
                                 <span class="col-md-10">{{Vm.oneVM.vmm}}</span>
                                 <strong class="col-md-2">Disk 1:</strong>
                                 <span class="col-md-10">{{Vm.oneVM.disk1}}</span>
-                                <!-- <strong class="col-md-2">Hostname:</strong>
-                            <span class="col-md-10">{{vms.hostname}}</span>
-
-                            <strong class="col-md-2">Creator:</strong>
-                            <span class="col-md-10">{{vms.creator}}</span> -->
                                 <strong class="col-md-2">Creat Date:</strong>
                                 <span class="col-md-10">{{Vm.oneVM.created_date}}</span>
                             </div>
@@ -202,7 +167,7 @@
             </tab>
             <tab disable=" true " title="Delete Vm ">
                 <tab-heading>
-                    <span class="intelicon-trash-outlined " ng-click="Vm.openDeleteDialog('') "></span>
+                    <span class="intelicon-trash-outlined " ng-click="Vm.openDeleteDialog(vms.id) "></span>
                 </tab-heading>
             </tab>
         </tabset>
