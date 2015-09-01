@@ -1,4 +1,8 @@
-<a ui-sref="envs.detail.vm({envId: EnvBasic.env.id})" class="btn btn-default pull-right pull-up">advanced</a>
+<div class="pull-right pull-up">
+	<ilab-select list="EnvBasic.envs" selected-item="EnvBasic.env" attr-to-display="name" with-search></ilab-select>
+	<a ui-sref="envs.detail.vm({envId: EnvBasic.env.id})" class="btn btn-default">advanced</a>
+	<a ui-sref="envs.detail.setting({envId: EnvBasic.env.id})"><span class="intelicon-settings-solid clickable"></span></a>
+</div>
 <div class="ilab-section">
     <h5>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h4>
     <div class="card-container">

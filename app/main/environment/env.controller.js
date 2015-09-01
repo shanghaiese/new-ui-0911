@@ -21,7 +21,7 @@
         }, function(newV, oldV) {
             if (newV !== oldV) {
                 console.log(newV);
-                $state.go('envs.detail.vm', {
+                $state.go($state.current.name, {
                     envId: newV.id
                 });
             }

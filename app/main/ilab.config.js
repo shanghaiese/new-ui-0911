@@ -68,6 +68,11 @@
                         controllerAs: 'Envs'
                     }
                 },
+                resolve: {
+                    _envs: function(_envs) {
+                        return _envs;
+                    }
+                },
                 breadcrumb: {
                     name: 'All environments'
                 }
