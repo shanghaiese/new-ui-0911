@@ -18,15 +18,22 @@
 
     function route($stateProvider, $urlRouterProvider) {
         // For any unmatched url, redirect to /environment
-        $urlRouterProvider.otherwise("/404");
+        $urlRouterProvider.otherwise("/");
         //
         // Now set up the states
         $stateProvider
-            .state('404', {
-                url: "/404",
+            .state('error', {
+                url: "/oops",
                 views: {
                     'page@': {
-                        templateUrl: "main/templates/404.html",
+                        templateUrl: "main/templates/error.html",
+                        controller: 'ErrorCtrl',
+                        controllerAs: 'Error',
+                    }
+                },
+                resolve: {
+                    _error: function() {
+                        return this.self.error;
                     }
                 }
             })
@@ -88,8 +95,13 @@
                     }
                 },
                 resolve: {
-                    _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
+                    _env: function(environmentService, $stateParams, $q) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'})
+                        .then(function(data){
+                            return data;
+                        }, function(reason) {
+                            return $q.reject(reason);
+                        });
                     }
                 },
                 breadcrumb: {
@@ -220,9 +232,9 @@
         };
     }
 
-    loading.$inject = ['$rootScope'];
+    loading.$inject = ['$rootScope', '$state'];
 
-    function loading($rootScope) {
+    function loading($rootScope, $state) {
         $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
             $rootScope.isLoading = false;
             if(toState && toState.resolve) {
@@ -233,9 +245,12 @@
             $rootScope.isLoading = false;
             
         });
+        /* handle state change error, won't deal with erors happen in controller*/
         $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
             $rootScope.isLoading = false;
-           
+            e.preventDefault();
+            $state.get('error').error = error;
+            $state.go('error');           
         });
     }
 
