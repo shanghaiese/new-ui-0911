@@ -33,7 +33,7 @@
     <div class="one-env col-md-12" dir-paginate="env in Envs.envs | filter: searchEnv | itemsPerPage: 5">
         <h5><a ui-sref="envs.basic({envId: env.id})">{{env.name}}</a></h5>
         <p class="description">{{env.owner}}</p>
-        <span class="ilabicon-vm"></span>Virtual machines:{{env.virtualMachines.length}}<span class="intelicon-laptop"></span>Physical machines:{{env.physicalMachines.length}}<span class="intelicon-network"></span>Networks: {{env.networks.length}}<span class="intelicon-users-people-solid"></span>Users: {{env.users.length}}
+        <span class="ilabicon-vm"></span>Virtual machines:{{env.summary.virtualMachines}}<span class="intelicon-laptop"></span>Physical machines:{{env.summary.physicalMachines}}<span class="intelicon-network"></span>Networks: {{env.summary.networks}}<span class="intelicon-users-people-solid"></span>Users: {{env.summary.users}}
     </div>
     <dir-pagination-controls max-size="5"></dir-pagination-controls>
 </div>

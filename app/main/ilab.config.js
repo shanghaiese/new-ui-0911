@@ -52,7 +52,7 @@
                 },
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users'});
+                        return environmentService.getList({expand: 'summary'});
                     }
                 },
                 breadcrumb: {
@@ -238,7 +238,7 @@
 
     function restangular(RestangularProvider) {
         RestangularProvider.setBaseUrl('/services/api/');
-        // RestangularProvider.setDefaultHttpFields({cache: true});
+        RestangularProvider.setDefaultHttpFields({cache: true});
         // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
     }
 

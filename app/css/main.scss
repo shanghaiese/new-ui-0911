@@ -186,7 +186,14 @@ input[type="checkbox"] {
  {
     color: $red;
 }
-
+/* override date picker */
+div[datepicker] {
+    .btn {
+        min-width: auto;
+        width: auto;
+        border: none;
+    }
+}
 
 /*sortable table header */
 

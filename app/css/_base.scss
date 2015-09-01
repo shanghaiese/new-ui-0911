@@ -19,6 +19,9 @@ span[class^="ilabicon-"].disabled, span[class^="intelicon-"].disabled {
 	cursor: not-allowed;
 	color: $gray;
 }
+.btn span[class*="icon"] {
+	color: white;
+}
 /* A */
 a[ng-click] {
 	cursor: pointer;
