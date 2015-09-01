@@ -29,6 +29,8 @@
 			_env.put().then(function(data) {
 				console.log(data);
 				alert.open({type: 'success', message: 'update success'});
+			}, function(error) {
+				alert.open({type: 'danger', message: error})
 			});
 		}
 

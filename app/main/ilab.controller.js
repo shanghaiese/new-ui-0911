@@ -11,7 +11,7 @@
 		activate();
 
 		function activate() {
-			alert.open({type: 'success', message: 'hello'});
+			// alert.open({type: 'success', message: 'hello'});
 		}
 		function closeAlert(id) {
 			alert.close(id);

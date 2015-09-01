@@ -43,7 +43,9 @@ a[ng-click] {
 /* Dropdown */
 $dropdown-border: $lighter-gray4;
 .dropdown {
-	min-width: $btn-min-width;
+	.btn {
+		min-width: $btn-min-width;
+	}
 	.dropdown-menu {
 		border: 1px solid $dropdown-border;
 		box-shadow: $box-shadow;
@@ -54,6 +56,14 @@ $dropdown-border: $lighter-gray4;
 			cursor: pointer;
 		}
 	}
+}
+/* iLab select */
+ilab-select {
+	.dropdown {
+		.btn {
+			min-width: $input-width;
+		}
+	}	
 }
 
 .inline {
