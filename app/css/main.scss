@@ -15,16 +15,14 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "infoCard";
 @import "tableColumnFilter";
 @import "loading";
+@import "envList";
 body {
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
-    overflow-y: scroll;
+	overflow-y: scroll;
 }
-
-
 /* use this class to disbale selection of text when double/tripple click */
-
 .no-select {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -34,9 +32,7 @@ body {
     user-select: none;
 }
 
-
 /* style for menu btn that trigger menu hide/open */
-
 #menu-toggle {
     float: left;
     padding: 10px;
@@ -44,18 +40,16 @@ body {
     color: white;
     background-color: #0055a5;
     cursor: pointer;
-    &:active {
+
+    &:active{
         background-color: #1891ee;
     }
 }
 
-
 /* override navbar */
-
 .navbar {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3);
 }
-
 .navbar .container-fluid {
     padding-left: 0;
 }
@@ -64,26 +58,20 @@ body {
     padding: 0;
     cursor: pointer;
 }
-
-.container-fluid>.navbar-header {
+.container-fluid>.navbar-header{
     margin-left: 0;
 }
 
-
 /* override loading bar color */
-
 #loading-bar-spinner .spinner-icon {
-    border-top-color: $yellow !important;
+    border-top-color:  $yellow !important;
     border-left-color: $yellow !important;
 }
-
 #loading-bar .bar {
-    background: $yellow !important;
+  background: $yellow !important;
 }
 
-
 /* override pagination */
-
 .pagination {
     margin-top: 0;
 }
@@ -94,16 +82,12 @@ body {
     background-color: white;
     color: $gray;
 }
-
 .pagination-summary {
     float: right;
     color: $gray;
     margin-top: 5px;
 }
-
-
 /* override alerts */
-
 .alert-box {
     position: fixed;
     top: 60px;
@@ -111,7 +95,6 @@ body {
     @include translate(-50%, 0);
     padding: 5px;
 }
-
 .alert {
     display: block;
     padding: 10px;
@@ -119,25 +102,20 @@ body {
     border: 0;
     color: white;
     @include box-shadow(none);
-    cursor: pointer;
+	cursor: pointer;
 }
-
 .alert-warning {
-    background-color: $orange;
+    background-color: $orange; 
 }
-
 .alert-success {
-    background-color: $green;
+    background-color: $green; 
 }
-
 .alert-danger {
-    background-color: $light-red;
+    background-color: $light-red; 
 }
-
 
 /* ng-animate for alert */
-
-.alert.ng-enter,
+.alert.ng-enter, 
 .alert.ng-move,
 .alert.ng-leave
 { 
@@ -150,8 +128,9 @@ body {
     top: 0;
     height: 42px;
     margin-bottom: 5px;
-}
 
+}
+ 
 .alert.ng-leave.ng-leave-active,
 .alert.ng-enter {
     padding: 0;
@@ -159,84 +138,63 @@ body {
     top: -50px;
     height: 0;
 }
-
-
 /* override form group */
-
 .form-group {
-    margin-bottom: 5px;
+	margin-bottom: $common-margin/2;
 }
-
-
+form.form-horizontal .form-group:nth-last-child(2) {
+    margin-bottom: $common-margin;
+}
 /* override dropdown */
-
 .btn.dropdown-toggle {
-    text-align: left;
-    padding-right: 22px;
+	text-align: left;
+	padding-right: 22px;
 }
-
 .btn .caret {
-    position: absolute;
-    top: 20px;
-    right: 22px;
+	position: absolute;
+	top: 20px;
+	right: 22px;
 }
-
-
 /* override nav tabs */
-
 .nav.nav-tabs-intel {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
-
-
 /* override checkbox size */
-
 input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
-
-
 /* override progress */
-
 .progress {
-    height: 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
+	height: 10px;
+	margin-bottom: 5px;
+	cursor: pointer;
 }
-
 /* override breadcrumb */
-
 .breadcrumb {
-    padding: 0;
-    margin-bottom: 10px;
-    background-color: white;
+	padding: 0;
+	margin-bottom: 10px;
+	background-color: white;
 }
-
 .breadcrumb > li + li:before {
     content: "/\00a0";
 }
-/* overwrite modal dialog */
-@media (min-width: 768px) {
-    //when you call middle modal please call as: modalDialog(middle)
-    .modal-middle {
-        width: 400px
+
+
+/*vm table font color*/
+.mark-as-red
+ {
+    color: $red;
+}
+/* override date picker */
+div[datepicker] {
+    .btn {
+        min-width: auto;
+        width: auto;
+        border: none;
     }
 }
 
-/*vm table font color*/
-
-.mark-as-red {
-    color: $red;
-}
-.mark-as-blue {
-    color: $blue;
-}
-/* overwrite the ilabicon-stop icon */
-span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
-    font-size:1em;
-    color:$dark-gray;
-}
 /*sortable table header */
 
 .ilab-sortable thead tr {
@@ -276,13 +234,17 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
     }
 }
 
+.modal-dialog {
+    width: 400px;
+}
+
 .table-intel {
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
-    }
+    }       
     .nav>li>a {
-        position: relative;
+        position: relative; 
         display: block;
         padding: 10px 20px 10px 20px;
         color: $white;
@@ -329,7 +291,7 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
         margin-left: 40px;
         width: 200px;
         font-size: 20px;
-        color: $darker-gray;
+        color:$darker-gray;
     }
     .form-group {    
         
@@ -338,12 +300,12 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
         }
 
         @media (min-width: 768px) {
-            .col-sm-2 {
+            .col-sm-2 { 
                 width: 125px;
             }
         }
         @media (min-width: 768px) {
-            .col-sm-offset-2 {
+            .col-sm-offset-2 { 
                 margin-left: 125px;
             }
         }
@@ -388,7 +350,7 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
         .intelicon-help-solid:hover {
             color: $dark-gray;
         }
-        .intelicon-minus-solid {
+        .intelicon-minus-solid{
             padding-left: 5px;
             color: $blue;
         }
@@ -400,15 +362,19 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
     .adv-env-network {
         min-width: 160px;
     }
+
     .network+ilab-select {
         display: inline-block;
         min-width: 160px;
         margin-left: 125px;
     }
+
     .adv-env-network-div+.adv-env-network-div {
         margin-top: 5px;
         margin-left: 125px;
     }
+
+
 }
 
 .adv-vm-inner-setting {
@@ -433,4 +399,10 @@ span[class^="ilabicon-stop"], span[class*=" ilabicon-stop"] {
             text-align: left;
         }
     }
+    
+}
+/* class that uses in controller area that pulls them up */
+.pull-up {
+    position: relative;
+    top: -40px;
 }

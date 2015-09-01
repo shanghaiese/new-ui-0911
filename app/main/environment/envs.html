@@ -1,6 +1,39 @@
-<ul>
-    <li ng-repeat="env in Envs.envs">
-        <div><a ui-sref="envs.basic({envId: env.id})">{{env.name}}</a></div>
-        <div><span>vms:{{env.virtualMachines.length}}</span><span>pms:{{env.physicalMachines.length}}</span></div>
-    </li>
-</ul>
+<form class="form-inline default pull-right" role="search">
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search" ng-model='searchEnv'>
+    </div>
+</form>
+<button class="btn btn-primary" ng-click="Envs.toggleAddEnv()">Add</button>
+<div collapse="Envs.addEnvCollapsed">
+    <div class="ilab-section">
+        <h5>Add Environment</h5>
+        <form class="form-horizontal default" ng-submit="Envs.addEnv()">
+            <div class="form-group">
+                <label for="env_name" class="col-sm-2 control-label require">Name:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="env_name" ng-model="Envs.newEnv.name" placeholder="Environment name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="env_desc" class="col-sm-2 control-label">Description:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="env_desc" ng-model="Envs.newEnv.description" placeholder="Description">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                    <button type="button" class="btn btn-default" ng-click="Envs.reset()">Cancel</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="envs-container">
+    <div class="one-env col-md-12" dir-paginate="env in Envs.envs | filter: searchEnv | itemsPerPage: 5">
+        <h5><a ui-sref="envs.basic({envId: env.id})">{{env.name}}</a></h5>
+        <p class="description">{{env.owner || 'No Owner'}}</p>
+        <span class="ilabicon-vm"></span>Virtual machines:{{env.summary.virtualMachines}}<span class="intelicon-laptop"></span>Physical machines:{{env.summary.physicalMachines}}<span class="intelicon-network"></span>Networks: {{env.summary.networks}}<span class="intelicon-users-people-solid"></span>Users: {{env.summary.users}}
+    </div>
+    <dir-pagination-controls max-size="5"></dir-pagination-controls>
+</div>

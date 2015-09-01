@@ -1,0 +1,11 @@
+<h3>Oops, you got unlucky!</h3>
+<h5>{{Error.error.statusText}}</h5>
+<div ng-switch="Error.error.status">
+	<div ng-switch-when="404">
+		<p>message: {{Error.error.data.message || 'no message'}}</p>
+		<p>URL: <code>{{Error.error.config.url}}</code></p>
+		<p>Params: <code>{{Error.error.config.params}}</code></p>
+		<p>Headers: <code>{{Error.error.config.headers}}</code></p>
+	</div>
+	
+</div>

@@ -4,20 +4,23 @@
 @import 'base-variables';
 
 /* Font Icon */
-span[class^="ilabicon-"], span[class*=" ilabicon-"] {
+span[class^="ilabicon-"], span[class^="intelicon-"] {
 	cursor: pointer;
 	font-size: 20px;
-	color: $blue;
+	color: $dark-gray;
 }
-span[class^="intelicon-"].clickable, span[class*="intelicon-"].clickable {
+span[class^="ilabicon-"].clickable, span[class^="intelicon-"].clickable {
 	font-size: 20px;
 	cursor: pointer;
 	color: $blue;
 }
-span[class^="intelicon-"].disabled, span[class*="intelicon-"].disabled {
+span[class^="ilabicon-"].disabled, span[class^="intelicon-"].disabled {
 	font-size: 20px;
 	cursor: not-allowed;
 	color: $gray;
+}
+.btn span[class*="icon"] {
+	color: white;
 }
 /* A */
 a[ng-click] {
@@ -40,7 +43,9 @@ a[ng-click] {
 /* Dropdown */
 $dropdown-border: $lighter-gray4;
 .dropdown {
-	min-width: $btn-min-width;
+	.btn {
+		min-width: $btn-min-width;
+	}
 	.dropdown-menu {
 		border: 1px solid $dropdown-border;
 		box-shadow: $box-shadow;
@@ -51,6 +56,14 @@ $dropdown-border: $lighter-gray4;
 			cursor: pointer;
 		}
 	}
+}
+/* iLab select */
+ilab-select {
+	.dropdown {
+		.btn {
+			min-width: $input-width;
+		}
+	}	
 }
 
 .inline {
@@ -166,6 +179,9 @@ form.default.form-horizontal, form.default.form-inline {
 	}  
 
 }
+label {
+	cursor: pointer;
+}
 label.require {
 	&:before {
 		position: relative;
@@ -196,4 +212,28 @@ label.require {
 	}
 }
 
-
+/* Scroll bar */
+::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background-color: #ddd;
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+    background-color: $lighter-gray4;
+}
+/* iLab Section */
+.ilab-section {
+	background-color: $lighter-gray1;
+	display: block;
+	padding: 10px;
+	margin: 10px 0;
+}

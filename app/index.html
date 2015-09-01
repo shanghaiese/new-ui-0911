@@ -17,7 +17,7 @@
 
 </head>
 
-<body ng-app="ilab">
+<body ng-app="ilab" ng-controller="IlabCtrl as Ilab">
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -38,6 +38,10 @@
     <!-- overall page loading -->
     <div class="loader-backdrop" ng-show="isLoading">
         <div class="spin-box"></div>
+    </div>
+    <!-- alerts -->
+    <div class="alert-box col-xs-10 col-sm-8 col-md-6">
+        <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Ilab.close(alert.index)" ng-click="Ilab.close(alert.index)">{{alert.message}}</alert>
     </div>
 
     <!-- bower:js -->
