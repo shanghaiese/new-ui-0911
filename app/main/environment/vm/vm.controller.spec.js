@@ -107,7 +107,7 @@ describe('vms controller', function() {
 
     beforeEach(function() {
         module('ilab');
-        module('ilabService');
+        module('templates');
     });
 
     beforeEach(inject(function($rootScope, $controller, _machine_, $modal, Restangular, _$httpBackend_, $q) {

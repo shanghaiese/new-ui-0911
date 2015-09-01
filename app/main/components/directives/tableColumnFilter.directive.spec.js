@@ -1,4 +1,4 @@
-ddescribe('table column filter directive:', function () {
+describe('table column filter directive:', function () {
     var element, scope, document;
 
     // Load the ilab module, which contains the directive

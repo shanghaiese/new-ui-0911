@@ -26,7 +26,7 @@
                 url: "/404",
                 views: {
                     'page@': {
-                        templateUrl: "404.html",
+                        templateUrl: "main/templates/404.html",
                     }
                 }
             })
