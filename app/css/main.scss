@@ -142,7 +142,7 @@ body {
 .form-group {
 	margin-bottom: $common-margin/2;
 }
-form .form-group:nth-last-child(2) {
+form.form-horizontal .form-group:nth-last-child(2) {
     margin-bottom: $common-margin;
 }
 /* override dropdown */
