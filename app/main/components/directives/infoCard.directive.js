@@ -13,14 +13,25 @@
                 type: '@',
                 info: '=',
                 connect: '&onConnect',
-                power: '&onPower'
+                power: '&onPower',
+                running: '=' // array of id that are in operation, so that loading shows.
             },
             templateUrl: 'main/templates/infoCard.html',
 
             link: function(scope, element, attrs) {
                 scope.isShown = false;
                 scope.toggle = toggle;
-
+                scope.isRunning = isRunning;
+                
+                function isRunning(id) {
+                    var bool = false;
+                    if(scope.running.indexOf(id) === -1) {
+                        bool = false;
+                    }else {
+                        bool = true;
+                    }
+                    return bool;
+                }
 
                 function toggle() {
                     if (scope.isShown) {
