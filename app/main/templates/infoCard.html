@@ -1,56 +1,55 @@
 <div>
-	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspend'}" ng-click="toggle()" dropdown-toggle >
-		<div class="tag-icon">
-			<span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
-		</div>
-		<div class="tag-name">
-			<span>{{info.name}}</span>
-			<img src="image/refresh_icon_18x18.gif" ng-show="false"/>
-		</div>		
-	</div>
-	<div class="info" ng-show="isShown">
-		<h2 class="card-key">{{info.name}}</h2>
-		<small >{{info.description}}</small>
-
-		<div class="container-fluid" ng-if="type === 'vm'">
-			<div class="row">
-				<strong class="col-xs-4">Config:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{info.config}}</span>
-			</div>
-			<div class="row">
-				<strong class="col-xs-4">IP:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{info.ip}}</span>
-			</div>
-			<div class="row">
-				<strong class="col-xs-4">Network:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{info.network}}</span>
-			</div>
-		</div>
-		<div ng-if="type === pm">
-		</div>
-		<div class="btn-operation">
-			<button class="btn btn-default btn-line" ng-click="connect({id: info.id})">Connect</button>
-			<div class="dropdown clearfix btn-line">
-			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" ng-class="{'btn-approve':info.status=='Running','btn-danger':info.status=='Stopped','btn-suspend':info.status=='Suspend'}" ng-disabled="vmIsInOperation(info.id)" style="margin-left: 6px;">
-			        {{info.status}}
-			       <span class="caret"></span>
-			    </button>
-			        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
-				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOn')"><span aria-hidden="true" class="intelicon-play"></span>
-		                        <span>Power On</span></a>
-		                </li>
-				        <li role="presentation"><a class="stopIcon" role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'powerOff')"><span aria-hidden="true" class="ilabicon-stop" style="font-size:0.8em;"></span>
-		                        <span>Power Off</span></a>
-		                </li>
-				        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'suspend')"><span aria-hidden="true" class="intelicon-pause"></span>
-		                        <span>Suspend</span></a>
-		                </li>
-		                <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="powerOperation(info.id, 'restart')" ng-show="info.status !='restart'"><span aria-hidden="true" class="intelicon-refresh"></span>
-		                		<span>Restart</span></a>
-		            	</li>
-			        </ul>
-		    </div>
-		</div>
-	</div>
-
+    <div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspended'}" ng-click="toggle()" dropdown-toggle>
+        <div class="tag-icon">
+            <span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
+        </div>
+        <div class="tag-name">
+            <span>{{info.name}}</span>
+            <img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)" />
+        </div>
+    </div>
+    <div class="info" ng-show="isShown">
+        <h2 class="card-key">{{info.name}}</h2>
+        <small>{{info.description}}</small>
+        <div class="container-fluid" ng-if="type === 'vm'">
+            <div class="row">
+                <strong class="col-xs-4">Config:</strong>
+                <span class="col-xs-7 col-xs-offset-1">{{info.config}}</span>
+            </div>
+            <div class="row">
+                <strong class="col-xs-4">IP:</strong>
+                <span class="col-xs-7 col-xs-offset-1">{{info.ip}}</span>
+            </div>
+            <div class="row">
+                <strong class="col-xs-4">Network:</strong>
+                <span class="col-xs-7 col-xs-offset-1">{{info.network}}</span>
+            </div>
+        </div>
+        <div ng-if="type === pm">
+        </div>
+        <div class="btn-operation">
+            <button class="btn btn-default inline" ng-click="connect({id: info.id})" ng-disabled="isRunning(info.id)">Connect</button>
+            <div class="dropdown clearfix inline">
+                <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" aria-expanded="true" ng-class="{'btn-approve':info.status=='Running','btn-danger':info.status=='Stopped','btn-suspend':info.status=='Suspended'}" ng-disabled="isRunning(info.id) || info.status==='disable'">{{info.status}}<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href ng-click="power({vm: info, option: 'powerOn'})"><span aria-hidden="true" class="intelicon-play"></span><span>Power On</span>
+		                </a>
+                    </li>
+                    <li role="presentation">
+                        <a class="stopIcon" role="menuitem" tabindex="-1" href ng-click="power({vm: info, option: 'powerOff'})"><span aria-hidden="true" class="ilabicon-stop"></span><span>Power Off</span>
+		                </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href ng-click="power({vm: info, option: 'suspend'})"><span aria-hidden="true" class="intelicon-pause"></span><span>Suspend</span>
+		                </a>
+                    </li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" href ng-click="power({vm: info, option: 'restart'})"><span aria-hidden="true" class="intelicon-refresh"></span><span>Restart</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

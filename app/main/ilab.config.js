@@ -119,6 +119,7 @@
                 },
                 resolve: {
                     _vms: function(_env) {
+                        console.log(_env);
                         return _env.virtualMachines;
                     }
                 },
