@@ -73,10 +73,10 @@
                 VmNeedToUpdate.cpus = configTmp.CPU.NumOfCPU;
                 var gb = parseInt(configTmp.memory.memory);
                 VmNeedToUpdate.mem = transMemFromGB2MB(gb);
-                angular.forEach(VmNeedToUpdate.network, function(obj, key) {
-                    var idx = parseInt(obj.interface) - 1;
-                    obj.label = configTmp.network[idx].label;
-                });  
+                // angular.forEach(VmNeedToUpdate.network, function(obj, key) {
+                //     var  = parseInt(obj.interface) - 1;
+                //     obj.name = configTmp.network[index].name;
+                // });  
                 VmNeedToUpdate.put();
             });
         }

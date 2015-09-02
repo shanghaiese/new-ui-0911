@@ -14,7 +14,7 @@
                 info: '=', //this scope get the data form APi and used both in directive controller
                 connect: '&onConnect', //this scope control the colsole action
                 power: '&onPower', //this scope control the colsole action
-                vmIsInOperation: '=' //this scope control the directive VM status style to be spawing or not
+                run: '=' //this scope control the directive VM status style to be spawing or not
             },
             templateUrl: 'main/templates/infoCard.tpl.html',
 

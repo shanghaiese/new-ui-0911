@@ -9,6 +9,7 @@
     function WelcomeCtrl(alert) {
         var that = this;
 
+        that.activeTab = 1;
         that.lists = [{
             name: 'Tom',
             height: 20,
@@ -19,6 +20,34 @@
             age: 50
         }, {
             name: 'Mary',
+            height: 50,
+            age: 70
+        }, {
+            name: 'David',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Tim',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Tony',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Harry',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Max',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Good',
+            height: 50,
+            age: 70
+        }, {
+            name: 'Lina',
             height: 50,
             age: 70
         }];

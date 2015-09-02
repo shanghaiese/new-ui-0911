@@ -1,33 +1,30 @@
 (function() {
 
-	angular.module('ilab')
-		.controller('EnvCtrl', EnvCtrl);
+    angular.module('ilab')
+        .controller('EnvCtrl', EnvCtrl);
 
-	EnvCtrl.$inject = ['_env'];
-	function EnvCtrl(_env) {
-		var that = this;
-		that.activeTab = 1;
-		activate(_env);
-        function activate(_env){
-            that.env = _env;
-            that.editEnv = editEnv;
-            that.cancelEdit = cancelEdit;
-            that.editedEnv = {'name':'',
-                              'expire_date': ''
-                              };
+    EnvCtrl.$inject = ['_env', '_envs', '$scope', '$state'];
+
+    function EnvCtrl(_env, _envs, $scope, $state) {
+        var self = this;
+
+        self.env = _env;
+        self.envs = _envs;
+        self.activeTab = 1;
+
+        activate();
+
+        function activate() {
         }
-                
-        function editEnv(){
-            var env = that.env;
-            env.name = that.editedEnv.name;
-            env.expire_date = that.editedEnv.expire_date;
-            env.put();
-        }
-        function cancelEdit(){
-             that.editedEnv= {'name':'',
-                              'expire_date': ''
-                              };
-        }
+        $scope.$watch(function() {
+        	return self.env;
+        }, function(newV, oldV) {
+            if (newV !== oldV) {
+                console.log(newV);
+                $state.go($state.current.name, {
+                    envId: newV.id
+                });
+            }
+        });
     }
-      
 })();

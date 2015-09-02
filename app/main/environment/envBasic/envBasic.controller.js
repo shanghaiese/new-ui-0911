@@ -125,7 +125,7 @@
                         if (returnData.power === 1) {
                             vm.statusDisplay = 'Running';
                             vm.power = 1;
-                            //console.log("Power on successfully!");
+                            //console.log("Power on successfu lly!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power on successfully!'
@@ -214,6 +214,8 @@
                 }
 
             });
+
+            console.log(that.inOperationVMs);
         }
 
         //that.selected = that.lists[{env.name}]

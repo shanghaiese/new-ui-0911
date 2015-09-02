@@ -1,0 +1,33 @@
+.ilab-section {
+	padding: $common-padding;
+	h5 {
+		margin-top: 0;
+	}
+
+}
+.envs-container {
+	margin: $common-margin 0;
+
+	.one-env {
+		display: block;
+		border: 1px solid $light-gray;
+		border-radius: 2px;
+		padding: $common-padding;;
+		margin: $common-margin/2 0; 
+
+		h5 {
+			margin-top: 0;
+		}
+		p.description {
+			font-style: italic;
+			color: $gray;
+		}
+		span[class*="icon-"] {
+			margin-left: $common-margin*2;
+			margin-right: $common-margin/2;
+		}
+		span.ilabicon-vm {
+			margin-left: 0;
+		}
+	}
+}

@@ -36,7 +36,7 @@
 <button class="btn btn-approve">button</button>
 <button class="btn btn-suspend">button</button>
 <h3 class="page-header">dropdown button</h3>
-<div class="dropdown" style="display: inline-block">
+<div class="dropdown inline">
     <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
         Dropdown
         <span class="caret"></span>
@@ -47,7 +47,7 @@
         <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
     </ul>
 </div>
-<div class="dropdown" style="display: inline-block">
+<div class="dropdown inline">
     <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-expanded="true">
         Dropdown
         <span class="caret"></span>
@@ -59,7 +59,7 @@
     </ul>
 </div>
 <h3 class="page-header">select</h3>
-<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected"></ilab-select>selected:{{Welcome.selected}}
+<ilab-select list="Welcome.lists" attr-to-display="name" selected-item="Welcome.selected" with-search></ilab-select>selected:{{Welcome.selected}}
 <h3 class="page-header">form (with class default)</h3>
 <form class="default" name="testForm">
     <div class="form-group">
@@ -121,9 +121,9 @@
 
 <h3 class="page-header">tabs</h3>
 <ul class="nav nav-tabs nav-tabs-intel" role="tablist">
-    <li class="active"><a href="#home" role="tab" data-toggle="tab">VM</a></li>
-    <li class=""><a href="#profile" role="tab" data-toggle="tab">PM</a></li>
-    <li class=""><a href="#profile" role="tab" data-toggle="tab">Network</a></li>
+    <li ng-class="{active: Welcome.activeTab === 1}" ng-click="Welcome.activeTab = 1"><a ui-sref="default">VM</a></li>
+    <li ng-class="{active: Welcome.activeTab === 2}" ng-click="Welcome.activeTab = 2"><a ui-sref="default">PM</a></li>
+    <li ng-class="{active: Welcome.activeTab === 3}" ng-click="Welcome.activeTab = 3"><a ui-sref="default">Network</a></li>
     
 </ul>
 
@@ -158,8 +158,4 @@
 <button class="btn btn-success" ng-click="Welcome.show('success')">success</button>
 <button class="btn btn-suspend" ng-click="Welcome.show('warning')">warning</button>
 <button class="btn btn-danger" ng-click="Welcome.show('danger')">danger</button>
-
-<div class="alert-box col-xs-10 col-sm-8 col-md-6">
-    <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Welcome.close(alert.index)" ng-click="Welcome.close(alert.index)">{{alert.message}}</alert>
-</div>
 

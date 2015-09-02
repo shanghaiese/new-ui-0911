@@ -1,4 +1,4 @@
-//add IT master look&feel
+//add IT master look&feel 
 $icon-font-path: "../bower_components/bootstrap-sass/assets/fonts/bootstrap/";
 $intel-font-path: "../bower_components/it-mlaf-sass/fonts/";
 @import "it-mlaf-sass/it-mlaf";
@@ -10,30 +10,22 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 // import ilab customized scss partials
 //@import "header";
 // import components
-// import components
 @import "welcome";
 @import "menu";
+@import "infoCard";
 @import "tableColumnFilter";
 @import "envBasic";
 @import "environmentList";
 @import "physical-machine";
 @import "loading";
+@import "envList";
 @import "infoCard";
 
 body {
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
-    overflow-y: scroll;
-}
-/* use this class to disbale selection of text when double/tripple click */
-.no-select {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+	overflow-y: scroll;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -81,7 +73,7 @@ body {
     border-left-color: $yellow !important;
 }
 #loading-bar .bar {
-    background: $yellow !important;
+  background: $yellow !important;
 }
 
 /* override pagination */
@@ -115,27 +107,27 @@ body {
     border: 0;
     color: white;
     @include box-shadow(none);
-    cursor: pointer;
+	cursor: pointer;
 }
 .alert-warning {
-    background-color: $orange;
+    background-color: $orange; 
 }
 .alert-success {
-    background-color: $green;
+    background-color: $green; 
 }
 .alert-danger {
-    background-color: $light-red;
+    background-color: $light-red; 
 }
 
 /* ng-animate for alert */
-.alert.ng-enter,
+.alert.ng-enter, 
 .alert.ng-move,
 .alert.ng-leave
-{
-    @include transition(400ms ease-out all);
-}
-
-.alert.ng-enter.ng-enter-active,
+{ 
+	@include transition(400ms ease-out all);
+} 
+ 
+.alert.ng-enter.ng-enter-active, 
 .alert.ng-leave {
     padding: 10px;
     top: 0;
@@ -143,7 +135,7 @@ body {
     margin-bottom: 5px;
 
 }
-
+ 
 .alert.ng-leave.ng-leave-active,
 .alert.ng-enter {
     padding: 0;
@@ -153,38 +145,41 @@ body {
 }
 /* override form group */
 .form-group {
-    margin-bottom: 5px;
+	margin-bottom: $common-margin/2;
+}
+form.form-horizontal .form-group:nth-last-child(2) {
+    margin-bottom: $common-margin;
 }
 /* override dropdown */
 .btn.dropdown-toggle {
-    text-align: left;
-    padding-right: 22px;
+	text-align: left;
+	padding-right: 22px;
 }
 .btn .caret {
-    position: absolute;
-    top: 20px;
-    right: 22px;
+	position: absolute;
+	top: 20px;
+	right: 22px;
 }
 /* override nav tabs */
 .nav.nav-tabs-intel {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 /* override checkbox size */
 input[type="checkbox"] {
-    width: 15px;
-    height: 15px;
+	width: 15px;
+	height: 15px;
 }
 /* override progress */
 .progress {
-    height: 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
+	height: 10px;
+	margin-bottom: 5px;
+	cursor: pointer;
 }
 /* override breadcrumb */
 .breadcrumb {
-    padding: 0;
-    margin-bottom: 10px;
-    background-color: white;
+	padding: 0;
+	margin-bottom: 10px;
+	background-color: white;
 }
 .breadcrumb > li + li:before {
     content: "/\00a0";
@@ -193,8 +188,16 @@ input[type="checkbox"] {
 
 /*vm table font color*/
 .mark-as-red
-{
+ {
     color: $red;
+}
+/* override date picker */
+div[datepicker] {
+    .btn {
+        min-width: auto;
+        width: auto;
+        border: none;
+    }
 }
 
 
@@ -245,9 +248,9 @@ input[type="checkbox"] {
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
-    }
+    }       
     .nav>li>a {
-        position: relative;
+        position: relative; 
         display: block;
         padding: 10px 20px 10px 20px;
         color: $white;
@@ -296,20 +299,35 @@ input[type="checkbox"] {
         font-size: 20px;
         color:$darker-gray;
     }
-    .form-group {
+    .form-group {    
+        
+        .clickable {
+            font-size: 15px;
+        }
+
         @media (min-width: 768px) {
-            .col-sm-2 {
+            .col-sm-2 { 
                 width: 125px;
             }
         }
         @media (min-width: 768px) {
-            .col-sm-offset-2 {
+            .col-sm-offset-2 { 
                 margin-left: 125px;
             }
         }
+
+        ilab-select .btn {
+            min-width: 160px;
+        }
+
         input[type="radio"] {
             vertical-align: left;
         }
+
+        .radio-checkbox-a {
+            margin-left: 15px;
+        }
+
         input[type='radio']:before {
             content: '';
             display: block;
@@ -333,6 +351,7 @@ input[type="checkbox"] {
         .intelicon-help-solid {
             color: $gray;
             margin-top: 2px;
+            margin-left: 21.5px;
         }
         .intelicon-help-solid:hover {
             color: $dark-gray;
@@ -350,7 +369,7 @@ input[type="checkbox"] {
         min-width: 160px;
     }
 
-    .network+div {
+    .network+ilab-select {
         display: inline-block;
         min-width: 160px;
         margin-left: 125px;
@@ -386,5 +405,10 @@ input[type="checkbox"] {
             text-align: left;
         }
     }
-
+    
+}
+/* class that uses in controller area that pulls them up */
+.pull-up {
+    position: relative;
+    top: -40px;
 }

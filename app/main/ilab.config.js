@@ -2,7 +2,6 @@
 
     angular
         .module('ilabConfig')
-        .constant('API_PREFIX', 'http://10.223.136.7/services/api/')
         .config(route)
         .config(restangular)
         .config(pagination)
@@ -19,15 +18,22 @@
 
     function route($stateProvider, $urlRouterProvider) {
         // For any unmatched url, redirect to /environment
-        $urlRouterProvider.otherwise("/404");
+        $urlRouterProvider.otherwise("/");
         //
         // Now set up the states
         $stateProvider
-            .state('404', {
-                url: "/404",
+            .state('error', {
+                url: "/oops",
                 views: {
                     'page@': {
-                        templateUrl: "404.html",
+                        templateUrl: "main/templates/error.html",
+                        controller: 'ErrorCtrl',
+                        controllerAs: 'Error',
+                    }
+                },
+                resolve: {
+                    _error: function() {
+                        return this.self.error;
                     }
                 }
             })
@@ -51,8 +57,10 @@
                         }
                     }
                 },
-                controller: function() {
-                    console.log('data');
+                resolve: {
+                    _envs: function(environmentService) {
+                        return environmentService.getList({expand: 'summary'});
+                    }
                 },
                 breadcrumb: {
                     proxy: 'envs.list'
@@ -68,16 +76,16 @@
                     }
                 },
                 resolve: {
-                    _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'virtualMachines,physicalMachines,networks,users,summary'});
+                    _envs: function(_envs) {
+                        return _envs;
                     }
                 },
                 breadcrumb: {
                     name: 'All environments'
                 }
             })
-            .state('envs.detail', {
-                abstract: true,
+            .state('envs.detail', { 
+                // abstract: true,
                 url: "/environment/:envId",
                 views: {
                     'content@envs': {
@@ -87,31 +95,18 @@
                     }
                 },
                 resolve: {
-                    _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
+                    _env: function(environmentService, $stateParams, $q) {
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'})
+                        .then(function(data){
+                            return data;
+                        }, function(reason) {
+                            return $q.reject(reason);
+                        });
                     }
                 },
                 breadcrumb: {
-                    name: false
+                    name: '{{_env.name}}'
                 }            
-            })
-            .state('envs.editEnv', {
-                url: "/editEnv",
-                views: {
-                    'content@envs': {
-                        templateUrl: "main/environment/editEnv/editEnv.html",
-                        controller: 'EnvCtrl',
-                        controllerAs: 'editEnv'
-                    }
-                },
-                resolve: {
-                    _env: function(environmentService) {
-                        return environmentService.get(2088101);
-                    }
-                },
-                breadcrumb: {
-                    name: 'Edit Environment'
-                }
             })
             .state('envs.detail.vm', {
                 url: "/vm",
@@ -124,12 +119,11 @@
                 },
                 resolve: {
                     _vms: function(_env) {
-                        console.log(_env.virtualMachines);
                         return _env.virtualMachines;
                     }
                 },
                 breadcrumb: {
-                    name: '{{_env.name}}'
+                    name: 'Virtual Machines'
                 }            
             })
             .state('envs.detail.pm', {
@@ -148,7 +142,7 @@
                     }
                 },
                 breadcrumb: {
-                    name: '{{_env.name}}'
+                    name: 'Physical Machines'
                 }
             })
             .state('envs.detail.pm.add', {
@@ -184,6 +178,19 @@
                 },
                 breadcrumb: {
                     name: 'Basic View'
+                }
+            })
+            .state('envs.detail.setting', {
+                url: "/setting",
+                views: {
+                    'content@envs': {
+                        templateUrl: "main/environment/setting/setting.html",
+                        controller: 'EnvSettingCtrl',
+                        controllerAs: 'EnvSetting'
+                    }
+                },
+                breadcrumb: {
+                    name: 'Environment Settings'
                 }
             })
             .state('lab', {
@@ -225,9 +232,9 @@
         };
     }
 
-    loading.$inject = ['$rootScope'];
+    loading.$inject = ['$rootScope', '$state'];
 
-    function loading($rootScope) {
+    function loading($rootScope, $state) {
         $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
             $rootScope.isLoading = false;
             if(toState && toState.resolve) {
@@ -238,9 +245,12 @@
             $rootScope.isLoading = false;
             
         });
+        /* handle state change error, won't deal with erors happen in controller*/
         $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
             $rootScope.isLoading = false;
-           
+            e.preventDefault();
+            $state.get('error').error = error;
+            $state.go('error');           
         });
     }
 
@@ -258,11 +268,16 @@
         paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }
 
-    init.$inject = ['$rootScope'];
+    init.$inject = ['$rootScope', '$state'];
 
-    function init($rootScope) {
+    function init($rootScope, $state) {
         $rootScope.page = {
             title: 'default page title'
         };
+        $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
+            if(toState.name === 'envs.detail') {
+                $state.go('envs.detail.vm', toParams);
+            }
+        });
     }
 })();

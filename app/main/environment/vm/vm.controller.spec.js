@@ -107,7 +107,7 @@ describe('vms controller', function() {
 
     beforeEach(function() {
         module('ilab');
-        module('ilabService');
+        module('templates');
     });
 
     beforeEach(inject(function($rootScope, $controller, _machine_, $modal, Restangular, _$httpBackend_, $q) {
@@ -251,7 +251,7 @@ describe('vms controller', function() {
         beforeEach(function() {
             ctrl.loadVMList();
         });
-        //spyOn(ctrl, 'getVMById').and.CallThrough();
+        //spyOn(ctrl, 'setVMTeMp').and.CallThrough();
 
         //after loading, ctrl.VMs contains 2 vms in an array
         it('should ctrl.VMs be array', function() {
@@ -264,11 +264,11 @@ describe('vms controller', function() {
         it('should load vmTemp', function() {
             var testNet = {
                 "interface": 1,
-                "label": "3633301_NIC1",
+                "name": "3633301_NIC1",
                 "ip": "10.223.136.203"
             };
 
-            ctrl.getVMById(vmid);
+            ctrl.setVMTemp(vmid);
             expect(ctrl.vmTemp.id).toEqual(3633301);
             expect(ctrl.vmTemp.name).toBe('ilabredis-devba');
             expect(ctrl.vmTemp.description).toBeNull();
@@ -289,7 +289,7 @@ describe('vms controller', function() {
                 expect(ctrl.saveTemp.name).toBe('ilabredis-devba');
                 expect(ctrl.vmTemp).toEqual(ctrl.configTmp);
                 expect(ctrl.tplConfig[0].interface).toEqual('1');
-                expect(ctrl.tplConfig[0].label).toBe('1');
+                expect(ctrl.tplConfig[0].name).toBe('1');
             });
 
             it('should close the expanded table if click 2 times', function() {
@@ -309,32 +309,6 @@ describe('vms controller', function() {
 				expect(ctrl.configTmp.name).toBe('ilabredis-devba');
 				expect(ctrl.configTmp).toEqual(ctrl.vmTemp);				
 			});
-			
-            it('should change the configTmp network', function() {
-                network = {
-                    "vlanId": 2347301,
-                    "name": "103_Cisco-SH-Telnet",
-                    "vlan": 103,
-                    "isDynamic": 0,
-                    "subnet": 6
-                };
-                ctrl.selectNetwork(0, network);
-                expect(ctrl.configTmp.network[0].label).toEqual("103_Cisco-SH-Telnet");
-            });
-
-            it('should change the memory if click', function() {
-                memory = {
-                    memory: "4G"
-                };
-                ctrl.selectMemory(memory);
-                expect(ctrl.configTmp.memory.memory).toBe('4G');
-            });
-
-            it('should change the cpu if click', function() {
-                cpu = '2';
-                ctrl.selectCPU(cpu);
-                expect(ctrl.configTmp.CPU).toBe('2');
-            });
 
             it('should revert any change on configTmp to the origin', function() {
                 ctrl.configTmp.name = 'change1';
@@ -361,7 +335,7 @@ describe('vms controller', function() {
 			it('should increase the number of Template up to 4', function() {
 				ctrl.changeTplNumber(ctrl.tplConfig, true);
 				expect(ctrl.tplConfig.length).toEqual(2);
-				expect(ctrl.tplConfig[1].label).toEqual(2);
+				expect(ctrl.tplConfig[1].name).toEqual(2);
 				ctrl.changeTplNumber(ctrl.tplConfig, true);
 				ctrl.changeTplNumber(ctrl.tplConfig, true);
 				ctrl.changeTplNumber(ctrl.tplConfig, true);
@@ -376,7 +350,7 @@ describe('vms controller', function() {
 				ctrl.changeTplNumber(ctrl.tplConfig, true);
 				ctrl.changeTplNumber(ctrl.tplConfig, false);
 				expect(ctrl.tplConfig.length).toEqual(3);
-				expect(ctrl.tplConfig[2].label).toEqual(3);
+				expect(ctrl.tplConfig[2].name).toEqual(3);
 				ctrl.changeTplNumber(ctrl.tplConfig, false);
 				ctrl.changeTplNumber(ctrl.tplConfig, false);
 				ctrl.changeTplNumber(ctrl.tplConfig, false);
