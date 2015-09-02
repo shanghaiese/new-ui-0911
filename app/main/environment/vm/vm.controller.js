@@ -4,12 +4,10 @@
     angular
         .module('ilab')
         .controller('VmCtrl', VmCtrl);
-    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env'];
+    VmCtrl.$inject = ['machine', '$filter', '$modal', '$sce', '_vms', 'alert', '_env', '$scope'];
 
-    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env) {
+    function VmCtrl(machine, $filter, $modal, $sce, _vms, alert, _env, $scope) {
         var that = this;
-        console.log(_vms);
-        console.log(_env);
 
         //variables
         var orderBy = $filter('orderBy');
@@ -38,9 +36,6 @@
 
         //For small table 4-panels setting
         that.configTmp = {}; //viewTemplate data
-        that.vmTemp = {}; //store original data
-        that.CPU = []; //dropdown list
-        that.Memory = []; //dropdown list, has relation with CPU
         that.Network = []; //dropdown list(test)
         that.cancelConfig = cancelConfig; //configTmp=vmTemp
         that.updateConfig = updateConfig; //update that.VMs
@@ -51,11 +46,10 @@
         that.selectCPU = selectCPU;
 
         //saveTemplatePanel
-        that.saveTemp = {};
         that.saveVMTemplate = saveVMTemplate;
         that.changeTplNumber = changeTplNumber;
         that.tplConfig = [];
-
+        
         that.saveTemp = {
             name: "",
             modeSaveDisk: {
@@ -70,7 +64,7 @@
             name: "",
             description: "",
             CPU: {
-                idx: "",
+                index: "",
                 NumOfCPU: ""
             },
             memory: {
@@ -84,71 +78,29 @@
             }]
         };
 
-        that.CPU = [{
-            idx: 0,
-            NumOfCPU: "1"
-        }, {
-            idx: 1,
-            NumOfCPU: "2"
-        }, {
-            idx: 2,
-            NumOfCPU: "4"
-        }, {
-            idx: 3,
-            NumOfCPU: "8"
-        }, {
-            idx: 4,
-            NumOfCPU: "16"
-        }];
+        that.CPU = [{index: 0, NumOfCPU: "1"}, 
+                    {index: 1, NumOfCPU: "2"}, 
+                    {index: 2, NumOfCPU: "4"}, 
+                    {index: 3, NumOfCPU: "8"}, 
+                    {index: 4, NumOfCPU: "16"}];
 
         that.Memory = [
-            [{
-                memory: "0.5G"
-            }, {
-                memory: "1G"
-            }, {
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }],
-            [{
-                memory: "2G"
-            }, {
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }],
-            [{
-                memory: "4G"
-            }, {
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "8G"
-            }, {
-                memory: "16G"
-            }],
-            [{
-                memory: "16G"
-            }, {
-                memory: "32G"
-            }]
-        ];
+                        [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
+                        [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
+                        [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
+                        [{memory: "8G"}, {memory: "16G"}],
+                        [{memory: "16G"}, {memory: "32G"}]
+                      ];
+        
+        that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
+        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
         //Functions
         activate();
 
         function activate() {
-            //that.VMs = machine.getVMDetail().then(function(data) {
-            //     that.VMs = data;
-            // });
-            //that.VMs = machine.getVMDetail().$object;
+            $scope.Env.activeTab = 1;
             loadVMList();
-            // machine.getEnvNetworks().then(function(data) {
-            //      that.Network = data.networks;
-            // });
             that.Network = _env.networks;
             that.thead = machine.getThead();
             that.VMInfo = machine.transDetailForDis();
@@ -157,7 +109,7 @@
             };
         }
 
-        /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
+        /* this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
             var list = _vms;
@@ -206,22 +158,19 @@
         function getVMDetailInfo(vmid) {
             that.oneVM = [];
             that.oneVM = machine.getVMDetail(vmid).$object;
-
         }
 
 
-        /*UT-ok store vmTemp as a temp var by vmid*/
+        /* store vmTemp as a temp var by vmid*/
         //?return
         function getVMById(vmid) {
             that.vmTemp.network = [];
             var index = -1;
-            //?for 
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
                     that.vmTemp.name = obj.name;
                     that.vmTemp.description = obj.description;
-                    //var CPUMemoryArr = obj.configuration.split(',');
                     that.vmTemp.CPU.NumOfCPU = obj.cpus;
                     that.vmTemp.memory.memory = machine.transMemFromMB2GB(obj.mem) + 'G';
                     angular.forEach(obj.network, function(obj, key) {
@@ -232,7 +181,7 @@
             });
             angular.forEach(that.CPU, function(obj, key) {
                 if (obj.NumOfCPU == that.vmTemp.CPU.NumOfCPU) {
-                    that.vmTemp.CPU.idx = obj.idx;
+                    that.vmTemp.CPU.index = obj.index;
                 }
             });
             if (index !== -1) {
@@ -264,14 +213,17 @@
             }
         }
 
-        /*UT-ok show the vm edit page or close it*/
+        /*show the vm edit page or close it*/
         // if bool == true, means update, the data should change. Otherwise, no change in data.
         function showVmEdit(vmid, bool) {
+            var temp = {
+                interface: "1",
+                label: "1",
+                ip: ""
+            };
             //that.showPage = !that.showPage;
             if (that.showPage == vmid && bool === true) {
                 that.showPage = 0;
-                //cancelConfig(vmid);
-                //clear vm.configTmp.network
             } else if (that.showPage == vmid && bool === false) {
                 that.showPage = 0;
                 cancelConfig(vmid);
@@ -279,39 +231,32 @@
                 getVMById(vmid);
                 getVMDetailInfo(vmid);
                 that.showPage = vmid;
-                //find the vm idx;
+                //find the vm index;
                 angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel
                 that.saveTemp.name = that.vmTemp.name;
                 that.tplConfig = [];
-                var temp = {
-                    interface: "1",
-                    label: that.vmTemp.network[0].label,
-                    ip: ""
-                };
-                that.tplConfig.push(temp);
-                //if have opened saveTemp panel and change, we need to reset that panel.
 
+                that.tplConfig.push(temp);
             }
         }
 
-        //UT-ok
+
         function selectNetwork(netIndex, network) {
             that.configTmp.network[netIndex].label = network.name;
         }
 
-        //UT-ok
+
         function selectMemory(memory) {
             that.configTmp.memory.memory = memory.memory;
         }
 
-        //UT-ok
+
         function selectCPU(CPU) {
             that.configTmp.CPU = CPU;
         }
 
         function vmIsInOperation(vmId) {
-            //console.log('vmIsInOperation: '+vmId);
             var isInOperation = false;
             angular.forEach(that.inOperationVMs, function(item, index) {
                 if (item.id === vmId) {
@@ -321,7 +266,7 @@
             return isInOperation;
         }
 
-        //UT-ok
+
         function cancelConfig(vmid) {
             angular.copy(that.vmTemp, that.configTmp);
             that.saveTemp.name = that.vmTemp.name;
@@ -330,6 +275,7 @@
         }
 
         function updateConfig(vmid) {
+            var index;
             angular.forEach(that.VMs, function(obj, key) {
                 if (obj.id == vmid) {
                     obj.name = that.configTmp.name;
@@ -338,9 +284,9 @@
                     obj.mem = machine.transMemFromGB2MB(gb);
                     obj.description = that.configTmp.description;
                     angular.forEach(obj.network, function(obj, key) {
-                        var idx = parseInt(obj.interface) - 1;
-                        console.log(idx);
-                        obj.label = that.configTmp.network[idx].label;
+                        index = parseInt(obj.interface) - 1;
+                        console.log(index);
+                        obj.label = that.configTmp.network[index].label;
                     });
                 }
             });
@@ -351,11 +297,16 @@
         }
 
         function changeTplNumber(tplConfig, bool) {
+            var temp = {
+                interface: "",
+                label: "",
+                ip: ""
+            };
             var number = tplConfig.length;
             if (bool) {
                 if (number + 1 > 4)
                     return -1;
-                var temp = {
+                temp = {
                     interface: number + 1,
                     label: number + 1,
                     ip: ""
@@ -389,13 +340,10 @@
             machine.saveVMTpl(vmid, saveTpl);
         }
 
-        that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
-        that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
         function powerOperation(vms, op) {
             //make sure that the enter type is array
             var vmsForOperation = [];
-            //console.log(typeof(vms.length));
             if (typeof(vms.length) == 'undefined') {
                 vmsForOperation.push(vms);
             } else {
@@ -405,15 +353,12 @@
             angular.forEach(vmsForOperation, function(vm) {
                 var vmFromAPI = machine.getOneVmForOperation(vm.id);
                 var vmFrontEnd = getVMById(vm.id);
-                // console.log(vmFrontEnd);
                 if (op === 'powerOn' && vmFrontEnd.power !== 1) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOn", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 1) {
                             vmFrontEnd.statusDisplay = 'Running';
                             vmFrontEnd.power = 1;
-                            //console.log("Power on successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power on successfully!'
@@ -421,7 +366,6 @@
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Power on FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Power on FAILED!'
@@ -431,11 +375,9 @@
                 } else if (op === 'powerOff' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOff", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 0) {
                             vmFrontEnd.statusDisplay = 'Stopped';
                             vmFrontEnd.power = 0;
-                            //console.log("Power off successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power off successfully!'
@@ -443,7 +385,6 @@
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Power off FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Power off FAILED!'
@@ -454,19 +395,16 @@
                 } else if (op === 'restart' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerReset", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 1) {
                             vmFrontEnd.statusDisplay = 'Running';
                             vmFrontEnd.power = 1;
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("RESTART successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Restart successfully!'
                             });
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("restart FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'restart FAILED!'
@@ -478,19 +416,16 @@
                     that.inOperationVMs.push(vmFrontEnd);
 
                     vmFromAPI.post("powerPause", vm.id).then(function(returnData) {
-                        //console.log(returnData);
                         if (returnData.power === 2) {
                             vmFrontEnd.statusDisplay = 'Suspended';
                             vmFrontEnd.power = 2;
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Suspended successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Suspend successfully!'
                             });
                         } else {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
-                            //console.log("Suspended FAILED!");
                             alert.open({
                                 type: 'danger',
                                 message: 'Suspended FAILED!'
@@ -503,14 +438,13 @@
             });
         }
 
-        function openDeleteDialog(width) {
+        function openDeleteDialog(size) {
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                width:width
-
+                size:size
             });
 
             modalInstance.result.then(function(confirm) {

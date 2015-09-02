@@ -1,16 +1,26 @@
+<!-- <div class="pull-right switch-btn-group">
+    <div class="inline">
+        {{EnvBasic.env.name}}
+        <ilab-select list="" attr-to-display="" selected-item="" class="">
+
+        <ilab-select>
+    </div>
+    <button class="btn btn-default inline" ui-sref="">Advanced</button>
+    <span class="inline intelicon-settings-solid "></span>
+</div> -->
 <div class="list-env">
     <h3>Virtual Machine: {{EnvBasic.vmCount}}</h3>
     <div class="card-container" ng-show="EnvBasic.env.virtualMachines.length < 13">
         <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="vm in EnvBasic.vms"></info-card>
     </div>
     <div class="env-basic">
-    <carousel no-wrap="true" interval="-1" disable-ng-animate ng-show="EnvBasic.env.virtualMachines.length > 12">
-      	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
-            <div class="caro">
-                <info-card class="list-VMs" type="vm" info="vm" act-operation="EnvBasic.vmIsInOperation(vmId)"  on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="vm in vmBucket"></info-card>
-			      </div>
-      	</slide>
-	</carousel>
-</div>
+        <carousel no-wrap="true" interval="-1" disable-ng-animate ng-show="EnvBasic.env.virtualMachines.length > 12">
+          	<slide ng-repeat="vmBucket in EnvBasic.vmsInBuckets">
+                <div class="caro">
+                    <info-card class="list-VMs" type="vm" info="vm" act-operation="EnvBasic.vmIsInOperation(vmId)"  on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vms, op)" ng-repeat="vm in vmBucket"></info-card>
+    			      </div>
+          	</slide>
+    	</carousel>
+    </div>
 </div>
 

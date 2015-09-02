@@ -5,34 +5,50 @@
 
     angular
         .module('ilab')
-        .controller('EnvCtrl',  EnvCtrl);
+        .controller('EnvBasicCtrl',  EnvBasicCtrl);
 
-    EnvCtrl.$inject = ['machine','environmentService','_env','alert'];
+    EnvBasicCtrl.$inject = ['machine','environmentService','_env','alert',];
 
-    function EnvCtrl(machine,environmentService,_env,alert){
+    function EnvBasicCtrl(machine,environmentService,_env,alert){
         var that = this;
 
         //variables
         that.vms = [];
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
-        var inOperationVMs = [];
-        
+        that.inOperationVMs = [];
+        that.env = _env;
+        that.vmsInBuckets = []; // Divided all vms into arrays
+        /*that.lists = [];  swith env 's machines*/
+
+
         //functions
         that.vmIsInOperation = vmIsInOperation;
         that.loadVMList = loadVMList;
         that.connect = connect;
         that.power = power;
-        that.vmIsInOperation = vmIsInOperation;
 
 
         //init functions
         activate();
         function activate() {
             loadVMList();
-            that.Network = _env.networks;
-            that.VMInfo = machine.transDetailForDis();
+            if(that.env.virtualMachines.length < 12){
+                that.vms = that.env.virtualMachines;
+            }else if(that.env.virtualMachines.length > 12){
+                that.vmsInBuckets = paging(that.env.virtualMachines,12);
+            }
+            console.log(_env);
+
         }
 
+        /*sperate the vmlist into counted lists*/
+        function paging(arr, size) {
+            var newArr = [];
+            for (var i = 0; i < arr.length; i += size) {
+                newArr.push(arr.slice(i, i + size));
+            }
+            return newArr;
+        }
         /* UT-ok this function use to load the VM data from API and add a new attr to vm*/
         function loadVMList() {
 
@@ -75,7 +91,7 @@
         function vmIsInOperation(vmId) {
             //console.log('vmIsInOperation: '+vmId);
             var isInOperation = false;
-            angular.forEach(inOperationVMs, function(item, index) {
+            angular.forEach(that.inOperationVMs, function(item, index) {
                 if (item.id === vmId) {
                     isInOperation = true;
                 }
@@ -87,38 +103,36 @@
            console.log(vmId);
         }
 
-
-}
         function power(vms, op) {
             //make sure that the enter type is array
-            var vmsForOperation = [];
+            console.log(vms);
+            var vmFromAPI = machine.getOneVmForOperation(vms.id);
 
-            
+            var vmsForOperation = [];
             if (typeof(vms.length) == 'undefined') {
                 vmsForOperation.push(vms);
             } else {
                 vmsForOperation = vms;
             }
             angular.forEach(vmsForOperation, function(vm) {
-                var vmFromAPI = vm;
-                console.log(vmFromAPI);
+                console.log(vm);
                 //var vmFrontEnd = getVMById(vmId);
                 
-                if (op === 'powerOn' && vms.power !== 1) {
-                    inOperationVMs.push(vms);
-                    vmFromAPI.post("powerOn", vmid).then(function(returnData) {
+                if (op === 'powerOn' && vm.power !== 1) {
+                    that.inOperationVMs.push(vm);
+                    vmFromAPI.post("powerOn", vms.id).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 1) {
-                            vms.statusDisplay = 'Running';
-                            vms.power = 1;
+                            vm.statusDisplay = 'Running';
+                            vm.power = 1;
                             //console.log("Power on successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power on successfully!'
                             });
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                         } else {
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("Power on FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -126,22 +140,22 @@
                             });
                         }
                     });
-                } else if (op === 'powerOff' && vms.power !== 0) {
-                    console.log(inOperationVMs);
-                    inOperationVMs.push(vms);
-                    vmFromAPI.post("powerOff", vmid).then(function(returnData) {
+                } else if (op === 'powerOff' && vm.power !== 0) {
+                    that.inOperationVMs.push(vm);
+                    console.log(that.inOperationVMs);
+                    vmFromAPI.post("powerOff", vms.id).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 0) {
-                            vms.statusDisplay = 'Stopped';
-                            vms.power = 0;
+                            vm.statusDisplay = 'Stopped';
+                            vm.power = 0;
                             //console.log("Power off successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Power off successfully!'
                             });
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                         } else {
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("Power off FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -150,21 +164,21 @@
                         }
 
                     });
-                } else if (op === 'restart' && vms.power !== 0) {
-                    inOperationVMs.push(vms);
-                    vmFromAPI.post("powerReset", vmid).then(function(returnData) {
+                } else if (op === 'restart' && vm.power !== 0) {
+                    that.inOperationVMs.push(vm);
+                    vmFromAPI.post("powerReset", vms.id).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 1) {
-                            vms.statusDisplay = 'Running';
-                            vms.power = 1;
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            vm.statusDisplay = 'Running';
+                            vm.power = 1;
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("RESTART successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Restart successfully!'
                             });
                         } else {
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("restart FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -173,22 +187,22 @@
                         }
 
                     });
-                } else if (op === 'suspend' && vms.power !== 0 && vms.power !== 2) {
-                    inOperationVMs.push(vms);
+                } else if (op === 'suspend' && vm.power !== 0 && vm.power !== 2) {
+                    that.inOperationVMs.push(vm);
 
-                    vmFromAPI.post("powerPause", vmid).then(function(returnData) {
+                    vmFromAPI.post("powerPause", vms.id).then(function(returnData) {
                         //console.log(returnData);
                         if (returnData.power === 2) {
-                            vms.statusDisplay = 'Suspended';
-                            vms.power = 2;
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            vm.statusDisplay = 'Suspended';
+                            vm.power = 2;
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("Suspended successfully!");
                             alert.open({
                                 type: 'success',
                                 message: 'Suspend successfully!'
                             });
                         } else {
-                            inOperationVMs.splice(inOperationVMs.indexOf(vms));
+                            that.inOperationVMs.splice(that.inOperationVMs.indexOf(vm));
                             //console.log("Suspended FAILED!");
                             alert.open({
                                 type: 'danger',
@@ -202,6 +216,8 @@
             });
         }
 
-
-
+        //that.selected = that.lists[{env.name}]
+        //var envList = Restangular.all('environments').getlist();
+        
+    }
 })();

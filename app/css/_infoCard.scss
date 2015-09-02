@@ -117,6 +117,9 @@ info-card {
         .group-margin {
             margin-left:8px;
         }
+        .ddl-icon{
+            padding-top:0px;
+        }
         
         /*use dropdown-menu from bootstrap.css-------*/
         .dropdown {
@@ -157,15 +160,15 @@ info-card {
         .dropdown-menu{
             li{
                 a {
-            display: block;
-            padding: 6px 12px;
-            clear: both;
-            font-weight: normal;
-            line-height: 1.428571429;
-            color: $dark-gray;
-            white-space: nowrap;
-            min-width: 76px;
-            }
+                    display: block;
+                    padding: 6px 12px;
+                    clear: both;
+                    font-weight: normal;
+                    line-height: 1.428571429;
+                    color: $dark-gray;
+                    white-space: nowrap;
+                    min-width: 76px;
+                    }
                 }
         }
         .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
@@ -202,14 +205,9 @@ info-card {
         .btn-group ul li {
             text-align: left;
         }
-
-        .btn-line{
-            position: relative;
-            display: inline-block;
-        }
-
-        .stopIcon ilabicon-stop  {
-            font-size: 0.2em;
+        .stop-icon ilabicon-stop  {
+            color:$dark-gray;
+            font-size: 1em;
         }
 	}
 }

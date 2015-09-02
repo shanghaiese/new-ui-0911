@@ -22,11 +22,11 @@
 			</div>
 			<div class="row">
 				<strong class="col-xs-4">IP:</strong>
-				<span class="col-xs-7 col-xs-offset-1">{{info.network[0].ip}}</span>
+				<span class="col-xs-7 col-xs-offset-1">{{info.network[$index].ip}}</span>
 			</div>
 			<div class="row">
 				<strong class="col-xs-4">Network:</strong>
-				<span class="col-xs-7 col-xs-offset-1">BTD</span><!-- {{info["network"][0].["subnet"][0].name}} -->
+				<span class="col-xs-7 col-xs-offset-1">{{info.network[0].subnet.name}}</span><!-- {{info["network"][0].["subnet"][0].name}} -->
 			</div>
 		</div>
 		<div ng-if="type === pm">
@@ -36,7 +36,7 @@
 			<div class="dropdown clearfix inline group-margin">
 			    <button class="btn dropdown-toggle" type="button" id="dropdownMenu" data-toggle="dropdown" ng-class="{'btn-approve':info.statusDisplay == 'Running' ,'btn-danger':info.statusDisplay =='Stopped','btn-suspend':info.statusDisplay=='Suspended'}" ng-disabled="vm-is-in-operation({vmId:info.id})||{{info.locked}}"  dropdown-toggle>
 			    	{{info.statusDisplay}}
-			        <span class="caret"></span>
+			        <span class="caret ddl-icon"></span>
 			    </button>
 		        <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu">
 			        <li role="presentation"><a role="menuitem" tabindex="-1" href="javascript:void(0)" ng-click="power({vms:info, op:'powerOn'})"><span aria-hidden="true" class="intelicon-play"></span>

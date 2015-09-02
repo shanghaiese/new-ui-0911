@@ -88,7 +88,7 @@
                 },
                 resolve: {
                     _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines'});
+                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
                     }
                 },
                 breadcrumb: {
@@ -173,7 +173,7 @@
                 views: {
                     'content@envs': {
                         templateUrl: "main/environment/envBasic/envBasic.html",
-                        controller: 'EnvCtrl',
+                        controller: 'EnvBasicCtrl',
                         controllerAs: 'EnvBasic'
                     }
                 },

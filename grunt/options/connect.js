@@ -9,7 +9,7 @@
         server: {
             options: {
                 port: "<%= constants.localhostPort %>",
-                base: ['app', 'docs'],
+                base: 'app',
                 // default:false, the server will shutdown after the task finishes
                 // if a watch task is started later, it is not necessary to overide this default value
                 keepalive: false,
