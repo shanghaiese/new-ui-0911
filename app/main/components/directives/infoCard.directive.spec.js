@@ -106,4 +106,9 @@ describe('info-card directive', function() {
         });
     });
 
+    it('should return true if vm is in Running', function() {
+            var result = ctrl.isRunning(3633301);
+            expect(result).toEqual(true);
+    });
+
 });

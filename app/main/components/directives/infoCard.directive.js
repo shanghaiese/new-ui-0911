@@ -4,29 +4,38 @@
         .module('ilabDirective')
         .directive('infoCard', infoCard);
 
-    infoCard.$inject = ['$document', '$rootScope','machine'];
+    infoCard.$inject = ['$window', '$document', '$rootScope','machine'];
 
-    function infoCard($document, $rootScope, machine) {
+    function infoCard($window, $document, $rootScope, machine) {
         return {
-            restrict: 'EA',
+            restrict: 'E',
             scope: {
-                type: '@', //this scope control the directive type to be VM or PM or etc.
-                info: '=', //this scope get the data form APi and used both in directive controller
-                connect: '&onConnect', //this scope control the colsole action
-                power: '&onPower', //this scope control the colsole action
-                run: '=' //this scope control the directive VM status style to be spawing or not
+                type: '@',   //show fifferent kind of machines due to the type vm or pm
+                info: '=',   //transfer all machines detail data
+                connect: '&onConnect',
+                power: '&onPower',
+                running: '=' // array of id that are in operation, so that loading shows.
             },
             templateUrl: 'main/templates/infoCard.tpl.html',
 
             link: function(scope, element, attrs) {
                 //change memory MB to GB
-                scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
+                var id = scope.info.id;
 
+                scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
                 scope.isShown = false;
                 scope.toggle = toggle;
-                scope.opSelect =[{op:'powerOn'},{op:'powerOff'},{op:'powerPause'},{op:'powerReset'}];
+                scope.isRunning = isRunning; //operate of a machine
 
-                //angular.element('#id',element).attr('disabled','disabled');
+                function isRunning(id) {
+                    var bool = false;
+                    if(scope.running.indexOf(id) === -1) {
+                        bool = false;
+                    }else {
+                        bool = true;
+                    }
+                    return bool;
+                }
 
                 function toggle() {
                     if (scope.isShown) {
@@ -53,6 +62,27 @@
                     close();
                     if (!$rootScope.$$phase) {
                         scope.$apply();
+                    }
+                }
+
+                function getDetail(id) {
+                    scope.vmTemp.network = [];
+                    var index = -1;
+                    angular.forEach(scope.info, function(obj, key) {
+                        if (obj.id == id) {
+                            angular.forEach(obj.network, function(obj, key) {
+                                var temp = {
+                                    interface: obj.interface,
+                                    name: obj.label,
+                                    ip: obj.ip
+                                };
+                                scope.vmTemp.network.push(temp);
+                            });
+                            index = key;
+                        }
+                    });
+                    if (index !== -1) {
+                        return scope.info[index];
                     }
                 }
 

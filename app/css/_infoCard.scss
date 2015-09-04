@@ -20,16 +20,15 @@ info-card {
 		        display: inline-block;
 		        text-decoration: none;
 		        cursor: pointer;
-
                 .icon-color {
                     color:$light-blue;
                 }
             }
+            span{
+                padding-top: 3px;
+            }
 	    }
-	    span{
-	    	padding-top: 3px;
-	    }
-	
+	    	
 		.card.on {
 			border-left: 7px solid $green;
 		}
@@ -50,8 +49,7 @@ info-card {
         }
         .card.delete{
             display: none;
-        }
-		
+        }		
 		.info {
             margin-top: 5px;
 			position: absolute;
@@ -97,16 +95,17 @@ info-card {
             width: 24px;
             height: 42px;
             padding: 8px 0px 5px 5px;
-
             .icon-color {
                 color:$dark-gray;
-            }
-            
+            }           
         }
         .tag-name {
             span {
                 margin-right: 3px;
             }
+        }
+        .change-margin {
+            margin-top: -3px;
         }
         .btn-operation {
             margin: 5px 0px 10px 15px;
@@ -117,8 +116,8 @@ info-card {
         .group-margin {
             margin-left:8px;
         }
-        .ddl-icon{
-            padding-top:0px;
+        .btn-margin {
+            margin-left:8px;
         }
         
         /*use dropdown-menu from bootstrap.css-------*/
