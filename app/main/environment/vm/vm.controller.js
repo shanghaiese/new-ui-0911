@@ -11,14 +11,18 @@
 
         //variables
         var orderBy = $filter('orderBy');
+        that.vms = [];
+        that.oneVM = {};
         that.selectedVMs = [];
         that.inOperationVMs = [];
         that.selectedAll = false;
-        that.showPage = 0;
+        that.showExpandPage = 0;
         that.sort = [];
         that.tabDeleteDialog = []; //array to indicate which vm is in operation
         that.whichVMIsOpen = ''; //vm id to track and control which vm config is open
         that.isCollapse = true;
+        that.showExpandPage = 0;
+        that.ifShowVmDetail = false;
 
 
         //functions
@@ -263,17 +267,14 @@
             that.tplConfig = [];
 
             that.tplConfig.push(temp);
-            that.showPage = vmid;
-            that.showDetail = true;
+            that.showExpandPage = vmid;
+            that.ifShowVmDetail = true;
             that.loading = true;
             setVMDetailInfoToOneVM(vmid);
+            that.oneVM = {}; //empty the data before load
             machine.getVMDetail(vmid).then(function(returnData) {
-                that.oneVM = [];
                 that.oneVM = returnData;
                 that.loading = false;
-                //setVMDetailInfoToOneVM(vmid);
-                //that.showPage = vmid;
-                //find the vm index;
             });
 
 
@@ -287,19 +288,19 @@
                 name: "1",
                 ip: ""
             };
-            //that.showPage = !that.showPage;
-            if (that.showPage == vmid && bool === true) {
-                that.showPage = 0;
-                that.showDetail = false;
-            } else if (that.showPage == vmid && bool === false) {
-                that.showPage = 0;
-                that.showDetail = false;
+            //that.showExpandPage = !that.showExpandPage;
+            if (that.showExpandPage == vmid && bool === true) {
+                that.showExpandPage = 0;
+                that.ifShowVmDetail = false;
+            } else if (that.showExpandPage == vmid && bool === false) {
+                that.showExpandPage = 0;
+                that.ifShowVmDetail = false;
                 cancelConfig(vmid);
             } else {
-                that.showDetail = false;
+                that.ifShowVmDetail = false;
                 setVMTemp(vmid);
                 setVMDetailInfoToOneVM(vmid);
-                that.showPage = vmid;
+                that.showExpandPage = vmid;
                 //find the vm index;
                 angular.copy(that.vmTemp, that.configTmp);
                 //saveTemplate panel

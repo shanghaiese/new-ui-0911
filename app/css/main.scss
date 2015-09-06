@@ -234,8 +234,8 @@ input[type="checkbox"] {
     width: 400px;
 }
 .hr.detail-hr {
-    margin-top: 10px;
-    margin-bottom: 10px; 
+    margin-top: $common-margin;
+    margin-bottom: $common-margin; 
     border: 1px;
     border-top: 1px solid $light-gray;
 }
