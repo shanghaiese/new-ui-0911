@@ -152,6 +152,10 @@ form.form-horizontal .form-group:nth-last-child(2) {
     text-align: left;
     padding-right: 22px;
 }
+.btn.dropdown-power {
+    text-align: center;
+    min-width: 115px;
+}
 .btn .caret {
     position: absolute;
     top: 20px;
@@ -196,6 +200,10 @@ div[datepicker] {
         border: none;
     }
 }
+.clickable {
+    color:$blue;
+    cursor: pointer;
+}
 
 /*sortable table header */
 
@@ -239,8 +247,15 @@ div[datepicker] {
 .modal-dialog {
     width: 400px;
 }
+.hr.detail-hr {
+    margin-top: $common-margin;
+    margin-bottom: $common-margin; 
+    border: 1px;
+    border-top: 1px solid $light-gray;
+}
 
 .table-intel {
+
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;

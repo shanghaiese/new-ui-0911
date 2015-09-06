@@ -22,6 +22,7 @@ span[class*="ilabicon-"].disabled, span[class*="intelicon-"].disabled {
 .btn span[class*="icon"] {
 	color: white;
 }
+
 /* A */
 a[ng-click] {
 	cursor: pointer;
@@ -87,14 +88,10 @@ table {
 				border-right: none;
 				border-left: none;
 				input[type="checkbox"] {
-				 	width: 20px;
-				 	height: 20px;
+				 	width: 18px;
+				 	height: 18px;
 				// 	left: -10px;
 				}
-				// input[type="checkbox"] {
-				// 	position: relative;
-				// 	left: -10px;
-				// }
 			}
 			th:last-child {
 				border-right: 1px solid $light-gray;
@@ -120,14 +117,10 @@ table {
 					left: 10px;
 				}
 				input[type="checkbox"] {
-				 	width: 20px;
-				 	height: 20px;
+				 	width: 18px;
+				 	height: 18px;
 				// 	left: -10px;
-				 }
-				img {
-				 	font-size:20px;
 				}
-
 
 			}
 			td:last-child {
