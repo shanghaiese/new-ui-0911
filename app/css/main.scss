@@ -186,7 +186,10 @@ input[type="checkbox"] {
  {
     color: $red;
 }
-
+.clickable {
+    color:$blue;
+    cursor: pointer;
+}
 
 /*sortable table header */
 
@@ -229,6 +232,12 @@ input[type="checkbox"] {
 
 .modal-dialog {
     width: 400px;
+}
+.hr.detail-hr {
+    margin-top: 10px;
+    margin-bottom: 10px; 
+    border: 1px;
+    border-top: 1px solid $light-gray;
 }
 
 .table-intel {

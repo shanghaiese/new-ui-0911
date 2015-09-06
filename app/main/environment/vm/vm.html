@@ -35,12 +35,12 @@
 <!---->
 <!-- vm table from here-->
 
-<table ng-show="Vm.VMs.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
+<table ng-show="Vm.vms.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
             <th>
                 <div class="inline">
-                    <input type="checkbox" id="choose_all_env" ng-click="Vm.toggleCheckAll()" ng-checked="Vm.selectedVMs.length == Vm.VMs.length" />
+                    <input type="checkbox" id="choose_all_env" ng-click="Vm.toggleCheckAll()" ng-checked="Vm.selectedVMs.length == Vm.vms.length" />
                     <label for="choose_all_env"></label>
                 </div>
             </th>
@@ -48,7 +48,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr dir-paginate-start="vms in Vm.VMs | itemsPerPage: 20|filter:searchInput">
+        <tr dir-paginate-start="vms in Vm.vms | itemsPerPage: 20|filter:searchInput">
             <td>
                 <div class="inline">
                     {{Vm.vmIsInOpertation(vms.id)}}
@@ -57,16 +57,15 @@
                         <input type="checkbox" id="{{vms.id}}" checklist-model="Vm.selectedVMs" checklist-value="vms" />
                     </div>
                     <div ng-show="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
-                        <!-- <span  class="intelicon-refresh spin" style="font-size:1.4em;color:#0071c5;display:inline-block;margin:11px 0 12px"></span> -->
                         <img src="../../image/refresh_icon_18x18.gif">
                     </div>
                     <lable for="{{vms.id}}">
                         </label>
                 </div>
                
-                <span class="intelicon-settings-solid" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="Vm.showVmEdit(vms.id, false)"></span>
+                <span class="intelicon-settings-solid" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="(Vm.vmIsInOperation(vms.id)||vms.locked)||Vm.showVmEdit(vms.id, false)"></span>
             </td>
-            <td ng-if="Vm.thead[0].enabled" class="mark-as-blue">{{vms.name}}</td>
+            <td ng-if="Vm.thead[0].enabled" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="(Vm.vmIsInOperation(vms.id)||vms.locked)||Vm.showVmDetail(vms.id)">{{vms.name}}</td>
             <td ng-if="Vm.thead[1].enabled">
                 <span ng-repeat="networks in vms.network">{{networks.ip}}<br/></span>
             </td>

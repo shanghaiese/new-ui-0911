@@ -1,4 +1,4 @@
-describe('vms controller', function() {
+ddescribe('vms controller', function() {
     var vmFakeData = {
         "id": 2068901,
         "name": "4.7_switch_test",
@@ -127,9 +127,9 @@ describe('vms controller', function() {
         };
         ctrl = $controller('VmCtrl', {
             '$scope': scope,
-            _env:vmFakeData,
-            _vms:vmFakeData.virtualMachines
-           // _vms: vmFakeData
+            _env: vmFakeData,
+            _vms: vmFakeData.virtualMachines
+                // _VMs: vmFakeData
 
         });
         ctrlDelete = $controller('ModalInstanceCtrl', {
@@ -144,13 +144,13 @@ describe('vms controller', function() {
         spyOn(modalDialog, 'open').and.callThrough();
 
         //spyOn(modalDialog, 'open').and.returnValue(fakeModal);
-		spyOn(machine, 'transMemFromGB2MB').and.callFake(function(gb) {
+        spyOn(machine, 'transMemFromGB2MB').and.callFake(function(gb) {
             return gb * 1024;
-		});
-		spyOn(machine, 'updateVMDetail').and.callThrough();
-		spyOn(machine, 'saveVMTpl').and.callFake(function(vmid, saveTpl) {
-			return 'successSave';
-		});
+        });
+        spyOn(machine, 'updateVMDetail').and.callThrough();
+        spyOn(machine, 'saveVMTpl').and.callFake(function(vmid, saveTpl) {
+            return 'successSave';
+        });
     }));
 
     it('should have a VMCtrl controller', function() {
@@ -171,7 +171,7 @@ describe('vms controller', function() {
         expect(result).toEqual(true);
     });
 
-    describe('about checkbox selection', function() {
+    describe('about checkbox selection:', function() {
         beforeEach(function() {
             ctrl.loadVMList();
         });
@@ -246,7 +246,7 @@ describe('vms controller', function() {
 
 
     describe('with the given vmid number', function() {
-        //first load _vms->ctrl.vms
+        //first load _VMs->ctrl.vms
         var vmid = 3633301;
         beforeEach(function() {
             ctrl.loadVMList();
@@ -297,18 +297,18 @@ describe('vms controller', function() {
                 expect(ctrl.showPage).toEqual(0);
             });
 
-			it('should close the expanded table and revert the data to the original', function() {
-				ctrl.configTmp.name = 'change1';
-				ctrl.configTmp.description = 'change2';
-				ctrl.configTmp.id = 'change3';
-				ctrl.configTmp.CPU.NumOfCPU = 'change4';
-				ctrl.configTmp.memory.memory = 'change5';
-				ctrl.configTmp.network = [];
-				ctrl.showVmEdit(vmid, false);
-				expect(ctrl.showPage).toEqual(0);
-				expect(ctrl.configTmp.name).toBe('ilabredis-devba');
-				expect(ctrl.configTmp).toEqual(ctrl.vmTemp);				
-			});
+            it('should close the expanded table and revert the data to the original', function() {
+                ctrl.configTmp.name = 'change1';
+                ctrl.configTmp.description = 'change2';
+                ctrl.configTmp.id = 'change3';
+                ctrl.configTmp.CPU.NumOfCPU = 'change4';
+                ctrl.configTmp.memory.memory = 'change5';
+                ctrl.configTmp.network = [];
+                ctrl.showVmEdit(vmid, false);
+                expect(ctrl.showPage).toEqual(0);
+                expect(ctrl.configTmp.name).toBe('ilabredis-devba');
+                expect(ctrl.configTmp).toEqual(ctrl.vmTemp);
+            });
 
             it('should revert any change on configTmp to the origin', function() {
                 ctrl.configTmp.name = 'change1';
@@ -332,55 +332,65 @@ describe('vms controller', function() {
                 expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('chain');
             });
 
-			it('should increase the number of Template up to 4', function() {
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				expect(ctrl.tplConfig.length).toEqual(2);
-				expect(ctrl.tplConfig[1].name).toEqual(2);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				expect(ctrl.tplConfig.length).toEqual(4);												
-			});
+            it('should increase the number of Template up to 4', function() {
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                expect(ctrl.tplConfig.length).toEqual(2);
+                expect(ctrl.tplConfig[1].name).toEqual(2);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                expect(ctrl.tplConfig.length).toEqual(4);
+            });
 
-			it('should decrease the number of Template least to 1', function() {
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				expect(ctrl.tplConfig.length).toEqual(3);
-				expect(ctrl.tplConfig[2].name).toEqual(3);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				expect(ctrl.tplConfig.length).toEqual(1);
-				expect(ctrl.tplConfig[0].interface).toEqual('1');
-			});
+            it('should decrease the number of Template least to 1', function() {
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                expect(ctrl.tplConfig.length).toEqual(3);
+                expect(ctrl.tplConfig[2].name).toEqual(3);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                expect(ctrl.tplConfig.length).toEqual(1);
+                expect(ctrl.tplConfig[0].interface).toEqual('1');
+            });
 
-			it('should update VM\' info', function() {
-				ctrl.configTmp.name = 'change1';
-				ctrl.configTmp.description = 'change2';
-				ctrl.configTmp.id = vmid;
-				ctrl.configTmp.CPU.NumOfCPU = 'change4';
-				ctrl.configTmp.memory.memory = '2';				
-				ctrl.updateConfig(vmid);
-				expect(ctrl.vms[0].name).toBe('change1');
-				expect(ctrl.vms[0].cpus).toBe('change4');
-				expect(ctrl.vms[0].mem).toEqual(2048);
-				expect(ctrl.vms[0].description).toBe('change2');
-				expect(ctrl.showPage).toEqual(0);
-			});
+            it('should update VM\' info', function() {
+                ctrl.configTmp.name = 'change1';
+                ctrl.configTmp.description = 'change2';
+                ctrl.configTmp.id = vmid;
+                ctrl.configTmp.CPU.NumOfCPU = 'change4';
+                ctrl.configTmp.memory.memory = '2';
+                ctrl.updateConfig(vmid);
+                expect(ctrl.vms[0].name).toBe('change1');
+                expect(ctrl.vms[0].cpus).toBe('change4');
+                expect(ctrl.vms[0].mem).toEqual(2048);
+                expect(ctrl.vms[0].description).toBe('change2');
+                expect(ctrl.showPage).toEqual(0);
+            });
 
-			it('should save VM template', function() {
-				ctrl.saveTemp.name = 'a';
-				ctrl.saveTemp.modeSaveDisk.diskMode = 'copy';
-				ctrl.saveTemp.modeSaveDisk.saveMode = 'clone';
-				ctrl.saveVMTemplate(vmid);
-				expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('copy');
-				expect(ctrl.saveTemp.modeSaveDisk.saveMode).toBe('clone');
+            it('should save VM template', function() {
+                ctrl.saveTemp.name = 'a';
+                ctrl.saveTemp.modeSaveDisk.diskMode = 'copy';
+                ctrl.saveTemp.modeSaveDisk.saveMode = 'clone';
+                ctrl.saveVMTemplate(vmid);
+                expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('copy');
+                expect(ctrl.saveTemp.modeSaveDisk.saveMode).toBe('clone');
             });
         });
+
+        describe('after loadVMs and showVmDetail:', function() {
+            beforeEach(function() {
+                ctrl.showVmDetail(vmid);
+            });
+            it('the showDetail should toEqual true', function() {
+
+            });
+        });
+
     });
 
 
@@ -403,7 +413,7 @@ describe('vms controller', function() {
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                size:400
+                size: 400
             });
 
         });
@@ -421,7 +431,7 @@ describe('vms controller', function() {
         });
     });
     var oneVM;
-    describe('test the vm operation function', function() {
+    describe('test the vm operation function:', function() {
         beforeEach(function() {
             oneVMToPowerOff = ctrl.vms[0]; //power=1
             oneVMToPowerOn = ctrl.vms[1]; //power=0
@@ -445,13 +455,13 @@ describe('vms controller', function() {
         });
         it('should power off the vm after power off', function() {
             httpBackend.expectPOST('/services/api/virtual-machines/3633301/powerOff', 3633301)
-            .respond(oneVMPowerOffSuccess);
+                .respond(oneVMPowerOffSuccess);
 
             scope.$apply(function() {
                 ctrl.powerOperation(oneVMToPowerOff, 'powerOff');
 
             });
-            
+
             httpBackend.flush();
             expect(oneVMToPowerOff.power).toEqual(0);
             expect(oneVMToPowerOff.statusDisplay).toEqual('Stopped');
@@ -459,7 +469,7 @@ describe('vms controller', function() {
 
         it('should power on the vm after power on', function() {
             httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerOn', 3633401)
-            .respond(oneVMPowerOnSuccess);
+                .respond(oneVMPowerOnSuccess);
             scope.$apply(function() {
                 ctrl.powerOperation(oneVMToPowerOn, 'powerOn');
             });
@@ -468,7 +478,7 @@ describe('vms controller', function() {
         });
         it('should suspend the vm after suspend', function() {
             httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerPause', 3633401)
-            .respond(oneVMSuspendSuccess);
+                .respond(oneVMSuspendSuccess);
             scope.$apply(function() {
                 ctrl.powerOperation(oneVMToPowerOn, 'suspend');
             });
@@ -477,7 +487,7 @@ describe('vms controller', function() {
         });
         it('should power on the vm after restart', function() {
             httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerReset', 3633401)
-            .respond(oneVMPowerOnSuccess);
+                .respond(oneVMPowerOnSuccess);
             scope.$apply(function() {
                 ctrl.powerOperation(oneVMToPowerOn, 'restart');
             });
