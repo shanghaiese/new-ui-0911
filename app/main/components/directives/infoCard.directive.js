@@ -4,9 +4,9 @@
         .module('ilabDirective')
         .directive('infoCard', infoCard);
 
-    infoCard.$inject = ['$window', '$document', '$rootScope','machine'];
+    infoCard.$inject = ['$window', '$document', '$rootScope'];
 
-    function infoCard($window, $document, $rootScope, machine) {
+    function infoCard($window, $document, $rootScope) {
         return {
             restrict: 'E',
             scope: {
@@ -19,17 +19,18 @@
             templateUrl: 'main/templates/infoCard.tpl.html',
 
             link: function(scope, element, attrs) {
-                //change memory MB to GB
                 var id = scope.info.id;
-
-                scope.tmpMem = machine.transMemFromMB2GB(scope.info.mem) + 'G';
+                var memory = scope.info.mem;
+                
+                //change memory MB to GB
+                scope.tmpMem = transMemFromMB2GB(memory) + 'G';
                 scope.isShown = false;
                 scope.toggle = toggle;
                 scope.isRunning = isRunning; //operate of a machine
 
                 function isRunning(id) {
                     var bool = false;
-                    if(scope.running.indexOf(id) === -1) {
+                    if(scope.running.indexOf(id) == '-1') {
                         bool = false;
                     }else {
                         bool = true;
@@ -86,14 +87,10 @@
                     }
                 }
 
-
-
-
-
-
+                function transMemFromMB2GB(memory) {
+                    return Math.floor(memory / 1024 * 100) / 100;
+                }
             }
-
         };
-
     }
 })();

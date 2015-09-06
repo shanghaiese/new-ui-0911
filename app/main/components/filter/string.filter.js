@@ -19,13 +19,11 @@
                     end = "...";
                 }
                     
-
                 if (temp.length <= length) {
                     return text;
                 } else {
                     return String(text).substring(0, length - end.length) + end;
                 }
-
             };
         }
 })();
