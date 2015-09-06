@@ -1,28 +1,26 @@
 <div>
     <div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspended'}" ng-click="toggle()" dropdown-toggle>
-        <div class="tag-icon">
-            <span ng-class="{'ilabicon-vm': type === 'vm'}"></span>
-        </div>
+        <span class="tag-icon" ng-class="{'ilabicon-vm': type === 'vm'}"></span>
         <div class="tag-name">
-            <span>{{info.name}}</span>
+            <span title="{{info.name}}">{{info.name | truncateString: 13}}</span>
             <img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)" />
         </div>
     </div>
     <div class="info" ng-show="isShown">
-        <h2 class="card-key">{{info.name}}</h2>
-        <small>{{info.description}}</small>
+        <h5 class="info-title">{{info.name}}</h5>
+        <i class="description">{{info.description || 'no description'}}</i class="description">
         <div class="container-fluid" ng-if="type === 'vm'">
             <div class="row">
                 <strong class="col-xs-4">Config:</strong>
-                <span class="col-xs-7 col-xs-offset-1">{{info.config}}</span>
+                <span class="col-xs-7 col-xs-offset-1">{{info.cpus}}, {{info.mem}}</span>
             </div>
             <div class="row">
                 <strong class="col-xs-4">IP:</strong>
-                <span class="col-xs-7 col-xs-offset-1">{{info.ip}}</span>
+                <span class="col-xs-7 col-xs-offset-1" ng-repeat="net in info.network">{{net.ip || 'NA'}}</span>
             </div>
             <div class="row">
                 <strong class="col-xs-4">Network:</strong>
-                <span class="col-xs-7 col-xs-offset-1">{{info.network}}</span>
+                <span class="col-xs-7 col-xs-offset-1" ng-repeat="net in info.network">{{net.subnet.name}}</span>
             </div>
         </div>
         <div ng-if="type === pm">

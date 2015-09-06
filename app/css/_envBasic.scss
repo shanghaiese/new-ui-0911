@@ -1,0 +1,39 @@
+/* override carousel */
+.carousel-inner {
+	padding: 0 30px;
+	overflow: visible;
+
+	div {
+		text-align: left;
+	}
+}
+.carousel-control {
+	width: 20px;
+	&.left {
+		background-image: none;
+
+		span {
+			color: $gray;
+		}
+
+	}
+	&.right {
+		background-image: none;
+
+		span {
+			color: $gray;
+		}
+	}
+}
+
+.carousel-indicators {
+	bottom: -50px;
+	z-index: 0;
+	
+	li {
+		background-color: $gray;
+	}
+	li.active {
+		background-color: $light-blue;
+	}
+}
