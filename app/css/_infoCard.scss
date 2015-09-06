@@ -1,40 +1,39 @@
 info-card {
     display: inline-block;
-    margin-bottom: 15px;
-	div{
+    margin-bottom: $common-margin;
+    margin-right: $common-margin;
+	&>div{
 		.card {
-		    min-width: 160px;
-		    max-width: 200px;
+		    width: 180px;
             height: 44px;
-            text-align: center; 
+            text-align: left; 
 		    background-color: $body-bg;
-		    border-top: 1px  $lighter-gray4 solid ;
-		    border-right: 1px  $lighter-gray4 solid;
+            border-left: 7px $lighter-gray4 solid;
+            border-top: 1px  $lighter-gray4 solid;
+            border-right: 1px  $lighter-gray4 solid;
 		    border-bottom: 1px  $lighter-gray4 solid;
-		    border-left: 7px $green solid;
-		    margin-left: 5px;
-		    padding: 0px;
-		    border-radius: 4px;
-		    display: inline-block;
+		    padding: 10px 2px;
+            /* seems browser has bugs about this */
+            // border-top-left-radius: 0;
+            // border-bottom-left-radius: 0;
+            // border-top-right-radius: 4px;
+            // border-bottom-right-radius: 4px;
+            border-radius: 4px;
+	        cursor: pointer;
 
-		    &:hover {
-		        color: $light-blue;
-		        display: inline-block;
-		        text-decoration: none;
-		        cursor: pointer;
-		    }
-		    span{
-		    	padding-top: 3px;
+            &:hover {
+                color: $light-blue;
+                text-decoration: none;
 		    }
 		}
 		.card.on {
-			border-left: 7px solid $green;
+			border-left-color: $green;
 		}
 		.card.off {
-			border-left: 7px solid $red;
+			border-left-color: $red;
 		}
 		.card.suspend {
-			border-left: 7px solid $yellow;
+			border-left-color: $yellow;
 		}
 		
 		.info {
@@ -47,43 +46,16 @@ info-card {
             border-radius: 4px;
             border: 1px  $light-gray solid;
             z-index: 20;
-            h2 {
-                margin:15px;
+            .info-title {
+                margin-left: $common-margin;
+                margin-top: $common-margin;
             }
             small {
                 margin-left:15px; 
             }
 		}
-        .info{
-            &:before {
-                position: absolute;
-                top: 100%;
-                width: 0;
-                height: 0;
-                display: block;
-                content: "";
-                border-color: transparent;
-                border-style: solid solid outset;
-                pointer-evevts: none;
-            }
-            &:after {
-                position: absolute;
-                top: 100%;
-                width: 0;
-                height: 0;
-                display: block;
-                content: "";
-                border-color: transparent;
-                border-style: solid solid outset;
-                pointer-evevts: none;
-            }
-        }
 
         .tag-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 3px;
-            padding: 8px 5px 5px 5px;
             display: inline-block;
         }
         .tag-name {
@@ -94,9 +66,6 @@ info-card {
         }
         .btn-operation {
             margin: 5px 0px 10px 15px;
-        }
-        .card-key {
-            font-weight:bold; 
         }
 
         /*4 icon buttons for play/stop/pause/restart*/
@@ -148,99 +117,7 @@ info-card {
             }
         }
         
-        /*use dropdown-menu from bootstrap.css-------*/
-        .dropdown {
-            position: relative
-        }
-        .dropdown-toggle{
-            &:focus {
-                outline: 0
-            }
-        }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: -1px;
-            z-index: 40;
-            display: none;
-            float: left;
-            min-width: 70px;
-            padding: 5px 0;
-            margin: 2px 0 0;
-            font-size: 14px;
-            list-style: none;
-            background-color: $white;
-            border-radius: 4px;
-            background-clip: padding-box;
-        }
-        .dropdown-menu.pull-right {
-            right: 0;
-            left: auto;
-        }
-        .dropdown-menu .divider {
-            height: 1px;
-            margin: 9px 0;
-            overflow: hidden;
-            background-color: $lighter-gray3;
-        }
-        .dropdown-menu{
-            li{
-                a {
-            display: block;
-            padding: 6px 12px;
-            clear: both;
-            font-weight: normal;
-            line-height: 1.428571429;
-            color: $dark-gray;
-            white-space: nowrap;
-            min-width: 76px;
-            }
-                }
-        }
-        .dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
-            color: white;
-            text-decoration: none;
-            background-color: $light-blue;
-        }
-        .dropdown-menu>.active>a, .dropdown-menu>.active>a:hover, .dropdown-menu>.active>a:focus {
-            color: $white;
-            text-decoration: none;
-            background-color: $mediumBlue;
-            outline: 0;
-        }
-        .dropdown-menu>.disabled>a, .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-            color: $light-gray;
-        }
-        .dropdown-menu>.disabled>a:hover, .dropdown-menu>.disabled>a:focus {
-            text-decoration: none;
-            cursor: not-allowed;
-            background-color: transparent;
-            background-image: none;
-        }
-        .dropdown-menu>li>a>span {
-            margin-right: 5px;
-        }
-        .open>.dropdown-menu {
-            display: block;
-        }
-        .btn-group, .btn-group-vertical {
-            position: relative;
-            display: inline-block;
-            vertical-align: middle;
-        }
-        .btn-group ul li {
-            text-align: left;
-        }
-
-        .btn-line{
-            position: relative;
-            display: inline-block;
-        }
-
-        .stopIcon ilabicon-stop  {
-            font-size: 0.2em;
-        }
+        
 	}
 }
 

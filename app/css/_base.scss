@@ -4,17 +4,17 @@
 @import 'base-variables';
 
 /* Font Icon */
-span[class^="ilabicon-"], span[class^="intelicon-"] {
+span[class*="ilabicon-"], span[class*="intelicon-"] {
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 15px;
 	color: $dark-gray;
 }
-span[class^="ilabicon-"].clickable, span[class^="intelicon-"].clickable {
+span[class*="ilabicon-"].clickable, span[class*="intelicon-"].clickable {
 	font-size: 20px;
 	cursor: pointer;
 	color: $blue;
 }
-span[class^="ilabicon-"].disabled, span[class^="intelicon-"].disabled {
+span[class*="ilabicon-"].disabled, span[class*="intelicon-"].disabled {
 	font-size: 20px;
 	cursor: not-allowed;
 	color: $gray;

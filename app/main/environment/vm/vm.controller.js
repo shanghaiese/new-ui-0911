@@ -158,6 +158,7 @@
             that.vmTemp.network = [];
             var index = -1;
             angular.forEach(that.VMs, function(obj, key) {
+                console.log(that.VMs);
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
                     that.vmTemp.name = obj.name;
@@ -453,7 +454,7 @@
         function close(index) {
             alert.close(index);
         }
-
+        
     }
 
 })();

@@ -10,13 +10,18 @@
 
         self.env = _env;
         self.envs = _envs;
+        self.vmBuckets = [];
         self.activeTab = 1;
         self.power = power;
         self.runningVm = [];
+
+        var bucketSize = 5;
         activate();
 
         function activate() {
             attachStatusToVm(self.env.virtualMachines);
+            self.vmBuckets = splitIntoBuckets(self.env.virtualMachines, bucketSize);
+            console.log(self.vmBuckets);
         }
         $scope.$watch(function() {
             return self.env;
@@ -41,6 +46,17 @@
                     each.status = 'Suspended';
                 }
             });
+        }
+
+        function splitIntoBuckets(vms, bucketSize) {
+            var buckets = [];
+            if(bucketSize <= 0 || !angular.isNumber(bucketSize) || Math.floor(bucketSize) !== bucketSize) {
+                return;
+            }
+            for(var i=0; i<vms.length/bucketSize; ++i) {
+                buckets.push(vms.slice(i * bucketSize, i * bucketSize + bucketSize));
+            }
+            return buckets;
         }
 
         function power(vm, option) {

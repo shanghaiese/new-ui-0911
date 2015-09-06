@@ -15,7 +15,9 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "infoCard";
 @import "tableColumnFilter";
 @import "loading";
-@import "envList";
+@import "envs";
+@import "envBasic";
+
 body {
     margin-top: 50px;
     margin-bottom: 50px;
