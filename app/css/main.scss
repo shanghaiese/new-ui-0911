@@ -175,13 +175,15 @@ input[type="checkbox"] {
 .breadcrumb > li + li:before {
     content: "/\00a0";
 }
-
+ 
 
 /*vm table font color*/
 .mark-as-red
- {
+{
     color: $red;
 }
+
+
 
 
 /*sortable table header */
