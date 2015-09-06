@@ -1,0 +1,177 @@
+<!--link rel="stylesheet" href="deploy/form.css"-->
+<!-- <table class="table table-bordered table-striped table-intel"> -->
+<!-- <tr> -->
+<td colspan="6" class="adv-vm-inner-setting td-collapsed">
+    <div collapse="vms.id != Vm.showExpandPage">
+        <span class="intelicon-close-max" ng-click="Vm.showVmEdit(vms.id, false)"></span>
+        <tabset class="vm-setting-tabs" type="pills">
+            <!--ChangeVMSettingPanel-->
+                <tab active="toolTab.active" title="Configure Vm">
+                <tab-heading>
+                    <span class="intelicon-tools"></span>
+                </tab-heading>
+                <form class="form-horizontal default" id="config-vm" ng-submit="Vm.updateConfig(vms.id)">
+                    <div class="form-group"><label class="panel-topic">Edit Virtual Machine:</label></div>
+                    <div class="form-group">
+                        <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
+                        <div class="col-sm-10">
+                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.configTmp.name" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vm-description" class="col-sm-2 control-label">Description:</label>
+                        <div class="col-sm-10">
+                            <input id="vm-description" type="text" class="form-control" placeholder="Description" ng-model="Vm.configTmp.description" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vm-CPU" class="col-sm-2 control-label">CPU:</label>
+                        <div class="col-sm-10">
+                            <ilab-select class="drop-select" list="Vm.CPU" selected-item="Vm.configTmp.CPU" attr-to-display="NumOfCPU" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Memory:</label>
+                        <div class="col-sm-10">
+                            <ilab-select class="drop-select" list="Vm.Memory[Vm.configTmp.CPU.index]" selected-item="Vm.configTmp.memory" attr-to-display="memory" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Network:</label>
+                        <div class="dropdown adv-env-network-div col-sm-10" ng-repeat="(index, value) in Vm.configTmp.network">
+                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="setting-button-group">
+                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'">Update</button>
+                                <button class="btn btn-secondary" type="button" ng-click="Vm.cancelConfig(vms.id)">Cancel</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <!--SaveTemplatePanel-->
+            <tab title="Save Vm as template">
+                <tab-heading>
+                    <span class="intelicon-save-solid"></span>
+                </tab-heading>
+                <form class="form-horizontal default" id="saveVMTemplate" ng-submit="Vm.saveVMTemplate(vms.id)">
+                    <div class="form-group">
+                        <label class="panel-topic">Save Vm Template:</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
+                        <!--Only can be saved when Vm is not running-->
+                        <div class="col-sm-10">
+                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.saveTemp.name" required />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="vm-save-radio" label class="col-sm-2 control-label">Save mode:</label>
+                        <input id="vm-convert-radio" class="radio-checkbox-a" type="radio" name="saveMode" ng-model="Vm.saveTemp.modeSaveDisk.saveMode" value="convert" />
+                        <span class="save-temp-radio-label">Convert</span>
+                        <input id="vm-save-radio" class="radio-checkbox-b" type="radio" name="saveMode" ng-model="Vm.saveTemp.modeSaveDisk.saveMode" value="save" />
+                        <span class="save-temp-radio-label">Clone</span>
+                        <span class="intelicon-help-solid tip" tooltip-html="Vm.htmlTooltipSave" tooltip-placement="right"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="vm-save-radio" label class="col-sm-2 control-label">Disk mode:</label>
+                        <input id="vm-chain-radio" class="radio-checkbox-a" type="radio" name="disk-mode" ng-model="Vm.saveTemp.modeSaveDisk.diskMode" value="chain" />
+                        <span class="save-temp-radio-label">Chain</span>
+                        <input id="vm-copy-radio" class="radio-checkbox-b" type="radio" name="disk-mode" ng-model="Vm.saveTemp.modeSaveDisk.diskMode" value="copy" />
+                        <span class="save-temp-radio-label">Copy</span>
+                        <span class="intelicon-help-solid tip" tooltip-html="Vm.htmlTooltipDisk" tooltip-placement="right"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="adv-env-network" class="network col-sm-2 control-label">Default Net:</label>
+                        <div class="dropdown adv-env-network-div col-sm-10" ng-repeat="(index, value) in Vm.tplConfig">
+                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name"></ilab-select>
+                            <span class="intelicon-minus-solid clickable" ng-click="Vm.changeTplNumber(Vm.tplConfig, false)"></span>
+                            <span class="intelicon-plus-solid clickable" ng-click="Vm.changeTplNumber(Vm.tplConfig, true)"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <span class="setting-button-group">
+                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Save</button>
+                                <button class="btn btn-secondary" type="button" ng-click="Vm.cancelConfig()">Cancel</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </tab>
+            <!--Vm information Panel-->
+            <tab title="Vm Information">
+                <tab-heading>
+                    <span class="intelicon-information-solid"></span>
+                </tab-heading>
+                <form class="form-horizontal default">
+                    <div class="container-fluid">
+                        <form class="ng-pristine ng-valid">
+                            
+                                <h5>Detail Information:</h5>
+                           
+                            <div class="form-group">
+                                <div>
+                                    <strong class="col-md-2">Name:</strong>
+                                    <span class="col-md-10">{{Vm.oneVM.name}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Description:</strong>
+                                    <span class="col-md-10">{{(Vm.oneVM.description===null)?'NULL':Vm.oneVM.description}} </span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">iLab ID:</strong>
+                                    <span class="col-md-10">{{Vm.oneVM.id}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Power:</strong>
+                                    <span class="col-md-10">{{(Vm.oneVM.power>0)?'Running':'Stop'}}</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">Config:</strong>
+                                    <span class="col-md-10">{{Vm.oneVM.cups}}CPU,{{(Vm.oneVM.mem)/1024}}G</span>
+                                </div>
+                                <div>
+                                    <strong class="col-md-2">OS:</strong>
+                                    <span class="col-md-10">{{Vm.oneVM.os}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div ng-repeat="nics in Vm.oneVM.network">
+                                    <strong class="col-md-2">Nic{{nics.interface}} Network:</strong>
+                                    <span class="col-md-10">{{nics.label}}</span>
+                                    <strong class="col-md-2">Nic{{nics.interface}} IP:</strong>
+                                    <span class="col-md-10">{{nics.ip}}</span>
+                                    <strong class="col-md-2">Nic{{nics.interface}} MAC:</strong>
+                                    <span class="col-md-10">{{nics.mac}}</span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <strong class="col-md-2">VMM:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.vmm}}</span>
+                                <strong class="col-md-2">Disk 1:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.disk1}}</span>
+                                <strong class="col-md-2">Creat Date:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.created_date}}</span>
+                            </div>
+                            <div class="form-group">
+                                   <button class="btn btn-secondary col-md-offset-2" ng-click="Vm.showVmEdit(vms.id, false)">Close</button>
+                                
+                            </div>
+                        </form>
+                    </div>
+                </form>
+            </tab>
+            <tab disable=" true " title="Delete Vm ">
+                <tab-heading>
+                    <span class="intelicon-trash-outlined " ng-click="Vm.openDeleteDialog(vms.id) "></span>
+                </tab-heading>
+            </tab>
+        </tabset>
+    </div>
+</td>
+<!--  </tr> -->
+<!-- </table> -->
