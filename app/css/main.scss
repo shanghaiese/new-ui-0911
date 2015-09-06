@@ -15,6 +15,7 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "infoCard";
 @import "tableColumnFilter";
 @import "loading";
+@import "envList";
 body {
     margin-top: 50px;
     margin-bottom: 50px;
@@ -139,7 +140,10 @@ body {
 }
 /* override form group */
 .form-group {
-	margin-bottom: 5px;
+	margin-bottom: $common-margin/2;
+}
+form.form-horizontal .form-group:nth-last-child(2) {
+    margin-bottom: $common-margin;
 }
 /* override dropdown */
 .btn.dropdown-toggle {
@@ -182,7 +186,14 @@ input[type="checkbox"] {
 {
     color: $red;
 }
-
+/* override date picker */
+div[datepicker] {
+    .btn {
+        min-width: auto;
+        width: auto;
+        border: none;
+    }
+}
 
 
 
@@ -391,4 +402,9 @@ input[type="checkbox"] {
         }
     }
     
+}
+/* class that uses in controller area that pulls them up */
+.pull-up {
+    position: relative;
+    top: -40px;
 }

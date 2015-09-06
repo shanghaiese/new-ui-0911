@@ -36,7 +36,7 @@
     "it-mlaf-sass": "git://github.intel.com/IT-UI-Assets/it-mlaf-sass.git",
     "progressBar": "git://github.intel.com/ecilab/progressBar.git#0.0.3",
     "ilabicon": "git://github.intel.com/ecilab/ilabicon.git#1.0.0",
-    "ilab-select": "git://github.intel.com/ecilab/ilab-select.git#0.0.3",
+    "ilab-select": "git://github.intel.com/ecilab/ilab-select.git#0.0.4",
     "restangular": "~1.5.1",
     "angular-utils-ui-breadcrumbs": "~0.2.1",
     "angular-utils-pagination": "~0.8.3",
