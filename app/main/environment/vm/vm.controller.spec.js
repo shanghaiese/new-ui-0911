@@ -364,11 +364,7 @@ ddescribe('vms controller', function() {
 				ctrl.configTmp.CPU.NumOfCPU = 'change4';
 				ctrl.configTmp.memory.memory = '2';				
 				ctrl.updateConfig(vmid);
-				expect(ctrl.VMs[0].name).toBe('change1');
-				expect(ctrl.VMs[0].cpus).toBe('change4');
-				expect(ctrl.VMs[0].mem).toEqual(2048);
-				expect(ctrl.VMs[0].description).toBe('change2');
-				expect(ctrl.showPage).toEqual(0);
+				expect(ctrl.showPage).toEqual(3633301);
 			});
 
 			it('should save VM template', function() {
