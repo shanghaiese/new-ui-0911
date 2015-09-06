@@ -68,17 +68,17 @@
             </td>
             <td ng-if="Vm.thead[0].enabled" class="mark-as-blue">{{vms.name}}</td>
             <td ng-if="Vm.thead[1].enabled">
-                <span ng-repeat="networks in vms.network"><p>{{networks.ip}}</p></span>
+                <span ng-repeat="networks in vms.network">{{networks.ip}}<br/></span>
             </td>
             <td ng-if="Vm.thead[2].enabled">
-                {{vms.cpus}}CPU,{{vms.mem}}
+                {{vms.cpus}}CPU,{{vms.mem}}MB
             </td>
             <td ng-if="Vm.thead[3].enabled">
                 <button type="button" class="btn btn-secondary" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">Connect</button>
             </td>
             <td ng-if="Vm.thead[4].enabled">
                 <div class="dropdown inline">
-                    <button class="btn dropdown-toggle" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
+                    <button class="btn dropdown-toggle dropdown-power" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
                         {{vms.statusDisplay}}
                         <span class="caret"></span>
                     </button>

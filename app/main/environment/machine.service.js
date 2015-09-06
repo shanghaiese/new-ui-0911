@@ -48,7 +48,7 @@
                 name: 'console'
             }, {
                 display: 'Power',
-                name: 'statusOrderPriority'
+                name: 'statusDisplay'
             }];
             return thead;
         }

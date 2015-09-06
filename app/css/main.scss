@@ -15,12 +15,11 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "infoCard";
 @import "tableColumnFilter";
 @import "loading";
-@import "envList";
 body {
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
-	overflow-y: scroll;
+    overflow-y: scroll;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -102,7 +101,7 @@ body {
     border: 0;
     color: white;
     @include box-shadow(none);
-	cursor: pointer;
+    cursor: pointer;
 }
 .alert-warning {
     background-color: $orange; 
@@ -119,7 +118,7 @@ body {
 .alert.ng-move,
 .alert.ng-leave
 { 
-	@include transition(400ms ease-out all);
+    @include transition(400ms ease-out all);
 } 
  
 .alert.ng-enter.ng-enter-active, 
@@ -140,41 +139,42 @@ body {
 }
 /* override form group */
 .form-group {
-	margin-bottom: $common-margin/2;
-}
-form.form-horizontal .form-group:nth-last-child(2) {
-    margin-bottom: $common-margin;
+    margin-bottom: 5px;
 }
 /* override dropdown */
 .btn.dropdown-toggle {
-	text-align: left;
-	padding-right: 22px;
+    text-align: left;
+    padding-right: 22px;
+}
+.btn.dropdown-power {
+    text-align: center;
+    min-width: 115px;
 }
 .btn .caret {
-	position: absolute;
-	top: 20px;
-	right: 22px;
+    position: absolute;
+    top: 20px;
+    right: 22px;
 }
 /* override nav tabs */
 .nav.nav-tabs-intel {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 /* override checkbox size */
 input[type="checkbox"] {
-	width: 15px;
-	height: 15px;
+    width: 15px;
+    height: 15px;
 }
 /* override progress */
 .progress {
-	height: 10px;
-	margin-bottom: 5px;
-	cursor: pointer;
+    height: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
 /* override breadcrumb */
 .breadcrumb {
-	padding: 0;
-	margin-bottom: 10px;
-	background-color: white;
+    padding: 0;
+    margin-bottom: 10px;
+    background-color: white;
 }
 .breadcrumb > li + li:before {
     content: "/\00a0";
@@ -186,14 +186,7 @@ input[type="checkbox"] {
  {
     color: $red;
 }
-/* override date picker */
-div[datepicker] {
-    .btn {
-        min-width: auto;
-        width: auto;
-        border: none;
-    }
-}
+
 
 /*sortable table header */
 
@@ -239,6 +232,7 @@ div[datepicker] {
 }
 
 .table-intel {
+
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
         color: $light-blue;
         background-color: $dark-gray;
@@ -400,9 +394,4 @@ div[datepicker] {
         }
     }
     
-}
-/* class that uses in controller area that pulls them up */
-.pull-up {
-    position: relative;
-    top: -40px;
 }

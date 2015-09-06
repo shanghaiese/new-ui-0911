@@ -88,10 +88,10 @@ table {
 				border-right: none;
 				border-left: none;
 				input[type="checkbox"] {
-				 	width: 20px;
-				 	height: 20px;
+				 	width: 18px;
+				 	height: 18px;
+				// 	left: -10px;
 				}
-				
 			}
 			th:last-child {
 				border-right: 1px solid $light-gray;
@@ -117,14 +117,10 @@ table {
 					left: 10px;
 				}
 				input[type="checkbox"] {
-				 	width: 20px;
-				 	height: 20px;
-				 }
-				img {
-				 	width:20px;
-				 	height: 20px;
+				 	width: 18px;
+				 	height: 18px;
+				// 	left: -10px;
 				}
-
 
 			}
 			td:last-child {
