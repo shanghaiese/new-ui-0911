@@ -1,4 +1,4 @@
-describe('vms controller', function() {
+ddescribe('vms controller', function() {
     var vmFakeData = {
         "id": 2068901,
         "name": "4.7_switch_test",
@@ -147,7 +147,6 @@ describe('vms controller', function() {
 		spyOn(machine, 'transMemFromGB2MB').and.callFake(function(gb) {
             return gb * 1024;
 		});
-		spyOn(machine, 'updateVMDetail').and.callThrough();
 		spyOn(machine, 'saveVMTpl').and.callFake(function(vmid, saveTpl) {
 			return 'successSave';
 		});

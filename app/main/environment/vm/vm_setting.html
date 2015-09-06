@@ -15,37 +15,37 @@
                     <div class="form-group">
                         <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
                         <div class="col-sm-10">
-                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.configTmp.name" required />
+                            <input id="vm-name" type="text" class="form-control" placeholder="Virtual Machine 1" ng-model="Vm.configTmp.name" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'" required />
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vm-description" class="col-sm-2 control-label">Description:</label>
                         <div class="col-sm-10">
-                            <input id="vm-description" type="text" class="form-control" placeholder="Description" ng-model="Vm.configTmp.description" />
+                            <input id="vm-description" type="text" class="form-control" placeholder="Description" ng-model="Vm.configTmp.description" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="vm-CPU" class="col-sm-2 control-label">CPU:</label>
                         <div class="col-sm-10">
-                            <ilab-select class="drop-select" list="Vm.CPU" selected-item="Vm.configTmp.CPU" attr-to-display="NumOfCPU"></ilab-select>
+                            <ilab-select class="drop-select" list="Vm.CPU" selected-item="Vm.configTmp.CPU" attr-to-display="NumOfCPU" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Memory:</label>
                         <div class="col-sm-10">
-                            <ilab-select class="drop-select" list="Vm.Memory[Vm.configTmp.CPU.index]" selected-item="Vm.configTmp.memory" attr-to-display="memory"></ilab-select>
+                            <ilab-select class="drop-select" list="Vm.Memory[Vm.configTmp.CPU.index]" selected-item="Vm.configTmp.memory" attr-to-display="memory" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Network:</label>
                         <div class="dropdown adv-env-network-div col-sm-10" ng-repeat="(index, value) in Vm.configTmp.network">
-                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name"></ilab-select>
+                            <ilab-select class="drop-select" list="Vm.network" selected-item="value" attr-to-display="name" is-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended' || vms.statusDisplay=='Running'"></ilab-select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <span class="setting-button-group">
-                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Running' || vms.statusDisplay=='Suspended'">Update</button>
+                                <button class="btn btn-primary" type="submit" ng-disabled="vms.statusDisplay=='Disconnected' || vms.statusDisplay=='Suspended'">Update</button>
                                 <button class="btn btn-secondary" type="button" ng-click="Vm.cancelConfig(vms.id)">Cancel</button>
                             </span>
                         </div>
