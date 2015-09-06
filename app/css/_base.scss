@@ -6,7 +6,7 @@
 /* Font Icon */
 span[class^="ilabicon-"], span[class^="intelicon-"] {
 	cursor: pointer;
-	font-size: 20px;
+	font-size: 15px;
 	color: $dark-gray;
 }
 span[class^="ilabicon-"].clickable, span[class^="intelicon-"].clickable {
@@ -22,6 +22,7 @@ span[class^="ilabicon-"].disabled, span[class^="intelicon-"].disabled {
 .btn span[class*="icon"] {
 	color: white;
 }
+
 /* A */
 a[ng-click] {
 	cursor: pointer;

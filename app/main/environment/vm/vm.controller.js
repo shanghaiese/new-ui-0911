@@ -44,7 +44,7 @@
         that.saveVMTemplate = saveVMTemplate;
         that.changeTplNumber = changeTplNumber;
         that.tplConfig = [];
-        
+
         that.saveTemp = {
             name: "",
             modeSaveDisk: {
@@ -69,20 +69,59 @@
             network: []
         };
 
-        that.CPU = [{index: 0, NumOfCPU: "1"}, 
-                    {index: 1, NumOfCPU: "2"}, 
-                    {index: 2, NumOfCPU: "4"}, 
-                    {index: 3, NumOfCPU: "8"}, 
-                    {index: 4, NumOfCPU: "16"}];
+        that.CPU = [{
+            index: 0,
+            NumOfCPU: "1"
+        }, {
+            index: 1,
+            NumOfCPU: "2"
+        }, {
+            index: 2,
+            NumOfCPU: "4"
+        }, {
+            index: 3,
+            NumOfCPU: "8"
+        }, {
+            index: 4,
+            NumOfCPU: "16"
+        }];
 
         that.Memory = [
-                        [{memory: "0.5G"}, {memory: "1G"}, {memory: "2G"}, {memory: "4G"}],
-                        [{memory: "2G"}, {memory: "4G"}, {memory: "8G"}],
-                        [{memory: "4G"}, {memory: "8G"}, {memory: "16G"}],
-                        [{memory: "8G"}, {memory: "16G"}],
-                        [{memory: "16G"}, {memory: "32G"}]
-                      ];
-        
+            [{
+                memory: "0.5G"
+            }, {
+                memory: "1G"
+            }, {
+                memory: "2G"
+            }, {
+                memory: "4G"
+            }],
+            [{
+                memory: "2G"
+            }, {
+                memory: "4G"
+            }, {
+                memory: "8G"
+            }],
+            [{
+                memory: "4G"
+            }, {
+                memory: "8G"
+            }, {
+                memory: "16G"
+            }],
+            [{
+                memory: "8G"
+            }, {
+                memory: "16G"
+            }],
+            [{
+                memory: "16G"
+            }, {
+                memory: "32G"
+            }]
+        ];
+
         that.htmlTooltipSave = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Convert:\&nbsp</b></td><td>original VM goes away<br /></td></tr><tr valign=\"top\"><td><b>Copy: </b></td> <td> original VM stays intact, a copy of the VM is saved as a template</td></tr></table>');
         that.htmlTooltipDisk = $sce.trustAsHtml('<table><tr valign=\"top\"><td><b>Chain:\&nbsp</b></td><td>linked to parent VM/template - Most efficient disk usage when updating existing templates<br /></td></tr><tr valign=\"top\"><td><b>Clone:</b></td> <td>fully independent disk with deltas merged - use this for freshly imported VMs and when you want to remove dependency on parent template</td></tr></table>');
 
@@ -104,6 +143,7 @@
         function loadVMList() {
             that.VMs = []; //empty the set before reload;
             var list = _vms;
+            console.log(_vms);
             angular.forEach(list, function(value, index) {
                 if (value.disable === 0) {
                     switch (value.power) {
@@ -334,6 +374,7 @@
             angular.forEach(vmsForOperation, function(vm) {
                 var vmFromAPI = machine.getOneVmForOperation(vm.id);
                 var vmFrontEnd = setVMTemp(vm.id);
+                console.log(vmFrontEnd);
                 if (op === 'powerOn' && vmFrontEnd.power !== 1) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOn", vm.id).then(function(returnData) {
@@ -352,10 +393,18 @@
                                 message: 'Power on FAILED!'
                             });
                         }
+                    }, function(error) {
+                        console.log(error);
+                        that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        alert.open({
+                            type: 'danger',
+                            message: error.statusText
+                        });
                     });
                 } else if (op === 'powerOff' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
                     vmFromAPI.post("powerOff", vm.id).then(function(returnData) {
+                        console.log(returnData);
                         if (returnData.power === 0) {
                             vmFrontEnd.statusDisplay = 'Stopped';
                             vmFrontEnd.power = 0;
@@ -372,6 +421,13 @@
                             });
                         }
 
+                    }, function(error) {
+                        console.log(error);
+                        that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        alert.open({
+                            type: 'danger',
+                            message: error.statusText
+                        });
                     });
                 } else if (op === 'restart' && vmFrontEnd.power !== 0) {
                     that.inOperationVMs.push(vmFrontEnd);
@@ -392,6 +448,13 @@
                             });
                         }
 
+                    }, function(error) {
+                        console.log(error);
+                        that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        alert.open({
+                            type: 'danger',
+                            message: error.statusText
+                        });
                     });
                 } else if (op === 'suspend' && vmFrontEnd.power !== 0 && vmFrontEnd.power !== 2) {
                     that.inOperationVMs.push(vmFrontEnd);
@@ -413,6 +476,13 @@
                             });
                         }
 
+                    }, function(error) {
+                        console.log(error);
+                        that.inOperationVMs.splice(that.inOperationVMs.indexOf(vmFrontEnd));
+                        alert.open({
+                            type: 'danger',
+                            message: error.statusText
+                        });
                     });
                 }
 
@@ -425,7 +495,7 @@
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                size:size
+                size: size
             });
 
             modalInstance.result.then(function(confirm) {
