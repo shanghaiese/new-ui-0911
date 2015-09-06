@@ -158,7 +158,6 @@
             that.vmTemp.network = [];
             var index = -1;
             angular.forEach(that.VMs, function(obj, key) {
-                console.log(that.VMs);
                 if (obj.id == vmid) {
                     that.vmTemp.id = obj.id;
                     that.vmTemp.name = obj.name;
@@ -267,7 +266,6 @@
                     obj.description = that.configTmp.description;
                     angular.forEach(obj.network, function(obj, key) {
                         index = parseInt(obj.interface) - 1;
-                        console.log(index);
                         obj.label = that.configTmp.network[index].name;
                     });
                 }
@@ -432,7 +430,6 @@
             modalInstance.result.then(function(confirm) {
                 that.dialogResult = confirm;
                 if (that.dialogResult === true) {
-                    console.log();
 
                     /*push vm into inOperation*/
                     angular.forEach(that.selectedVMs, function(selectedVM) {
@@ -447,7 +444,6 @@
                     });
 
                 }
-                console.log('Modal dismissed at: ' + new Date());
             });
         }
 
