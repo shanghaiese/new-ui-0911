@@ -234,10 +234,16 @@ label.require {
 ::-webkit-scrollbar-thumb:window-inactive {
     background-color: $lighter-gray4;
 }
+
 /* iLab Section */
 .ilab-section {
 	background-color: $lighter-gray1;
 	display: block;
 	padding: 10px;
 	margin: 10px 0;
+}
+/* Description text */ 
+i.description {
+	color: $gray;
+	line-height: 30px;
 }
