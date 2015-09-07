@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -535,7 +535,7 @@
             });
         }
 
-        function openDeleteDialog(size,vms) {
+        function openDeleteDialog(size, vms) {
             //make sure that the enter type is array
             var vmsForDelete = [];
             if (typeof(vms.length) == 'undefined') {
@@ -584,7 +584,7 @@
         function close(index) {
             alert.close(index);
         }
-        
+
     }
 
 })();

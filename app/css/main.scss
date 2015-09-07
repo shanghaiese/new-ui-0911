@@ -209,8 +209,13 @@ div[datepicker] {
     color:$blue;
     cursor: pointer;
 }
-
-
+/* overwrite modal dialog */
+@media (min-width: 768px) {
+    //when you call middle modal please call as: modalDialog(middle)
+    .modal-middle {
+        width: 400px
+    }
+}
 
 /*sortable table header */
 
@@ -251,9 +256,6 @@ div[datepicker] {
     }
 }
 
-.modal-dialog {
-    width: 400px;
-}
 .hr.detail-hr {
     margin-top: $common-margin;
     margin-bottom: $common-margin; 
