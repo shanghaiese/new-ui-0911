@@ -58,7 +58,7 @@
         that.alerts = [];
         that.close = close;
 
-        that.columns = [{display: 'Name'}, {display: 'Owner'}, {display: 'Capacity'}, {display: 'Deploy At'}];
+        that.columns = [{display: 'Name', enabled: true, readOnly: true}, {display: 'Owner', enabled: true, readOnly: false}, {display: 'Capacity', enabled: true, readOnly: false}, {display: 'Deploy At', enabled: true, readOnly: false}];
         that.envs = [{
             "id": 2067601,
             "name": "pskhodad_env_1",
