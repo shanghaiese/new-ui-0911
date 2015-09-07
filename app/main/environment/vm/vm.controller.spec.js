@@ -1,4 +1,4 @@
-describe('vms controller', function() {
+ddescribe('vms controller', function() {
     var vmFakeData = {
         "id": 2068901,
         "name": "4.7_switch_test",
@@ -127,9 +127,9 @@ describe('vms controller', function() {
         };
         ctrl = $controller('VmCtrl', {
             '$scope': scope,
-            _env: vmFakeData,
-            _vms: vmFakeData.virtualMachines
-                // _VMs: vmFakeData
+            _env:vmFakeData,
+            _vms:vmFakeData.virtualMachines
+           // _vms: vmFakeData
 
         });
         ctrlDelete = $controller('ModalInstanceCtrl', {
@@ -147,7 +147,6 @@ describe('vms controller', function() {
         spyOn(machine, 'transMemFromGB2MB').and.callFake(function(gb) {
             return gb * 1024;
         });
-        spyOn(machine, 'updateVMDetail').and.callThrough();
         spyOn(machine, 'saveVMTpl').and.callFake(function(vmid, saveTpl) {
             return 'successSave';
         });
@@ -297,18 +296,18 @@ describe('vms controller', function() {
                 expect(ctrl.showExpandPage).toEqual(0);
             });
 
-            it('should close the expanded table and revert the data to the original', function() {
-                ctrl.configTmp.name = 'change1';
-                ctrl.configTmp.description = 'change2';
-                ctrl.configTmp.id = 'change3';
-                ctrl.configTmp.CPU.NumOfCPU = 'change4';
-                ctrl.configTmp.memory.memory = 'change5';
-                ctrl.configTmp.network = [];
-                ctrl.showVmEdit(vmid, false);
-                expect(ctrl.showExpandPage).toEqual(0);
-                expect(ctrl.configTmp.name).toBe('ilabredis-devba');
-                expect(ctrl.configTmp).toEqual(ctrl.vmTemp);
-            });
+			it('should close the expanded table and revert the data to the original', function() {
+				ctrl.configTmp.name = 'change1';
+				ctrl.configTmp.description = 'change2';
+				ctrl.configTmp.id = 'change3';
+				ctrl.configTmp.CPU.NumOfCPU = 'change4';
+				ctrl.configTmp.memory.memory = 'change5';
+				ctrl.configTmp.network = [];
+				ctrl.showVmEdit(vmid, false);
+				expect(ctrl.showExpandPage).toEqual(0);
+				expect(ctrl.configTmp.name).toBe('ilabredis-devba');
+				expect(ctrl.configTmp).toEqual(ctrl.vmTemp);				
+			});
 
             it('should revert any change on configTmp to the origin', function() {
                 ctrl.configTmp.name = 'change1';
@@ -332,44 +331,40 @@ describe('vms controller', function() {
                 expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('chain');
             });
 
-            it('should increase the number of Template up to 4', function() {
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                expect(ctrl.tplConfig.length).toEqual(2);
-                expect(ctrl.tplConfig[1].name).toEqual(2);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                expect(ctrl.tplConfig.length).toEqual(4);
-            });
+			it('should increase the number of Template up to 4', function() {
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				expect(ctrl.tplConfig.length).toEqual(2);
+				expect(ctrl.tplConfig[1].name).toEqual(2);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				expect(ctrl.tplConfig.length).toEqual(4);												
+			});
 
-            it('should decrease the number of Template least to 1', function() {
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, true);
-                ctrl.changeTplNumber(ctrl.tplConfig, false);
-                expect(ctrl.tplConfig.length).toEqual(3);
-                expect(ctrl.tplConfig[2].name).toEqual(3);
-                ctrl.changeTplNumber(ctrl.tplConfig, false);
-                ctrl.changeTplNumber(ctrl.tplConfig, false);
-                ctrl.changeTplNumber(ctrl.tplConfig, false);
-                expect(ctrl.tplConfig.length).toEqual(1);
-                expect(ctrl.tplConfig[0].interface).toEqual('1');
-            });
+			it('should decrease the number of Template least to 1', function() {
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, true);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				expect(ctrl.tplConfig.length).toEqual(3);
+				expect(ctrl.tplConfig[2].name).toEqual(3);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				ctrl.changeTplNumber(ctrl.tplConfig, false);
+				expect(ctrl.tplConfig.length).toEqual(1);
+				expect(ctrl.tplConfig[0].interface).toEqual('1');
+			});
 
-            it('should update VM\' info', function() {
-                ctrl.configTmp.name = 'change1';
-                ctrl.configTmp.description = 'change2';
-                ctrl.configTmp.id = vmid;
-                ctrl.configTmp.CPU.NumOfCPU = 'change4';
-                ctrl.configTmp.memory.memory = '2';
-                ctrl.updateConfig(vmid);
-                expect(ctrl.vms[0].name).toBe('change1');
-                expect(ctrl.vms[0].cpus).toBe('change4');
-                expect(ctrl.vms[0].mem).toEqual(2048);
-                expect(ctrl.vms[0].description).toBe('change2');
-                expect(ctrl.showExpandPage).toEqual(0);
+			it('should update VM\' info', function() {
+				ctrl.configTmp.name = 'change1';
+				ctrl.configTmp.description = 'change2';
+				ctrl.configTmp.id = vmid;
+				ctrl.configTmp.CPU.NumOfCPU = 'change4';
+				ctrl.configTmp.memory.memory = '2';				
+				ctrl.updateConfig(vmid);
+				expect(ctrl.showExpandPage).toEqual(3633301);
             });
 
             it('should save VM template', function() {

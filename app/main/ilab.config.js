@@ -96,12 +96,6 @@
                 },
                 resolve: {
                     _env: function(environmentService, $stateParams, $q) {
-                        // return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'})
-                        // .then(function(data){
-                        //     return data;
-                        // }, function(reason) {
-                        //     return $q.reject(reason);
-                        // });
                          return environmentService.get($stateParams.envId).then(function(env){
                             return env.expand('virtualMachines', 'networks');
                          });

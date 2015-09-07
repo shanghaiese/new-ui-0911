@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular
@@ -330,23 +330,37 @@
 
         function updateConfig(vmid) {
             var index;
-            angular.forEach(that.vms, function(obj, key) {
-                if (obj.id == vmid) {
-                    obj.name = that.configTmp.name;
-                    obj.cpus = that.configTmp.CPU.NumOfCPU;
-                    var gb = parseInt(that.configTmp.memory.memory);
-                    obj.mem = machine.transMemFromGB2MB(gb);
-                    obj.description = that.configTmp.description;
-                    angular.forEach(obj.network, function(obj, key) {
-                        index = parseInt(obj.interface) - 1;
-                        obj.label = that.configTmp.network[index].name;
-                    });
-                }
-            });
             //Here need to add update();
             //close the panel
-            machine.updateVMDetail(vmid, that.configTmp);
-            showVmEdit(vmid, true);
+            var vm = machine.getOneVmForOperation(vmid).get();
+            vm.then(function(VmNeedToUpdate) {
+                VmNeedToUpdate.name = that.configTmp.name;
+                VmNeedToUpdate.description = that.configTmp.description;
+                VmNeedToUpdate.cpus = that.configTmp.CPU.NumOfCPU;
+                var gb = parseInt(that.configTmp.memory.memory);
+                VmNeedToUpdate.mem = machine.transMemFromGB2MB(gb);
+                //network... 
+                VmNeedToUpdate.put().then(function(data) {
+                    showVmEdit(vmid, true);
+                    angular.forEach(that.vms, function(obj, key) {
+                        if (obj.id == vmid) {
+                            obj.name = that.configTmp.name;
+                            obj.cpus = that.configTmp.CPU.NumOfCPU;
+                            var gb = parseInt(that.configTmp.memory.memory);
+                            obj.mem = machine.transMemFromGB2MB(gb);
+                            obj.description = that.configTmp.description;
+                            angular.forEach(obj.network, function(obj, key) {
+                                index = parseInt(obj.interface) - 1;
+                                // console.log(index);
+                                obj.label = that.configTmp.network[index].name;
+                            });
+                        }
+                    });
+                }, function() {
+                    showVmEdit(vmid, true);
+                });
+            });
+
         }
 
         function changeTplNumber(tplConfig, bool) {
