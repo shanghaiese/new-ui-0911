@@ -4,7 +4,7 @@
 			<span class="icon-color" ng-class="{'ilabicon-vm': type === 'vm'}"></span>
 		</div>
 		<div class="tag-name inline">
-			<span title="{{info.name}}">{{info.name | truncateString:2}}</span>
+			<span title="{{info.name}}">{{info.name | truncateString:5}}</span>
 			<img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)"/>
 		</div>
 	</div>

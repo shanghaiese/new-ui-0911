@@ -4,7 +4,7 @@
 	<a ui-sref="envs.detail.setting({envId: EnvBasic.env.id})"><span class="intelicon-settings-solid clickable"></span></a>
 </div>
     <h5>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h5>
-    <div class="card-container" ng-show="EnvBasic.env.virtualMachines.length < 13">
+    <div class="card-container ilab-selection" ng-show="EnvBasic.env.virtualMachines.length < 13">
         <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vm, option)" running="EnvBasic.runningVm" ng-repeat="vm in EnvBasic.env.virtualMachines"></info-card>
     </div>
     <div class="env-basic">

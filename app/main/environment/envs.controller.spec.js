@@ -154,7 +154,7 @@ describe('EnvsCtrl', function() {
                             "maxAllowedVms": 10
                             };
 
-        xit('should add a new env info by calling addEnv', function() {
+        it('should add a new env info by calling addEnv', function() {
             ctrl.addEnv();
             expect(ctrl.newEnv).toEqual(newEnv);
             expect(ctrl.createdEnv).toEqual(returndata);
