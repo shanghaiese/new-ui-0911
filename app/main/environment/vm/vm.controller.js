@@ -1,4 +1,4 @@
-(function () {
+(function() {
     'use strict';
 
     angular
@@ -535,7 +535,14 @@
             });
         }
 
-        function openDeleteDialog(size) {
+        function openDeleteDialog(size, vms) {
+            //make sure that the enter type is array
+            var vmsForDelete = [];
+            if (typeof(vms.length) == 'undefined') {
+                vmsForDelete.push(vms);
+            } else {
+                vmsForDelete = vms;
+            }
 
             var modalInstance = $modal.open({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
@@ -548,11 +555,11 @@
                 that.dialogResult = confirm;
                 if (that.dialogResult === true) {
                     /*push vm into inOperation*/
-                    angular.forEach(that.selectedVMs, function(selectedVM) {
+                    angular.forEach(vmsForDelete, function(selectedVM) {
                         that.inOperationVMs.push(selectedVM);
                     });
                     /*call api to delete vm*/
-                    angular.forEach(that.selectedVMs, function(virtualMachineForDelete) {
+                    angular.forEach(vmsForDelete, function(virtualMachineForDelete) {
                         machine.deleteVM(virtualMachineForDelete.id).then(function() {
                             that.inOperationVMs.splice(that.inOperationVMs.indexOf(virtualMachineForDelete));
                             that.vms.splice(that.vms.indexOf(virtualMachineForDelete));
@@ -577,7 +584,7 @@
         function close(index) {
             alert.close(index);
         }
-        
+
     }
 
 })();

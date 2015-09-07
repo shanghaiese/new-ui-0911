@@ -5,7 +5,7 @@
 		<ul>
 			<li ng-repeat="col in currentColumns">
 				<label>
-					<input type="checkbox" ng-model="col.enabled">{{col.display}}
+					<input type="checkbox" ng-model="col.enabled" ng-disabled="col.readOnly">{{col.display}}
 				</label>
 			</li>
 		</ul>

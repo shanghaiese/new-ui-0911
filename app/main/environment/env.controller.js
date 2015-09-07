@@ -21,7 +21,6 @@
         function activate() {
             attachStatusToVm(self.env.virtualMachines);
             self.vmBuckets = splitIntoBuckets(self.env.virtualMachines, bucketSize);
-            console.log(self.vmBuckets);
         }
         $scope.$watch(function() {
             return self.env;
