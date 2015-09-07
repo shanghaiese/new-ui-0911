@@ -277,27 +277,39 @@ div[datepicker] {
         background-color: $dark-gray;
         li > a {
             padding: 11px 20px;
-            font-size: 18px;
             span {
                 color: $white;
+                font-size: 18px;
             }  
         }
-        li > a:active,
+
         li.active > a,
         li.active > a:hover,
-        li.active > a:focus,
+        li.active > a:focus {
+            padding: 11px 20px;
+            span {
+                color: $light-blue;
+                font-size: 18px;
+            }
+        }
+
         li > a:hover {
             padding: 11px 20px;
             font-size: 18px;
             span {
                 color: $light-blue;
+                
             }
         }
+
         li.disabled > a,
         li.disabled > a:hover,
-        li.disabled > a:focus,
-        li > a:hover {
-            cursor: pointer;
+        li.disabled > a:focus {
+            cursor: not-allowed;
+            span {
+                color: $gray;
+                cursor: not-allowed;
+            }
         }
     }
     .table-span-td {
@@ -373,21 +385,18 @@ div[datepicker] {
             color: $gray;
             font-size: 17px;
             margin-top: 2px;
-            margin-left: 23.5px;
+            margin-left: 23px;
         }
         .intelicon-help-solid:hover {
             color: $dark-gray;
         }
-        .intelicon-minus-solid{
+        .intelicon-minus-solid, .intelicon-plus-solid{
             padding-left: 5px;
             color: $blue;
             font-size: 17px;
         }
-        .intelicon-plus-solid {
-            padding-left: 5px;
-            color: $blue;
-            font-size: 17px;
-        }
+
+
     }
     .adv-env-network {
         min-width: 160px;
@@ -413,7 +422,7 @@ div[datepicker] {
         font-size: 15px;
         background-color: $dark-gray;
         color: $white;
-        margin: 1em;
+        margin: 15px;
     }
 }
 

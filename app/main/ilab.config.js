@@ -95,8 +95,10 @@
                     }
                 },
                 resolve: {
-                    _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'});
+                    _env: function(environmentService, $stateParams, $q) {
+                         return environmentService.get($stateParams.envId).then(function(env){
+                            return env.expand('virtualMachines','networks');
+                         });
                     }
                 },
                 breadcrumb: {
