@@ -15,7 +15,7 @@
         self.power = power;
         self.runningVm = [];
 
-        var bucketSize = 15;
+        var bucketSize = 12;
         activate();
 
         function activate() {
