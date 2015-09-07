@@ -103,7 +103,7 @@
                         //     return $q.reject(reason);
                         // });
                          return environmentService.get($stateParams.envId).then(function(env){
-                            return env.expand('virtualMachines');
+                            return env.expand('virtualMachines', 'networks');
                          });
                     }
                 },

@@ -18,11 +18,16 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "envs";
 @import "envBasic";
 
+html {
+    min-height: 100%;
+}
 body {
+    position: relative;
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
     overflow-y: scroll;
+    min-height: 100%;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -422,4 +427,8 @@ div[datepicker] {
 .pull-up {
     position: relative;
     top: -40px;
+}
+/* set icon size for dropdown */
+.dropdown span[class*="icon-"] {
+    font-size: 15px;
 }

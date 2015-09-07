@@ -7,9 +7,11 @@
     bottom: 0;
     /* higher than any content other than left menu */
     z-index: 90;
+    overflow: hidden;
 }
 .spin-box {
-    position: absolute;
+    z-index: 90;
+    position: fixed;
     margin: auto;
     left: 50%;
     top: 30%;

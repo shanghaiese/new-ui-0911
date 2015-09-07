@@ -3,7 +3,7 @@
 	<a ui-sref="envs.detail.vm({envId: EnvBasic.env.id})" class="btn btn-default">advanced</a>
 	<a ui-sref="envs.detail.setting({envId: EnvBasic.env.id})"><span class="intelicon-settings-solid clickable"></span></a>
 </div>
-<div class="ilab-section">
+<div class="ilab-section" style="margin-bottom: 50px">
     <h5>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h4>
     <carousel interval="-1"  no-transition="true">
         <slide ng-repeat="bucket in EnvBasic.vmBuckets" disable-ng-animate>
