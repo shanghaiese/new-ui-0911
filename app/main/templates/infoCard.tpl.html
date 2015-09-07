@@ -1,17 +1,34 @@
 <div>
 	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspended'}" ng-click="toggle()" dropdown-toggle >
-		<div class="tag-icon inline">
-			<span class="icon-color" ng-class="{'ilabicon-vm': type === 'vm'}"></span>
+		<div class="container-fluid" ng-if="type === 'vm'">
+			<div class="tag-icon inline">
+				<span class="icon-color ilabicon-vm"></span>
+			</div>
+			<div class="tag-name inline">
+				<span class="inline" title="{{info.name}}">{{info.name | truncateString:10}}</span>
+			</div>
+			<div class="inline pull-right">
+				<img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)"/>
+			</div>
 		</div>
-		<div class="tag-name inline">
-			<span title="{{info.name}}">{{info.name | truncateString:5}}</span>
-			<img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)"/>
+		<div class="container-fluid" ng-if="type === 'pm'">
+			<div class="tag-icon inline">
+				<span class="icon-color ilabicon-pm"></span>
+			</div>
+			<div class="tag-name inline">
+				<span class="inline" title="physicaal machine 1">physicaal machi...</span>
+			</div>
+			<div class="inline pull-right">
+				<img src="image/refresh_icon_18x18.gif" ng-show="isRunning(info.id)"/>
+			</div>
 		</div>
 	</div>
 	<div class="info" ng-show="isShown">
-		<div><h6 class="card-key container-fluid"><div>{{info.name}}</div></h6></div>
-		<small>{{info.description}}</small>
 		<div class="container-fluid" ng-if="type === 'vm'">
+			<div class="row">
+				<div><h6 class="card-key container-fluid"><div>{{info.name}}</div></h6></div>
+				<div class="desc-padding"><i class="description">{{info.description || 'no description'}}</i class="description"></div>
+			</div>		
 			<div class="row">
 				<strong class="col-xs-4">Config:</strong>
 				<span class="col-xs-7 col-xs-offset-1">{{info.cpus}}CPU, {{tmpMem}}</span>
@@ -23,10 +40,25 @@
 			<div class="row">
 				<strong class="col-xs-4">Network:</strong>
 				<div><span class="col-xs-7 col-xs-offset-1" ><div ng-repeat="networks in info.network">{{networks.label}}</div></span></div>
-				
 			</div>
 		</div>
 		<div ng-if="type === pm">
+			<div class="row">
+				<div><h6 class="card-key container-fluid"><div>Physical Machine 1</div></h6></div>
+				<i class="description">{{info.description || 'no description'}}</i class="description">
+			</div>
+			<div class="row">
+				<strong class="col-xs-4">Reservation</strong>
+				<span class="col-xs-7 col-xs-offset-1">2015-08-11 08:00 to 09:00 </span>
+			</div>
+			<div class="row">
+				<strong class="col-xs-4" >IP:</strong>
+				<span class="col-xs-7 col-xs-offset-1">10.239.0.1</span>
+			</div>
+			<div class="row">
+				<strong class="col-xs-4">Network:</strong>
+				<div><span class="col-xs-7 col-xs-offset-1" >Subnet1</span></div>
+			</div>
 		</div>
 		<div class="btn-operation">
 			<button class="btn btn-default inline" ng-click="connect({id: info.id})" ng-disabled="isRunning(info.id)">Connect</button>

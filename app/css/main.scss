@@ -14,17 +14,20 @@ $ilab-font-path: "../bower_components/ilabicon/fonts/";
 @import "menu";
 @import "infoCard";
 @import "tableColumnFilter";
-@import "envBasic";
-@import "physical-machine";
 @import "loading";
-@import "envList";
-@import "infoCard";
+@import "envs";
+@import "envBasic";
 
+html {
+    min-height: 100%;
+}
 body {
+    position: relative;
     margin-top: 50px;
     margin-bottom: 50px;
     min-width: 600px;
-	overflow-y: scroll;
+    overflow-y: scroll;
+    min-height: 100%;
 }
 /* use this class to disbale selection of text when double/tripple click */
 .no-select {
@@ -106,7 +109,7 @@ body {
     border: 0;
     color: white;
     @include box-shadow(none);
-	cursor: pointer;
+    cursor: pointer;
 }
 .alert-warning {
     background-color: $orange; 
@@ -123,7 +126,7 @@ body {
 .alert.ng-move,
 .alert.ng-leave
 { 
-	@include transition(400ms ease-out all);
+    @include transition(400ms ease-out all);
 } 
  
 .alert.ng-enter.ng-enter-active, 
@@ -144,50 +147,54 @@ body {
 }
 /* override form group */
 .form-group {
-	margin-bottom: $common-margin/2;
+    margin-bottom: $common-margin/2;
 }
 form.form-horizontal .form-group:nth-last-child(2) {
     margin-bottom: $common-margin;
 }
 /* override dropdown */
 .btn.dropdown-toggle {
-	text-align: left;
-	padding-right: 22px;
+    text-align: left;
+    padding-right: 22px;
+}
+.btn.dropdown-power {
+    text-align: center;
+    min-width: 115px;
 }
 .btn .caret {
-	position: absolute;
-	top: 20px;
-	right: 22px;
+    position: absolute;
+    top: 20px;
+    right: 22px;
 }
 /* override nav tabs */
 .nav.nav-tabs-intel {
-	margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 /* override checkbox size */
 input[type="checkbox"] {
-	width: 15px;
-	height: 15px;
+    width: 15px;
+    height: 15px;
 }
 /* override progress */
 .progress {
-	height: 10px;
-	margin-bottom: 5px;
-	cursor: pointer;
+    height: 10px;
+    margin-bottom: 5px;
+    cursor: pointer;
 }
 /* override breadcrumb */
 .breadcrumb {
-	padding: 0;
-	margin-bottom: 10px;
-	background-color: white;
+    padding: 0;
+    margin-bottom: 10px;
+    background-color: white;
 }
 .breadcrumb > li + li:before {
     content: "/\00a0";
 }
-
+ 
 
 /*vm table font color*/
 .mark-as-red
- {
+{
     color: $red;
 }
 /* override date picker */
@@ -198,6 +205,12 @@ div[datepicker] {
         border: none;
     }
 }
+.clickable {
+    color:$blue;
+    cursor: pointer;
+}
+
+
 
 
 /*sortable table header */
@@ -242,40 +255,67 @@ div[datepicker] {
 .modal-dialog {
     width: 400px;
 }
+.hr.detail-hr {
+    margin-top: $common-margin;
+    margin-bottom: $common-margin; 
+    border: 1px;
+    border-top: 1px solid $light-gray;
+}
 
 .table-intel {
+
     .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus, .nav > li > a:hover {
-        color: $light-blue;
+        span {
+            color: $light-blue;
+        }
         background-color: $dark-gray;
     }       
     .nav>li>a {
         position: relative; 
         display: block;
         padding: 10px 20px 10px 20px;
-        color: $white;
         font-size: 20px;
+        span {
+            color: $white;
+        }
     }
     .nav-pills {
         background-color: $dark-gray;
         li > a {
-            color: white;
             padding: 11px 20px;
-            font-size: 18px;
+            span {
+                color: $white;
+                font-size: 18px;
+            }  
         }
-        li > a:active,
+
         li.active > a,
         li.active > a:hover,
-        li.active > a:focus,
+        li.active > a:focus {
+            padding: 11px 20px;
+            span {
+                color: $light-blue;
+                font-size: 18px;
+            }
+        }
+
         li > a:hover {
-            color: $light-blue;
             padding: 11px 20px;
             font-size: 18px;
+            span {
+                color: $light-blue;
+                
+            }
         }
+
         li.disabled > a,
         li.disabled > a:hover,
-        li.disabled > a:focus,
-        li > a:hover {
-            cursor: pointer;
+        li.disabled > a:focus {
+            cursor: not-allowed;
+            span {
+                color: $gray;
+                cursor: not-allowed;
+            }
         }
     }
     .table-span-td {
@@ -349,20 +389,20 @@ div[datepicker] {
         }
         .intelicon-help-solid {
             color: $gray;
+            font-size: 17px;
             margin-top: 2px;
-            margin-left: 21.5px;
+            margin-left: 23px;
         }
         .intelicon-help-solid:hover {
             color: $dark-gray;
         }
-        .intelicon-minus-solid{
+        .intelicon-minus-solid, .intelicon-plus-solid{
             padding-left: 5px;
             color: $blue;
+            font-size: 17px;
         }
-        .intelicon-plus-solid {
-            padding-left: 5px;
-            color: $blue;
-        }
+
+
     }
     .adv-env-network {
         min-width: 160px;
@@ -388,7 +428,7 @@ div[datepicker] {
         font-size: 15px;
         background-color: $dark-gray;
         color: $white;
-        margin: 1em;
+        margin: 15px;
     }
 }
 
@@ -410,4 +450,8 @@ div[datepicker] {
 .pull-up {
     position: relative;
     top: -40px;
+}
+/* set icon size for dropdown */
+.dropdown span[class*="icon-"] {
+    font-size: 15px;
 }

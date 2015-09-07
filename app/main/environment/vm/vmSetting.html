@@ -6,12 +6,14 @@
         <span class="intelicon-close-max" ng-click="Vm.showVmEdit(vms.id, false)"></span>
         <tabset class="vm-setting-tabs" type="pills">
             <!--ChangeVMSettingPanel-->
-                <tab active="toolTab.active" title="Configure Vm">
+            <tab title="Configure Vm">
                 <tab-heading>
                     <span class="intelicon-tools"></span>
                 </tab-heading>
                 <form class="form-horizontal default" id="config-vm" ng-submit="Vm.updateConfig(vms.id)">
-                    <div class="form-group"><label class="panel-topic">Edit Virtual Machine:</label></div>
+                    <div class="form-group">
+                        <label class="panel-topic">Edit Virtual Machine:</label>
+                    </div>
                     <div class="form-group">
                         <label for="vm-name" class="col-sm-2 control-label require">Vm name:</label>
                         <div class="col-sm-10">
@@ -103,65 +105,70 @@
                 </form>
             </tab>
             <!--Vm information Panel-->
-            <tab title="Vm Information">
+            <tab title="Vm Information" active="Vm.ifShowVmDetail">
                 <tab-heading>
                     <span class="intelicon-information-solid"></span>
                 </tab-heading>
                 <form class="form-horizontal default">
-                    <div class="container-fluid">
+                    <div ng-show="!Vm.loading" class="container-fluid">
                         <form class="ng-pristine ng-valid">
-                            
-                                <h5>Detail Information:</h5>
-                           
+                            <h5>Detail Information:</h5>
                             <div class="form-group">
                                 <div>
                                     <strong class="col-md-2">Name:</strong>
-                                    <span class="col-md-10">{{Vm.oneVM.name}}</span>
+                                    <span class="col-md-10">{{Vm.oneVM.name}}<br/></span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Description:</strong>
-                                    <span class="col-md-10">{{(Vm.oneVM.description===null)?'NULL':Vm.oneVM.description}} </span>
-                                </div>
-                                <div>
-                                    <strong class="col-md-2">iLab ID:</strong>
-                                    <span class="col-md-10">{{Vm.oneVM.id}}</span>
-                                </div>
-                                <div>
-                                    <strong class="col-md-2">Power:</strong>
-                                    <span class="col-md-10">{{(Vm.oneVM.power>0)?'Running':'Stop'}}</span>
+                                    <span class="col-md-10">{{Vm.oneVM.description}}<br/></span>
                                 </div>
                                 <div>
                                     <strong class="col-md-2">Config:</strong>
-                                    <span class="col-md-10">{{Vm.oneVM.cups}}CPU,{{(Vm.oneVM.mem)/1024}}G</span>
+                                    <span class="col-md-10">{{Vm.oneVM.cups}}CPU,{{(Vm.oneVM.mem)/1024}}G<br/></span>
                                 </div>
                                 <div>
-                                    <strong class="col-md-2">OS:</strong>
-                                    <span class="col-md-10">{{Vm.oneVM.os}}</span>
+                                    <strong class="col-md-2">Power:</strong>
+                                    <span class="col-md-10">{{(Vm.oneVM.power>0)?'Running':'Stop'}}<br/></span>
                                 </div>
                             </div>
+                            <hr class="hr detail-hr">
                             <div class="form-group">
                                 <div ng-repeat="nics in Vm.oneVM.network">
                                     <strong class="col-md-2">Nic{{nics.interface}} Network:</strong>
-                                    <span class="col-md-10">{{nics.label}}</span>
+                                    <span class="col-md-10">{{nics.label}}<br/></span>
                                     <strong class="col-md-2">Nic{{nics.interface}} IP:</strong>
-                                    <span class="col-md-10">{{nics.ip}}</span>
+                                    <span class="col-md-10">{{nics.ip}}<br/></span>
                                     <strong class="col-md-2">Nic{{nics.interface}} MAC:</strong>
-                                    <span class="col-md-10">{{nics.mac}}</span>
+                                    <span class="col-md-10">{{nics.mac}}<br/></span>
                                 </div>
                             </div>
+                            <hr class="hr detail-hr">
                             <div class="form-group">
-                                <strong class="col-md-2">VMM:</strong>
-                                <span class="col-md-10">{{Vm.oneVM.vmm}}</span>
                                 <strong class="col-md-2">Disk 1:</strong>
-                                <span class="col-md-10">{{Vm.oneVM.disk1}}</span>
+                                <span class="col-md-10">{{Vm.oneVM.disk1}}<br/></span>
+                                <strong class="col-md-2">Hostname:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.hostname}}<br/></span>
+                                <strong class="col-md-2">OS:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.os}}<br/></span>
+                                <strong class="col-md-2">VMM:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.vmm}}<br/></span>
+                                <strong class="col-md-2">Template:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.template}}<br/></span>
+                                <strong class="col-md-2">Creator:</strong>
+                                <span class="col-md-10">{{VM.oneVM.creator}}<br/></span>
                                 <strong class="col-md-2">Creat Date:</strong>
-                                <span class="col-md-10">{{Vm.oneVM.created_date}}</span>
+                                <span class="col-md-10">{{Vm.oneVM.created_date}}<br/></span>
+                                <strong class="col-md-2">iLab ID:</strong>
+                                <span class="col-md-10">{{Vm.oneVM.id}}<br/></span>
                             </div>
+                            
                             <div class="form-group">
-                                   <button class="btn btn-secondary col-md-offset-2" ng-click="Vm.showVmEdit(vms.id, false)">Close</button>
-                                
+                                <button class="btn btn-secondary col-md-offset-2" ng-click="Vm.showVmEdit(vms.id, false)">Close</button>
                             </div>
                         </form>
+                    </div>
+                    <div ng-show="Vm.loading">
+                        <img src="../../image/refresh_icon_18x18.gif">
                     </div>
                 </form>
             </tab>

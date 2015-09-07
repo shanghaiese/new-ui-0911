@@ -10,25 +10,24 @@
 
         self.env = _env;
         self.envs = _envs;
+        self.vmBuckets = [];
         self.activeTab = 1;
         self.power = power;
         self.runningVm = [];
+
+        var bucketSize = 15;
         activate();
 
         function activate() {
             attachStatusToVm(self.env.virtualMachines);
-            if(self.env.virtualMachines.length < 12){
-                self.vms = self.env.virtualMachines;
-            }
-            if(self.env.virtualMachines.length > 12){
-                self.vmsInBuckets = paging(self.env.virtualMachines,12);
-            }
+            self.vmBuckets = splitIntoBuckets(self.env.virtualMachines, bucketSize);
+            console.log(self.vmBuckets);
         }
-        //watch onchange of an env
         $scope.$watch(function() {
             return self.env;
         }, function(newV, oldV) {
             if (newV !== oldV) {
+                console.log(newV);
                 $state.go($state.current.name, {
                     envId: newV.id
                 });
@@ -37,7 +36,7 @@
 
         function attachStatusToVm(vms) {
             angular.forEach(vms, function(each) {
-                if (each.disable) {
+                if (each.isDisabled) {
                     each.status = 'Disabled';
                 } else if (each.power === 0) {
                     each.status = 'Stopped';
@@ -47,6 +46,17 @@
                     each.status = 'Suspended';
                 }
             });
+        }
+
+        function splitIntoBuckets(vms, bucketSize) {
+            var buckets = [];
+            if(bucketSize <= 0 || !angular.isNumber(bucketSize) || Math.floor(bucketSize) !== bucketSize) {
+                return;
+            }
+            for(var i=0; i<vms.length/bucketSize; ++i) {
+                buckets.push(vms.slice(i * bucketSize, i * bucketSize + bucketSize));
+            }
+            return buckets;
         }
 
         function power(vm, option) {
@@ -73,14 +83,6 @@
                     vm.status = 'Suspended';
                 });
             }
-        }
-
-        function paging(arr, size) {
-            var newArr = [];
-            for (var i=0; i<arr.length; i+=size) {
-                newArr.push(arr.slice(i, i+size));
-            }
-            return newArr;
         }
     }
 })();

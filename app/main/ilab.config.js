@@ -59,7 +59,7 @@
                 },
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'summary'});
+                        return environmentService.getList({expand: 'summary,networks'});
                     }
                 },
                 breadcrumb: {
@@ -96,12 +96,9 @@
                 },
                 resolve: {
                     _env: function(environmentService, $stateParams, $q) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines,physicalMachines,networks'})
-                        .then(function(data){
-                            return data;
-                        }, function(reason) {
-                            return $q.reject(reason);
-                        });
+                         return environmentService.get($stateParams.envId).then(function(env){
+                            return env.expand('virtualMachines', 'networks');
+                         });
                     }
                 },
                 breadcrumb: {
@@ -119,7 +116,6 @@
                 },
                 resolve: {
                     _vms: function(_env) {
-                        console.log(_env);
                         return _env.virtualMachines;
                     }
                 },
@@ -188,6 +184,12 @@
                         templateUrl: "main/environment/setting/setting.html",
                         controller: 'EnvSettingCtrl',
                         controllerAs: 'EnvSetting'
+                    }
+                },
+                // add _env dependency explicitly to enable loading animation.
+                resolve: {
+                    _env: function(_env) {
+                        return _env;
                     }
                 },
                 breadcrumb: {

@@ -107,6 +107,16 @@ angular.module('shinetech.models', []).factory('extend',
           return object;
         }
       },
+      mixIntoCollection: function() {
+        var col = arguments[0];
+        if(!angular.isArray(col)) {
+          return;
+        }
+        angular.forEach(col, function(each) {
+          this.mixInto(each);
+        }, this);
+        return col;
+      },
       unmemoize: function() {
         angular.forEach(this.memoize, function(propertyName) {
           var propertyDescriptor = Object.getOwnPropertyDescriptor(this, propertyName);

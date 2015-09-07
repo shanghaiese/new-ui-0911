@@ -1,42 +1,39 @@
-.env-basic{
-	.caro{
-		padding-top: 15px;
+/* override carousel */
+.carousel-inner {
+	padding: 0 30px;
+	overflow: visible;
+
+	div {
 		text-align: left;
-		margin-left: 5%;
 	}
-	.carousel-indicators { 
-		top: auto;
-	    bottom: -40px; 
-	    z-index: -20;
-	    li {
-	    	border: 1px solid $light-blue;
-	    }
-	}
+}
+.carousel-control {
+	width: 20px;
+	&.left {
+		background-image: none;
 
-	.carousel-indicators .active {
-	    background-color: $light-blue;
-	    }
-
-	.carousel-control {
-	 	background-color: $lighter-gray1;
-	    color:$light-blue;
-	    opacity: 0.3;
-	    width: 3%;
-	    cursor:pointer;
+		span {
+			color: $gray;
+		}
 
 	}
-	.carousel-control.left{
-	    background-image:linear-gradient(to right, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 50%);
+	&.right {
+		background-image: none;
+
+		span {
+			color: $gray;
+		}
 	}
-	.carousel-control.right{
-	    background-image:linear-gradient(to right, rgba(0, 0, 0, 0) 100px, rgba(0, 0, 0, 0) 50%);
+}
+
+.carousel-indicators {
+	bottom: -50px;
+	z-index: 0;
+	
+	li {
+		background-color: $gray;
 	}
-	.carousel-inner {
-	    background: $lighter-gray1 none repeat scroll 0 0;
-	    width: 100%;
-	    overflow: visible;
-	}
-	.switch-btn-group {
-		margin-top: -60px;
+	li.active {
+		background-color: $light-blue;
 	}
 }

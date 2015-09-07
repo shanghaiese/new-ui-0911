@@ -17,7 +17,7 @@ describe('table column filter directive:', function () {
 
     describe('with the given columns value', function () {
         it('should compile directive to html', function () {
-            expect(element.html()).toContain('class="ilabicon-displaycolumn"');
+            expect(element.html()).toContain('class="ilabicon-displaycolumn clickable"');
         });
 
         it('should have columns', function () {

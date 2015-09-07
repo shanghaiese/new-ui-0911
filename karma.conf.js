@@ -27,7 +27,7 @@ module.exports = function(config) {
           "bower_components/angular-bootstrap/ui-bootstrap-tpls.js",
           "bower_components/bootstrap-sass/assets/javascripts/bootstrap.js",
           "bower_components/progressBar/progressBar.js",
-          "bower_components/ilab-select/dropdown.js",
+          "bower_components/ilab-select/ilabSelect.js",
           "bower_components/lodash/lodash.js",
           "bower_components/restangular/dist/restangular.js",
           "bower_components/angular-utils-ui-breadcrumbs/uiBreadcrumbs.js",
