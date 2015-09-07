@@ -342,7 +342,7 @@
                 //network... 
                 VmNeedToUpdate.put().then(function(data) {
                     showVmEdit(vmid, true);
-                    angular.forEach(that.VMs, function(obj, key) {
+                    angular.forEach(that.vms, function(obj, key) {
                         if (obj.id == vmid) {
                             obj.name = that.configTmp.name;
                             obj.cpus = that.configTmp.CPU.NumOfCPU;
