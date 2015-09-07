@@ -35,19 +35,29 @@
         function getThead() {
             var thead = [{
                 display: 'Name',
-                name: 'name'
+                name: 'name',
+                enabled: true,
+                readOnly: true
             }, {
                 display: 'IP',
-                name: 'network[0].ip'
+                name: 'network[0].ip',
+                enabled: true,
+                readOnly: false
             }, {
                 display: 'Configuration',
-                name: 'cpus'
+                name: 'cpus',
+                enabled: true,
+                readOnly: false
             }, {
                 display: 'Connect',
-                name: 'console'
+                name: 'console',
+                enabled: true,
+                readOnly: false
             }, {
                 display: 'Power',
-                name: 'statusDisplay'
+                name: 'statusDisplay',
+                enabled: true,
+                readOnly: false                
             }];
             return thead;
         }
