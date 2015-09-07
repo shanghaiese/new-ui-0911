@@ -1,5 +1,6 @@
 <div>
     <div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspended'}" ng-click="toggle()" dropdown-toggle>
+        <div class="vm-status"></div>
         <span class="tag-icon" ng-class="{'ilabicon-vm': type === 'vm'}"></span>
         <div class="tag-name">
             <span title="{{info.name}}">{{info.name | truncateString: 13}}</span>
