@@ -1,4 +1,4 @@
-ddescribe('vms controller', function() {
+describe('vms controller', function() {
     var vmFakeData = {
         "id": 2068901,
         "name": "4.7_switch_test",

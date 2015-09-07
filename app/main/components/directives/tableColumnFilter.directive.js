@@ -1,6 +1,10 @@
 /*
-	this directive is used to filter table column. by passing columns array, you can have a ui control to select which columns you want your table to show.
-	param: columns [array of string], each string is a column display name. 
+	this directive is used to filter table column. by passing columns array, you can have a UI control to select which columns you want your table to show.
+    params: 
+    columns: Array, array of Objects, every object should contain 3 attributes:
+        display: String
+        enabled: Boolean
+        readOnly: Boolean
 */
 (function() {
 
@@ -29,15 +33,6 @@
 
             function activate() {
                 angular.copy(scope.columns, scope.currentColumns);
-
-				scope.currentColumns = scope.currentColumns.map(function(cur, i) {
-                    var t = cur;
-                    
-                    t.enabled = true;
-                    return t;
-                });
-                angular.copy(scope.currentColumns, scope.columns);
-
             }
 
             function update() {
