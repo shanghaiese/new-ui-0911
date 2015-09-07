@@ -57,7 +57,7 @@
                 display: 'Power',
                 name: 'statusDisplay',
                 enabled: true,
-                readOnly: false                
+                readOnly: false
             }];
             return thead;
         }
