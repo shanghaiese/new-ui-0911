@@ -2,7 +2,7 @@
     <div>
         <button type="button" class="btn btn-primary">Add VM</button>
         <div class="dropdown clearfix inline">
-            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="Vm.selectedVMs.length == 0" >
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-action" data-toggle="dropdown" aria-expanded="true" ng-disabled="Vm.selectedVMs.length == 0">
                 Actions
                 <span class="caret"></span>
             </button>
@@ -34,7 +34,6 @@
 </p>
 <!---->
 <!-- vm table from here-->
-
 <table ng-show="Vm.vms.length != 0" class="table table-bordered table-intel table-expandable ilab-sortable" id="vm-table">
     <thead>
         <tr>
@@ -53,8 +52,7 @@
                 <div class="inline">
                     {{Vm.vmIsInOpertation(vms.id)}}
                     <div class="intel-checkbox" ng-show="!(Vm.vmIsInOperation({{vms.id}}))">
-
-                        <input type="checkbox" id="{{vms.id}}" checklist-model="Vm.selectedVMs" checklist-value="vms" ng-disabled="vms.locked"/>
+                        <input type="checkbox" id="{{vms.id}}" checklist-model="Vm.selectedVMs" checklist-value="vms" ng-disabled="vms.locked" />
                     </div>
                     <div ng-show="Vm.vmIsInOperation(vms.id)">
                         <img src="../../image/refresh_icon_18x18.gif">
@@ -62,7 +60,6 @@
                     <lable for="{{vms.id}}">
                         </label>
                 </div>
-               
                 <span class="intelicon-settings-solid" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="(Vm.vmIsInOperation(vms.id)||vms.locked)||Vm.showVmEdit(vms.id, false)"></span>
             </td>
             <td ng-if="Vm.thead[0].enabled" ng-class="{'clickable':!(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}),'disabled':(Vm.vmIsInOperation({{vms.id}})||{{vms.locked}}) }" ng-click="(Vm.vmIsInOperation(vms.id)||vms.locked)||Vm.showVmDetail(vms.id)">{{vms.name}}</td>
@@ -70,12 +67,21 @@
                 <span ng-repeat="networks in vms.network">{{networks.ip}}<br/></span>
             </td>
             <td ng-if="Vm.thead[2].enabled">
-                {{vms.cpus}}CPU,{{vms.mem}}MB
+                <span ng-repeat="networks in vms.network">{{networks.label}}<br/></span>
             </td>
             <td ng-if="Vm.thead[3].enabled">
-                <button type="button" class="btn btn-secondary" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">Connect</button>
+                {{vms.cpus}}CPU,{{vms.mem}}MB
             </td>
             <td ng-if="Vm.thead[4].enabled">
+                {{vms.description}}
+            </td>
+            <td ng-if="Vm.thead[5].enabled">
+                {{vms.creator}}
+            </td>
+            <td ng-if="Vm.thead[6].enabled">
+                <button type="button" class="btn btn-secondary" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">Connect</button>
+            </td>
+            <td ng-if="Vm.thead[7].enabled">
                 <div class="dropdown inline">
                     <button class="btn dropdown-toggle dropdown-power" type="button" id="dropdown-running" data-toggle="dropdown" ng-class="{'btn-approve':vms.statusDisplay == 'Running' ,'btn-danger':vms.statusDisplay =='Stopped','btn-suspend':vms.statusDisplay=='Suspended'}" ng-disabled="Vm.vmIsInOperation(vms.id)||{{vms.locked}}">
                         {{vms.statusDisplay}}
@@ -103,8 +109,6 @@
     </tbody>
 </table>
 <dir-pagination-controls max-size="5"></dir-pagination-controls>
-
-
 <div class="alert-box col-xs-10 col-sm-8 col-md-6">
     <alert ng-repeat="alert in $root.alerts" type="{{alert.type}}" close="Vm.close(alert.index)" ng-click="Vm.close(alert.index)">{{alert.message}}</alert>
 </div>
