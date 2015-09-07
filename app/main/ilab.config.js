@@ -18,7 +18,7 @@
 
     function route($stateProvider, $urlRouterProvider) {
         // For any unmatched url, redirect to /environment
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/oops");
         //
         // Now set up the states
         $stateProvider

@@ -3,7 +3,6 @@
 	<a ui-sref="envs.detail.vm({envId: EnvBasic.env.id})" class="btn btn-default">advanced</a>
 	<a ui-sref="envs.detail.setting({envId: EnvBasic.env.id})"><span class="intelicon-settings-solid clickable"></span></a>
 </div>
-<div class="ilab-section">
     <h5>Virtual Machine: {{EnvBasic.env.virtualMachines.length}}</h5>
     <div class="card-container" ng-show="EnvBasic.env.virtualMachines.length < 13">
         <info-card class="list-VMs" type="vm" info="vm" on-connect="EnvBasic.connect(vmId)" on-power="EnvBasic.power(vm, option)" running="EnvBasic.runningVm" ng-repeat="vm in EnvBasic.env.virtualMachines"></info-card>
@@ -17,4 +16,3 @@
             </slide>
         </carousel>
     </div>
-</div>
