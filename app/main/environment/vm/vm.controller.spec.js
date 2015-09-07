@@ -127,9 +127,9 @@ describe('vms controller', function() {
         };
         ctrl = $controller('VmCtrl', {
             '$scope': scope,
-            _env:vmFakeData,
-            _vms:vmFakeData.virtualMachines
-           // _vms: vmFakeData
+            _env: vmFakeData,
+            _vms: vmFakeData.virtualMachines
+                // _vms: vmFakeData
 
         });
         ctrlDelete = $controller('ModalInstanceCtrl', {
@@ -296,18 +296,18 @@ describe('vms controller', function() {
                 expect(ctrl.showExpandPage).toEqual(0);
             });
 
-			it('should close the expanded table and revert the data to the original', function() {
-				ctrl.configTmp.name = 'change1';
-				ctrl.configTmp.description = 'change2';
-				ctrl.configTmp.id = 'change3';
-				ctrl.configTmp.CPU.NumOfCPU = 'change4';
-				ctrl.configTmp.memory.memory = 'change5';
-				ctrl.configTmp.network = [];
-				ctrl.showVmEdit(vmid, false);
-				expect(ctrl.showExpandPage).toEqual(0);
-				expect(ctrl.configTmp.name).toBe('ilabredis-devba');
-				expect(ctrl.configTmp).toEqual(ctrl.vmTemp);				
-			});
+            it('should close the expanded table and revert the data to the original', function() {
+                ctrl.configTmp.name = 'change1';
+                ctrl.configTmp.description = 'change2';
+                ctrl.configTmp.id = 'change3';
+                ctrl.configTmp.CPU.NumOfCPU = 'change4';
+                ctrl.configTmp.memory.memory = 'change5';
+                ctrl.configTmp.network = [];
+                ctrl.showVmEdit(vmid, false);
+                expect(ctrl.showExpandPage).toEqual(0);
+                expect(ctrl.configTmp.name).toBe('ilabredis-devba');
+                expect(ctrl.configTmp).toEqual(ctrl.vmTemp);
+            });
 
             it('should revert any change on configTmp to the origin', function() {
                 ctrl.configTmp.name = 'change1';
@@ -331,40 +331,40 @@ describe('vms controller', function() {
                 expect(ctrl.saveTemp.modeSaveDisk.diskMode).toBe('chain');
             });
 
-			it('should increase the number of Template up to 4', function() {
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				expect(ctrl.tplConfig.length).toEqual(2);
-				expect(ctrl.tplConfig[1].name).toEqual(2);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				expect(ctrl.tplConfig.length).toEqual(4);												
-			});
+            it('should increase the number of Template up to 4', function() {
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                expect(ctrl.tplConfig.length).toEqual(2);
+                expect(ctrl.tplConfig[1].name).toEqual(2);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                expect(ctrl.tplConfig.length).toEqual(4);
+            });
 
-			it('should decrease the number of Template least to 1', function() {
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, true);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				expect(ctrl.tplConfig.length).toEqual(3);
-				expect(ctrl.tplConfig[2].name).toEqual(3);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				ctrl.changeTplNumber(ctrl.tplConfig, false);
-				expect(ctrl.tplConfig.length).toEqual(1);
-				expect(ctrl.tplConfig[0].interface).toEqual('1');
-			});
+            it('should decrease the number of Template least to 1', function() {
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, true);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                expect(ctrl.tplConfig.length).toEqual(3);
+                expect(ctrl.tplConfig[2].name).toEqual(3);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                ctrl.changeTplNumber(ctrl.tplConfig, false);
+                expect(ctrl.tplConfig.length).toEqual(1);
+                expect(ctrl.tplConfig[0].interface).toEqual('1');
+            });
 
-			it('should update VM\' info', function() {
-				ctrl.configTmp.name = 'change1';
-				ctrl.configTmp.description = 'change2';
-				ctrl.configTmp.id = vmid;
-				ctrl.configTmp.CPU.NumOfCPU = 'change4';
-				ctrl.configTmp.memory.memory = '2';				
-				ctrl.updateConfig(vmid);
-				expect(ctrl.showExpandPage).toEqual(3633301);
+            it('should update VM\' info', function() {
+                ctrl.configTmp.name = 'change1';
+                ctrl.configTmp.description = 'change2';
+                ctrl.configTmp.id = vmid;
+                ctrl.configTmp.CPU.NumOfCPU = 'change4';
+                ctrl.configTmp.memory.memory = '2';
+                ctrl.updateConfig(vmid);
+                expect(ctrl.showExpandPage).toEqual(3633301);
             });
 
             it('should save VM template', function() {
@@ -388,9 +388,17 @@ describe('vms controller', function() {
 
     });
 
-
+    var vmForDelete;
     describe('test the delete dialog', function() {
         beforeEach(function() {
+            vmForDelete = [{
+                "id": 3633301,
+                "env_id": 2068901
+
+            }, {
+                "id": 3633401,
+                "env_id": 2068901
+            }];
             var modalOptions = {
                 templateUrl: '/n/views/consent.html',
                 controller: 'W2ConsentModal as w2modal',
@@ -403,24 +411,26 @@ describe('vms controller', function() {
         });
 
         it('should open modal dialog when openDeleteDialog()', function() {
-            ctrl.openDeleteDialog(400);
+            
+            ctrl.openDeleteDialog('middle', vmForDelete);
+
             expect(modalDialog.open).toHaveBeenCalledWith({
                 templateUrl: 'main/templates/vmDeleteDialog.html',
                 controller: 'ModalInstanceCtrl',
                 animation: false,
-                size: 400
+                size: 'middle'
             });
 
         });
 
         it('should get true result in modal', function() {
-            ctrl.openDeleteDialog();
+            ctrl.openDeleteDialog('middle', vmForDelete);
             scope.delete();
             expect(modalInstance.close).toHaveBeenCalledWith(true);
         });
 
         it('should delete in modal', function() {
-            ctrl.openDeleteDialog();
+            ctrl.openDeleteDialog('middle', vmForDelete);
             scope.delete();
             expect(modalInstance.result.then).toEqual(true);
         });
