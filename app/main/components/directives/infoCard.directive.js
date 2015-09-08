@@ -20,6 +20,7 @@
 
             link: function(scope, element, attrs) {
                 var id = scope.info.id;
+                console.log(scope.info.id);
                 var memory = scope.info.mem;
                 
                 //change memory MB to GB

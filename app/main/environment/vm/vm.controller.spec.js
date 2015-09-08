@@ -428,6 +428,7 @@ describe('vms controller', function() {
     var oneVM;
     describe('test the vm operation function:', function() {
         beforeEach(function() {
+            console.log(ctrl.vms);
             oneVMToPowerOff = ctrl.vms[0]; //power=1
             oneVMToPowerOn = ctrl.vms[1]; //power=0
             oneVMPowerOffSuccess = {

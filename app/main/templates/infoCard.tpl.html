@@ -1,6 +1,6 @@
 <div>
 	<div class="card" ng-class="{'on': info.status === 'Running', 'off': info.status === 'Stopped', 'suspend': info.status === 'Suspended'}" ng-click="toggle()" dropdown-toggle >
-		<div class="container-fluid" ng-if="type === 'vm'">
+		<div class="" ng-if="type === 'vm'">
 			<div class="tag-icon inline">
 				<span class="icon-color ilabicon-vm"></span>
 			</div>
@@ -24,7 +24,7 @@
 		</div>
 	</div>
 	<div class="info" ng-show="isShown">
-		<div class="container-fluid" ng-if="type === 'vm'">
+		<div class="" ng-if="type === 'vm'">
 			<div class="row">
 				<div><h6 class="card-key container-fluid"><div>{{info.name}}</div></h6></div>
 				<div class="desc-padding"><i class="description">{{info.description || 'no description'}}</i class="description"></div>
