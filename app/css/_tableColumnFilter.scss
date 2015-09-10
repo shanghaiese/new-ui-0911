@@ -14,8 +14,9 @@ table-column-filter {
             padding: 10px 0;
             background-color: white;
             border: 1px solid $light-gray;
+            border-radius: $border-radius-base;
             box-shadow: $box-shadow;
-            z-index: 1000;
+            z-index: 20;
             p {
                 margin-bottom: 5px;
                 padding-left: 10px;

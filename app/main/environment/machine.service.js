@@ -43,18 +43,37 @@
                 name: 'network[0].ip',
                 enabled: true,
                 readOnly: false
+            }, 
+            {
+                display: 'Network',
+                name: 'network[0].label',
+                enabled: false,
+                readOnly: false
             }, {
                 display: 'Configuration',
                 name: 'cpus',
                 enabled: true,
+                readOnly: false
+            },
+            {
+                display: 'Creator',
+                name: 'creator',
+                enabled: false,
+                readOnly: false
+            },
+            {
+                display: 'Description',
+                name: 'description',
+                enabled: false,
                 readOnly: false
             }, {
                 display: 'Connect',
                 name: 'console',
                 enabled: true,
                 readOnly: false
-            }, {
-                display: 'Power',
+            }, 
+            {
+                display: 'Status',
                 name: 'statusDisplay',
                 enabled: true,
                 readOnly: false
@@ -79,7 +98,7 @@
             var vm = Restangular.one("virtual-machines", vmid).get();
             vm.then(function(vmTplNeedToSave) {
                 vmTplNeedToSave.post('saveAsTemplate', saveTpl).then(function() {
-                    console.log("save Success");
+                    description.log("save Success");
                 }, function() {
                     console.log("save Failed");
                 });

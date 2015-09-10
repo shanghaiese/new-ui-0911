@@ -15,7 +15,7 @@
         self.power = power;
         self.runningVm = [];
 
-        var bucketSize = 15;
+        var bucketSize = 12;
         activate();
 
         function activate() {
@@ -37,11 +37,11 @@
             angular.forEach(vms, function(each) {
                 if (each.isDisabled) {
                     each.status = 'Disabled';
-                } else if (each.power === 0) {
+                } else if (each.powerStatus === 'OFF') {
                     each.status = 'Stopped';
-                } else if (each.power === 1) {
+                } else if (each.powerStatus === 'ON') {
                     each.status = 'Running';
-                } else if (each.power === 2) {
+                } else if (each.powerStatus === 'PAUSED') {
                     each.status = 'Suspended';
                 }
             });
@@ -65,21 +65,25 @@
                 vmToPower.post('powerOn').then(function(data) {
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
                     vm.status = 'Running';
+                    vm.powerStatus = 'ON';
                 });
             } else if (option === 'powerOff') {
                 vmToPower.post('powerOff').then(function(data) {
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
                     vm.status = 'Stopped';
+                    vm.powerStatus = 'OFF';
                 });
             } else if (option === 'restart') {
                 vmToPower.post('powerReset').then(function(data) {
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
                     vm.status = 'Running';
+                    vm.powerStatus = 'ON';
                 });
             } else {
                 vmToPower.post('powerPause').then(function(data){
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
                     vm.status = 'Suspended';
+                    vm.powerStatus = 'PAUSED';
                 });
             }
         }

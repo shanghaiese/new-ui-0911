@@ -21,7 +21,7 @@
             link: function(scope, element, attrs) {
                 var id = scope.info.id;
                 console.log(scope.info.id);
-                var memory = scope.info.mem;
+                var memory = scope.info.memory;
                 
                 //change memory MB to GB
                 scope.tmpMem = transMemFromMB2GB(memory) + 'G';
