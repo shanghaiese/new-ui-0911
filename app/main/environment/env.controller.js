@@ -8,8 +8,7 @@
     function EnvCtrl(_env, _envs, $scope, $state, machine) {
         var self = this;
 
-        self.env = _env;
-        self.envs = _envs;
+        
         self.vmBuckets = [];
         self.activeTab = 1;
         self.power = power;
@@ -19,33 +18,36 @@
         activate();
 
         function activate() {
-            attachStatusToVm(self.env.virtualMachines);
+            self.env = _env;
+            self.envs = _envs;
+            // attachStatusToVm(self.env.virtualMachines);
             self.vmBuckets = splitIntoBuckets(self.env.virtualMachines, bucketSize);
+
         }
         $scope.$watch(function() {
             return self.env;
         }, function(newV, oldV) {
             if (newV !== oldV) {
-                console.log(newV);
+                //console.log(newV);
                 $state.go($state.current.name, {
                     envId: newV.id
                 });
             }
         });
 
-        function attachStatusToVm(vms) {
-            angular.forEach(vms, function(each) {
-                if (each.isDisabled) {
-                    each.status = 'Disabled';
-                } else if (each.powerStatus === 'OFF') {
-                    each.status = 'Stopped';
-                } else if (each.powerStatus === 'ON') {
-                    each.status = 'Running';
-                } else if (each.powerStatus === 'PAUSED') {
-                    each.status = 'Suspended';
-                }
-            });
-        }
+        // function attachStatusToVm(vms) {
+        //     angular.forEach(vms, function(each) {
+        //         if (each.isDisabled) {
+        //             each.status = 'Disabled';
+        //         } else if (each.powerStatus === 'OFF') {
+        //             each.status = 'Stopped';
+        //         } else if (each.powerStatus === 'ON') {
+        //             each.status = 'Running';
+        //         } else if (each.powerStatus === 'PAUSED') {
+        //             each.status = 'Suspended';
+        //         }
+        //     });
+        // }
 
         function splitIntoBuckets(vms, bucketSize) {
             var buckets = [];
@@ -59,31 +61,41 @@
         }
 
         function power(vm, option) {
+            console.log(vm);
             self.runningVm.push(vm.id);
             var vmToPower = machine.getOneVmForOperation(vm.id);
             if (option === 'powerOn') {
                 vmToPower.post('powerOn').then(function(data) {
-                    self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
-                    vm.status = 'Running';
-                    vm.powerStatus = 'ON';
+                    self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);                 
+                    vm.powerStatus = data.powerStatus;
+                    if (data.powerStatus === 'ON') {
+                        vm.power_ = 'RUNNING';
+                    };
+                    
                 });
             } else if (option === 'powerOff') {
                 vmToPower.post('powerOff').then(function(data) {
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
-                    vm.status = 'Stopped';
-                    vm.powerStatus = 'OFF';
+                    vm.powerStatus = data.powerStatus;
+                    if (data.powerStatus === 'OFF') {
+                        vm.power_ = 'STOPPED';
+                    };
                 });
             } else if (option === 'restart') {
                 vmToPower.post('powerReset').then(function(data) {
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
-                    vm.status = 'Running';
-                    vm.powerStatus = 'ON';
+                    vm.powerStatus = data.powerStatus;
+                    if (data.powerStatus === 'ON') {
+                        vm.power_ = 'RUNNING';
+                    };
                 });
-            } else {
+            } else if (option === 'suspend'){
                 vmToPower.post('powerPause').then(function(data){
                     self.runningVm.splice(self.runningVm.indexOf(vm.id), 1);
-                    vm.status = 'Suspended';
-                    vm.powerStatus = 'PAUSED';
+                    vm.powerStatus = data.powerStatus;
+                    if (data.powerStatus === 'PAUSED') {
+                        vm.power_ = 'SUSPENDED';
+                    };
                 });
             }
         }

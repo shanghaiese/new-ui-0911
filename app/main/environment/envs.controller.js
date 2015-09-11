@@ -17,20 +17,23 @@
         activate();
 
         function activate() {
-            
+
         }
 
         function addEnv() {
-            environmentService.post(that.newEnv).then(function(data) {
-                console.log(data);
-                $state.go('envs.basic', {envId: data.id});
-            });
+            environmentService.post(that.newEnv)
+                .then(function(data) {
+                    $state.go('envs.detail.basic', {
+                        envId: data.id
+                    });
+                });
         }
 
         function resetEnv() {
             that.newEnv = {};
             that.addEnvCollapsed = true;
         }
+
         function toggleAddEnv() {
             that.addEnvCollapsed = !that.addEnvCollapsed;
 

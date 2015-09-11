@@ -67,26 +67,26 @@
                     }
                 }
 
-                function getDetail(id) {
-                    scope.vmTemp.network = [];
-                    var index = -1;
-                    angular.forEach(scope.info, function(obj, key) {
-                        if (obj.id == id) {
-                            angular.forEach(obj.network, function(obj, key) {
-                                var temp = {
-                                    interface: obj.interface,
-                                    name: obj.label,
-                                    ip: obj.ip
-                                };
-                                scope.vmTemp.network.push(temp);
-                            });
-                            index = key;
-                        }
-                    });
-                    if (index !== -1) {
-                        return scope.info[index];
-                    }
-                }
+                // function getDetail(id) {
+                //     scope.vmTemp.network = [];
+                //     var index = -1;
+                //     angular.forEach(scope.info, function(obj, key) {
+                //         if (obj.id == id) {
+                //             angular.forEach(obj.network, function(obj, key) {
+                //                 var temp = {
+                //                     interface: obj.interface,
+                //                     name: obj.label,
+                //                     ip: obj.ip
+                //                 };
+                //                 scope.vmTemp.network.push(temp);
+                //             });
+                //             index = key;
+                //         }
+                //     });
+                //     if (index !== -1) {
+                //         return scope.info[index];
+                //     }
+                // }
 
                 function transMemFromMB2GB(memory) {
                     return Math.floor(memory / 1024 * 100) / 100;

@@ -7,13 +7,10 @@
         .config(pagination)
         .run(attachMenu)
         .run(loading)
-        .run(init);
-
-    angular
-        .module('ilabConfig')
+        .run(init)
         .constant('DATETIME_FORMAT', 'L');
 
-
+    /* config starts */
     route.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function route($stateProvider, $urlRouterProvider) {
@@ -59,7 +56,9 @@
                 },
                 resolve: {
                     _envs: function(environmentService) {
-                        return environmentService.getList({expand: 'summary,networks'});
+                        return environmentService.getList({
+                            expand: 'summary'
+                        });
                     }
                 },
                 breadcrumb: {
@@ -84,7 +83,7 @@
                     name: 'All environments'
                 }
             })
-            .state('envs.detail', { 
+            .state('envs.detail', {
                 // abstract: true,
                 url: "/environment/:envId",
                 views: {
@@ -95,15 +94,13 @@
                     }
                 },
                 resolve: {
-                    _env: function(environmentService, $stateParams, $q) {
-                         return environmentService.get($stateParams.envId).then(function(env){
-                            return env.expand('virtualMachines', 'networks');
-                         });
+                    _env: function(environmentService, $stateParams) {
+                        return environmentService.one($stateParams.envId).get({expand: 'virtualMachines,networks,physicalMachines'});
                     }
                 },
                 breadcrumb: {
                     name: '{{_env.name}}'
-                }            
+                }
             })
             .state('envs.detail.vm', {
                 url: "/vm",
@@ -116,12 +113,13 @@
                 },
                 resolve: {
                     _vms: function(_env) {
+                        console.log( _env );
                         return _env.virtualMachines;
                     }
                 },
                 breadcrumb: {
                     name: 'Virtual Machines'
-                }            
+                }
             })
             .state('envs.detail.pm', {
                 url: "/pm",
@@ -159,8 +157,8 @@
                     name: 'add pm'
                 }
             })
-            .state('envs.basic', {
-                url: "/environment-basic/:envId",
+            .state('envs.detail.basic', {
+                url: "/overview",
                 views: {
                     'content@envs': {
                         templateUrl: "main/environment/envBasic/envBasic.html",
@@ -169,8 +167,8 @@
                     }
                 },
                 resolve: {
-                    _env: function(environmentService, $stateParams) {
-                        return environmentService.get($stateParams.envId, {expand: 'virtualMachines'});
+                    _env: function(_env) {
+                        return _env;
                     }
                 },
                 breadcrumb: {
@@ -224,9 +222,40 @@
             });
     }
 
-    /* config block */
+    restangular.$inject = ['RestangularProvider'];
 
-    /* run block */
+    function restangular(RestangularProvider) {
+        RestangularProvider.setBaseUrl('/services/api/');
+        RestangularProvider.setDefaultHttpFields({
+            cache: true
+        });
+        // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
+
+        /* detach and transform obj when firing update requests */
+        RestangularProvider.addRequestInterceptor(function(element, op, what, url) {
+            if (op === "put" && element.toDataTransferObject) {
+                element.toDataTransferObject();
+            }
+            return element;
+        });
+
+        /* attach and transform obj right after being restangularized */
+        RestangularProvider.setOnElemRestangularized(function(element, isCollection, what, Restangular) {
+            if (element.toBusinessObject) {
+                element.toBusinessObject();
+            }
+            return element;
+        });
+    }
+
+    pagination.$inject = ['paginationTemplateProvider'];
+
+    function pagination(paginationTemplateProvider) {
+        paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
+    }
+
+
+    /* run block starts */
     attachMenu.$inject = ['$rootScope'];
 
     function attachMenu($rootScope) {
@@ -240,45 +269,35 @@
     function loading($rootScope, $state) {
         $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
             $rootScope.isLoading = false;
-            if(toState && toState.resolve) {
+            if (toState && toState.resolve) {
                 $rootScope.isLoading = true;
             }
         });
         $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams, fromState, fromParams) {
             $rootScope.isLoading = false;
-            
+
         });
+
         /* handle state change error, won't deal with erors happen in controller*/
         $rootScope.$on('$stateChangeError', function(e, toState, toParams, fromState, fromParams, error) {
             $rootScope.isLoading = false;
             e.preventDefault();
             $state.get('error').error = error;
-            $state.go('error');           
+            $state.go('error');
         });
-    }
-
-    restangular.$inject = ['RestangularProvider'];
-
-    function restangular(RestangularProvider) {
-        RestangularProvider.setBaseUrl('/services/api/');
-        RestangularProvider.setDefaultHttpFields({cache: true});
-        // RestangularProvider.setDefaultHttpFields({'withCredentials': true});
-    }
-
-    pagination.$inject = ['paginationTemplateProvider'];
-
-    function pagination(paginationTemplateProvider) {
-        paginationTemplateProvider.setPath('main/templates/pagination.tpl.html');
     }
 
     init.$inject = ['$rootScope', '$state'];
 
     function init($rootScope, $state) {
+        /* set default title for every page */
         $rootScope.page = {
             title: 'default page title'
         };
+
+        /* direct to vm when user try to go to envs.detail */
         $rootScope.$on('$stateChangeSuccess', function(e, toState, toParams) {
-            if(toState.name === 'envs.detail') {
+            if (toState.name === 'envs.detail') {
                 $state.go('envs.detail.vm', toParams);
             }
         });

@@ -1,4 +1,4 @@
-describe('enviromrnt controller', function() {
+ddescribe('enviromrnt controller', function() {
 	
     var vmFakeData = {
         "id": 2068901,
@@ -103,124 +103,15 @@ describe('enviromrnt controller', function() {
             "disk1": "TBD"
         }]
     };
-    var envFakeData = [{
-        "id": 2069501,
-        "name": "defect test",
-        "groupId": 1123301,
-        "deployedDate": "Jan  1 1900 05:05:17:497PM",
-        "expiryDate": "Sep 20 2015 12:00:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Gopalakrishnan, Rengarajan",
-        "maxAllowedVms": 3360 ,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088301,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:29:22:910AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360 ,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088401,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:29:38:830AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360 ,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088501,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:30:47:977AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088601,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:31:20:233AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360 ,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088701,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:38:30:830AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    },
-    {
-        "id": 2088801,
-        "name": "Environment Name",
-        "groupId": 1123301,
-        "deployedDate": "Aug 25 2015 01:45:44:887AM",
-        "expiryDate": "Aug 19 2015 06:04:00:000AM",
-        "expiryNotificationDate": null,
-        "owner": "Wang, Yufan",
-        "maxAllowedVms": 3360,
-        "summary": [{
-                "virtualMachines": 1,
-                "physicalMachines":2,
-                "networks":2,
-                "users":1
-            }]
-    }];
 
-    var scope, ctrl, $rootScope;
 
-    beforeEach(module('ilab'));
-    beforeEach(module('templates'));
-    beforeEach(module('ilabModel'));
+    var scope, ctrlEnv, $rootScope;
+
+    beforeEach(function() {
+        module('ilab');
+        module('templates');
+    });
+
     
 
 	beforeEach(inject(function($rootScope, $controller, _$httpBackend_, Restangular, _machine_) {		       
@@ -228,96 +119,94 @@ describe('enviromrnt controller', function() {
         restangular = Restangular;    
         machine = _machine_;
         envScope = $rootScope.$new();
-		ctrl = $controller('EnvCtrl', {
+		ctrlEnv = $controller('EnvCtrl', {
             '$scope': envScope, 
             _env : vmFakeData,
-            _envs: envFakeData
-        }); 
-       
-        //console.log(ctrl.env.virtualMachines[0]);
-        
+            _envs: ''
+        });      
 	}));
 
 	it('should have a EnvCtrl controller bind the scope data', function() {
-		expect(ctrl).not.toBeUndefined();
-        expect(ctrl).not.toEqual(null);
+		expect(ctrlEnv).not.toBeUndefined();
         expect(envScope).not.toBeUndefined();
-        expect(envScope).not.toEqual(null);
-        expect(ctrl.env).not.toBeUndefined();
+        expect(ctrlEnv.env).not.toBeUndefined();
 	});
 
-    describe('test the vm operation function', function() {
-        console.log(ctrl.env.virtualMachines);
-        beforeEach(function(){
-            testVmToPowerOff = ctrl.env.virtualMachines[0];
-            testVmToPowerOn = ctrl.env.virtualMachines[1];
-            off = {power: 0};
-            suspend ={power: 2};
-            on = {power: 1};
-            failOn ={power: 0};
-
-            
-        });
+    describe('test the vm operation function:', function() {
+        beforeEach(inject(function(Restangular) {
+            //ctrlEnv.env = vmFakeData;
+            oneVMToPowerOff = Restangular.one("virtual-machines", 3633301); //powerStatus=1
+            oneVMToPowerOn = Restangular.one("virtual-machines", 3633401); //powerStatus=0 
+            oneVMPowerOffSuccess = {
+                id:3633301,
+                powerStatus:"OFF",
+                status:"RUNNING"    
+            };
+            oneVMSuspendSuccess  = {
+                id:3633401,
+                powerStatus:"PAUSED",
+                status:"RUNNING"   
+            };
+            oneVMPowerOnSuccess  = {
+                id:3633401,
+                powerStatus:"ON",
+                status:"RUNNING"   
+            };
+            oneVMPowerOnFail = {
+                id:3633401,
+                powerStatus:"OFF",
+                status:"RUNNING"
+            };      
+        }));
         afterEach(function() {
             httpBackend.verifyNoOutstandingExpectation();
             httpBackend.verifyNoOutstandingRequest();
         });
 
-        /*it('should power off the vm after power off', function() {
-            httpBackend.expectPOST('/services/api/virtual-machines/3633301/powerOff', 3633301).respond(off);
-            // httpBackend.whenGET('/services/api/virtual-machines/3633401').respond(200,{
-            //     "power":0,
-            //     "disable":0,
-            //     "locked":false
-            // });          
-            scope.$apply(function(){
-                ctrl.power(testVmToPowerOff,'powerOff');
-            });          
+         it('should powerStatus off the vm after powerStatus off', function() {
+            console.log(oneVMToPowerOff);
+            httpBackend.expectPOST('/services/api/virtual-machines/3633301/powerOff').respond(oneVMPowerOffSuccess);
+            scope.$apply(function() {
+                ctrl.power(oneVMToPowerOff, 'powerOff');
+            });
+
             httpBackend.flush();
-            expect(testVmToPowerOff.power).toEqual(0);
-            expect(testVmToPowerOff.statusDisplay).toEqual('Stopped');
+            expect(oneVMToPowerOff.powerStatus).toEqual("OFF");
         });
 
-        it('should power on the vm after power on', function() {
-            httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerOn', 3633401).respond(on);
-            // httpBackend.whenGET('/services/api/virtual-machines/3633401').respond(200,{
-            //     "power":1,
-            //     "disable":4,
-            //     "locked":true
-            // });  
-            scope.$apply(function(){
-                ctrl.power(testVmToPowerOn,'powerOn');
+        it('should powerStatus on the vm after powerStatus on', function() {
+            httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerOn').respond(oneVMPowerOnSuccess);
+            scope.$apply(function() {
+                ctrl.power(oneVMToPowerOn, 'powerOn');
             });
             httpBackend.flush();
-            expect(testVmToPowerOn.power).toEqual(1);
-            expect(testVmToPowerOn.statusDisplay).toEqual('Running');
+            expect(oneVMToPowerOn.powerStatus).toEqual("ON");
         });
         it('should suspend the vm after suspend', function() {
-            httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerPause', 3633401).respond(suspend);
-            // httpBackend.whenGET('/services/api/virtual-machines/3633401').respond(200,{
-            //     "power":1,
-            //     "disable":4,
-            //     "locked":true
-            // });  
-            scope.$apply(function(){
-                ctrl.power(testVmToPowerOn,'powerPause');
+            httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerPause').respond(oneVMSuspendSuccess);
+            scope.$apply(function() {
+                ctrl.power(oneVMToPowerOn, 'powerPause');
             });
             httpBackend.flush();
-            expect(testVmToPowerOn.power).toEqual(2);
-            //expect(vm.status).toEqual('Suspended');
+            expect(oneVMToPowerOn.powerStatus).toEqual("PAUSED");
         });
-        it('should power on the vm after restart', function() {
-            httpBackend.expectPOST('/services/api/virtual-machines/363401/powerReset', 3633401).respond(200);
-            // httpBackend.whenGET('/services/api/virtual-machines/3633401').respond(200,{
-            //     "power":1,
-            //     "disable":4,
-            //     "locked":true
-            // });  
-            scope.$apply(function(){
-                ctrl.power(testVmToPowerOn,'powerReset');
+        it('should powerStatus on the vm after restart', function() {
+            httpBackend.expectPOST('/services/api/virtual-machines/3633401/powerReset').respond(oneVMPowerOnSuccess);
+            scope.$apply(function() {
+                ctrl.power(oneVMToPowerOn, 'powerReset');
             });
             httpBackend.flush();
-            expect(testVmToPowerOn.power).toEqual(1);
-        });*/
+            expect(oneVMToPowerOn.powerStatus).toEqual("ON");
+        });
     });
+
+    describe('when list of VM load in overview page', function(){
+        it('should no need for paging when vm is less than 12', function(){
+
+        });
+        it('should paging when vm is more than 12', function(){
+
+        });
+
+    })
 });

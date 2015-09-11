@@ -31,7 +31,7 @@
 </div>
 <div class="envs-container">
     <div class="one-env col-md-12" dir-paginate="env in Envs.envs | filter: searchEnv | itemsPerPage: 5">
-        <h5><a ui-sref="envs.basic({envId: env.id})">{{env.name}}</a></h5>
+        <h5><a ui-sref="envs.detail.basic({envId: env.id})">{{env.name}}</a></h5>
         <p class="description">{{env.owner || 'No Owner'}}</p>
         <span class="ilabicon-vm"></span>Virtual machines:{{env.summary.virtualMachines}}<span class="intelicon-laptop"></span>Physical machines:{{env.summary.physicalMachines}}<span class="intelicon-network"></span>Networks: {{env.summary.networks}}<span class="intelicon-users-people-solid"></span>Users: {{env.summary.users}}
     </div>

@@ -1,32 +1,35 @@
 (function() {
 
-    angular
-        .module('ilabService')
-        .factory('environmentService', environmentService);
+	angular
+		.module('ilabService')
+		.factory('environmentService', environmentService);
 
-    environmentService.$inject = ['Restangular', 'environmentModel', 'vmModel'];
+	environmentService.$inject = ['Restangular', 'environmentModel', 'vmModel'];
 
-    function environmentService(Restangular, environmentModel, vmModel) {
-    	var environments = Restangular.all('environments');
-    	Restangular.extendModel('environments', function(model) {
-    		var modelApi = {
-    			expand: function() {
-    				var args = Array.prototype.slice.call(arguments);
-    				return environments.get(this.id, {expand: args.join(',')}).then(function(env) {
-	    				if(args.indexOf('virtualMachines') > -1) {
-		    				env.virtualMachines = vmModel.mixIntoCollection(Restangular.restangularizeCollection(null, env.virtualMachines, 'virtual-machines'));
-	    				}
-	    				if(args.indexOf('physicalMachines') > -1) {
-		    				env.physicalMachines = vmModel.mixIntoCollection(Restangular.restangularizeCollection(null, env.physicalMachines, 'physical-machines'));
-	    				}
-	    				return env;
-    				});
-    			}
-    		};
+	function environmentService(Restangular, environmentModel, vmModel) {
+		/* config environment requests */
+		return Restangular.withConfig(function(config) {
+			config.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
 
-    		return angular.extend(environmentModel.mixInto(model), modelApi);
-    	});
-    	return environments;
-    }
+				/* when get vms from one env, we should new VM object */
+				if (operation === 'get' && response.config.params.expand) {
+					if (response.config.params.expand.indexOf('virtualMachines') > -1) {
+						data.virtualMachines = Restangular.restangularizeCollection(null, vmModel.mixIntoCollection(data.virtualMachines), 'virtual-machines');
+					}
+				}
+				return data;
+			});
+
+		})
+
+			/* mix model in service */
+			.extendModel('environments', function(model) {
+				return environmentModel.mixInto(model);
+			})
+
+			/* return service */
+			.service('environments');
+
+	}
 
 })();

@@ -47,6 +47,9 @@ info-card {
         .card.suspend .vm-status{
             background-color: $yellow;
         }
+        .card.disconnected .vm-status {
+            background-color: $gray;
+        }
 
         .info {
             margin-top: 5px;
@@ -65,6 +68,12 @@ info-card {
             }
             i {
                 margin-left: 10px;
+            }
+            .name-align {
+                margin-left:15px;
+            }
+            .description-align {
+                margin-left:15px;
             }
         }
 
